@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/HTML/ecommerce-demo/">
+    <decorator name="basic-theme" page="blank.jsp">
+        <pattern>*.do</pattern>
+    </decorator>
+    <exculdes>
+    	<pattern>/ajax/*</pattern>
+    	<pattern>/popup/*</pattern>
+    </exculdes>
+</decorators>

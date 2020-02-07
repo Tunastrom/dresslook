@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <g id="logo-small-white" transform="translate(-137.568 -147.568)">
+    <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(137.568 147.568)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="22" cy="22" r="22" stroke="none"/>
+      <circle cx="22" cy="22" r="21.5" fill="none"/>
+    </g>
+    <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(142.568 152.568)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="17" cy="17" r="17" stroke="none"/>
+      <circle cx="17" cy="17" r="16.5" fill="none"/>
+    </g>
+    <line id="Line_1" data-name="Line 1" y2="18.87" transform="translate(151.588 160.294)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_9" data-name="Line 9" y2="11.653" transform="translate(156.764 174.097)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_7" data-name="Line 7" y2="18.358" transform="translate(145.98 160.294)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_2" data-name="Line 2" y2="18.87" transform="translate(167.98 160.294)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_12" data-name="Line 12" y2="10.971" transform="translate(162.803 174.097)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_8" data-name="Line 8" y2="18.358" transform="translate(173.156 160.294)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_3" data-name="Line 3" y1="8.196" x2="8.196" transform="translate(159.784 160.294)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_11" data-name="Line 11" y1="3.02" x2="3.02" transform="translate(159.784 174.097)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_4" data-name="Line 4" x1="8.196" y1="8.196" transform="translate(151.588 160.294)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_10" data-name="Line 10" x1="3.02" y1="3.02" transform="translate(156.764 174.097)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_13" data-name="Line 13" y1="4.314" x2="4.314" transform="translate(159.784 153.823)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_14" data-name="Line 14" x1="4.314" y1="4.314" transform="translate(155.47 153.823)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

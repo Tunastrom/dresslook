@@ -1,0 +1,33 @@
+@function set-text-color($color) {
+    @if (lightness($color) > 76) {
+        @return #000000; // Lighter backgorund, return dark color
+    }
+
+    @else {
+        @return #ffffff; // Darker background, return light color
+    }
+}
+
+$bg-color:#ffffff;
+
+$primary-bg-color: #491879;
+$primary-bg-text: set-text-color($primary-bg-color);
+$secondary-bg-color: #ebe3f2;
+$secondary-bg-text: set-text-color($secondary-bg-color);
+
+$primary-btn-color: #000000;
+$primary-btn-text: set-text-color($primary-btn-color);
+$secondary-btn-color: #ffffff;
+$secondary-btn-text: set-text-color($secondary-btn-color);
+
+
+$header-bg-color:#ffffff;
+$header-primary-text:$primary-bg-color;
+$header-bg-text: set-text-color($header-bg-color);
+
+$sidebar-bg-color:#ffffff;
+$sidebar-bg-text:#000000;
+
+$footer-bg-color:#ffffff;
+$footer-primary-text:$primary-bg-color;
+$footer-bg-text: set-text-color($footer-bg-color);
