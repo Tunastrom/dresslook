@@ -3,9 +3,6 @@
 <html>
 <head>
 <title>Insert title here</title>
-
-<style>
-</style>
 <script>
 	$(document).ready(function(){
 		var url ="/test/ajax/imageGet.do"

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import dresslook.dresslook;
 import dresslook.imageGet;
 import command.Command;
+import command.Timeline;
 
 
 /**
@@ -36,13 +37,7 @@ public class test_Con extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		//cont.put("/index.do", new IndexCommand());
-		//board
-		//등록
-		//수정
-		//삭제
-		//member
-		//ajax
+		cont.put("/timeline.do", new Timeline());
 		cont.put("/dresslook.do", new dresslook());
 		cont.put("/ajax/imageGet.do", new imageGet());
 			
@@ -85,10 +80,10 @@ public class test_Con extends HttpServlet {
 					request.getRequestDispatcher(page)
 					.forward(request, response); 
 				}
-			} else {
-				response.getWriter().append("잘못된 요청");
 			}
-		} 
-	}
+		} else {
+			response.getWriter().append("잘못된 요청");
+		}
+	} 
 }
 
