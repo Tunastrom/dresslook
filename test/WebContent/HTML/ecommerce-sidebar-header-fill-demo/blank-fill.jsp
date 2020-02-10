@@ -10,7 +10,7 @@
     <meta name="author" content="Maxartkiller">
     <link rel=icon href="${pageContext.request.contextPath}/HTML/assets/img/logo-small.png" sizes="any">
 
-    <title>dresslook</title>
+    <title>Mobileshop</title>
 
     <!-- material icons stylesheet -->
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/materializeicon/material-icons.css" rel="stylesheet">
@@ -22,9 +22,9 @@
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet">
 
     <!-- template stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/css/style.css" rel="stylesheet" id="style">
+    <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css" rel="stylesheet" id="style">
 
-	    <!-- Template js files -->
+	<!-- Template js files -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/HTML/assets/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
@@ -43,30 +43,15 @@
 
     <!-- App js page level initialization functions -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js"></script>
-	<decorator:head/>
+    <decorator:head/>
 </head>
 
-<body class="ui-rounded">
-   <!--   <div class="container-fluid h-100 pageloader">
-        <div class="row h-100">
-            <div class="col-12 align-self-center">
-                <figure class=" logo-landing mb-4 mx-auto">
-                    <img src="../HTML/assets/img/logo.svg" alt="">
-                </figure>
-                <h2 class="text-uppercase font-weight-medium text-white">Mobileshop</h2>
-                <p class="text-white text-mute">Mobile HTML template</p>
-                <br>
-                <div class="spinner-border text-light" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
-    
+<body class="ui-rounded sidebar-fill header-fill">
+   
     <div class="background reveal-background">
         <img src="${pageContext.request.contextPath}/HTML/assets/img/image7.jpg" alt="">
     </div>
+    
     <div class="sidebar sidebar-left overlay-sidebar">
         <div class="content">
             <figure class="avatar avatar-100 rounded-circle has-background mx-auto username d-block">
@@ -83,18 +68,10 @@
                 <a href="notifications.html" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
                 <a href="settings.html" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">Settings</span></a>
                 <a href="offers.html" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
-                <div class="list-group-item multilevel">
-                    <a class="multilevel-link"><i class="material-icons">featured_play_list</i> <span class="text-link">Sidebar</span> <i class="material-icons float-right last">chevron_right</i></a>
-                    <div class="list-group list-group-flush multilevel-dropdown">
-                        <a class="list-group-item list-group-item-action active" id="overlay"><i class="icon icon-30">O</i> <span class="text-link">Overlay</span></a>
-                        <a class="list-group-item list-group-item-action" id="reveal"><i class="icon icon-30">R</i> <span class="text-link">Reveal</span></a>
-                        <a class="list-group-item list-group-item-action" id="iconic"><i class="icon icon-30">I</i> <span class="text-link">Iconic</span></a>
-                        <a class="list-group-item list-group-item-action" id="modal" data-target="#menumodal" data-toggle="modal"><i class="icon icon-30">M</i> <span class="text-link">Modal</span></a>
-                    </div>
                 </div>
                 <a href="signin.html" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">Logout</span></a>
             </div>
-        </div>
+        </div> 
 
     </div>
     <div class="main-container">
@@ -120,41 +97,46 @@
         </header>
         <div class="content container-fluid">
             <!-- page content start -->
-			
 			<decorator:body/>
-	
             <!-- page content ends -->
         </div>
+		 <footer class="tabs-footer">
+            <ul class="nav nav-tabs justify-content-center" id="maintab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                        <i class="material-icons">store</i>
+                        <small class="sr-only">Store</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="search-tab" data-toggle="tab" href="#search" role="tab" aria-controls="search" aria-selected="false">
+                        <i class="material-icons">find_in_page</i>
+                        <small class="sr-only">Search</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="cart-tab" data-toggle="tab" href="#cart" role="tab" aria-controls="cart" aria-selected="false">
+                        <i class="material-icons">local_mall</i>
+                        <span class="notification-point"></span>
+                        <small class="sr-only">Local Mall</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="false">
+                        <i class="material-icons">bookmark</i>
+                        <small class="sr-only">Bookmarks</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                        <i class="material-icons">account_circle</i>
+                        <small class="sr-only">Account</small>
+                    </a>
+                </li>
+            </ul>
+        </footer>
     </div>
-    <!-- Modal Menu global -->
-    <div class="modal fade" id="menumodal" tabindex="-1" role="dialog" aria-labelledby="menumodalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center ">
-                    <button type="button" class="icon icon-40 close top-right" data-dismiss="modal" aria-label="Close">
-                        <i class="material-icons">close</i>
-                    </button>
-                    <figure class="avatar avatar-100 has-background mx-auto username">
-                        <div class="background">
-                            <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
-                        </div>
-                    </figure>
-                    <h5 class="mb-0 username-text">Maxartkiller</h5>
-                    <p class="small text-mute username-text">New York, United States</p>
-
-                    <div class="text-center my-4">
-                        <a class="icon icon-50 mx-1 active"><i class="material-icons">store</i></a>
-                        <a class="icon icon-50 mx-1"><i class="material-icons">view_carousel</i></a>
-                        <a class="icon icon-50 mx-1"><i class="material-icons">notifications</i></a>
-                        <a class="icon icon-50 mx-1"><i class="material-icons">memory</i></a>
-                    </div>
-                    <a href="signin.html" class="btn btn-link text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">Logout</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    <!-- MainContainer End -->
 </body>
 
 </html>
