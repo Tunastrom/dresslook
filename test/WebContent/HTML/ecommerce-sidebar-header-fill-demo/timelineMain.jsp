@@ -15,7 +15,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-default">
                                             <div class="background opacity-30">
-                                                <img src="../assets/img/image8.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image8.jpg" alt="">
                                             </div>
                                             <div class="card-body">
                                                 <h3 class="font-weight-normal">50% off<br>Winter Collection</h3>
@@ -29,7 +29,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-primary text-white">
                                             <div class="background opacity-30">
-                                                <img src="../assets/img/image9.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image9.jpg" alt="">
                                             </div>
                                             <div class="card-body">
                                                 <h3 class="font-weight-normal">10% Instant<br>on Credit Cards</h3>
@@ -43,7 +43,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-default text-white">
                                             <div class="background opacity-30">
-                                                <img src="../assets/img/image8.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image8.jpg" alt="">
                                             </div>
                                             <div class="card-body">
                                                 <h3 class="font-weight-normal">40% Flat<br>Off on Addidaas </h3>
@@ -68,7 +68,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image4.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Men</p>
@@ -76,7 +76,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image7.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image7.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Women</p>
@@ -84,7 +84,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image1.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Kids</p>
@@ -92,7 +92,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image9.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image9.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Offer Sale</p>
@@ -100,7 +100,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image8.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image8.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Acceso.</p>
@@ -108,7 +108,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image4.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Men</p>
@@ -116,7 +116,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image7.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image7.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Women</p>
@@ -124,7 +124,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image1.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Kids</p>
@@ -132,7 +132,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image9.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image9.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Offer Sale</p>
@@ -140,7 +140,7 @@
                                     <div class="swiper-slide">
                                         <div class="avatar avatar-80 has-background mb-2 rounded">
                                             <div class="background">
-                                                <img src="../assets/img/image8.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image8.jpg" alt="">
                                             </div>
                                         </div>
                                         <p class="text-uppercase small">Acceso.</p>
@@ -160,7 +160,7 @@
                                     <a href="" class="btn btn-sm btn-default text-uppercase">Show Now</a>
                                 </div>
                                 <div class="col-5 align-self-end text-center">
-                                    <img src="../assets/img/offerimage1.png" alt="" class="mw-100">
+                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/offerimage1.png" alt="" class="mw-100">
                                 </div>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-default">
                                             <div class="background opacity-40">
-                                                <img src="../assets/img/image6.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" alt="">
                                             </div>
                                             <div class="card-body py-5">
                                                 <h3 class="font-weight-normal">Woman's<br>Collections</h3>
@@ -185,7 +185,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-primary text-white">
                                             <div class="background opacity-40">
-                                                <img src="../assets/img/image4.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                                             </div>
                                             <div class="card-body py-5">
                                                 <h3 class="font-weight-normal">Men's<br>Collections</h3>
@@ -197,7 +197,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-default text-white">
                                             <div class="background opacity-40">
-                                                <img src="../assets/img/image1.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
                                             </div>
                                             <div class="card-body py-5">
                                                 <h3 class="font-weight-normal">Kid's<br>Collections </h3>
@@ -252,7 +252,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <a href="product.html" class="background">
-                                                    <img src="../assets/img/image4.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                                                 </a>
                                             </div>
                                             <small class="text-mute">Rockstar</small>
@@ -274,7 +274,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <figure class="background">
-                                                    <img src="../assets/img/image2.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
                                                 </figure>
                                             </div>
                                             <small class="text-mute">Adididas</small>
@@ -294,7 +294,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <figure class="background">
-                                                    <img src="../assets/img/image5.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg" alt="">
                                                 </figure>
                                             </div>
                                             <small class="text-mute">Rockstar</small>
@@ -314,7 +314,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <figure class="background">
-                                                    <img src="../assets/img/image6.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" alt="">
                                                 </figure>
                                             </div>
                                             <small class="text-mute">Mansheri</small>
@@ -376,7 +376,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-default">
                                             <div class="background opacity-40">
-                                                <img src="../assets/img/image6.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" alt="">
                                             </div>
                                             <div class="card-body py-5">
                                                 <h3 class="font-weight-normal">Woman's<br>Collections</h3>
@@ -388,7 +388,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-primary text-white">
                                             <div class="background opacity-40">
-                                                <img src="../assets/img/image4.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                                             </div>
                                             <div class="card-body py-5">
                                                 <h3 class="font-weight-normal">Men's<br>Collections</h3>
@@ -400,7 +400,7 @@
                                     <div class="swiper-slide">
                                         <div class="card has-background border-0 bg-default text-white">
                                             <div class="background opacity-40">
-                                                <img src="../assets/img/image1.jpg" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
                                             </div>
                                             <div class="card-body py-5">
                                                 <h3 class="font-weight-normal">Kid's<br>Collections </h3>
@@ -467,7 +467,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <a href="product.html" class="background">
-                                                    <img src="../assets/img/image4.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                                                 </a>
                                             </div>
                                             <small class="text-mute">Rockstar</small>
@@ -489,7 +489,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <figure class="background">
-                                                    <img src="../assets/img/image2.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
                                                 </figure>
                                             </div>
                                             <small class="text-mute">Adididas</small>
@@ -509,7 +509,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <figure class="background">
-                                                    <img src="../assets/img/image5.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg" alt="">
                                                 </figure>
                                             </div>
                                             <small class="text-mute">Rockstar</small>
@@ -529,7 +529,7 @@
                                                     <button class="btn btn-sm btn-white">New</button>
                                                 </div>
                                                 <figure class="background">
-                                                    <img src="../assets/img/image6.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" alt="">
                                                 </figure>
                                             </div>
                                             <small class="text-mute">Mansheri</small>
@@ -556,7 +556,7 @@
                             <div class="media my-3 w-100">
                                 <div class="avatar avatar-80 mr-3 has-background rounded">
                                     <figure class="background">
-                                        <img src="../assets/img/image9.jpg" class="" alt="">
+                                        <img src="${pageContext.request.contextPath}/HTML/assets/img/image9.jpg" class="" alt="">
                                     </figure>
                                 </div>
                                 <div class="media-body">
@@ -568,7 +568,7 @@
                             <div class="media my-3 w-100">
                                 <div class="avatar avatar-80 mr-3 has-background rounded">
                                     <figure class="background">
-                                        <img src="../assets/img/image1.jpg" class="" alt="">
+                                        <img src="${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" class="" alt="">
                                     </figure>
                                 </div>
                                 <div class="media-body">
@@ -580,7 +580,7 @@
                             <div class="media my-3 w-100">
                                 <div class="avatar avatar-80 mr-3 has-background rounded">
                                     <figure class="background">
-                                        <img src="../assets/img/image8.jpg" class="" alt="">
+                                        <img src="${pageContext.request.contextPath}/HTML/assets/img/image8.jpg" class="" alt="">
                                     </figure>
                                 </div>
                                 <div class="media-body">
@@ -592,7 +592,7 @@
                             <div class="media my-3 w-100">
                                 <div class="avatar avatar-80 mr-3 has-background rounded">
                                     <figure class="background">
-                                        <img src="../assets/img/image10.jpg" class="" alt="">
+                                        <img src="${pageContext.request.contextPath}/HTML/assets/img/image10.jpg" class="" alt="">
                                     </figure>
                                 </div>
                                 <div class="media-body">
@@ -625,7 +625,7 @@
                                         <button class="btn btn-white btn-rounded text-danger btn-20"><i class="material-icons ">favorite</i></button>
                                     </div>
                                     <a href="product.html" class="background">
-                                        <img src="../assets/img/image9.jpg" class="" alt="">
+                                        <img src="${pageContext.request.contextPath}/HTML/assets/img/image9.jpg" class="" alt="">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -653,7 +653,7 @@
                                         <button class="btn btn-white btn-rounded text-danger btn-20"><i class="material-icons ">favorite</i></button>
                                     </div>
                                     <figure class="background">
-                                        <img src="../assets/img/image5.jpg" class="" alt="">
+                                        <img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg" class="" alt="">
                                     </figure>
                                 </div>
                                 <div class="media-body">
@@ -679,7 +679,7 @@
                                         <button class="btn btn-white btn-rounded btn-20"><i class="material-icons ">favorite_border</i></button>
                                     </div>
                                     <figure class="background">
-                                        <img src="../assets/img/image6.jpg" class="" alt="">
+                                        <img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" class="" alt="">
                                     </figure>
                                 </div>
                                 <div class="media-body">
@@ -779,7 +779,7 @@
                                     <div class="media my-3 w-100">
                                         <a href="product.html" class="avatar avatar-60 mr-3 has-background rounded">
                                             <figure class="background">
-                                                <img src="../assets/img/image9.jpg" class="" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image9.jpg" class="" alt="">
                                             </figure>
                                         </a>
                                         <div class="media-body">
@@ -797,7 +797,7 @@
                                     <div class="media my-3 w-100">
                                         <div class="avatar avatar-60 mr-3 has-background rounded">
                                             <figure class="background">
-                                                <img src="../assets/img/image5.jpg" class="" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg" class="" alt="">
                                             </figure>
                                         </div>
                                         <div class="media-body">
@@ -813,7 +813,7 @@
                                     <div class="media my-3 w-100">
                                         <div class="avatar avatar-60 mr-3 has-background rounded">
                                             <figure class="background">
-                                                <img src="../assets/img/image6.jpg" class="" alt="">
+                                                <img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" class="" alt="">
                                             </figure>
                                         </div>
                                         <div class="media-body">
@@ -840,8 +840,8 @@
                                                         <div class="top-right m-2">
                                                             <button class="btn btn-sm btn-white btn-rounded"><i class="material-icons">local_mall</i></button>
                                                         </div>
-                                                        <figure class="background" style="background-image: url(&quot;../assets/img/image4.jpg&quot;);">
-                                                            <img src="../assets/img/image4.jpg" alt="" style="display: none;">
+                                                        <figure class="background" style="background-image: url(&quot;${pageContext.request.contextPath}/HTML/assets/img/image4.jpg&quot;);">
+                                                            <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="" style="display: none;">
                                                         </figure>
                                                     </a>
                                                     <small class="text-mute">Rockstar</small>
@@ -859,8 +859,8 @@
                                                         <div class="top-right m-2">
                                                             <button class="btn btn-sm btn-white btn-rounded text-danger"><i class="material-icons ">local_mall</i></button>
                                                         </div>
-                                                        <figure class="background" style="background-image: url(&quot;../assets/img/image2.jpg&quot;);">
-                                                            <img src="../assets/img/image2.jpg" alt="" style="display: none;">
+                                                        <figure class="background" style="background-image: url(&quot;${pageContext.request.contextPath}/HTML/assets/img/image2.jpg&quot;);">
+                                                            <img src="${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="" style="display: none;">
                                                         </figure>
                                                     </div>
                                                     <small class="text-mute">Adididas</small>
@@ -876,8 +876,8 @@
                                                         <div class="top-right m-2">
                                                             <button class="btn btn-sm btn-white btn-rounded text-danger"><i class="material-icons">local_mall</i></button>
                                                         </div>
-                                                        <figure class="background" style="background-image: url(&quot;../assets/img/image5.jpg&quot;);">
-                                                            <img src="../assets/img/image5.jpg" alt="" style="display: none;">
+                                                        <figure class="background" style="background-image: url(&quot;${pageContext.request.contextPath}/HTML/assets/img/image5.jpg&quot;);">
+                                                            <img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg" alt="" style="display: none;">
                                                         </figure>
                                                     </div>
                                                     <small class="text-mute">Rockstar</small>
@@ -893,8 +893,8 @@
                                                         <div class="top-right m-2">
                                                             <button class="btn btn-sm btn-white btn-rounded"><i class="material-icons ">local_mall</i></button>
                                                         </div>
-                                                        <figure class="background" style="background-image: url(&quot;../assets/img/image6.jpg&quot;);">
-                                                            <img src="../assets/img/image6.jpg" alt="" style="display: none;">
+                                                        <figure class="background" style="background-image: url(&quot;${pageContext.request.contextPath}/HTML/assets/img/image6.jpg&quot;);">
+                                                            <img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" alt="" style="display: none;">
                                                         </figure>
                                                     </div>
                                                     <small class="text-mute">Mansheri</small>
@@ -914,7 +914,7 @@
                         <div class="container-fluid px-0">
                             <div class="has-background h-200px">
                                 <div class="background">
-                                    <img src="../assets/img/image8.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image8.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -923,7 +923,7 @@
                         <div class="col-11 col-md-6 col-lg-4 mx-auto">
                             <figure class="avatar avatar-150 rounded-circle has-background mx-auto username top-75 d-block">
                                 <div class="background">
-                                    <img src="../assets/img/image4.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                                 </div>
                             </figure>
                             <h5 class="text-center mb-0 username-text">Maxartkiller</h5>

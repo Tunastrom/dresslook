@@ -16,6 +16,14 @@ import dresslook.dresslook;
 import dresslook.imageGet;
 import command.Command;
 import command.Timeline;
+import command.orderSheet;
+import command.Like;
+import command.Payment;
+import command.CollectionMain;
+import command.CollectionProduct;
+import command.CollectionSelect;
+import command.Search;
+import command.Thankyou;
 
 
 /**
@@ -38,8 +46,20 @@ public class test_Con extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		cont.put("/timeline.do", new Timeline());
+		cont.put("/like.do", new Like());
+		cont.put("/search.do", new Search());
+		cont.put("/collectionMain.do", new CollectionMain());
+		cont.put("/collectionSelect.do", new CollectionSelect());
+		cont.put("/collectionProduct.do", new CollectionProduct());
+		cont.put("/payment.do", new Payment());
+		cont.put("thankyou.do", new Thankyou());
+		cont.put("/orderSheet.do", new orderSheet());
+		
+		
 		cont.put("/dresslook.do", new dresslook());
 		cont.put("/ajax/imageGet.do", new imageGet());
+		
+		
 			
 	}
 
