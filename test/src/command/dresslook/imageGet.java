@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import command.Command;
-import dao.imgDao;
+import dao.ImgDao;
 import dto.imgDto;
 import net.sf.json.JSONArray;
 
@@ -15,7 +15,7 @@ public class imageGet implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		imgDao dao = new imgDao();
+		ImgDao dao = new ImgDao();
 		List<imgDto> list = dao.selectList();
 		System.out.println(list);
 		// 자바 객체 -> JSON string

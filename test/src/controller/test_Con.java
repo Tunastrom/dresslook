@@ -14,7 +14,7 @@ import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
 
-import dresslook.imageGet;
+
 
 import command.collection.CollectionMain;
 import command.collection.CollectionProduct;
@@ -23,12 +23,16 @@ import command.collection.Payment;
 import command.collection.Thankyou;
 import command.collection.orderSheet;
 import command.dresslook.Like;
-import command.dresslook.Search;
+import command.dresslook.SearchResult;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.my.LoginCommand;
 import command.my.MemberInsert;
 import command.my.memberSelect;
+import command.dresslook.imageGet;
+import command.my.LoginOkCommand;
+import command.seller.SLoginCommand;
+import command.seller.SLoginOkCommand;
 import command.InsertGoods;
 
 @WebServlet("*.do")
@@ -41,14 +45,17 @@ public class test_Con extends HttpServlet {
 	}
 
 	public void init(ServletConfig config) throws ServletException {
+		//dresslook
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
-		cont.put("/search.do", new Search());
+		cont.put("/searchResult.do", new SearchResult());
 		cont.put("/dresslook.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
+
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
+
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/collectionSelect.do", new CollectionSelect());
 		cont.put("/collectionProduct.do", new CollectionProduct());
@@ -59,6 +66,18 @@ public class test_Con extends HttpServlet {
 		cont.put("/loginCommand.do", new LoginCommand());
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
+		cont.put("/insertGoods.do", new InsertGoods());
+		//my
+		cont.put("/login.do", new LoginCommand());
+		cont.put("/loginOk.do", new LoginOkCommand());
+		cont.put("/Slogin.do", new SLoginCommand());
+		cont.put("/SloginOk.do", new SLoginOkCommand());
+		//manager
+		//
+		cont.put("/memberlist.do", new MemberList());
+		cont.put("/membermain.do", new MemberMain());
+		cont.put("/mgoods.do", new Mgoods());
+
 
 	}
 

@@ -947,6 +947,7 @@ p:last-child {
 }
 
 .gallery-thumbs {
+  max-width: 350px;
   height: 100px;
   box-sizing: border-box;
   padding: 10px 0;

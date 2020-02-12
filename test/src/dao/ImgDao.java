@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import dto.imgDto;
 
 
-public class imgDao extends DAO {
+public class ImgDao extends DAO {
 	private imgDto dto = new imgDto();
 	private ArrayList<imgDto> list;
 	
-	public imgDao() {
+	public ImgDao() {
 		super();
 	}
 		

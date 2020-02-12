@@ -46,7 +46,7 @@
     <decorator:head/>
 </head>
 
-<body class="ui-rounded sidebar-fill header-fill">
+<body class="ui-rounded sidebar-fill header-fill" data-page="homepage">
    
     <div class="background reveal-background">
         <img src="${pageContext.request.contextPath}/HTML/assets/img/image7.jpg" alt="">
@@ -63,7 +63,7 @@
             <p class="text-center small text-mute username-text">New York, United States</p>
 
             <div class="list-group list-group-flush nav-list">
-                <a href="timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
+                <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="notifications.jsp" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
                 <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">Settings</span></a>
@@ -81,7 +81,7 @@
                 <div class="col">
                     <div class="logo-header">
                         <img src="${pageContext.request.contextPath}/HTML/assets/img/logo-small.svg" alt="" class="logo-img">
-                        <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>looking every wear</small></h5>
+                        <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>LOOKing every wear</small></h5>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -101,7 +101,7 @@
 		 <footer class="tabs-footer">
             <ul class="nav nav-tabs justify-content-center" id="maintab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                    <a class="nav-link active" id="home-tab" href="timeline.do">
                         <i class="material-icons">store</i>
                         <small class="sr-only">Store</small>
                     </a>
@@ -113,20 +113,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="cart-tab" data-toggle="tab" href="#cart" role="tab" aria-controls="cart" aria-selected="false">
+                    <a class="nav-link" id="cart-tab" href="#cart" aria-controls="cart" aria-selected="false">
                         <i class="material-icons">local_mall</i>
                         <span class="notification-point"></span>
                         <small class="sr-only">Local Mall</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="false">
+                    <a class="nav-link" id="favorite-tab" href="#favorite" aria-controls="favorite" aria-selected="false">
                         <i class="material-icons">bookmark</i>
                         <small class="sr-only">Bookmarks</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                    <a class="nav-link" id="profile-tab" href="#profile" aria-controls="profile" aria-selected="false">
                         <i class="material-icons">account_circle</i>
                         <small class="sr-only">Account</small>
                     </a>

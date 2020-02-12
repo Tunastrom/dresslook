@@ -354,6 +354,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="search" role="tabpanel" aria-labelledby="search-tab">
+                	<form id="serachFrm" name="serachFrm" action="searchResult.do" method="post">
                     <div class="row">
                         <div class="container">
                             <div class="form-group float-label position-relative">
@@ -361,11 +362,12 @@
                                     <a href="" class="btn btn-sm btn-link text-dark btn-rounded text-mute"><i class="material-icons">mic</i></a>
                                     <a href="" class="btn btn-sm btn-link text-dark btn-rounded text-mute"><i class="material-icons">camera_alt</i></a>
                                 </div>
-                                <input type="text" class="form-control ">
+                                <input type="text" class="form-control">
                                 <label class="form-control-label">Search</label>
                             </div>
                         </div>
                     </div>
+                    </form>
                     <div class="row">
                         <div class="container">
                             <h5 class="page-title">Tending Offers</h5>
