@@ -6,15 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dr.app.controller.Command;
 
-public class LoginCommand implements Command {
+public class LoginCommand implements command.Command {
 
 	@Override
-	public String excute(HttpServletRequest request, HttpServletResponse response)
+	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		return "jsp/memberLogin.jsp";
-
 	}
 
 }
