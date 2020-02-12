@@ -5,6 +5,7 @@ package dao;
 
 import java.sql.SQLException;
 
+import dto.MemberDto;
 
 
 /**

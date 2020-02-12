@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import dresslook.dresslook;
 import dresslook.imageGet;
 import command.Command;
@@ -23,8 +21,17 @@ import command.Payment;
 import command.CollectionMain;
 import command.CollectionProduct;
 import command.CollectionSelect;
+
+import command.IndexCommand;
+
+import command.LoginCommand;
+import command.LoginOkCommand;
+
+import command.SLoginCommand;
+import command.SLoginOkCommand;
 import command.Search;
 import command.Thankyou;
+
 
 
 /**
@@ -61,6 +68,11 @@ public class test_Con extends HttpServlet {
 		
 		
 		
+		cont.put("/index.do", new IndexCommand());
+		cont.put("/login.do", new LoginCommand());
+		cont.put("/loginOk.do", new LoginOkCommand());
+		cont.put("/Slogin.do", new SLoginCommand());
+		cont.put("/SloginOk.do", new SLoginOkCommand());
 	
 		
 			
@@ -109,4 +121,3 @@ public class test_Con extends HttpServlet {
 		}
 	} 
 }
-

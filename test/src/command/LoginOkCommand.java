@@ -14,6 +14,7 @@ public class LoginOkCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		MemberDao dao = new MemberDao();
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -31,5 +32,4 @@ public class LoginOkCommand implements Command {
 		}
 
 	}
-
 }

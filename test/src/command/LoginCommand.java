@@ -12,7 +12,9 @@ public class LoginCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return null;
+
+		return "lsj/memberLogin.jsp";
+
 	}
 
 }
