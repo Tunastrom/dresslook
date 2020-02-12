@@ -77,9 +77,9 @@ $(window).on('load', function () {
 
         });
     }
-    if ($('body').attr('data-page') === 'thankyou') {
+    if ($("body").attr("data-page") === "thankyou") {
         setTimeout(function () {
-            window.location.replace("index.html");
+            window.location.replace("timeline.do");
         }, 3500)
     }
 

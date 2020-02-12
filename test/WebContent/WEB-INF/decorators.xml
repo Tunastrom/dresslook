@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<decorators defaultdir="/HTML/ecommerce-sidebar-header-fill-demo/">
+<decorators defaultdir="/HTML/layout/">
     <decorator name="basic-theme" page="blank-fill.jsp">
         <pattern>*.do</pattern>
     </decorator>
