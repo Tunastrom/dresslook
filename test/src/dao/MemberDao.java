@@ -1,11 +1,11 @@
 /**
  * 
  */
-package dr.app.dao;
+package dao;
 
 import java.sql.SQLException;
 
-import dr.app.dto.MemberDto;
+import dto.MemberDto;
 
 /**
  * @author User DAO 상속

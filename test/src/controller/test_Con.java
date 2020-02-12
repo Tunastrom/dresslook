@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -12,18 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dresslook.dresslook;
-import dresslook.imageGet;
-import command.Command;
-import command.Timeline;
-import command.orderSheet;
-import command.Like;
-import command.Payment;
 import command.CollectionMain;
 import command.CollectionProduct;
 import command.CollectionSelect;
+import command.Command;
+import command.IndexCommand;
+import command.Like;
+import command.LoginCommand;
+import command.LoginOkCommand;
+import command.Payment;
+import command.SLoginCommand;
+import command.SLoginOkCommand;
 import command.Search;
 import command.Thankyou;
+import command.Timeline;
+import command.orderSheet;
+import dresslook.dresslook;
+import dresslook.imageGet;
 
 
 /**
@@ -59,6 +63,11 @@ public class test_Con extends HttpServlet {
 		
 		
 		
+		cont.put("/index.do", new IndexCommand());
+		cont.put("/login.do", new LoginCommand());
+		cont.put("/loginOk.do", new LoginOkCommand());
+		cont.put("/Slogin.do", new SLoginCommand());
+		cont.put("/SloginOk.do", new SLoginOkCommand());
 	
 		
 			
