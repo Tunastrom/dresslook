@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dr.app.dao;
+package dao;
 
 import java.sql.SQLException;
 
