@@ -81,7 +81,7 @@
                 <div class="col">
                     <div class="logo-header">
                         <img src="${pageContext.request.contextPath}/HTML/assets/img/logo-small.svg" alt="" class="logo-img">
-                        <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>looking every wear</small></h5>
+                        <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>LOOKing every wear</small></h5>
                     </div>
                 </div>
                 <div class="col-auto">
