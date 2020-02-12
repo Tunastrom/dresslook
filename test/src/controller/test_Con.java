@@ -61,7 +61,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/payment.do", new Payment());
 		cont.put("/thankyou.do", new Thankyou());
 		cont.put("/insertGoods.do", new InsertGoods());
-
 		//my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());

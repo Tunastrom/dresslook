@@ -354,7 +354,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="search" role="tabpanel" aria-labelledby="search-tab">
-                	<form id="serachFrm" name="serachFrm" >
+                	<form id="serachFrm" name="serachFrm" action="searchResult.do" method="post">
                     <div class="row">
                         <div class="container">
                             <div class="form-group float-label position-relative">
