@@ -26,14 +26,20 @@ import command.dresslook.Like;
 import command.dresslook.SearchResult;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
+<<<<<<< HEAD
 import command.dresslook.imageGet;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
+=======
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 import command.InsertGoods;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 
 @WebServlet("*.do")
 public class test_Con extends HttpServlet {
@@ -59,6 +65,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/payment.do", new Payment());
 		cont.put("/thankyou.do", new Thankyou());
 		cont.put("/insertGoods.do", new InsertGoods());
+<<<<<<< HEAD
 		//my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -69,6 +76,10 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
+=======
+	
+
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
