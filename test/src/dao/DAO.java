@@ -26,9 +26,9 @@ public class DAO {
 	protected DataSource ds; //커넥션 pool 사용을 위한 데이터연결 생성 객체
 	
 	private String driver="oracle.jdbc.driver.OracleDriver";
-	private String url="jdbc:oracle:thin:@localhost:1521:xe";
-	private String user="hr";
-	private String password="hr";
+	private String url="jdbc:oracle:thin:@localhost:1523:dl";
+	private String user="dl";
+	private String password="dl";
 	
 	public DAO(){
 		try {

@@ -3,7 +3,10 @@ package controller;
 import java.io.IOException;
 import java.util.HashMap;
 
+<<<<<<< HEAD
+=======
 import javax.servlet.Servlet;
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +15,20 @@ import javax.servlet.http.HttpServletRequest;
 <<<<<<< HEAD
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
+import command.Command;
+import command.MemberList;
+import command.MemberMain;
+import command.Mgoods;
+import command.Timeline;
+=======
 =======
 import javax.servlet.http.HttpServletResponse;
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 import dresslook.dresslook;
 import dresslook.imageGet;
+<<<<<<< HEAD
+=======
 >>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 import command.Command;
 <<<<<<< HEAD
@@ -51,32 +64,30 @@ import command.Search;
 import command.Thankyou;
 >>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 
 
-/**
- * Servlet implementation class NewFrontController
- */
+
 @WebServlet("*.do")
 public class test_Con extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        HashMap<String, Command> cont = new HashMap<>(); 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public test_Con() {
+
+       public test_Con() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
 	public void init(ServletConfig config) throws ServletException {
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
 		cont.put("/search.do", new Search());
 		cont.put("/dresslook.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
+<<<<<<< HEAD
+		cont.put("/memberlist.do", new MemberList());
+		cont.put("/membermain.do", new MemberMain());
+		cont.put("/mgoods.do", new Mgoods());
+=======
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/collectionSelect.do", new CollectionSelect());
 		cont.put("/collectionProduct.do", new CollectionProduct());
@@ -95,11 +106,9 @@ public class test_Con extends HttpServlet {
 	
 		
 			
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 	}
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//실행할 Class객체를 찾아주는 부분
 		//hashMap의 키값인 문자열 ".xxxxx"를 만드는 과정
@@ -116,7 +125,6 @@ public class test_Con extends HttpServlet {
 		String page = null;
 		response.setContentType("text/html; charset=UTF-8");
 		if(commandImpl != null) {
-			//return 된 viewpage 주소 텍스트 실행 
 			page = commandImpl.execute(request, response);
 			System.out.println(page);
 			if (page != null & !page.isEmpty()) {

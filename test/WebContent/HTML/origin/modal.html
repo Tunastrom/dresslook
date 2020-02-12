@@ -55,21 +55,44 @@
             <p class="text-center small text-mute username-text">New York, United States</p>
 
             <div class="list-group list-group-flush nav-list">
-                <a href="index.html" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
-                <a href="myorders.html" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
-                <a href="notifications.html" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
-                <a href="settings.html" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">Settings</span></a>
-                <a href="offers.html" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
+                <a href="index.html" class="list-group-item list-group-item-action active">
+                    <i class="material-icons">store</i> 
+                    <span class="text-link">Home</span></a>
+                <a href="myorders.html" class="list-group-item list-group-item-action">
+                    <i class="material-icons">view_carousel</i> 
+                    <span class="text-link">My Orders</span></a>
+                <a href="notifications.html" class="list-group-item list-group-item-action">
+                    <i class="material-icons">notifications</i> 
+                    <span class="text-link">Notifications</span></a>
+                <a href="settings.html" class="list-group-item list-group-item-action">
+                    <i class="material-icons">memory</i> 
+                    <span class="text-link">Settings</span></a>
+                <a href="offers.html" class="list-group-item list-group-item-action">
+                    <i class="material-icons">local_offer</i> 
+                    <span class="text-link">offers</span></a>
                 <div class="list-group-item multilevel">
-                    <a class="multilevel-link"><i class="material-icons">featured_play_list</i> <span class="text-link">Sidebar</span> <i class="material-icons float-right last">chevron_right</i></a>
+                    <a class="multilevel-link">
+                        <i class="material-icons">featured_play_list</i> 
+                        <span class="text-link">Sidebar</span> 
+                        <i class="material-icons float-right last">chevron_right</i></a>
                     <div class="list-group list-group-flush multilevel-dropdown">
-                        <a class="list-group-item list-group-item-action active" id="overlay"><i class="icon icon-30">O</i> <span class="text-link">Overlay</span></a>
-                        <a class="list-group-item list-group-item-action" id="reveal"><i class="icon icon-30">R</i> <span class="text-link">Reveal</span></a>
-                        <a class="list-group-item list-group-item-action" id="iconic"><i class="icon icon-30">I</i> <span class="text-link">Iconic</span></a>
-                        <a class="list-group-item list-group-item-action" id="modal" data-target="#menumodal" data-toggle="modal"><i class="icon icon-30">M</i> <span class="text-link">Modal</span></a>
+                        <a class="list-group-item list-group-item-action active" id="overlay">
+                            <i class="icon icon-30">O</i> 
+                            <span class="text-link">Overlay</span></a>
+                        <a class="list-group-item list-group-item-action" id="reveal">
+                            <i class="icon icon-30">R</i> 
+                            <span class="text-link">Reveal</span></a>
+                        <a class="list-group-item list-group-item-action" id="iconic">
+                            <i class="icon icon-30">I</i> 
+                            <span class="text-link">Iconic</span></a>
+                        <a class="list-group-item list-group-item-action" id="modal" data-target="#menumodal" data-toggle="modal">
+                            <i class="icon icon-30">M</i> 
+                            <span class="text-link">Modal</span></a>
                     </div>
                 </div>
-                <a href="signin.html" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">Logout</span></a>
+                <a href="signin.html" class="list-group-item text-danger">
+                    <i class="material-icons">exit_to_app</i> 
+                    <span class="text-link">Logout</span></a>
             </div>
         </div>
 
@@ -99,15 +122,25 @@
             <!-- page content start -->
             <div class="row">                
                 <div class="container my-3 text-center">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                          <i class="fas fa-envelope prefix grey-text"></i>
+                          <input type="email" id="defaultForm-email" class="form-control validate">
+                          <label data-error="wrong" data-success="right" for="defaultForm-email">ID</label>
+                        </div>
+                        <div class="md-form mb-4">
+                            <i class="fas fa-lock prefix grey-text"></i>
+                            <input type="password" id="defaultForm-pass" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="defaultForm-pass">패스워드</label>
+                          </div>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal">
-                        Launch demo modal
+                        Login
                     </button>
-                 
-
+                 <!--
                     <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModalCenter">
-                        Launch demo modal vertical centered
-                    </button>
+                        취소
+                    </button> -->
                 </div>
 
 
@@ -117,35 +150,13 @@
 
     </div>
     <!-- Modal Menu global -->
-    <div class="modal fade" id="menumodal" tabindex="-1" role="dialog" aria-labelledby="menumodalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center ">
-                    <button type="button" class="icon icon-40 close top-right" data-dismiss="modal" aria-label="Close">
-                        <i class="material-icons">close</i>
-                    </button>
-                    <figure class="avatar avatar-100 has-background mx-auto username">
-                        <div class="background">
-                            <img src="../assets/img/image4.jpg" alt="">
-                        </div>
-                    </figure>
-                    <h5 class="mb-0 username-text">Maxartkiller</h5>
-                    <p class="small text-mute username-text">New York, United States</p>
-
-                    <div class="text-center my-4">
-                        <a class="icon icon-50 mx-1 active"><i class="material-icons">store</i></a>
-                        <a class="icon icon-50 mx-1"><i class="material-icons">view_carousel</i></a>
-                        <a class="icon icon-50 mx-1"><i class="material-icons">notifications</i></a>
-                        <a class="icon icon-50 mx-1"><i class="material-icons">memory</i></a>
-                    </div>
-                    <a href="signin.html" class="btn btn-link text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">Logout</span></a>
-                </div>
-
-            </div>
-        </div>
-    </div>
+   <!-- <div class="text-center">
+        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
+          Modal Login Form</a>
+      </div> -->
 
     <!-- Modal -->
+    <!--
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -165,13 +176,15 @@
 
             </div>
         </div>
-    </div>
+    </div> 
+-->
 
 
 
 
 
     <!-- Modal -->
+    <!--
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -191,6 +204,7 @@
             </div>
         </div>
     </div>
+    -->
 
     <!-- Template js files -->
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
