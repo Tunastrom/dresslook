@@ -27,7 +27,7 @@ public class AnswerDao extends DAO {
 			while(rs.next()) {
 				dto = new AnswerDto();
 				dto.setM_id(rs.getString("m_id"));
-				dto.setM_pwd(rs.getString("m_pwd"));
+				/*dto.setM_pwd(rs.getString("m_pwd"));
 				dto.setM_name(rs.getString("m_name"));
 				dto.setM_birth(rs.getDate("m_birth"));
 				dto.setM_email(rs.getString("m_email"));
@@ -40,7 +40,7 @@ public class AnswerDao extends DAO {
 				dto.setM_status(rs.getString("m_status"));
 				dto.setRecent_connection(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
-				dto.setM_sex(rs.getString("m_sex"));
+				dto.setM_sex(rs.getString("m_sex"));*/
 				list.add(dto);
 				System.out.println(list);
 			}

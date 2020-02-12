@@ -5,7 +5,9 @@ package dao;
 
 import java.sql.SQLException;
 
-import dto.MemberDto;
+import dto.SellerDto;
+
+
 
 /**
  * @author User DAO 상속
@@ -18,24 +20,22 @@ public class SellerDao extends DAO {
 		return sellerDao;
 	}
 
-	private final String SELLER_INSERT = "INSERT INTO MEMBER(S_ID, S_PWD, C_NAME, S_EMAIL, S_PHONE, S_ZIP, S_ADDR1, S_ADDR2)" 
-			+ " VALUES(?,?,?,?,?,?,?,?)";
+	private final String SELLER_INSERT = "INSERT INTO MEMBER(S_ID, S_PWD, C_NAME, S_EMAIL, S_JOIN, S_PHONE, S_ZIP, S_ADDR1, S_ADDR2)" 
+			+ " VALUES(?,?,?,?,sysdate,?,?,?,?)";
 	
 	private final String SELLER_LOGIN = "SELECT * FROM MEMBER WHERE S_ID=? AND S_PWD=?";
 
-	public void sellerInsert(MemberDto dto) {
+	public void sellerInsert(SellerDto dto) {
 		try {
 			psmt = conn.prepareStatement(SELLER_INSERT);
-			psmt.setString(1, dto.getId());
-			psmt.setString(2, dto.getPw());
-			psmt.setString(3, dto.getName());
-			psmt.setDate(4, dto.getbDate());
-			psmt.setString(5, dto.getEmail());
-			psmt.setString(6, dto.getPhone());
-			psmt.setInt(7, dto.getZip());
-			psmt.setString(8, dto.getAddr1());
-			psmt.setString(9, dto.getAddr2());
-			psmt.setString(9, dto.getSex());
+			psmt.setString(1, dto.getS_id());
+			psmt.setString(2, dto.getS_pwd());
+			psmt.setString(3, dto.getS_cname());
+			psmt.setString(4, dto.getS_email());
+			psmt.setString(5, dto.getPhone());
+			psmt.setInt(6, dto.getS_zip());
+			psmt.setString(7, dto.getS_addr1());
+			psmt.setString(8, dto.getS_addr2());
 			psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

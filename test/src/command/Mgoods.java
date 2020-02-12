@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDao;
-import dto.MmemberDto;
+import dto.MemberDto;
 
 
 
@@ -21,7 +21,7 @@ public class Mgoods implements Command{
 		MemberDao dao = new MemberDao();
 		
 		//dto 선언
-		ArrayList<MmemberDto> list = new ArrayList<MmemberDto>();
+		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 		list = dao.select();
 		
 		request.setAttribute("list", list);
