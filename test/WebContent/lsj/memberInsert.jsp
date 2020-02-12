@@ -72,10 +72,10 @@
 					<div class="row justify-content-center">
 						<div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
 							<h1 class="text-center font-weight-normal mb-5">
-								Create new<br>account with us
+								회원가입
 							</h1>
 							<a href="signupseller.jsp"
-								class="btn btn-lg btn-white btn-block my-4">SELLER</a>
+								class="btn btn-lg btn-white btn-block my-4">판매자회원가입으로</a>
 
 
 

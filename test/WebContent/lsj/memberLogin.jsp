@@ -69,7 +69,7 @@
                 <div class="col-12 align-self-center">
                     <div class="row justify-content-center">
                         <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
-                            <h1 class="text-center font-weight-normal mb-5">Login into<br>your account</h1>
+                            <h1 class="text-center font-weight-normal mb-5">로그인</h1>
                             
                             <div class="form-group float-label style-light position-relative">
                                 <div class="bottom-right mb-2   ">
