@@ -45,7 +45,7 @@
     </div>
     
 
-    <!-- page content starts -->
+     <!-- page content starts -->
     <div class="has-background bg-default">
         <figure class="background opacity-30">
             <img src="../assets/img/image10.jpg" alt="">
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <a href="memberLogin.jsp" class="btn text-white">Signup</a>
+                            <a href="sellerLogin.jsp" class="btn text-white">Signup</a>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <div class="col-12 align-self-end mb-4 text-center">
-                    Don't have account yet?<br><a href="memberLogin.jsp" class="text-white font-weight-bold">Sign up</a> here.
+                    Don't have account yet?<br><a href="sellerLogin.jsp" class="text-white font-weight-bold">Sign up</a> here.
                 </div>
             </div>
         </div>

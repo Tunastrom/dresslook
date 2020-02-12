@@ -3,16 +3,22 @@ package controller;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletResponse;
 
+=======
+import javax.servlet.http.HttpServletResponse;
+import dresslook.dresslook;
+import dresslook.imageGet;
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 import command.Command;
+<<<<<<< HEAD
 import command.collection.CollectionMain;
 import command.collection.CollectionProduct;
 import command.collection.CollectionSelect;
@@ -24,6 +30,27 @@ import command.dresslook.Search;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
+=======
+import command.InsertGoods;
+import command.Timeline;
+import command.orderSheet;
+import command.Like;
+import command.Payment;
+import command.CollectionMain;
+import command.CollectionProduct;
+import command.CollectionSelect;
+
+import command.IndexCommand;
+
+import command.LoginCommand;
+import command.LoginOkCommand;
+
+import command.SLoginCommand;
+import command.SLoginOkCommand;
+import command.Search;
+import command.Thankyou;
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
+
 
 
 /**
@@ -56,9 +83,15 @@ public class test_Con extends HttpServlet {
 		cont.put("/orderSheet.do", new orderSheet());
 		cont.put("/payment.do", new Payment());
 		cont.put("/thankyou.do", new Thankyou());
+		cont.put("/insertGoods.do", new InsertGoods());
 		
 		
 		
+		cont.put("/index.do", new IndexCommand());
+		cont.put("/login.do", new LoginCommand());
+		cont.put("/loginOk.do", new LoginOkCommand());
+		cont.put("/Slogin.do", new SLoginCommand());
+		cont.put("/SloginOk.do", new SLoginOkCommand());
 	
 		
 			
@@ -107,4 +140,3 @@ public class test_Con extends HttpServlet {
 		}
 	} 
 }
-
