@@ -43,6 +43,8 @@
 
     <!-- App js page level initialization functions -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js?ver=1"></script>
+    <!-- ajax -->
+   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <decorator:head/>
 </head>
 

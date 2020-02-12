@@ -17,7 +17,6 @@ public class imageGet implements Command {
 			throws ServletException, IOException {
 		ImgDao dao = new ImgDao();
 		List<imgDto> list = dao.selectList();
-		System.out.println(list);
 		// 자바 객체 -> JSON string
 		String result = JSONArray.fromObject(list).toString();
 		System.out.println(result);

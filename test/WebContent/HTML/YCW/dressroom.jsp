@@ -8,12 +8,20 @@
 		var url ="/test/ajax/imageGet.do"
 		var data = null;
 		var callback  = function(imgList){
+							console.log(imgList);
 							for(i=0; i<imgList.length; i++){
-								$("#upBar").append("<img src=\""+imgList[i].link+"\">")
+								console.log(i);
+								$("#upBar").append("<img src=\""+imgList[i].link+"\">");
+								
+							}
+							$("#upBar").append("<button>&gt;</button>");
+							for(i=0; i<imgList.length; i++){
+								$("#downBar").append("<img src=\""+imgList[i].link+"\">");
 							}
 							$("#upBar").append("<button>&gt;</button>");
 						}
 			$.getJSON(url,data,callback);
+			console.log("end");
 	});
 </script>
 </head>
@@ -23,8 +31,6 @@
 			<div class="row">
 				<div class="col" id="upBar">
 					<button type="button">&lt;</button>
-						
-					
 				</div>
 			</div>
 		</div>
@@ -50,10 +56,10 @@
 					<div class="col">
 						<div class="row">
 							<div class="col">
-								<img src="images/dresslook/product1.PNG"></div></div>
+								<img src="images/dressroom/product1.PNG"></div></div>
 						<div class="row">
 							<div class="col">
-								<img src="images/dresslook/product2.PNG"></div></div></div>
+								<img src="images/dressroom/product2.PNG"></div></div></div>
 					<div class="col">
 						<div class="row">
 							<div class="col">
@@ -93,16 +99,10 @@
 	<div class="row">
 		<div class="col">
 			<div class="row">
-				<div class="col" align="center">
+				<div class="col" align="center" id="downBar">
 				MY
 				<button>&lt;</button>
-					<img src="images/dresslook/glasses.png">
-			        <img src="images/dresslook/glasses.png">
-					<img src="images/dresslook/glasses.png">
-					<img src="images/dresslook/glasses.png">
-					<img src="images/dresslook/glasses.png">
-					<img src="images/dresslook/glasses.png">
-				<button>&gt;</button>
+					
 				</div>
 			</div>
 		</div>
