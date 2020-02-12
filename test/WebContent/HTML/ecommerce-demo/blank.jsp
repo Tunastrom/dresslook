@@ -78,6 +78,7 @@
             <p class="text-center small text-mute username-text">New York, United States</p>
 
             <div class="list-group list-group-flush nav-list">
+                <a href="dladmin.jsp" class="list-group-item list-group-item-action active"><i class="material-icons">admin_page</i> <span class="text-link">admin</span></a>
                 <a href="index.html" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="myorders.html" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="notifications.html" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
@@ -106,7 +107,7 @@
                 <div class="col">
                     <div class="logo-header">
                         <img src="${pageContext.request.contextPath}/HTML/assets/img/logo-small.svg" alt="" class="logo-img">
-                        <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>looking every wear</small></h5>
+                        <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>lookin every wear</small></h5>
                     </div>
                 </div>
                 <div class="col-auto">
