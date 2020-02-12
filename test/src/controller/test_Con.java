@@ -26,14 +26,8 @@ import command.dresslook.Like;
 import command.dresslook.Search;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
-
-import command.IndexCommand;
 import command.InsertGoods;
-import command.LoginCommand;
-import command.LoginOkCommand;
 
-import command.SLoginCommand;
-import command.SLoginOkCommand;
 
 @WebServlet("*.do")
 public class test_Con extends HttpServlet {
@@ -60,14 +54,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/payment.do", new Payment());
 		cont.put("/thankyou.do", new Thankyou());
 		cont.put("/insertGoods.do", new InsertGoods());
-		
-		
-		
-		cont.put("/index.do", new IndexCommand());
-		cont.put("/login.do", new LoginCommand());
-		cont.put("/loginOk.do", new LoginOkCommand());
-		cont.put("/Slogin.do", new SLoginCommand());
-		cont.put("/SloginOk.do", new SLoginOkCommand());
 	
 
 	}
