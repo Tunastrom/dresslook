@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="like">
+
+	<insert id="create">
+		insert into recommand(c_num, m_id)
+		values(#{c_num}, #{m_id})
+	</insert>
+<!-- 좋아요 쿼리 
+좋아요 테이블  recommandation
+글번호 칼럼 c_num
+회원ID 칼럼 m_id
+ -->
+	<select id="read" resultType="likeVO">
+		select *
+		from recommand
+		where c_num = #{c_num} and m_id = #{m_id}
+	</select>
+	
+	<delete id="delete">
+		delete from recommand
+		where c_num = #{c_num} and m_id = #{m_id}
+	</delete>
+	
+</mapper>
