@@ -10,7 +10,7 @@
 
 </head>
 <body>
-	<div align="center" id="Mgoods" class="table table-bordered"><h2>상품관리</h2>
+	<div align="center" id="Mgoods" class="table table-hover"><h2>상품관리</h2>
 		<table border="1">
 			<tr>
 				<th scope="col">상품번호</th>
