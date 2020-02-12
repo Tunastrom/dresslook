@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import dresslook.dresslook;
 import dresslook.imageGet;
 import command.Command;
+import command.InsertGoods;
 import command.Timeline;
 import command.orderSheet;
 import command.Like;
@@ -56,6 +57,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/orderSheet.do", new orderSheet());
 		cont.put("/payment.do", new Payment());
 		cont.put("/thankyou.do", new Thankyou());
+		cont.put("/insertGoods.do", new InsertGoods());
 		
 		
 		
