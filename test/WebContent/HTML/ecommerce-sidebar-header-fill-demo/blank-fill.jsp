@@ -42,7 +42,7 @@
     <script src="${pageContext.request.contextPath}/HTML/assets/js/color-scheme-demo.js"></script>
 
     <!-- App js page level initialization functions -->
-    <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js"></script>
+    <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js?ver=1"></script>
     <decorator:head/>
 </head>
 

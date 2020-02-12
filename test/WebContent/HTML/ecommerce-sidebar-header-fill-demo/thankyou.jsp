@@ -3,8 +3,12 @@
 <html lang="en">
 
 <head>
+<script>
+$(document).ready(function(){
+	$('body').attr("data-page","thankyou");
+ }); 
+</script>
 </head>
-
 <body>
     <!-- page content start -->
     <div class="login-container">
