@@ -44,12 +44,8 @@
         </div>
     </div>
     
-
     <!-- page content starts -->
-    <div class="has-background bg-default">
-        <figure class="background opacity-30">
-            <img src="../assets/img/image10.jpg" alt="">
-        </figure>
+    <div>
 
         <div class="login-container">
             <div class="row no-gutters">
@@ -57,45 +53,44 @@
                     <div class="row">
                         <div class="col">
                             <div class="logo-header">
-                                <img src="../assets/img/logo-small-white.svg" alt="" class="logo-img">
+                                <img src="../assets/img/logo-small.svg" alt="" class="logo-img">
                                 <h5 class="logo-header-text">Mobileshop<br><small>Mobile HTML template</small></h5>
                             </div>
                         </div>
                         <div class="col-auto">
-                            <a href="memberLogin.jsp" class="btn text-white">Signup</a>
+                            <a href="sellerLogin.jsp" class="btn">Sign in</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 align-self-center">
                     <div class="row justify-content-center">
-                        <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
-                            <h1 class="text-center font-weight-normal mb-5">로그인</h1>
-                            
-                            <div class="form-group float-label style-light position-relative">
-                                <div class="bottom-right mb-2   ">
-                                    <a href="forgotid.jsp" class="text-white">Forgot?</a>
-                                </div>
-                                <input type="text" class="form-control ">
-                                <label class="form-control-label">Id</label>
+                        <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3 text-center">
+                            <h1 class="text-center font-weight-normal mb-3">Find<br>Id</h1>
+                            <p class="mb-5 text-mute">Provide your username or registered email address to reset your password.</p>
+                            <div class="form-group float-label active">
+                                <input type="text" class="form-control " value="MaxartBond">
+                                <label class="form-control-label">이름</label>
                             </div>
-                            <div class="form-group float-label style-light position-relative">
-                                <div class="bottom-right mb-2   ">
-                                    <a href="forgotpassword.jsp" class="text-white">Forgot?</a>
-                                </div>
-                                <input type="password" class="form-control ">
-                                <label class="form-control-label">Password</label>
+                            <div class="form-group float-label active">
+                                <input type="text" class="form-control " value="MaxartBond">
+                                <label class="form-control-label">휴대전화번호</label>
                             </div>
-                            <a href="index.jsp" class="btn btn-lg btn-white btn-block my-4">Sign in</a>
+                            <div class="form-group float-label active">
+                                <input type="text" class="form-control " value="MaxartBond">
+                                <label class="form-control-label">인증번호</label>
+                            </div>
+                            <a href="sellerLogin.jsp" class="btn btn-lg btn-default btn-block my-4">재전송</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 align-self-end mb-4 text-center">
-                    Don't have account yet?<br><a href="memberLogin.jsp" class="text-white font-weight-bold">Sign up</a> here.
+                    If you know your password,<br>you can <a href="sellerLogin.jsp" class="text-dark font-weight-bold">Sign in</a> here.
                 </div>
             </div>
         </div>
     </div>
     <!-- page content ends -->
+
 
     <!-- Template js files -->
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
@@ -107,9 +102,6 @@
 
     <!-- Custom js -->
     <script src="../assets/js/main.js"></script>
-    
-    <!-- Cookie for color scheme -->
-    <script src="../assets/vendor/cookie/jquery.cookie.js"></script>
 
     <!-- App js page level initialization functions -->
     <script src="../assets/js/app.js"></script>
