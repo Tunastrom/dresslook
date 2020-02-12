@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	 $(document).ready(function(){
+		 $("body").attr("data-page","homepage");
+	 });
 </head>
 <body>   
             <!-- page content start -->

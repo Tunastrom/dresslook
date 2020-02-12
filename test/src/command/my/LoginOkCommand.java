@@ -1,4 +1,4 @@
-package dr.app.command;
+package command.my;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class LoginOkCommand implements Command {
 			httpsession.setAttribute("id", id);
 			httpsession.setAttribute("au", au);// 브라우저 종료시까지 유지. 세션
 
-			return "index.do";
+			return "timeline.do";
 		}
 
 	}

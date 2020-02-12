@@ -1,4 +1,4 @@
-package dr.app.command;
+package command.seller;
 
 import java.io.IOException;
 
@@ -28,7 +28,7 @@ public class SLoginOkCommand implements Command {
 			HttpSession httpsession = request.getSession();
 			httpsession.setAttribute("id", id);
 
-			return "index.do";
+			return "timeline.do";
 		}
 
 	}

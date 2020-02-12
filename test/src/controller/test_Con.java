@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dresslook.dresslook;
-import dresslook.imageGet;
 import command.Command;
-import command.Timeline;
-import command.orderSheet;
-import command.Like;
-import command.Payment;
-import command.CollectionMain;
-import command.CollectionProduct;
-import command.CollectionSelect;
-import command.Search;
-import command.Thankyou;
+import command.collection.CollectionMain;
+import command.collection.CollectionProduct;
+import command.collection.CollectionSelect;
+import command.collection.Payment;
+import command.collection.Thankyou;
+import command.collection.orderSheet;
+import command.dresslook.Like;
+import command.dresslook.Search;
+import command.dresslook.Timeline;
+import command.dresslook.dressroom;
+import command.dresslook.imageGet;
 
 
 /**
@@ -48,7 +48,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
 		cont.put("/search.do", new Search());
-		cont.put("/dresslook.do", new dresslook());
+		cont.put("/dresslook.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/collectionSelect.do", new CollectionSelect());

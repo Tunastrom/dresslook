@@ -1,4 +1,4 @@
-package dresslook;
+package command.dresslook;
 
 import java.io.IOException;
 
@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class dresslook implements Command{
+public class Timeline implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		return "looktest.jsp";
+		return "/HTML/YCW/timelineMain.jsp";
 	}
-	
+
 }

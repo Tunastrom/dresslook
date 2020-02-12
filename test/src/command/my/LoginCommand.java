@@ -1,4 +1,4 @@
-package command;
+package command.my;
 
 import java.io.IOException;
 
@@ -6,11 +6,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Thankyou implements Command{
+import dr.app.controller.Command;
+
+public class LoginCommand implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
+	public String excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "HTML/ecommerce-sidebar-header-fill-demo/thankyou.jsp";
+		return "jsp/memberLogin.jsp";
+
 	}
+
 }

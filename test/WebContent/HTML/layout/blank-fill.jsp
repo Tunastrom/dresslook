@@ -10,7 +10,7 @@
     <meta name="author" content="Maxartkiller">
     <link rel=icon href="${pageContext.request.contextPath}/HTML/assets/img/logo-small.png" sizes="any">
 
-    <title>Mobileshop</title>
+    <title>dresslook</title>
 
     <!-- material icons stylesheet -->
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/materializeicon/material-icons.css" rel="stylesheet">
@@ -22,7 +22,7 @@
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet">
 
     <!-- template stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css" rel="stylesheet" id="style">
+    <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css?ver=1" rel="stylesheet" id="style">
 
 	<!-- Template js files -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/jquery-3.3.1.min.js"></script>
@@ -63,8 +63,8 @@
             <p class="text-center small text-mute username-text">New York, United States</p>
 
             <div class="list-group list-group-flush nav-list">
-                <a href="index.jsp" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
-                <a href="myorders.jsp" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
+                <a href="timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
+                <a href="" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="notifications.jsp" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
                 <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">Settings</span></a>
                 <a href="offers.jsp" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>

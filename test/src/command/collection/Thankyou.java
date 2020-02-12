@@ -1,4 +1,4 @@
-package command;
+package command.collection;
 
 import java.io.IOException;
 
@@ -6,12 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CollectionProduct implements Command{
+import command.Command;
+
+public class Thankyou implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "HTML/ecommerce-sidebar-header-fill-demo/collectionProduct.jsp";
+		return "HTML/YCW/thankyou.jsp";
 	}
-
 }

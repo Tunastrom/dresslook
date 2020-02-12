@@ -1,4 +1,4 @@
-package dresslook;
+package command.dresslook;
 
 import java.io.IOException;
 import java.io.PrintWriter;
