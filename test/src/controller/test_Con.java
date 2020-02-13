@@ -14,8 +14,6 @@ import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
 
-
-
 import command.collection.CollectionMain;
 import command.collection.CollectionProduct;
 import command.collection.CollectionSelect;
@@ -31,6 +29,7 @@ import command.my.MemberInsert;
 import command.my.memberSelect;
 import command.dresslook.imageGet;
 import command.my.LoginOkCommand;
+import command.seller.GoodsList;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.InsertGoods;
@@ -45,7 +44,7 @@ public class test_Con extends HttpServlet {
 	}
 
 	public void init(ServletConfig config) throws ServletException {
-		//dresslook
+		// dresslook
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
 		cont.put("/searchResult.do", new SearchResult());
@@ -67,17 +66,16 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
 		cont.put("/insertGoods.do", new InsertGoods());
-		//my
+		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
 		cont.put("/Slogin.do", new SLoginCommand());
 		cont.put("/SloginOk.do", new SLoginOkCommand());
-		//manager
-		//
-		cont.put("/memberlist.do", new MemberList());
-		cont.put("/membermain.do", new MemberMain());
-		cont.put("/mgoods.do", new Mgoods());
+		// manager
+		// seller
+		cont.put("/GoodsList.do", new GoodsList());
 
+		cont.put("/mgoods.do", new Mgoods());
 
 	}
 

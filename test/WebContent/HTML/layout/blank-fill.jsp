@@ -68,10 +68,10 @@
                 <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="notifications.jsp" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
-                <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">Settings</span></a>
+                <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
                 <a href="offers.jsp" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
                 </div>
-                <a href="loginCommand.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">Login</span></a>
+                <a href="loginCommand.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
             </div>
         </div> 
     <div class="main-container">
