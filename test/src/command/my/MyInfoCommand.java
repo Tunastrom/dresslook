@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class MemberInsert implements Command {
+public class MyInfoCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		return "memberInsert.jsp";
+		// TODO Auto-generated method stub
+		return "lsj/myInfo.jsp";
 	}
 
 }
