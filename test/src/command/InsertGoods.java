@@ -13,7 +13,7 @@ public class InsertGoods implements Command {
 			throws ServletException, IOException {
 		
 		
-		return "kjw/insertBlob.jsp";
+		return "HTML/kjw/insertBlob.jsp";
 	}
 
 }

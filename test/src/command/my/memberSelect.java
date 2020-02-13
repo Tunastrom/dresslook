@@ -14,7 +14,7 @@ public class memberSelect implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "lsj/memberSelect.jsp";
+		return "HTML/lsj/memberSelect.jsp";
 	}
 
 }

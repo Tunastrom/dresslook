@@ -68,10 +68,10 @@
                 <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="notifications.jsp" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
-                <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">Settings</span></a>
+                <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
                 <a href="offers.jsp" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
                 </div>
-                <a href="loginCommand.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">Login</span></a>
+                <a href="loginCommand.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
             </div>
         </div> 
     <div class="main-container">
@@ -87,8 +87,8 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="favorite.jsp" class="btn btn-link"><i class="material-icons">favorite_border</i></a>
-                    <a href="notifications.jsp" class="btn btn-link">
+                    <a href="like.do" class="btn btn-link"><i class="material-icons">favorite_border</i></a>
+                    <a href="notifications.do" class="btn btn-link">
                         <i class="material-icons">notifications_none</i>
                         <span class="notification-point"></span>
                     </a>
@@ -109,20 +109,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="search-tab" data-toggle="tab" href="#search" role="tab" aria-controls="search" aria-selected="false">
+                    <a class="nav-link" id="search-tab" href="search.do" aria-controls="search" aria-selected="true">
                         <i class="material-icons">find_in_page</i>
                         <small class="sr-only">Search</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="cart-tab" href="#cart" aria-controls="cart" aria-selected="false">
+                    <a class="nav-link" id="cart-tab" href="dressRoom.do" aria-controls="cart" aria-selected="true">
                         <i class="material-icons">local_mall</i>
                         <span class="notification-point"></span>
                         <small class="sr-only">Local Mall</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="favorite-tab" href="#favorite" aria-controls="favorite" aria-selected="false">
+                    <a class="nav-link" id="favorite-tab" href="collectionMain.do" aria-controls="favorite" aria-selected="false">
                         <i class="material-icons">bookmark</i>
                         <small class="sr-only">Bookmarks</small>
                     </a>

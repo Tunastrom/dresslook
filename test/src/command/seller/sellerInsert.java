@@ -1,4 +1,4 @@
-package command.dresslook;
+package command.seller;
 
 import java.io.IOException;
 
@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class SearchResult implements Command{
+public class sellerInsert implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "HTML/YCW/search.jsp";
+		// TODO Auto-generated method stub
+		return "HTML/lsj/sellerInsert.jsp";
 	}
 
 }

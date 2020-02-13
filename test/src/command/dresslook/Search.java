@@ -1,4 +1,4 @@
-package command.my;
+package command.dresslook;
 
 import java.io.IOException;
 
@@ -8,15 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class MemberInsert implements Command {
+public class Search implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-
-		return "HTML/lsj/memberInsert.jsp";
-
+		return "HTML/YCW/search.jsp";
 	}
 
 }
