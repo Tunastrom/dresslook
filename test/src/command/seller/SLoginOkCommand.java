@@ -21,7 +21,7 @@ public class SLoginOkCommand implements command.Command {
 		Boolean check = dao.sloginCheck(id, pw);
 
 		if (check == null) {
-			return "login.do";
+			return "Slogin.do";
 		} else {
 
 			HttpSession httpsession = request.getSession();

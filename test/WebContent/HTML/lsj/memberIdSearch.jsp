@@ -5,19 +5,11 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
-=======
-    
 
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 </head>
 
-<body class="ui-rounded">
-<<<<<<< HEAD
-=======
-    
-    
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
+<body>
+
     <!-- page content starts -->
     <div>
         <div class="login-container">
@@ -52,7 +44,7 @@
                                 <input type="text" class="form-control " >
                                 <label class="form-control-label">인증번호</label>
                             </div>
-                            <a href="signin.jsp" class="btn btn-lg btn-default btn-block my-4">재전송</a>
+                            <a href="memberLogin.jsp" class="btn btn-lg btn-default btn-block my-4">재전송</a>
                         </div>
                     </div>
                 </div>
@@ -63,12 +55,7 @@
         </div>
     </div>
     <!-- page content ends -->
-<<<<<<< HEAD
-=======
 
-
-   
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 </body>
 
 </html>
