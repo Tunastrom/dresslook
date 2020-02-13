@@ -87,8 +87,8 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="favorite.jsp" class="btn btn-link"><i class="material-icons">favorite_border</i></a>
-                    <a href="notifications.jsp" class="btn btn-link">
+                    <a href="like.do" class="btn btn-link"><i class="material-icons">favorite_border</i></a>
+                    <a href="notifications.do" class="btn btn-link">
                         <i class="material-icons">notifications_none</i>
                         <span class="notification-point"></span>
                     </a>
@@ -109,20 +109,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="search-tab" data-toggle="tab" href="#search" role="tab" aria-controls="search" aria-selected="false">
+                    <a class="nav-link" id="search-tab" href="search.do" aria-controls="search" aria-selected="true">
                         <i class="material-icons">find_in_page</i>
                         <small class="sr-only">Search</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="cart-tab" href="#cart" aria-controls="cart" aria-selected="false">
+                    <a class="nav-link" id="cart-tab" href="dressRoom.do" aria-controls="cart" aria-selected="true">
                         <i class="material-icons">local_mall</i>
                         <span class="notification-point"></span>
                         <small class="sr-only">Local Mall</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="favorite-tab" href="#favorite" aria-controls="favorite" aria-selected="false">
+                    <a class="nav-link" id="favorite-tab" href="collectionMain.do" aria-controls="favorite" aria-selected="false">
                         <i class="material-icons">bookmark</i>
                         <small class="sr-only">Bookmarks</small>
                     </a>

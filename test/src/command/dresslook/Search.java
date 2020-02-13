@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class SearchResult implements Command{
+public class Search implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

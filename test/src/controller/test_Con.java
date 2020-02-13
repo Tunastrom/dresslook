@@ -21,9 +21,13 @@ import command.collection.CollectionProduct;
 import command.collection.CollectionSelect;
 import command.collection.Payment;
 import command.collection.Thankyou;
+import command.collection.TimelineSearch;
 import command.collection.orderSheet;
+import command.dresslook.BoardLook;
 import command.dresslook.Like;
-import command.dresslook.SearchResult;
+import command.dresslook.LookInsert;
+import command.dresslook.Notifications;
+import command.dresslook.Search;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.my.LoginCommand;
@@ -48,10 +52,15 @@ public class test_Con extends HttpServlet {
 		//dresslook
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
-		cont.put("/searchResult.do", new SearchResult());
-		cont.put("/dresslook.do", new dressroom());
+		cont.put("/search.do", new Search());
+		cont.put("/dressRoom.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
-
+		cont.put("/timelineSearch.do", new TimelineSearch());
+		cont.put("/notifications.do", new Notifications());
+		cont.put("/lookInsert.do", new LookInsert());
+		cont.put("/boardLook.do", new BoardLook());
+		
+		
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
