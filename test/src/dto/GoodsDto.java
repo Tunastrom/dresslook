@@ -1,6 +1,5 @@
 package dto;
 
-import oracle.sql.BLOB;
 
 public class GoodsDto {
 	private Integer g_num;
@@ -12,12 +11,13 @@ public class GoodsDto {
 	private String g_inven;
 	private String s_id;
 	private String maker;
-	private BLOB g_image;
+	private byte[] g_image;
 	private String g_info;
 	private String g_code;
 	private String g_sex;
-	private String g_prior;
+	private int g_prior;
 	private String g_status;
+	private String stringImage;
 	@Override
 	public String toString() {
 		return "GoodsDto [g_num=" + g_num + ", g_name=" + g_name + ", g_price=" + g_price + ", s_price=" + s_price
@@ -79,10 +79,10 @@ public class GoodsDto {
 	public void setMaker(String maker) {
 		this.maker = maker;
 	}
-	public BLOB getG_image() {
+	public byte[] getG_image() {
 		return g_image;
 	}
-	public void setG_image(BLOB g_image) {
+	public void setG_image(byte[] g_image) {
 		this.g_image = g_image;
 	}
 	public String getG_info() {
@@ -103,10 +103,10 @@ public class GoodsDto {
 	public void setG_sex(String g_sex) {
 		this.g_sex = g_sex;
 	}
-	public String getG_prior() {
+	public int getG_prior() {
 		return g_prior;
 	}
-	public void setG_prior(String g_prior) {
+	public void setG_prior(int g_prior) {
 		this.g_prior = g_prior;
 	}
 	public String getG_status() {
@@ -114,6 +114,12 @@ public class GoodsDto {
 	}
 	public void setG_status(String g_status) {
 		this.g_status = g_status;
+	}
+	public String getStringImage() {
+		return stringImage;
+	}
+	public void setStringImage(String stringImage) {
+		this.stringImage = stringImage;
 	}
 
 }

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import command.InsertGoods;
 import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
-
-
-
 import command.collection.CollectionMain;
 import command.collection.CollectionProduct;
 import command.collection.CollectionSelect;
@@ -30,14 +29,22 @@ import command.dresslook.Notifications;
 import command.dresslook.Search;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
-import command.my.LoginCommand;
-import command.my.MemberInsert;
-import command.my.memberSelect;
 import command.dresslook.imageGet;
+import command.my.IdSearchCommand;
+import command.my.LoginCommand;
 import command.my.LoginOkCommand;
+import command.my.MemberInsert;
+import command.my.MyInfoCommand;
+import command.my.MyOrderListCommand;
+import command.my.MyOrderSelectCommand;
+import command.my.MyOrderTrackCommand;
+import command.my.MyProfileCommand;
+import command.my.PwSearchCommand;
+import command.my.memberSelect;
+import command.seller.GoodsList;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
-import command.InsertGoods;
+import command.seller.sellerInsert;
 
 @WebServlet("*.do")
 public class test_Con extends HttpServlet {
@@ -49,18 +56,18 @@ public class test_Con extends HttpServlet {
 	}
 
 	public void init(ServletConfig config) throws ServletException {
-		//dresslook
+		// dresslook
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
 		cont.put("/search.do", new Search());
 		cont.put("/dressRoom.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
-		cont.put("/timelineSearch.do", new TimelineSearch());
 		cont.put("/notifications.do", new Notifications());
 		cont.put("/lookInsert.do", new LookInsert());
 		cont.put("/boardLook.do", new BoardLook());
 		
 		
+
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
@@ -76,17 +83,36 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
 		cont.put("/insertGoods.do", new InsertGoods());
-		//my
+		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
 		cont.put("/Slogin.do", new SLoginCommand());
 		cont.put("/SloginOk.do", new SLoginOkCommand());
-		//manager
-		//
-		cont.put("/memberlist.do", new MemberList());
-		cont.put("/membermain.do", new MemberMain());
+		cont.put("/myOrderList.do", new MyOrderListCommand());
+		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
+		cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		cont.put("/myProfile.do", new MyProfileCommand());
+		cont.put("/myInfo.do", new MyInfoCommand());
+		cont.put("/memberIdSearch.do", new IdSearchCommand());
+		cont.put("/memberPwSearch.do", new PwSearchCommand());
+		
+		
+		
+		
+		
+		
+		
+		// manager
+		// seller
+		cont.put("/sellerInsert.do", new sellerInsert());
+		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/mgoods.do", new Mgoods());
-
+		
+		
+		
+		
+		
+		
 
 	}
 
