@@ -25,7 +25,7 @@
 							</div>
 						</div>
 						<div class="col-auto">
-							<a href="Login.do" class="btn">Sign in</a>
+							<a href="Login.do" class="btn">로그인</a>
 						</div>
 					</div>
 				</div>
@@ -44,32 +44,32 @@
 									class="form-control-label">비밀번호 확인</label>
 							</div>
 							<div class="form-group float-label active">
-								<input type="text" class="form-control " value="${name }"> <label
+								<input type="text" class="form-control " value="${memberdto.m_name }"> <label
 									class="form-control-label" >이름</label>
 							</div>
 							<div class="form-group float-label active">
-								<input type="text" class="form-control " value="${email }"> <label
+								<input type="text" class="form-control " value="${memberdto.m_email }"> <label
 									class="form-control-label" >Email</label>
 							</div>
 							<div class="form-group float-label active">
 								<input type="tel" class="form-control "
-									pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" maxlength="13" required value="${phone }">
+									pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" maxlength="13" required value="${memberdto.m_phone }">
 								<label class="form-control-label" >휴대전화번호</label>
 							</div>
 							<div class="form-group float-label active">
-								<input type="text" class="form-control " value="${zipcode }"> <label
+								<input type="text" class="form-control " value="${memberdto.m_zipcode }"> <label
 									class="form-control-label">우편번호</label>
 							</div>
 							<div class="form-group float-label active">
-								<input type="text" class="form-control " value="${addr1 }"> <label
+								<input type="text" class="form-control " value="${memberdto.m_addr1 }"> <label
 									class="form-control-label">주소1</label>
 							</div>
 							<div class="form-group float-label active">
-								<input type="text" class="form-control " value="${addr2 }"> <label
+								<input type="text" class="form-control " value="${memberdto.m_addr2 }"> <label
 									class="form-control-label">주소2</label>
 							</div>
 							<div class="form-group float-label active">
-								<input type="text" class="form-control " value="${bDate }"> <label
+								<input type="text" class="form-control " value="${memberdto.m_birth }"> <label
 									class="form-control-label">생년월일</label>
 							</div>
 
@@ -78,13 +78,13 @@
 						</div>
 
 
-						<a href="memberLogin.jsp"
+						<a href="login.do"
 							class="btn btn-lg btn-default btn-block my-4">수정</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-12 align-self-end mb-4 text-center">
-				Already have account?<br> <a href="memberLogin.jsp"
+				Already have account?<br> <a href="login.do"
 					class="text-dark font-weight-bold">로그인</a>
 			</div>
 		</div>

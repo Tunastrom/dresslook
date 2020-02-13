@@ -58,7 +58,7 @@ public class MemberDao extends DAO {
 		close();
 		return dto;
 	}
-
+	
 //	회원가입
 	public int insert(MemberDto dto) {
 		int n = 0;

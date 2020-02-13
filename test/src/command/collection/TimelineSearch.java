@@ -1,4 +1,4 @@
-package command.my;
+package command.collection;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class MyCouponCommand implements Command {
+public class TimelineSearch implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return "HTML/lsj/myCoupon.jsp";
+		
+		return "HTML/YCW/timelineSearch.jsp";
 	}
 
 }

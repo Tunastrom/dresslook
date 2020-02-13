@@ -36,7 +36,7 @@
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
-										<img src="../assets/img/image3.jpg"
+										<img src="${pageContext.request.contextPath}/HTML/assets/img/image3.jpg"
 											alt="Generic placeholder image">
 									</figure>
 								</div>
@@ -50,7 +50,7 @@
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
-										<img src="../assets/img/image5.jpg"
+										<img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg"
 											alt="Generic placeholder image">
 									</figure>
 								</div>
@@ -95,7 +95,7 @@
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
-										<img src="../assets/img/image3.jpg"
+										<img src="${pageContext.request.contextPath}/HTML/assets/img/image3.jpg"
 											alt="Generic placeholder image">
 									</figure>
 								</div>

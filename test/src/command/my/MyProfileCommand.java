@@ -14,7 +14,7 @@ public class MyProfileCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "lsj/myProfile.jsp";
+		return "HTML/lsj/myProfile.jsp";
 	}
 
 }
