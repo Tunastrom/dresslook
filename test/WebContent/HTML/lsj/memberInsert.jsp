@@ -9,7 +9,7 @@
 </head>
 
 <body class="ui-rounded sidebar-fill header-fill">
-	
+
 
 
 	<!-- page content starts -->
@@ -34,13 +34,7 @@
 				<div class="col-12 align-self-center">
 					<div class="row justify-content-center">
 						<div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
-							<h1 class="text-center font-weight-normal mb-5">
-								회원가입
-							</h1>
-							<a href="signupseller.jsp"
-								class="btn btn-lg btn-white btn-block my-4">판매자회원가입으로</a>
-
-
+							<h1 class="text-center font-weight-normal mb-5">회원가입</h1>
 
 							<div class="form-group float-label active">
 								<input type="text" class="form-control "> <label
@@ -134,11 +128,12 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- page content ends -->
+	<!-- page content ends -->
 
 
-		
+
 </body>
 
 </html>

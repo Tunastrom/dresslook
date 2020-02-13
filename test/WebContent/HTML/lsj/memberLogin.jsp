@@ -80,7 +80,7 @@
 								</div>
 								<input type="submit" class="btn btn-lg btn-white btn-block my-4"
 									value="로그인">
-								<input type="button" class="btn btn-lg btn-white btn-block my-4" value="회원가입" onclick="location.href='memberInsert.do'" >
+								<input type="button" class="btn btn-lg btn-white btn-block my-4" value="회원가입" onclick="location.href='memberSelect.do'" >
 							</form>
 						</div>
 

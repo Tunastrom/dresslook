@@ -32,6 +32,7 @@ import command.my.LoginOkCommand;
 import command.seller.GoodsList;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
+import command.seller.sellerInsert;
 import command.InsertGoods;
 
 @WebServlet("*.do")
@@ -73,8 +74,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/SloginOk.do", new SLoginOkCommand());
 		// manager
 		// seller
+		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
-
 		cont.put("/mgoods.do", new Mgoods());
 
 	}

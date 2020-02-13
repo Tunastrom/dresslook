@@ -20,14 +20,11 @@ public class LoginOkCommand implements command.Command {
 		MemberDao dao = new MemberDao();
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pwd");
-		System.out.println(id);
-		System.out.println(pw);
 		String au = dao.loginCheck(id, pw);
 
 		if (au == null) {
 			return "login.do";
 		} else {
-			System.out.println(au);
 			HttpSession httpsession = request.getSession();// 자바 객체를 이용해서 session 객체(servlet session 객체)를 이용할때
 			httpsession.setAttribute("id", id);
 			httpsession.setAttribute("au", au);// 브라우저 종료시까지 유지. 세션
