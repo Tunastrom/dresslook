@@ -23,7 +23,7 @@ public class MemberMain implements Command{
 		list = dao.select();
 		
 		request.setAttribute("list", list);
-		return "HTML/ecommerce-sidebar-header-fill-demo/MemberMain.jsp";
+		return "HTML/nsh/MemberMain.jsp";
 		
 			
 	}
