@@ -14,7 +14,7 @@ public class MemberInsert implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		return "lsj/memberInsert.jsp";
+		return "HTML/lsj/memberInsert.jsp";
 	}
 
 }
