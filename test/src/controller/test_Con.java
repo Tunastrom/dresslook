@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import command.InsertGoods;
 import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
-
 import command.collection.CollectionMain;
 import command.collection.CollectionProduct;
 import command.collection.CollectionSelect;
@@ -24,16 +25,20 @@ import command.dresslook.Like;
 import command.dresslook.SearchResult;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
-import command.my.LoginCommand;
-import command.my.MemberInsert;
-import command.my.memberSelect;
 import command.dresslook.imageGet;
+import command.my.LoginCommand;
 import command.my.LoginOkCommand;
+import command.my.MemberInsert;
+import command.my.MyInfoCommand;
+import command.my.MyOrderListCommand;
+import command.my.MyOrderSelectCommand;
+import command.my.MyOrderTrackCommand;
+import command.my.MyProfileCommand;
+import command.my.memberSelect;
 import command.seller.GoodsList;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.sellerInsert;
-import command.InsertGoods;
 
 @WebServlet("*.do")
 public class test_Con extends HttpServlet {
@@ -72,11 +77,31 @@ public class test_Con extends HttpServlet {
 		cont.put("/loginOk.do", new LoginOkCommand());
 		cont.put("/Slogin.do", new SLoginCommand());
 		cont.put("/SloginOk.do", new SLoginOkCommand());
+		cont.put("/myOrderList.do", new MyOrderListCommand());
+		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
+		cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		cont.put("/myProfile.do", new MyProfileCommand());
+		cont.put("/myInfo.do", new MyInfoCommand());
+		cont.put("/memberIdSearch.do", new IdSearchCommand());
+		cont.put("/memberPwSearch.do", new PwSearchCommand());
+		
+		
+		
+		
+		
+		
+		
 		// manager
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/mgoods.do", new Mgoods());
+		
+		
+		
+		
+		
+		
 
 	}
 
