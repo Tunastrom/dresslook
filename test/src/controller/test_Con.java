@@ -40,6 +40,7 @@ import command.my.MyOrderSelectCommand;
 import command.my.MyOrderTrackCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
+import command.my.memberInsertOk;
 import command.my.memberSelect;
 import command.seller.GoodsList;
 import command.seller.SLoginCommand;
@@ -65,8 +66,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/notifications.do", new Notifications());
 		cont.put("/lookInsert.do", new LookInsert());
 		cont.put("/boardLook.do", new BoardLook());
-		
-		
 
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
@@ -83,6 +82,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
 		cont.put("/insertGoods.do", new InsertGoods());
+		cont.put("/memberInsertOk.do", new memberInsertOk());
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -95,24 +95,13 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
-		
-		
-		
-		
-		
-		
-		
+
 		// manager
+		
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/mgoods.do", new Mgoods());
-		
-		
-		
-		
-		
-		
 
 	}
 

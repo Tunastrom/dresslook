@@ -7,55 +7,51 @@
 <script type="text/javascript">
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
-		if (!document.userInfo.id.value) {
+		if (!document.loginInfo.id.value) {
 			alert("아이디를 입력하세요.");
 			return false;
 		}
 
-		if (!document.userInfo.password.value) {
+		if (!document.loginInfo.password.value) {
 			alert("비밀번호를 입력하세요.");
 			return false;
 		}
 
 		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-		if (document.userInfo.password.value != document.userInfo.passwordcheck.value) {
+		if (document.loginInfo.password.value != document.userInfo.passwordcheck.value) {
 			alert("비밀번호를 동일하게 입력하세요.");
 			return false;
 		}
-		if (!document.userInfo.name.value) {
+		if (!document.loginInfo.name.value) {
 			alert("이름을 입력하세요.");
 			return false;
 		}
-		if (!document.userInfo.email.value) {
+		if (!document.loginInfo.email.value) {
 			alert("Email을 입력하세요.");
 			return false;
 		}
-		if (!document.userInfo.pnum.value) {
+		if (!document.loginInfo.pnum.value) {
 			alert("휴대전화번호를 입력하세요.");
 			return false;
 		}
-		if (!document.userInfo.zip.value) {
+		if (!document.loginInfo.zip.value) {
 			alert("우편번호를 입력하세요.");
 			return false;
 		}
-		if (!document.userInfo.addr1.value) {
+		if (!document.loginInfo.addr1.value) {
 			alert("주소1을 입력하세요.");
 			return false;
 		}
-		if (!document.userInfo.addr2.value) {
+		if (!document.loginInfo.addr2.value) {
 			alert("주소2을 입력하세요.");
 			return false;
 		}
-		if (!document.userInfo.birth.value) {
+		if (!document.loginInfo.birth.value) {
 			alert("생년월일을 입력하세요.");
 			return false;
 		}
 	}
 
-	// 취소 버튼 클릭시 로그인 화면으로 이동
-	function goLoginForm() {
-		location.href = "LoginForm.jsp";
-	}
 </script>
 
 </head>
@@ -87,7 +83,7 @@
 					<div class="row justify-content-center">
 						<div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
 							<h1 class="text-center font-weight-normal mb-5">회원가입</h1>
-							<form action="login.do" method="post" name="loginInfo"
+							<form action="/memberInsertOk.do" method="post" name="loginInfo"
 								onsubmit="return checkValue()">
 								<div class="form-group float-label active">
 									<input type="text" class="form-control " id="id" name="id">
@@ -139,7 +135,7 @@
 										<div class="input-group-prepend">
 											<div class="input-group-text">
 												<input type="radio" id="gender" name="gender" value="050"
-													aria-label="Radio button for following text input">
+													aria-label="Radio button for following text input" checked="checked">
 												남 <input type="radio" id="gender" name="gender" value="051"
 													aria-label="Radio button for following text input">
 												여
