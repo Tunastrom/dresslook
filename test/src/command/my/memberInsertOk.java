@@ -43,7 +43,7 @@ public class memberInsertOk implements Command {
 		request.setAttribute("pass", r);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
-
+//
 		return null;
 	}
 
