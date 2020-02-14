@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 import dto.MemberDto;
 
-public class BoardDelete implements Command {
+public class BoardDelete implements Command2 {
 
 	@Override
 	public int execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +28,7 @@ public class BoardDelete implements Command {
 		}
 		
 		response.sendRedirect(path); //request 객체를 전달 할 필요가 없을 때 
+		return n;
 	}
 
 }
