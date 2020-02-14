@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<--<%@ page import="dao.MemberDao"%>
-<%@ page import="dto.MemberDto"%>-->	
+<%@ page import="dao.MemberDao"%>
+<%@ page import="dto.MemberDto"%>	
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -15,8 +15,8 @@
         
         // 세션에서 아이디를, DeleteForm.jsp에서 입력받은 비밀번호를 가져온다.
         // 가져온 결과를 가지고 회원정보를 삭제한다. - 삭제결과를 반환
-        MemberDao dao = Integer(MemberDao.delete(m_id));//getInstance();
-        int check = dao.delete(m_id);
+        MemberDao dao = Int(id);//getInstance();
+        int check = dao.delete(pw);
         
         //if(check == 1){
           //  session.invalidate(); // 삭제했다면 세션정보를 삭제한다.
