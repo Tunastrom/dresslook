@@ -93,10 +93,17 @@ public class MemberDao extends DAO {
 		return n;
 	}
 
-	public int delete(String id) {
+	public int delete(int id) {
 		int n = 0;
-		// 입력
-
+		// 삭제 조인해야 함
+		String sql = "delete m_id from member where m_id= ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getM_id());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		close();
 		return n;
 	}

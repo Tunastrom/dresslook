@@ -41,6 +41,7 @@ import command.my.MyOrderSelectCommand;
 import command.my.MyOrderTrackCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
+import command.my.memberInsertOk;
 import command.my.memberSelect;
 import command.seller.GoodsList;
 import command.seller.SLoginCommand;
@@ -82,6 +83,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
 		cont.put("/insertGoods.do", new InsertGoods());
+		cont.put("/memberInsertOk.do", new memberInsertOk());
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -94,19 +96,26 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
+<<<<<<< HEAD
 		cont.put("/myCoupon.do", new MyCouponCommand());
+=======
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 
 		// manager
+		
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/mgoods.do", new Mgoods());
+<<<<<<< HEAD
 		
 		
 		
 		
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
 		
+=======
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 
 	}
 
