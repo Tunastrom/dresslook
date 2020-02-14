@@ -15,32 +15,32 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image1.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image2.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image3.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image3.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image1.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image2.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image3.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image3.jpg" alt="">
 						</div>
 					</div>
 				</div>
@@ -52,32 +52,32 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image1.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image2.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image3.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image3.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image1.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image1.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image2.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
 						</div>
 					</div>
 					<div class="swiper-slide has-background">
 						<div class="background">
-							<img src="../assets/img/image3.jpg" alt="">
+							<img src=""${pageContext.request.contextPath}/HTML/assets/img/image3.jpg" alt="">
 						</div>
 					</div>
 				</div>
@@ -121,7 +121,7 @@
 							<div class="media">
 								<div class="avatar avatar-40 mr-2 has-background">
 									<figure class="background">
-										<img src="../assets/img/image4.jpg"
+										<img src=""${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
 											alt="Generic placeholder image">
 									</figure>
 								</div>

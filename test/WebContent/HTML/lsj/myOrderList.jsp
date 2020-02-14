@@ -10,24 +10,25 @@
 
 <body>
 
+
 	<!-- page content start -->
 	<div class="row">
 		<div class="container">
 			<div class="row">
 				<div class="container">
-					<h5 class="page-title">My Orders</h5>
+					<h5 class="page-title">주문 내역</h5>
 				</div>
 			</div>
 			<div class="row my-3">
 				<div class="col-12 col-md-6">
 					<div class="card mb-3">
-						<a href="track.jsp" class="card-header bg-none">
+						<a href="myOrderTrack.do" class="card-header bg-none">
 							<div class="row">
 								<div class="col">
 									<p class="text-mute">2:25pm | 10/1/2020</p>
 								</div>
 								<div class="col-auto pr-1">
-									<div class="badge badge-secondary">Track</div>
+									<div class="badge badge-secondary">배송정보</div>
 									<i class="material-icons">keyboard_arrow_right</i>
 								</div>
 							</div>
@@ -36,35 +37,37 @@
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
-										<img src="${pageContext.request.contextPath}/HTML/assets/img/image3.jpg"
-											alt="Generic placeholder image">
+										<img
+											src="${pageContext.request.contextPath}/HTML/assets/img/image3.jpg"
+											alt="Generic placeholder image"><%-- ${GoodsDto.g_image}으로 대체--%>
 									</figure>
 								</div>
 								<div class="media-body">
-									<small class="text-mute">Adididas</small>
-									<p class="mb-1">Women Jacket Black</p>
-									<p>$ 49.99</p>
+									<small class="text-mute">${GoodsDto.g_maker }</small>
+									<p class="mb-1">${GoodsDto.g_name }</p>
+									<p>${GoodsDto.g_price }</p>
 								</div>
 							</div>
 							<hr>
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
-										<img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg"
-											alt="Generic placeholder image">
+										<img
+											src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg"
+											alt="Generic placeholder image"><%-- ${GoodsDto.g_image}으로 대체--%>
 									</figure>
 								</div>
 								<div class="media-body">
-									<small class="text-mute">Rockstar</small>
-									<p class="mb-1">Shorts unisex</p>
-									<p>$ 28.99</p>
+									<small class="text-mute">${GoodsDto.g_maker }</small>
+									<p class="mb-1">${GoodsDto.g_name }</p>
+									<p>${GoodsDto.g_price }</p>
 								</div>
 							</div>
 						</div>
 						<div class="card-footer">
 							<div class="row">
 								<div class="col">
-									<h6 class="mb-1">$ 150</h6>
+									<h6 class="mb-1">${OrdDto.o_price }</h6>
 									<p class="small text-mute">Including Delivery</p>
 								</div>
 								<div class="col-auto">
@@ -87,7 +90,7 @@
 									<p class="text-mute">2:25pm | 10/1/2020</p>
 								</div>
 								<div class="col-auto">
-									<div class="badge badge-success">Delivered</div>
+									<div class="badge badge-success">배송완료상품</div>
 								</div>
 							</div>
 						</div>
@@ -95,14 +98,15 @@
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
-										<img src="${pageContext.request.contextPath}/HTML/assets/img/image3.jpg"
-											alt="Generic placeholder image">
+										<img
+											src="${pageContext.request.contextPath}/HTML/assets/img/image3.jpg"
+											alt="Generic placeholder image"><%-- ${GoodsDto.g_image}으로 대체--%>
 									</figure>
 								</div>
 								<div class="media-body">
-									<h6 class="mb-1">Mansheri</h6>
-									<p class="small text-mute mb-1">Women Jacket brown</p>
-									<p>$ 48.99</p>
+									<h6 class="mb-1">${GoodsDto.g_maker }</h6>
+									<p class="small text-mute mb-1">${GoodsDto.g_name }</p>
+									<p>${GoodsDto.g_price }</p>
 								</div>
 							</div>
 
@@ -110,7 +114,7 @@
 						<div class="card-footer">
 							<div class="row">
 								<div class="col">
-									<h6 class="mb-1">$ 68</h6>
+									<h6 class="mb-1">${OrdDto.o_price }</h6>
 									<p class="small text-mute">
 										Including Delivery and offers | 4.8 <i
 											class="material-icons small text-warning">star</i> Given
