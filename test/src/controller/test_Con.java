@@ -33,6 +33,8 @@ import command.dresslook.imageGet;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
+import command.my.MemberIdCheck;
+import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
@@ -83,6 +85,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberInsert.do", new MemberInsert());
 		cont.put("/insertGoods.do", new InsertGoods());
 		cont.put("/memberInsertOk.do", new memberInsertOk());
+		cont.put("/IdCheck.do", new MemberIdCheck());
+		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());

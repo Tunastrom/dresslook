@@ -6,13 +6,39 @@
 <head>
 <script type="text/javascript">
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+  
+<%-- 	$('#id').blur(function(){
+            //AJAX로 아이디 중복 구현
+            var id = $('#id').val().trim();
+            $.ajax({
+                url:"<%=request.getContextPath()%>/member/overlapCheck",
+                //key : value 방식으로 보냄
+                data:{"searchId":id},
+                Type:"get",
+                success:function(data){
+                    var id = data;
+                    //서블릿에서 보내는 데이터는 data로 받는다.
+                    //보낸 id가 존재하면 특정 값을 보내고, 중복되지 않으면 ""이 보내짐
+                    console.log("ajax반환값 : "+data);
+                    //id가 중복이면 길이값이 1보다 클 것이기에 아래와 같은 조건을 줌
+                    if(id.length>1){
+                        //input 옆 공간에 중복된 아이디가 존재한다고 알려줌
+                        $('#id_check').html("중복된 아이디가 존재합니다.");
+                        
+                    }else{
+                        //테두리를 파란색으로 지정해 문제없음을 알림
+                        $('#id_check').css("border","4px solid blue");
+                        //중복된 아이디가 존재한다는 문구를 지워줌    
+                        $('#id_check').html("");
+                    }
+                }
+            });
+        });
+    	
+ --%>
+	
 	function checkValue() {
-		if (!document.loginInfo.id.value) {
-			alert("아이디를 입력하세요.");
-			return false;
-		}
-
-		if (!document.loginInfo.password.value) {
+			if (!document.loginInfo.password.value) {
 			alert("비밀번호를 입력하세요.");
 			return false;
 		}
@@ -50,8 +76,26 @@
 			alert("생년월일을 입력하세요.");
 			return false;
 		}
+		if (isNaN(loginInfo.birth.value)) {
+			alert("년도는 숫자만 입력가능합니다.");
+			return false;
+			
+			location.href='/memberInsertOk.do';
+			
+		}
 	}
+	//아이디 중복체크 확인
+	function openIdChk() {
+		window.name = "parentFrom";
+		window.open("IdCheck.do", "chkForm",
+				"width=500, height=300, resizable =no, scrollbars = no");
 
+	}
+	//아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
+	//중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때 다시 중복체크를 하도록 한다.
+	function inputIdChk() {
+		document.loginInfo.idDuplication.value = "idUncheck";
+	}
 </script>
 
 </head>
@@ -83,11 +127,16 @@
 					<div class="row justify-content-center">
 						<div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
 							<h1 class="text-center font-weight-normal mb-5">회원가입</h1>
-							<form action="/memberInsertOk.do" method="post" name="loginInfo"
+							<form action="/memberInsertOk.do" method="get" name="loginInfo"
 								onsubmit="return checkValue()">
 								<div class="form-group float-label active">
 									<input type="text" class="form-control " id="id" name="id">
-									<label class="form-control-label">Id</label>
+									<label class="form-control-label">Id</label> 
+									<div class="check_font" id="id_check">
+									</div>
+									<input
+										type="button" value="중복확인" onclick="openIdChk()"> <input
+										type="hidden" name="idDuplication" value="idUncheck">
 								</div>
 
 								<div class="form-group float-label">
@@ -135,8 +184,9 @@
 										<div class="input-group-prepend">
 											<div class="input-group-text">
 												<input type="radio" id="gender" name="gender" value="050"
-													aria-label="Radio button for following text input" checked="checked">
-												남 <input type="radio" id="gender" name="gender" value="051"
+													aria-label="Radio button for following text input"
+													checked="checked"> 남 <input type="radio"
+													id="gender" name="gender" value="051"
 													aria-label="Radio button for following text input">
 												여
 											</div>
@@ -150,11 +200,7 @@
 											name="vehicle3" value="Boat" checked> 개인정보 이용동의(필수)<br>
 										<label class="form-control-label">이용약관</label>
 									</div>
-
-
 								</div>
-
-
 								<input type="submit"
 									class="btn btn-lg btn-default btn-block my-4" value="Sign up">
 								<input type="button"
