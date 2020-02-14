@@ -1,4 +1,4 @@
-package command.collection;
+package command.dresslook;
 
 import java.io.IOException;
 
@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class CollectionProduct implements Command{
+public class LookContents implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "HTML/YCW/collectionProduct.jsp";
+		
+		return "HTML/YCW/LookContents.jsp";
 	}
 
 }

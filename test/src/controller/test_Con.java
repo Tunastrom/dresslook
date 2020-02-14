@@ -16,17 +16,20 @@ import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
 import command.collection.CollectionMain;
-import command.collection.CollectionProduct;
-import command.collection.CollectionSelect;
+import command.collection.Product;
+import command.collection.LookSelect;
 import command.collection.Payment;
 import command.collection.Thankyou;
 import command.collection.TimelineSearch;
 import command.collection.orderSheet;
 import command.dresslook.BoardLook;
+import command.dresslook.Checkout;
 import command.dresslook.Like;
+import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
 import command.dresslook.Notifications;
 import command.dresslook.Search;
+import command.dresslook.SearchResult;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
@@ -60,12 +63,13 @@ public class test_Con extends HttpServlet {
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
 		cont.put("/search.do", new Search());
+		cont.put("/searchResult.do", new SearchResult());
 		cont.put("/dressRoom.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
 		cont.put("/lookInsert.do", new LookInsert());
-		cont.put("/boardLook.do", new BoardLook());
-		
+		cont.put("boardLook.do", new BoardLook());
+		cont.put("/lookContents.do", new LookContents());
 		
 
 		cont.put("/memberlist.do", new MemberList());
@@ -73,10 +77,11 @@ public class test_Con extends HttpServlet {
 		cont.put("/mgoods.do", new Mgoods());
 
 		cont.put("/collectionMain.do", new CollectionMain());
-		cont.put("/collectionSelect.do", new CollectionSelect());
-		cont.put("/collectionProduct.do", new CollectionProduct());
+		cont.put("/lookSelect.do", new LookSelect());
+		cont.put("/product.do", new Product());
 		cont.put("/orderSheet.do", new orderSheet());
 		cont.put("/payment.do", new Payment());
+		cont.put("/checkout.do", new Checkout());
 		cont.put("/thankyou.do", new Thankyou());
 		cont.put("/insertGoods.do", new InsertGoods());
 		cont.put("/loginCommand.do", new LoginCommand());
@@ -95,11 +100,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
-		
-		
-		
-		
-		
 		
 		
 		// manager

@@ -45,7 +45,12 @@
     <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js?ver=1"></script>
     <!-- ajax -->
    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <decorator:head/>
+    <style>
+		.page-title{ font-weight: bold;  color:#f94620}
+		.buttons{ color: white; font-weight:bold; }
+        .btn btn-warning btn-40 ml-2 text-white { background-color:#f94620; }
+	</style>
+    <decorator:head/> 
 </head>
 
 <body class="ui-rounded sidebar-fill header-fill" data-page="homepage">
@@ -66,8 +71,8 @@
 
             <div class="list-group list-group-flush nav-list">
                 <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
-                <a href="" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
-                <a href="notifications.jsp" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
+                <a href="/test/myOrderList.do" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
+                <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
                 <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
                 <a href="offers.jsp" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
                 </div>

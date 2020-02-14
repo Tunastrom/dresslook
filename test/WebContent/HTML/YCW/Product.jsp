@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <button class="btn btn-default"><i class="material-icons">local_mall</i> Add to Cart</button>
+                            <button class="btn btn-default">주문제외</button>
                         </div>
                     </div>
                     <hr>
