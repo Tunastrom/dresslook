@@ -28,6 +28,6 @@ public class MemberList implements Command{
 		request.setAttribute("list", list);
 		
 		//돌려줄 페이지 선택
-		 return "HTML/ecommerce-sidebar-header-fill-demo/MemberList.jsp";
+		 return "HTML/nsh/MemberList.jsp";
 	}
 }

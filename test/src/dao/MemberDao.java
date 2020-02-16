@@ -3,10 +3,10 @@
  */
 package dao;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import dto.MemberDto;
-
 
 public class MemberDao extends DAO {
 	private MemberDto dto;
@@ -58,7 +58,7 @@ public class MemberDao extends DAO {
 		close();
 		return dto;
 	}
-	
+
 //	회원가입
 	public int insert(MemberDto dto) {
 		int n = 0;
@@ -69,7 +69,7 @@ public class MemberDao extends DAO {
 			psmt.setString(1, dto.getM_id());
 			psmt.setString(2, dto.getM_name());
 			psmt.setString(3, dto.getM_pwd());
-			psmt.setDate(4, dto.getM_birth());
+			psmt.setDate(4, (Date) dto.getM_birth());
 			psmt.setString(5, dto.getM_email());
 			psmt.setString(6, dto.getM_phone());
 			psmt.setInt(7, dto.getM_zip());
@@ -93,10 +93,17 @@ public class MemberDao extends DAO {
 		return n;
 	}
 
-	public int delete(String id) {
+	public int delete(int id) {
 		int n = 0;
-		// 입력
-
+		// 삭제 조인해야 함
+		String sql = "delete m_id from member where m_id= ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getM_id());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		close();
 		return n;
 	}
@@ -136,4 +143,38 @@ public class MemberDao extends DAO {
 		close();
 		return grant;// 로그인 성공시 권한을 넘겨준다.
 	}
+
+	public boolean duplicateIdCheck(String id) {
+
+		boolean x = false;
+		try {
+
+			String sql = " select m_id from member where m_id =? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if (rs.next())
+				x = true; // 해당 아이디 존재
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psmt != null) {
+					psmt.close();
+					psmt = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+
+		}
+		return x;
+
+	}
+
 }

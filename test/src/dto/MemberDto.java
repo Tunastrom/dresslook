@@ -1,24 +1,24 @@
 package dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class MemberDto {
 
-	private String m_id;
-	private String m_pwd;
-	private String m_name;
-	private Date m_birth;
-	private String m_email;
-	private String m_phone;
-	private Integer m_zip;
-	private String m_addr1;
-	private String m_addr2;
-	private String m_grade;
-	private String m_au;
-	private String m_status;
-	private Date recent_connection;
-	private Integer m_point;
-	private String m_sex;
+	private String m_id;	// ID
+	private String m_pwd;	//패스워드
+	private String m_name;	//이름
+	private Date m_birth;	//생일
+	private String m_email;	//이메일
+	private String m_phone;	//전화번호
+	private Integer m_zip;	//우편번호
+	private String m_addr1;	//주소
+	private String m_addr2;	//상세주소
+	private String m_grade;	//등급
+	private String m_au;	//권한
+	private String m_status;	//계정상태
+	private Date recent_connection;//접속일
+	private Integer m_point;	//적립금
+	private String m_sex;		//성별
 
 	public String getM_id() {
 		return m_id;
