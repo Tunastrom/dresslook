@@ -87,6 +87,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberInsertOk.do", new memberInsertOk());
 		cont.put("/IdCheck.do", new MemberIdCheck());
 		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
+		
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -101,6 +102,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 
 		// manager
+		
 		
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
