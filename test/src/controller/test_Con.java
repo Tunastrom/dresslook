@@ -22,11 +22,10 @@ import command.collection.Payment;
 import command.collection.Thankyou;
 import command.collection.orderSheet;
 import command.dresslook.BoardLook;
-<<<<<<< HEAD
+
 import command.dresslook.DressroomitemInfoCommand;
-=======
+
 import command.dresslook.Checkout;
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 import command.dresslook.Like;
 import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
@@ -116,18 +115,13 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		cont.put("/myCoupon.do", new MyCouponCommand());
-=======
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 
-=======
 
 		
 		
 
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 		// manager
 		
 		
@@ -135,15 +129,11 @@ public class test_Con extends HttpServlet {
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/mgoods.do", new Mgoods());
-<<<<<<< HEAD
-		
-		
-		
+
 		
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
 		
-=======
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
+
 
 	}
 

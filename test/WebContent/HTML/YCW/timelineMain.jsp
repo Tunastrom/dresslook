@@ -332,7 +332,7 @@ $(document).ready(function(){
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<a href="product.do" class="background">
+											<a href="lookContents.do" class="background">
 												<img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
 											</a>
 										</div>
@@ -356,7 +356,7 @@ $(document).ready(function(){
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<a href="product.do" class="background">
+											<a href="lookContents.do" class="background">
 												<img src="${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
 											</a>
 										</div>
@@ -378,7 +378,7 @@ $(document).ready(function(){
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<a href="product.do" class="background">
+											<a href="lookContents.do" class="background">
 												<img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg" alt="">
 											</a>
 										</div>
@@ -400,7 +400,7 @@ $(document).ready(function(){
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<a href="product.do" class="background">
+											<a href="lookContents.do" class="background">
 												<img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" alt="">
 											</a>
 										</div>
@@ -588,13 +588,13 @@ $(document).ready(function(){
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<a href="product.do" class="background"> <img
+											<a href="lookContents.do" class="background"> <img
 												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
 												alt="">
 											</a>
 										</div>
 										<small class="text-mute">Rockstar</small> <a
-											href="product.do">
+											href="lookContents.do">
 											<p class="mb-0">Men Jacket brown</p>
 										</a>
 										<p class="small">$ 39.99</p>
@@ -774,13 +774,13 @@ $(document).ready(function(){
 										<i class="material-icons ">favorite</i>
 									</button>
 								</div>
-								<a href="product.do" class="background"> <img
+								<a href="lookContents.do" class="background"> <img
 									src="${pageContext.request.contextPath}/HTML/assets/img/image9.jpg"
 									class="" alt="">
 								</a>
 							</div>
 							<div class="media-body">
-								<small class="text-mute">Rockstar</small> <a href="product.do">
+								<small class="text-mute">Rockstar</small> <a href="lookContents.do">
 									<p class="mb-1">Men Jacket brown</p>
 								</a>
 								<p>
@@ -955,7 +955,7 @@ $(document).ready(function(){
 						<div class="row">
 							<div class="container">
 								<div class="media my-3 w-100">
-									<a href="product.do"
+									<a href="lookContents.do"
 										class="avatar avatar-60 mr-3 has-background rounded">
 										<figure class="background">
 											<img
@@ -965,7 +965,7 @@ $(document).ready(function(){
 									</a>
 									<div class="media-body">
 										<small class="text-mute">Rockstar</small> <a
-											href="product.do">
+											href="lookContents.do">
 											<p class="mb-1">Men Jacket brown</p>
 										</a>
 										<p class="small">$ 39.99</p>
@@ -1034,7 +1034,7 @@ $(document).ready(function(){
 									<div class="col-6 col-md-4 col-lg-3">
 										<div class="card border-0 mb-4">
 											<div class="card-body p-0">
-												<a href="product.do"
+												<a href="lookContents.do"
 													class="h-150px has-background rounded mb-2">
 													<div class="top-right m-2">
 														<button class="btn btn-sm btn-white btn-rounded">
@@ -1048,7 +1048,7 @@ $(document).ready(function(){
 															alt="" style="display: none;">
 													</figure>
 												</a> <small class="text-mute">Rockstar</small> <a
-													href="product.do">
+													href="lookContents.do">
 													<p class="mb-0">Men Jacket brown</p>
 												</a>
 												<p class="small">$ 39.99</p>
