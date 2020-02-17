@@ -19,9 +19,11 @@ import command.collection.Product;
 import command.collection.LookSelect;
 import command.collection.Payment;
 import command.collection.Thankyou;
-import command.collection.TimelineSearch;
 import command.collection.orderSheet;
 import command.dresslook.BoardLook;
+
+import command.dresslook.DressroomitemInfoCommand;
+
 import command.dresslook.Checkout;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
@@ -37,6 +39,7 @@ import command.my.LoginCommand;
 import command.my.LoginOkCommand;
 import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
+import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
@@ -107,7 +110,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
-
+		cont.put("/myCoupon.do", new MyCouponCommand());
 		// manager
 
 		// seller
@@ -115,6 +118,11 @@ public class test_Con extends HttpServlet {
 		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/mgoods.do", new Mgoods());
+
+		
+		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
+		
+
 
 	}
 
