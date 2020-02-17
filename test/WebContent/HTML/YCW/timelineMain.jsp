@@ -3,8 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<head>$(document).ready(function(){
-$("body").attr("data-page","homepage"); });
+<head>
+<!-- <script>
+$(document).ready(function(){
+	$("body").attr("data-page","homepage"); });
+</script> -->
 </head>
 <body>
 	<!-- page content start -->
@@ -190,7 +193,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">${userId}</p>
+									<p class="text-uppercase small">이승진</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -200,7 +203,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Women</p>
+									<p class="text-uppercase small">김동현</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -210,7 +213,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Kids</p>
+									<p class="text-uppercase small">노상현</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -220,7 +223,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Offer Sale</p>
+									<p class="text-uppercase small">김종우</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -230,7 +233,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Acceso.</p>
+									<p class="text-uppercase small">유철원</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -240,7 +243,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Men</p>
+									<p class="text-uppercase small">이승진</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -250,7 +253,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Women</p>
+									<p class="text-uppercase small">김동현</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -260,7 +263,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Kids</p>
+									<p class="text-uppercase small">노상현</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -270,7 +273,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Offer Sale</p>
+									<p class="text-uppercase small">김종우</p>
 								</div>
 								<div class="swiper-slide">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
@@ -280,7 +283,7 @@ $("body").attr("data-page","homepage"); });
 												alt="">
 										</div>
 									</div>
-									<p class="text-uppercase small">Acceso.</p>
+									<p class="text-uppercase small">유철원</p>
 								</div>
 							</div>
 							<!-- Add Pagination -->
@@ -294,19 +297,19 @@ $("body").attr("data-page","homepage"); });
 						<div class="swiper-container categories2tab1 text-center">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
-									<button class="btn btn-sm btn-white active">Everything</button>
+									<button class="btn btn-sm btn-white active">봄옷</button>
 								</div>
 								<div class="swiper-slide">
-									<button class="btn btn-sm btn-white">Bottom Wear</button>
+									<button class="btn btn-sm btn-white">남친</button>
 								</div>
 								<div class="swiper-slide">
-									<button class="btn btn-sm btn-white">Top Wear</button>
+									<button class="btn btn-sm btn-white">허깨비</button>
 								</div>
 								<div class="swiper-slide">
-									<button class="btn btn-sm btn-white">Trouser</button>
+									<button class="btn btn-sm btn-white">코트</button>
 								</div>
 								<div class="swiper-slide">
-									<button class="btn btn-sm btn-white">Shoes</button>
+									<button class="btn btn-sm btn-white">꽃놀이</button>
 								</div>
 							</div>
 							<!-- Add Pagination -->
@@ -329,16 +332,15 @@ $("body").attr("data-page","homepage"); });
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<a href="product.do" class="background"> <img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
+											<a href="product.do" class="background">
+												<img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
 											</a>
 										</div>
-										<small class="text-mute">Rockstar</small> <a
-											href="product.do">
-											<p class="mb-0">Men Jacket brown</p>
+										<small class="text-mute">#남친</small>
+										<a>
+											<p class="mb-0">사나으리는 가죽</p>
 										</a>
-										<p class="small">$ 39.99</p>
+										<p class="small">200,000</p>
 									</div>
 								</div>
 							</div>
@@ -354,15 +356,13 @@ $("body").attr("data-page","homepage"); });
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<figure class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image2.jpg"
-													alt="">
-											</figure>
+											<a href="product.do" class="background">
+												<img src="${pageContext.request.contextPath}/HTML/assets/img/image2.jpg" alt="">
+											</a>
 										</div>
-										<small class="text-mute">Adididas</small>
-										<p class="mb-0">Women Jacket Black</p>
-										<p class="small">$ 49.99</p>
+										<small class="text-mute">#봄옷</small>
+										<p class="mb-0">봄바람휘날리며</p>
+										<p class="small">200,000</p>
 									</div>
 								</div>
 							</div>
@@ -378,15 +378,13 @@ $("body").attr("data-page","homepage"); });
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<figure class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg"
-													alt="">
-											</figure>
+											<a href="product.do" class="background">
+												<img src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg" alt="">
+											</a>
 										</div>
-										<small class="text-mute">Rockstar</small>
-										<p class="mb-0">Shorts unisex</p>
-										<p class="small">$ 28.99</p>
+										<small class="text-mute">#꽃놀이</small>
+										<p class="mb-0">좋은날</p>
+										<p class="small">70,000</p>
 									</div>
 								</div>
 							</div>
@@ -402,26 +400,24 @@ $("body").attr("data-page","homepage"); });
 											<div class="bottom-left m-2">
 												<button class="btn btn-sm btn-white">New</button>
 											</div>
-											<figure class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg"
-													alt="">
-											</figure>
+											<a href="product.do" class="background">
+												<img src="${pageContext.request.contextPath}/HTML/assets/img/image6.jpg" alt="">
+											</a>
 										</div>
-										<small class="text-mute">Mansheri</small>
-										<p class="mb-0">Women Jacket brown</p>
-										<p class="small">$ 35.99</p>
+										<small class="text-mute">#갬성</small>
+										<p class="mb-0">노을진갬성</p>
+										<p class="small">120,000</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row text-center my-3">
+				<!-- <div class="row text-center my-3">
 					<div class="col-6 col-md-4 col-lg-3 mx-auto">
 						<button class="btn btn-sm btn-light btn-block">Show all</button>
 					</div>
-				</div>
+				</div> -->
 				<!-- <div class="row my-3">
 					<div class="container">
 						<div class="card bg-default-light">

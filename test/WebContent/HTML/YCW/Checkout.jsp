@@ -2,6 +2,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+$(document).ready(function(){
+	/*  $("body").attr("data-page","payment"); */
+	 $("#backButton").attr("class","btn btn-link backbtn");
+	 $("#backbtnText").text("arrow_back");
+});
+</script>
 </head>
 
 <body>
@@ -12,8 +19,8 @@
                         <h1 class="text-center">$ 98.98</h1>
                         <h6 class="small text-mute text-center">Net Payable</h6>
                         <br>
-                        <h5 class="page-title">배송정보>
-                        <br>
+                        <h5 class="page-title">배송정보</h5>
+                        </br>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group float-label position-relative active">
@@ -54,8 +61,8 @@
                         </div>
                     </div>
                     <div class="container align-self-end mb-4 text-center">
-                        <a href="payment.html" class="btn btn-lg btn-primary mb-3 btn-block">Pay with Paypal</a>
-                        <a href="payment.html" class="btn btn-lg btn-default btn-block">Pay with Credit or Debit card</a>
+                        <a href="payment.do" class="btn btn-lg btn-primary mb-3 btn-block">Pay with Paypal</a>
+                        <a href="payment.do" class="btn btn-lg btn-default btn-block">Pay with Credit or Debit card</a>
                     </div>
                 </div>
             </div>
