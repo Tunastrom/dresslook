@@ -2,6 +2,19 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+	window.addEventListener("load", function(){
+		var link1 = document.querySelectorAll("btn btn-warning btn-40 ml-2 text-white");
+		link1[0].addEventListener.click(function(){
+			console.log(1);
+			document.location.href="lookSelect.do";
+		});
+		$(".col-auto").on("click", function(){
+			console.log(1);
+			document.location.href="orderSheet.do"
+		});
+	})
+</script>
 </head>
 <body>
             <!-- page content start -->
@@ -9,20 +22,19 @@
                 <div class="container">
                     <div class="row">
                         <div class="container">
-                            <h5 class="page-title">룩 구성상품</h5>
+                            <h5 class="page-title">컬렉션</h5>
                         </div>
                     </div>
                     <div class="row my-3">
                         <div class="col-12 col-md-6">
                             <div class="card mb-3">
-                                <a href="track.jsp" class="card-header bg-none">
+                                <a class="card-header bg-none">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="text-mute">2:25pm | 10/1/2020</p>
+                                           <p>2020/02/20/ | 2:25pm  </p> 
                                         </div>
-                                        <div class="col-auto pr-1">
-                                            <div class="badge badge-secondary">Track</div>
-                                            <i class="material-icons">keyboard_arrow_right</i>
+                                         <div class="col-auto">
+                                            <div class="badge badge-secondary">My Looks</div>
                                         </div>
                                     </div>
                                 </a>
@@ -34,10 +46,12 @@
                                             </figure>
                                         </div>
                                         <div class="media-body">
-                                            <small class="text-mute">Adididas</small>
-                                            <p class="mb-1">Women Jacket Black</p>
-                                            <p>$ 49.99</p>
+                                            <small class="text-mute">#봄옷</small>
+                                            <p class="mb-1">봄날의여신룩</p>
+                                            <p>70,000</p>
                                         </div>
+                                        <!-- button은 submit으로 -->
+                                        <div><button onclick="location.href='lookSelect.do'">상세보기</button></div>
                                     </div>
                                     <hr>
                                     <div class="media">
@@ -47,21 +61,24 @@
                                             </figure>
                                         </div>
                                         <div class="media-body">
-                                            <small class="text-mute">Rockstar</small>
-                                            <p class="mb-1">Shorts unisex</p>
-                                            <p>$ 28.99</p>
+                                            <small class="text-mute">#남친</small>
+                                            <p class="mb-1">오빠라고 불리게 될거야</p>
+                                            <p>90,000</p>
                                         </div>
+                                        	<div><button onclick="location.href='lookSelect.do'">상세보기</button></div>
+                                    	</div>
+                                	</div> 
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col">
-                                            <h6 class="mb-1">$ 150</h6>
-                                            <p class="small text-mute">Including Delivery</p>
+                                            <h6 class="mb-1">160,000</h6>
+                                            <p class="small text-mute">배송비 2500</p>
                                         </div>
                                         <div class="col-auto">
-                                            <button class="btn btn-default btn-40"><i class="material-icons">repeat</i></button>
-                                            <button class="btn btn-warning btn-40 ml-2 text-white"><i class="material-icons">star</i></button>
+                                            <button class="btn btn-default btn-40"><i class="buttons">삭제</i></button>
+                                            <button class="btn btn-warning btn-40 ml-2 text-white"><i class="buttons">주문</i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -72,10 +89,10 @@
                                 <div class="card-header bg-none">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="text-mute">2:25pm | 10/1/2020</p>
+                                            <p>2020/02/20/ | 2:30pm </p> 
                                         </div>
                                         <div class="col-auto">
-                                            <div class="badge badge-success">Delivered</div>
+                                            <div class="badge badge-success">Liked Looks</div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,21 +104,24 @@
                                             </figure>
                                         </div>
                                         <div class="media-body">
-                                            <h6 class="mb-1">Mansheri</h6>
-                                            <p class="small text-mute mb-1">Women Jacket brown</p>
-                                            <p>$ 48.99</p>
+                                            <p class="small text-mute mb-1">#봄옷</p>
+                                            <h6 class="mb-1">꽃구경강추</h6>
+                                            <p>50,000</p>
                                         </div>
+	                                         <div><button onclick="location.href='lookSelect.do'">상세보기</button></div>
+	                                    </div>
+                                       </div>
                                     </div>
-
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col">
-                                            <h6 class="mb-1">$ 68</h6>
-                                            <p class="small text-mute">Including Delivery and offers | 4.8 <i class="material-icons small text-warning">star</i> Given</p>
+                                            <h6 class="mb-1">50,000</h6>
+                                            <p class="small text-mute">배송비 2500<!-- <i class="material-icons small text-warning">star</i>  Given--></p>
                                         </div>
                                         <div class="col-auto">
-                                            <button class="btn btn-default btn-40"><i class="material-icons">repeat</i></button>
+                                           <button class="btn btn-default btn-40"><i class="buttons">삭제</i></button>
+                                            <button class="btn btn-warning btn-40 ml-2 text-white"><i class="buttons">주문</i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +130,7 @@
                     </div>
                 </div>
             </div>
-            <!-- page content ends -->\
+            <!-- page content ends -->
 </body>
 
 </html>

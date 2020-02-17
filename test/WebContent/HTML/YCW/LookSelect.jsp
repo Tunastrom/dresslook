@@ -2,13 +2,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-<script>
-$(document).ready(function(){
-	/*  $("body").attr("data-page","payment"); */
-	 $("#backButton").attr("class","btn btn-link backbtn");
-	 $("#backbtnText").text("arrow_back");
-});
-</script>
 </head>
 <body>
             <!-- page content start -->
@@ -16,7 +9,7 @@ $(document).ready(function(){
                 <div class="container">
                     <div class="row">
                         <div class="container">
-                            <h5 class="page-title">주문서</h5>
+                            <h5 class="page-title">룩 상세</h5>
                         </div>
                     </div>
                     <div class="row my-3">
@@ -28,8 +21,8 @@ $(document).ready(function(){
                                             <p class="text-mute">2:25pm | 10/1/2020</p>
                                         </div>
                                         <div class="col-auto pr-1">
-                                            <div class="badge badge-secondary">Track</div>
-                                            <i class="material-icons">keyboard_arrow_right</i>
+                                           <!--  <div class="badge badge-secondary"></div>
+                                            <i class="material-icons">keyboard_arrow_right</i> -->
                                         </div>
                                     </div>
                                 </a>
@@ -41,10 +34,11 @@ $(document).ready(function(){
                                             </figure>
                                         </div>
                                         <div class="media-body">
-                                            <small class="text-mute">Adididas</small>
-                                            <p class="mb-1">Women Jacket Black</p>
-                                            <p>$ 49.99</p>
+                                            <small class="text-mute">상의</small>
+                                            <p class="mb-1">멋쟁이재킷</p>
+                                            <p>40,000</p>
                                         </div>
+	                                    <div><button onclick="location.href='product.do'">상세보기</button></div>
                                     </div>
                                     <hr>
                                     <div class="media">
@@ -54,31 +48,27 @@ $(document).ready(function(){
                                             </figure>
                                         </div>
                                         <div class="media-body">
-                                            <small class="text-mute">Rockstar</small>
-                                            <p class="mb-1">Shorts unisex</p>
-                                            <p>$ 28.99</p>
+                                            <small class="text-mute">하의</small>
+                                            <p class="mb-1">못생긴바지</p>
+                                            <p>30,000</p>
                                         </div>
+                                        <div><button onclick="location.href='product.do'">상세보기</button></div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col">
-                                            <h6 class="mb-1">$ 150</h6>
+                                      <!--   <div class="col">
+                                            <h6 class="mb-1"></h6>
                                             <p class="small text-mute">Including Delivery</p>
-                                        </div>
+                                        </div> -->
                                         <div class="col-auto">
-                                            <button class="btn btn-default btn-40"><i class="material-icons">repeat</i></button>
+                                            <button class="btn btn-default btn-40"><i class="buttons">취소</i></button>
                                             <button class="btn btn-warning btn-40 ml-2 text-white"><i class="material-icons">star</i></button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                         <div class="col-12 col-md-6">
-                         	<div>
-                         		<button onclick="location.href='checkout.do'">주문하기</button>
-                         	</div>
-                         </div>
                     </div>
                 </div>
             </div>

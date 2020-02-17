@@ -2,9 +2,13 @@
 <html lang="en">
 
 <head>
-  
+  <script>
+	  $(document).ready(function(){
+			 $("#backButton").attr("class","btn btn-link backbtn");
+			 $("#backbtnText").text("arrow_back");
+		 });
+  </script>
 </head>
-
 <body>
             <!-- page content start -->
             <div class="list-group list-group-flush my-0 w-100 border-top border-bottom">

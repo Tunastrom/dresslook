@@ -16,23 +16,31 @@ import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
 import command.collection.CollectionMain;
-import command.collection.CollectionProduct;
-import command.collection.CollectionSelect;
+import command.collection.Product;
+import command.collection.LookSelect;
 import command.collection.Payment;
 import command.collection.Thankyou;
 import command.collection.orderSheet;
 import command.dresslook.BoardLook;
+<<<<<<< HEAD
 import command.dresslook.DressroomitemInfoCommand;
+=======
+import command.dresslook.Checkout;
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 import command.dresslook.Like;
+import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
 import command.dresslook.Notifications;
 import command.dresslook.Search;
+import command.dresslook.SearchResult;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
+import command.my.MemberIdCheck;
+import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
 import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
@@ -62,21 +70,30 @@ public class test_Con extends HttpServlet {
 		cont.put("/timeline.do", new Timeline());
 		cont.put("/like.do", new Like());
 		cont.put("/search.do", new Search());
+		cont.put("/searchResult.do", new SearchResult());
 		cont.put("/dressRoom.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
 		cont.put("/lookInsert.do", new LookInsert());
+
+		cont.put("boardLook.do", new BoardLook());
+		cont.put("/lookContents.do", new LookContents());
+		
+
+
 		cont.put("/boardLook.do", new BoardLook());
+
 
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
 
 		cont.put("/collectionMain.do", new CollectionMain());
-		cont.put("/collectionSelect.do", new CollectionSelect());
-		cont.put("/collectionProduct.do", new CollectionProduct());
+		cont.put("/lookSelect.do", new LookSelect());
+		cont.put("/product.do", new Product());
 		cont.put("/orderSheet.do", new orderSheet());
 		cont.put("/payment.do", new Payment());
+		cont.put("/checkout.do", new Checkout());
 		cont.put("/thankyou.do", new Thankyou());
 		cont.put("/insertGoods.do", new InsertGoods());
 		cont.put("/loginCommand.do", new LoginCommand());
@@ -84,6 +101,9 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberInsert.do", new MemberInsert());
 		cont.put("/insertGoods.do", new InsertGoods());
 		cont.put("/memberInsertOk.do", new memberInsertOk());
+		cont.put("/IdCheck.do", new MemberIdCheck());
+		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
+		
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -97,11 +117,19 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cont.put("/myCoupon.do", new MyCouponCommand());
 =======
 >>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 
+=======
+
+		
+		
+
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 		// manager
+		
 		
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());

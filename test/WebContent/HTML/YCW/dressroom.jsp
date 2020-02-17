@@ -38,6 +38,12 @@
 </script>
 </head>
 <body>
+ <div class="container">
+   <div class="row">
+   	<div class="container">
+       <h5 class="page-title">드레스룸</h5>
+    </div>
+   </div>
 	<div class="row">
 		<div class="col" align="center">
 			<div class="row">
@@ -56,8 +62,7 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<form id="frm" name="frm" action="lookInsert.do" method="post"
-						onsubmit="">
+					<form id="frm" name="frm" action="lookInsert.do" method="post" onsubmit="">
 						<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 						<button type="button" onclick="toCollection()" id="collection">컬렉션</button>
 						<button>초기화</button>
@@ -135,5 +140,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>
