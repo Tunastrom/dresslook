@@ -40,7 +40,7 @@ public class memberInsertOk implements Command {
 		int r = dao.insert(dto);
 
 		String path = "/HTML/kjw/memberInsertOk.jsp";
-		request.setAttribute("pass", r);
+		request.setAttribute("r", r);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
 //
