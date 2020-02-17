@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/HTML/layout/">
-    <decorator name="basic-theme" page="blank-fill.jsp">
-        <pattern>*.do</pattern>
-    </decorator>
-    <exculdes>
-    	<pattern>/ajax/*</pattern>
-    	<pattern>/popup/*</pattern>
-    </exculdes>
+	<decorator name="basic-theme" page="blank-fill.jsp">
+		<pattern>*.do</pattern>
+	</decorator>
+	<excludes>
+		<pattern>/ajax/*</pattern>
+		<pattern>/popup/*</pattern>
+	</excludes>
 </decorators>

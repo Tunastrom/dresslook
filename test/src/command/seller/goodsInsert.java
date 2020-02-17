@@ -1,4 +1,4 @@
-package command.my;
+package command.seller;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class MemberIdCheck implements Command {
+public class goodsInsert implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return "HTML/kjw/IdCheckForm.jsp";
+		
+		return "HTML/kjw/goodsInsert.jsp";
 	}
 
 }

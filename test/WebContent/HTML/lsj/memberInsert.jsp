@@ -6,95 +6,38 @@
 <head>
 <script type="text/javascript">
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
-  
-<%-- 	$('#id').blur(function(){
-            //AJAX로 아이디 중복 구현
-            var id = $('#id').val().trim();
-            $.ajax({
-                url:"<%=request.getContextPath()%>/member/overlapCheck",
-                //key : value 방식으로 보냄
-                data:{"searchId":id},
-                Type:"get",
-                success:function(data){
-                    var id = data;
-                    //서블릿에서 보내는 데이터는 data로 받는다.
-                    //보낸 id가 존재하면 특정 값을 보내고, 중복되지 않으면 ""이 보내짐
-                    console.log("ajax반환값 : "+data);
-                    //id가 중복이면 길이값이 1보다 클 것이기에 아래와 같은 조건을 줌
-                    if(id.length>1){
-                        //input 옆 공간에 중복된 아이디가 존재한다고 알려줌
-                        $('#id_check').html("중복된 아이디가 존재합니다.");
-                        
-                    }else{
-                        //테두리를 파란색으로 지정해 문제없음을 알림
-                        $('#id_check').css("border","4px solid blue");
-                        //중복된 아이디가 존재한다는 문구를 지워줌    
-                        $('#id_check').html("");
-                    }
-                }
-            });
-        });
-    	
- --%>
-	
-	function checkValue() {
-			if (!document.loginInfo.password.value) {
-			alert("비밀번호를 입력하세요.");
-			return false;
-		}
-
-		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-		if (document.loginInfo.password.value != document.userInfo.passwordcheck.value) {
-			alert("비밀번호를 동일하게 입력하세요.");
-			return false;
-		}
-		if (!document.loginInfo.name.value) {
-			alert("이름을 입력하세요.");
-			return false;
-		}
-		if (!document.loginInfo.email.value) {
-			alert("Email을 입력하세요.");
-			return false;
-		}
-		if (!document.loginInfo.pnum.value) {
-			alert("휴대전화번호를 입력하세요.");
-			return false;
-		}
-		if (!document.loginInfo.zip.value) {
-			alert("우편번호를 입력하세요.");
-			return false;
-		}
-		if (!document.loginInfo.addr1.value) {
-			alert("주소1을 입력하세요.");
-			return false;
-		}
-		if (!document.loginInfo.addr2.value) {
-			alert("주소2을 입력하세요.");
-			return false;
-		}
-		if (!document.loginInfo.birth.value) {
-			alert("생년월일을 입력하세요.");
-			return false;
-		}
-		if (isNaN(loginInfo.birth.value)) {
-			alert("년도는 숫자만 입력가능합니다.");
-			return false;
-			
-			location.href='/memberInsertOk.do';
-			
-		}
+	function registerCheckFunction() {
+		//id가 userID인 variable을 저장
+		var userID = $('#userID').val();
+		//ajax : jquery안에 포함되어있는 것
+		$.ajax({
+			type : 'POST',
+			url : './ajax/registerCheck.do', //여기로 가서 function을 실행할꺼에요
+			data : {
+				userID : userID
+			},
+			success : function(result) { //result를 받아올꺼죠
+				if (result == 1) {
+					$('#idcheck1').html("you can use this ID"); //이 id 값에다가 저장해주세요
+					
+				} else {
+					$('#idcheck1').html("you can not use this ID");
+					
+				}
+				
+			}
+		})
 	}
-	//아이디 중복체크 확인
-	function openIdChk() {
-		window.name = "parentFrom";
-		window.open("IdCheck.do", "chkForm",
-				"width=500, height=300, resizable =no, scrollbars = no");
+	//passwordCheckFunction -> PasswordCheck를 하여 실시간으로 뿌려주는 것입니다.
+	function passwordCheckFunction() {
+		var userPassword1 = $('#userPassword1').val();
+		var userPassword2 = $('#userPassword2').val();
 
-	}
-	//아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
-	//중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때 다시 중복체크를 하도록 한다.
-	function inputIdChk() {
-		document.loginInfo.idDuplication.value = "idUncheck";
+		if (userPassword1 != userPassword2) {
+			$('#passwordCheckMessage').html("비밀번호가 일치하지 않습니다");
+		} else {
+			$('#passwordCheckMessage').html("");
+		}
 	}
 </script>
 
@@ -127,26 +70,24 @@
 					<div class="row justify-content-center">
 						<div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
 							<h1 class="text-center font-weight-normal mb-5">회원가입</h1>
-							<form action="/memberInsertOk.do" method="get" name="loginInfo"
-								onsubmit="return checkValue()">
+							<form action="/memberInsertOk.do" method="post" name="loginInfo">
 								<div class="form-group float-label active">
-									<input type="text" class="form-control " id="id" name="id">
-									<label class="form-control-label">Id</label> 
-									<div class="check_font" id="id_check">
-									</div>
-									<input
-										type="button" value="중복확인" onclick="openIdChk()"> <input
-										type="hidden" name="idDuplication" value="idUncheck">
+									<div class="idcheck1"></div>
+									<input type="text" class="form-control" id="userID"
+										name="userID"> <label class="form-control-label">Id</label>
+									<button type="button" value="중복확인"
+										onclick="registerCheckFunction();">ID check</button>
 								</div>
 
 								<div class="form-group float-label">
-									<input type="password" class="form-control" id="password"
-										name="password"> <label class="form-control-label">비밀번호</label>
+									<input type="password" class="form-control" id="userPassword1"
+										name="userPassword1" onkeyup="passwordCheckFunction();">
+									<label class="form-control-label">비밀번호</label>
 								</div>
 								<div class="form-group float-label">
-									<input type="password" class="form-control" id="passwordcheck"
-										name="passwordcheck"> <label
-										class="form-control-label">비밀번호 확인</label>
+									<input type="password" class="form-control" id="userPassword2"
+										name="userPassword2" onkeyup="passwordCheckFunction();">
+									<label class="form-control-label">비밀번호 확인</label>
 								</div>
 								<div class="form-group float-label active">
 									<input type="text" class="form-control " id="name" name="name">
@@ -218,6 +159,78 @@
 			</div>
 		</div>
 	</div>
+	<%
+		//messageContent라는 String이 있습니다
+		//session에서 messageContent를 가져온 이후 그것이 null이 아니라면
+		//session에서 가져온 messageContent를 현재 변수에 저장해줍니다
+		//messageType도 똑같습니다
+		String messageContent = null;
+		if (session.getAttribute("messageContent") != null) {
+			messageContent = (String) session.getAttribute("messageContent");
+		}
+		String messageType = null;
+		if (session.getAttribute("messageType") != null) {
+			messageType = (String) session.getAttribute("messageType");
+		}
+		if (messageContent != null) {
+			//가져온 messageContent가 있다면 modal로 popup창을 만들어줘야합니다.
+	%>
+	<div class="modal fade" id="messageModal" tableindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<div
+					class="modal-content
+                <!-- div의 class에 지정해주는데 messageType에 따라서 modal색을 다르게 해주고 싶기 때문에 이렇게 코드를 짭니다 -->
+                <%if (messageType.equals("오류 메시지"))
+					out.println("panel-warning");
+				else
+					out.println("panel-success");%>">
+					<div class="modal-header panel-heading">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">
+							<%=messageType%>
+						</h4>
+					</div>
+					<div class="modal-body">
+						<%=messageContent%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		//div class안의 messageModal
+		$('#messageModal').modal("show");
+	</script>
+	<%
+		//다 끝나면 Attribute를 삭제해줘야함
+			session.removeAttribute("messageContent");
+			session.removeAttribute("messageType");
+		}
+	%>
+	<div class="modal fade" id="checkModal" tableindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<div id="checkType" class="modal-content panel-info">
+					<div class="modal-header panel-heading">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">Check Message</h4>
+					</div>
+					<!-- 여기에 비밀번호가 일치하는지 하지 않는지를 실시간으로 나타내줌 -->
+					<!-- 이것이 모달이라니! 알아두자 -->
+					<div class="modal-body" id="checkMessage"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 
 	<!-- page content ends -->
 

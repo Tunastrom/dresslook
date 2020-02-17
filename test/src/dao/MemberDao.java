@@ -60,10 +60,11 @@ public class MemberDao extends DAO {
 	}
 
 //	회원가입
-	public int insert(MemberDto dto) {
+	public int insert(String userID, String name, String userPassword1, String birth, String email, String pnum,
+			Integer zip, String addr1, String addr2, String gender) {
 		int n = 0;
-		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, m_phone, m_zip, m_addr1, m_addr2, m_sex)"
-				+ " values(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, m_phone, m_zip, m_addr1, m_addr2, m_sex, m_recent, m_grade)"
+				+ " values(?,?,?,?,?,?,?,?,?,?,sysdate,'210')";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_id());
@@ -109,21 +110,22 @@ public class MemberDao extends DAO {
 	}
 
 //	id중복체크
-	public boolean isIdCheck(String id) {
-		boolean b = true;
+	public int registerCheck(String userID) {
 		String sql = "select m_id from member where m_id = ?";
+		int r = 1;
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
+			psmt.setString(1, userID);
 			rs = psmt.executeQuery();
-			if (rs.next())
-				b = false;
-
+			if (rs.next() || userID.equals(""))
+				return r = 0;
+			else
+				return r = 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		close();
-		return b;
+		return r;
 	}
 
 //	로그인하는 메소드

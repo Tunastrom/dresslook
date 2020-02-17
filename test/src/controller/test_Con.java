@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
-import command.InsertGoods;
 import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
@@ -36,7 +35,6 @@ import command.dresslook.imageGet;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
-import command.my.MemberIdCheck;
 import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
 import command.my.MyInfoCommand;
@@ -47,9 +45,11 @@ import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
 import command.my.memberInsertOk;
 import command.my.memberSelect;
+import command.my.registerCheck;
 import command.seller.GoodsList;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
+import command.seller.goodsInsert;
 import command.seller.sellerInsert;
 
 @WebServlet("*.do")
@@ -74,11 +74,8 @@ public class test_Con extends HttpServlet {
 
 		cont.put("boardLook.do", new BoardLook());
 		cont.put("/lookContents.do", new LookContents());
-		
-
 
 		cont.put("/boardLook.do", new BoardLook());
-
 
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
@@ -91,15 +88,13 @@ public class test_Con extends HttpServlet {
 		cont.put("/payment.do", new Payment());
 		cont.put("/checkout.do", new Checkout());
 		cont.put("/thankyou.do", new Thankyou());
-		cont.put("/insertGoods.do", new InsertGoods());
 		cont.put("/loginCommand.do", new LoginCommand());
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
-		cont.put("/insertGoods.do", new InsertGoods());
 		cont.put("/memberInsertOk.do", new memberInsertOk());
-		cont.put("/IdCheck.do", new MemberIdCheck());
+		cont.put("/ajax/registerCheck.do", new registerCheck());
 		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
-		
+
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -113,15 +108,12 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 
-		
-		
-
 		// manager
-		
-		
+
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
+		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/mgoods.do", new Mgoods());
 
 	}
@@ -157,6 +149,7 @@ public class test_Con extends HttpServlet {
 					request.getRequestDispatcher(page).forward(request, response);
 				}
 			}
+
 		} else {
 			response.getWriter().append("잘못된 요청");
 		}
