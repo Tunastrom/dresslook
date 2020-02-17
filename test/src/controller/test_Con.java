@@ -20,10 +20,13 @@ import command.collection.Product;
 import command.collection.LookSelect;
 import command.collection.Payment;
 import command.collection.Thankyou;
-import command.collection.TimelineSearch;
 import command.collection.orderSheet;
 import command.dresslook.BoardLook;
+<<<<<<< HEAD
+import command.dresslook.DressroomitemInfoCommand;
+=======
 import command.dresslook.Checkout;
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 import command.dresslook.Like;
 import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
@@ -39,6 +42,7 @@ import command.my.LoginOkCommand;
 import command.my.MemberIdCheck;
 import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
+import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
@@ -99,6 +103,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberInsertOk.do", new memberInsertOk());
 		cont.put("/IdCheck.do", new MemberIdCheck());
 		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
+		
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -111,16 +116,34 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
+<<<<<<< HEAD
+<<<<<<< HEAD
+		cont.put("/myCoupon.do", new MyCouponCommand());
+=======
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
+
+=======
 
 		
 		
 
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 		// manager
+		
 		
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/mgoods.do", new Mgoods());
+<<<<<<< HEAD
+		
+		
+		
+		
+		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
+		
+=======
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook
 
 	}
 
