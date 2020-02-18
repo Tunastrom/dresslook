@@ -9,7 +9,8 @@
 </head>
 <body>
 	<div>
-		<form method="get" action="../InsertBlob.do">
+		<form method="get" action="./InsertGoodsOk.do"
+			enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>상품번호</td>
@@ -21,11 +22,11 @@
 				</tr>
 				<tr>
 					<td>판매가</td>
-					<td><input type="text" id="grice" name="grice" value="16000"></td>
+					<td><input type="text" id="grice" name="gprice" value="16000"></td>
 				</tr>
 				<tr>
 					<td>공급가</td>
-					<td><input type="text" id="srice" name="srice" value="13000"></td>
+					<td><input type="text" id="srice" name="sprice" value="13000"></td>
 				</tr>
 				<tr>
 					<td>사이즈</td>
@@ -59,9 +60,7 @@
 				</tr>
 				<tr>
 					<td>상품이미지</td>
-					<td>
-						<input type="file" name="image" id="image"> 
-					</td>
+					<td><input type="file" name="image" id="image"></td>
 				</tr>
 				<tr>
 					<td>상품정보</td>
@@ -121,8 +120,9 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td rowspan="1"><button>등록</button></td>
+					<td rowspan="1"><input type="submit" value="등록"></td>
 				</tr>
+
 			</table>
 		</form>
 	</div>
