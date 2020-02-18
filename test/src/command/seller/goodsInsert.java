@@ -14,7 +14,7 @@ public class goodsInsert implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		return "HTML/YCW/goodsInsert.jsp";
+		return "HTML/YCW/goodsInsert.jsp";		     
 	}
 
 }

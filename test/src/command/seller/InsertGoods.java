@@ -1,5 +1,6 @@
 package command.seller;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +25,7 @@ public class InsertGoods implements Command {
 		String uploadPath = request.getSession() // session 기본 객체
 				.getServletContext() // application 기본객체
 				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
-											// 구해옴
+											// 구해옴s
 			MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 					request, 
 					uploadPath, // 파일을 저장할 디렉토리 지정
@@ -67,11 +68,9 @@ public class InsertGoods implements Command {
 		     
 		    GoodsDao2 dao = new GoodsDao2();
 		    int result = dao.BlobInsert(dto);
+		    System.out.println(result);
 		    request.setAttribute("result", result);
-			return "HTML/kjw/goodsList.do";
+			return "redirect:GoodsList.do";
 		
 	}
 }
-		   
-
-

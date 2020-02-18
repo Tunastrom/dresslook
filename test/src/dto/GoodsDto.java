@@ -19,7 +19,9 @@ public class GoodsDto {
 	private int g_prior;
 	private String g_status;
 	private String stringImage;
+
 	private long size;
+
 	
 	@Override
 	public String toString() {

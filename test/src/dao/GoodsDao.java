@@ -54,7 +54,7 @@ public class GoodsDao extends DAO {
 		return list;
 	}
 
-	public int BlobInsert(GoodsDto dto) {
+	public int GoodsInsert(GoodsDto dto) {
 		int n = 0;
 		Scanner sc = new Scanner(System.in);
 		System.out.print("업로드 할 파일 = ");
@@ -78,6 +78,7 @@ public class GoodsDao extends DAO {
 			try {
 				x = fis.read();
 			} catch (IOException e) {
+				
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

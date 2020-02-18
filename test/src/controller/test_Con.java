@@ -51,6 +51,9 @@ import command.my.memberSelect;
 import command.my.registerCheck;
 import command.seller.GoodsList;
 import command.seller.InsertGoods;
+
+
+import command.seller.InsertGoodsOk;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.goodsInsert;
@@ -120,6 +123,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
 		cont.put("/goodsInsert.do", new goodsInsert());
+		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
 
