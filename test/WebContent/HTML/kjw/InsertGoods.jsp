@@ -109,6 +109,7 @@
 				</tr>
 				<tr>
 					<td>진열우선순위</td>
+					
 					<td><input type="text" id="prior" name="prior" value="1"></td>
 				</tr>
 				<tr>
