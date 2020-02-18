@@ -120,7 +120,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td rowspan="1"><input type="submit" value="등록"></td>
+					<td rowspan="1">1<input type="submit" value="등록"></td>
 				</tr>
 
 			</table>
