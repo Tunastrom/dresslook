@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div>
-		<form method="get" action="../InsertBlob.do" encType="multipart/form-data">
+		<form method="post" action="insertGoods.do" encType="multipart/form-data">
 			<table>
 				<tr>
 					<td>상품번호</td>
@@ -44,7 +44,7 @@
 				</tr>
 				<tr>
 					<td>재고유무</td>
-					<td><select id="size" name="size">
+					<td><select id="inven" name="inven">
 							<option value="140">Y</option>
 							<option value="141">N</option>
 					</select></td>

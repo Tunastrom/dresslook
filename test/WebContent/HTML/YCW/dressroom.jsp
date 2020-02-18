@@ -8,18 +8,12 @@
 	$(document).ready(function() {
 		var url = "/test/ajax/imageGet.do"
 		var data = null;
-		var callback = function(imgList) {
-			console.log(imgList);
-			for (i = 0; i < imgList.length; i++) {
-				console.log(i);
-				$("#upBar").append("<img src=\""+imgList[i].link+"\">");
-
+		var callback = function(lookList) {
+			console.log(lookList);
+			for (i = 0; i < lookList.length; i++) {
+				$("#downBar").append("<img src=\""+lookList[i].link+"\">");
 			}
-			$("#upBar").append("<button>&gt;</button>");
-			for (i = 0; i < imgList.length; i++) {
-				$("#downBar").append("<img src=\""+imgList[i].link+"\">");
-			}
-			$("#upBar").append("<button>&gt;</button>");
+			$("#downBar").append("<button>&gt;</button>");
 		}
 		$.getJSON(url, data, callback);
 		console.log("end");
@@ -30,12 +24,20 @@
 		frm.WriteORnot.value = 1;
 		frm.submit();
 	}
-
-	function toShare() {
+	
+	function toOrderSheet() {
 		frm.WriteORnot.value = 2;
 		frm.submit();
 	}
+
+	function toShare() {
+		frm.WriteORnot.value = 3;
+		frm.submit();
+	}
 </script>
+<style>
+	.container .row .col { border:2px;}
+</style>
 </head>
 <body>
  <div class="container">
@@ -57,7 +59,7 @@
 		<div class="col" align="center">
 			<div class="row">
 				<div class="col">
-					<img src="images/dresslook/look.png">
+					<img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
 				</div>
 			</div>
 			<div class="row">
@@ -65,7 +67,7 @@
 					<form id="frm" name="frm" action="lookInsert.do" method="post" onsubmit="">
 						<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 						<button type="button" onclick="toCollection()" id="collection">컬렉션</button>
-						<button>초기화</button>
+						<button>주문</button onclick="toOrderSheet()">
 						<button type="button" onclick="toShare()" id="share">룩공유</button>
 				</div>
 			</div>
@@ -81,15 +83,15 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col">
+					<div class="col">s
 						<div class="row">
 							<div class="col">
-								<img src="images/dressroom/product1.PNG">
+								<img src="${pageContext.request.contextPath}/images/dressroom/product1.PNG">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col">
-								<img src="images/dressroom/product2.PNG">
+								<img src="${pageContext.request.contextPath}/images/dressroom/product2.PNG">
 							</div>
 						</div>
 					</div>

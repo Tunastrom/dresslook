@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 import dto.GoodsDto;
 
-public class GoodsDao extends DAO {
+public class GoodsDao2 extends DAO {
 
 	public List<GoodsDto> GoodsList() {
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
@@ -55,69 +55,28 @@ public class GoodsDao extends DAO {
 	}
 
 	public int BlobInsert(GoodsDto dto) {
+		System.out.println(dto);
 		int n = 0;
-		Scanner sc = new Scanner(System.in);
-		System.out.print("업로드 할 파일 = ");
-		String filename = sc.next();
-		File f = new File(filename);
-		if (!f.exists()) {
-			System.out.println("파일이 존재 하지 않습니다.");
-			System.exit(1);
-		}
 
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(f);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		while (true) {
-			int x = 0;
-			try {
-				x = fis.read();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (x == -1)
-				break;
-			bos.write(x);
-		}
-		try {
-			fis.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			bos.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
 		String sql = "insert into GOODS"
 				+ " (G_NUM,G_NAME,G_PRICE,S_PRICE,G_SIZE,COLOR,G_INVEN,S_ID,G_MAKER,G_IMAGE,G_INFO,G_CODE,G_SEX,G_PRIOR,G_STATUS)"
-				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ " values((select nvl(max(g_num),0)+1 from goods),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, dto.getG_num());
-			psmt.setString(2, dto.getG_name());
-			psmt.setInt(3, dto.getG_price());
-			psmt.setInt(4, dto.getS_price());
-			psmt.setString(5, dto.getG_size());
-			psmt.setString(6, dto.getColor());
-			psmt.setString(7, dto.getG_inven());
-			psmt.setString(8, dto.getS_id());
-			psmt.setString(9, dto.getMaker());
-			psmt.setBinaryStream(10, bis, bos.size());
-			psmt.setString(11, dto.getG_info());
-			psmt.setString(12, dto.getG_code());
-			psmt.setString(13, dto.getG_sex());
-			psmt.setInt(14, dto.getG_prior());
-			psmt.setString(15, dto.getG_status());
+			psmt.setString(1, dto.getG_name());
+			psmt.setInt(2, dto.getG_price());
+			psmt.setInt(3, dto.getS_price());
+			psmt.setString(4, dto.getG_size());
+			psmt.setString(5, dto.getColor());
+			psmt.setString(6, dto.getG_inven());
+			psmt.setString(7, dto.getS_id());
+			psmt.setString(8, dto.getMaker());
+			psmt.setBinaryStream(9, new ByteArrayInputStream(dto.getG_image()),dto.getSize());
+			psmt.setString(10, dto.getG_info());
+			psmt.setString(11, dto.getG_code());
+			psmt.setString(12, dto.getG_sex());
+			psmt.setInt(13, dto.getG_prior());
+			psmt.setString(14, dto.getG_status());
 			n = psmt.executeUpdate();
 			System.out.println("업로드 성공!");
 			psmt.close();
