@@ -48,7 +48,7 @@ $(function(){
 		trs = document.querySelectorAll("tr");
 		for(i=1;i<trs.length;i++){
 		trs[i].addEventListener("click",function(){
-			var r = confirm("선택한 회원정보를 삭제하시겠어요?");
+			var r = confirm("선택한 회원정보를 휴먼 계정으로 바꾸시겠습니까?");
 			if (r==true){
 				console.log(this.children[0].innerText);	
 				var delId = this.children[0].innerText;
@@ -87,7 +87,7 @@ $(function(){
 			</tr>
 			<c:forEach var="dto" items="${list}">
 			<tr>
-				<td>${dto.m_id }</td><!-- <button id="id01">회원 삭제</button></td>-->
+				<td>${dto.m_id }</td>
 				<td>${dto.m_name }</td>
 				<td>${dto.m_pwd }</td>
 				<td>${dto.m_birth }</td>
@@ -105,5 +105,6 @@ $(function(){
 		</table>
 		</form>
 	</div>
+	 <a href="https://www.doortodoor.co.kr/parcel/doortodoor.do?fsp_action=PARC_ACT_002&fsp_cmd=retrieveInvNoACT&invc_no=355814383971" target="_blank">배송조회</a>
 </body>
 </html>

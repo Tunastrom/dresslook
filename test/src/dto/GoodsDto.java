@@ -18,6 +18,8 @@ public class GoodsDto {
 	private int g_prior;
 	private String g_status;
 	private String stringImage;
+	
+	
 	@Override
 	public String toString() {
 		return "GoodsDto [g_num=" + g_num + ", g_name=" + g_name + ", g_price=" + g_price + ", s_price=" + s_price

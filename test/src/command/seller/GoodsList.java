@@ -28,8 +28,7 @@ public class GoodsList implements Command {
 		}
 
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("HTML/kjw/goodsList.jsp").forward(request, response);
 
-		return null;
+		return "HTML/kjw/goodsList.jsp";
 	}
 }
