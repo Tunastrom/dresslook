@@ -213,6 +213,7 @@ function checkValidDoor(query) {
   <input type="submit" value="조회">
 </form>
 		<form name="frm" id="frm" action="track.do" method="post">
+		<div id="track"></div>
 		<input type="hidden" name="track" value=""></form>
 </body>
 </html>
