@@ -157,5 +157,43 @@ public class MemberDto {
 				+ ", recent_connection=" + recent_connection + ", m_point=" + m_point + ", m_sex=" + m_sex + ", track="
 				+ track + "]";
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberDto other = (MemberDto) obj;
+		if (m_id == null) {
+			if (other.m_id != null)
+				return false;
+		} else if (!m_id.equals(other.m_id))
+			return false;
+		if (m_point != other.m_point)
+			return false;
+		if (m_name == null) {
+			if (other.m_name != null)
+				return false;
+		} else if (!m_name.equals(other.m_name))
+			return false;
+		if (m_pwd == null) {
+			if (other.m_pwd != null)
+				return false;
+		} else if (!m_pwd.equals(other.m_pwd))
+			return false;
+		if (m_birth == null) {
+			if (other.m_birth != null)
+				return false;
+		} else if (!m_birth.equals(other.m_birth))
+			return false;
+		if (m_birth == null) {
+			if (other.m_birth != null)
+				return false;
+		} else if (!m_birth.equals(other.m_birth))
+			return false;
+		return true;
+	}
 
 }

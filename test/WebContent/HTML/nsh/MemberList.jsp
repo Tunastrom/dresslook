@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
+<script>/*
 	var trs = null;
 	$(document).ready(function() {
 		trs = document.querySelectorAll("tr");
@@ -24,7 +24,7 @@
 		}
 
 
-	});
+	});*/
 /*	
  window.addEventListener("load", function(){
 
@@ -84,6 +84,8 @@
 						<td>${dto.m_point }</td>
 						<td>${dto.m_sex }</td>
 						<td>${dto.recent_connection }</td>
+						<td><a href="delM.do?m_id=${dto.m_id }">삭제</a></td>
+						<td><a href="updateM.do?m_id=${dto.m_id }">수정</a></td>
 					</tr>
 				</c:forEach>
 			</table>

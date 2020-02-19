@@ -6,143 +6,52 @@
 
 <html>
 <head>
-
 	<title>회원정보 수정화면</title>
 	
-	<style type="text/css">
-		table{
-			margin-left:auto; 
-			margin-right:auto;
-			border:3px solid skyblue;
-		}
-		
-		td{
-			border:1px solid skyblue
-		}
-		
-		#title{
-			background-color:skyblue
-		}
-	</style>
-	
-	<script type="text/javascript">
-	
-		function init(){
-			setComboValue("${m.id}");
-		}
-
-		function setComboValue(val) 
-		{
-			var selectMail = document.getElementById('m_id'); // select 아이디를 가져온다.
-			for (i = 0, j = selectMail.length; i < j; i++)  // select 하단 option 수만큼 반복문 돌린다.
-			{
-				if (selectMail.options[i].value == val)  // 입력된값과 option의 value가 같은지 비교
-				{
-					selectMail.options[i].selected = true; // 같은경우라면 체크되도록 한다.
-					break;
-				}
-			}
-		}
-		
-		// 비밀번호 입력여부 체크
-		function checkValue() {
-			if(!document.userInfo.password.value){
-				alert("비밀번호를 입력하세요.");
-				return false;
-			}
-		}
-		
-	</script>
-	
 </head>
-<body onload="init()">
+<body>
+<h1>회원 정보 수정</h1>
+<form action="updateM.do" method="get">
 
-		<br><br>
-		<b><font size="6" color="gray">회원정보 수정</font></b>
-		<br><br><br>
-		<!-- 회원정보를 가져와 member 변수에 담는다. -->
-		<c:set var="member" value="${requestScope.memberInfo}"/>
-		
-		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
-		<!-- 값(파라미터) 전송은 POST 방식 -->
-		<form method="post" action="MemberModifyAction.do" 
-				name="userInfo" onsubmit="return checkValue()">
-				
-			<table>
-				<tr>
-					<td id="title">아이디</td>
-					<td id="title">${m_id}</td>
-				</tr>
-				<tr>
-					<td id="title">비밀번호</td>
-					<td>
-						<input type="password" name="password" maxlength="50" 
-							value="${m_pwd}">
-					</td>
-				</tr>
-			</table>	
-			<br><br>	
-			<table>
-
-				<tr>
-					<td id="title">이름</td>
-					<td>${m_name}</td>
-				</tr>
-					
-				<tr>
-					<td id="title">성별</td>
-					<td>${m_sex}</td>
-				</tr>
-					
-				<tr>
-					<td id="title">생일</td>
-					<td>
-						${m_birth}년 
-						
-					</td>
-				</tr>
-					
-				<tr>
-					<td id="title">이메일</td>
-					<td>
-						<input type="text" name="mail1" maxlength="50" 
-							value="${m_mail}">
-						
-					</td>
-				</tr>
-					
-				<tr>
-					<td id="title">휴대전화</td>
-					<td>
-						<input type="text" name="phone" value="${m_phone}"/>
-					</td>
-				</tr>
-				<tr>
-					<td id="title">우편번호</td>
-					<td>
-						<input type="text" size="50" name="address"
-							value="${m_zip}"/>
-					</td>
-				</tr>
-				<tr>
-					<td id="title">주소</td>
-					<td>
-						<input type="text" size="50" name="address"
-							value="${m_addr1}"/>
-					</td>
-				</tr>
-				<tr>
-					<td id="title">상세주소</td>
-					<td>
-						<input type="text" size="50" name="address"
-							value="${m_addr2}"/>
-					</td>
-				</tr>
-			</table>
-			<br><br>
-			<input type="button" value="취소" onclick="javascript:window.location='MainForm.do'">
-			<input type="submit" value="수정"/>  
-		</form>
-		
+        <p>
+            <label for="uId">I D : ${m_id}</label>
+            <input type="hidden" name="id" value="${m_id}">
+        </p>
+        <p>
+            <label for="uPwd">pwd :</label>
+            <input type="text" id="uPwd" name="pwd" size="20" value="${m_pwd}">
+        </p>
+        <p>
+            <label for="uName">name :</label>
+            <input type="text" id="uName" name="name" size="20" value="${m_name}">
+        </p>
+        <p>
+            <label for="uEmail">email :</label>
+            <input type="text" id="uEmail" name="email" size="20" value="${m_email}">
+        </p>
+        <p>
+            <label for="uPhone">phone :</label>
+            <input type="text" id="uPhone" name="phone" size="20" value="${m_phone}">
+        </p>
+        <p>
+        <c:choose>
+            <c:when test="${mem.admin=='0'}">
+                <label for="admin">관리자</label>
+                <input type="radio" id="admin" name="admin" value="0" checked>
+                <label for="normal">일반</label>
+                <input type="radio" id="normal" name="admin" value="1">
+            </c:when>
+            <c:otherwise>
+                <label for="admin">관리자</label>
+                <input type="radio" id="admin" name="admin" value="0">
+                <label for="normal">일반</label>
+                <input type="radio" id="normal" name="admin" value="1" checked>
+            </c:otherwise>
+        </c:choose>
+        </p>
+        <input type ="submit" value="제출">
+    </form>
 </body>
 </html>
+
+
