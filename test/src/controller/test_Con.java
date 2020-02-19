@@ -129,7 +129,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberdelete.do", new MemberDelete());
 		
 		//crawling
-		cont.put("/track.do", new crawling());
+		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
 
 	}
 

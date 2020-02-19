@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="org.jsoup.Jsoup" %>
+<%@ page import="org.jsoup.nodes.Document" %>
+<%@ page import="org.jsoup.nodes.Element" %>
+<%@ page import="org.jsoup.select.Elements" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +12,33 @@
 </head>
 <body>
 <script>
+/*
+String url = "https://www.doortodoor.co.kr/parcel/doortodoor.do?fsp_action=PARC_ACT_002&fsp_cmd=retrieveInvNoACT&invc_no=355814383971"; 
+Document doc = Jsoup.connect(url).get();
+Elements ele = doc.select("table.ptb10"); 
+String str = ele.text(); 
+*/
+
+	$.ajax({
+		type : "post",
+		url : "/track.do",
+		dataType : "ajax",
+		error : function() {
+			alert("조회 실패");
+		},
+		success : function(Parse_data) {
+			$("#Parse_Area").html(Parse_data);
+			alert("조회 값" + Parse_data)
+		};
+	})
+})
+
 var dtd_companys = new Array();
-dtd_companys["우체국택배"] = new Array(13, "http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=","1234567890123 (13자리)","1588-1300","http://parcel.epost.go.kr");
+/*dtd_companys["우체국택배"] = new Array(13, "http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=","1234567890123 (13자리)","1588-1300","http://parcel.epost.go.kr");
+ * 
+ */
 dtd_companys["CJ대한통운"] = new Array(10, "https://www.doortodoor.co.kr/parcel/doortodoor.do?fsp_action=PARC_ACT_002&fsp_cmd=retrieveInvNoACT&invc_no=","1234567890 (10자리)", "1588-1255", "http://www.doortodoor.co.kr");
-dtd_companys["한진택배"] = new Array(12, "http://www.hanjin.co.kr/Delivery_html/inquiry/result_waybill.jsp?wbl_num=", "1234567890 (10,12자리)", "1588-0011", "http://hanex.hanjin.co.kr");
+/*dtd_companys["한진택배"] = new Array(12, "http://www.hanjin.co.kr/Delivery_html/inquiry/result_waybill.jsp?wbl_num=", "1234567890 (10,12자리)", "1588-0011", "http://hanex.hanjin.co.kr");
 dtd_companys["로젠택배"] = new Array(11, "http://www.ilogen.com/iLOGEN.Web.New/TRACE/TraceView.aspx?gubun=slipno&slipno=", "12345678901 (11자리)","1588-9988", "http://www.ilogen.com");
 dtd_companys["현대택배"] = new Array(12, "http://www.hlc.co.kr/hydex/jsp/tracking/trackingViewCus.jsp?InvNo=", "1234567890 (10,12자리)", "1588-2121", "http://www.hlc.co.kr");
 dtd_companys["KG옐로우캡택배"] = new Array(11, "http://www.yellowcap.co.kr/custom/inquiry_result.asp?invoice_no=", "12345678901 (11자리)", "1588-0123", "http://www.yellowcap.co.kr");
@@ -32,6 +59,8 @@ dtd_companys["CVSnet 편의점택배"] = new Array(10, "http://was.cvsnet.co.kr/
 dtd_companys["TNT Express"] = new Array(13, "http://www.tnt.com/webtracker/tracking.do?respCountry=kr&respLang=ko&searchType=CON&cons=", "GE123456789WW (9,13자리)", "1588-0588", "http://www.tnt.com/express/ko_kr/site/home.html");
 dtd_companys["HB한방택배"] = new Array(12, "http://www.hbtb.co.kr/search/s_search.asp?f_slipno=", "123456789012 (12자리)", "1588-1059", "http://www.hbtb.co.kr/");
 dtd_companys["GTX"] = new Array(12, "http://www.gtx2010.co.kr/del_inquiry_result.html?s_gbn=1&awblno=", "123456789012 (12자리)", "1588-1756", "http://www.gtx2010.co.kr");
+*/
+/*
 var dtd_select_obj = document.getElementById("dtd_select");
 var company = dtd_select_obj.options[dtd_select_obj.selectedIndex].value;
 if(company == "" ) company = "우체국택배";
@@ -41,8 +70,9 @@ function doorToDoorSearch()
  var query = query_obj.value;
  query = query.replace(' ', '');
  var url = "";
- 
+ */
  /* 운송장 번호 값 확인 */
+ /*
  if (company == "UPS") {
   var pattern1 = /^[0-9a-zA-Z]{9,12}$/i;
   var pattern2 = /^[0-9a-zA-Z]{18}$/i;
@@ -108,7 +138,9 @@ function doorToDoorSearch()
    return false;
   }
  }
+ */
  /* 링크만들기 */
+ /*
  if (company == "대신택배") {
   url = dtd_companys[company][1];
   url+= "billno1="+query.substring(0,4);
@@ -142,7 +174,9 @@ function SetDeleveryContents(idx) {
  
 }
 function checkValidDoor(query) {
+	*/
  /* 운송장 번호 값 확인 */
+ /*
  if (company == "UPS") {
   var pattern1 = /^1z[0-9]{16}$/i;
   var pattern2 = /^M[0-9]{10}$/;
@@ -180,12 +214,13 @@ function checkValidDoor(query) {
   } 
  }
 }
-
+*/
 </script>
 
 <form name="door_to_door_frm" onSubmit="doorToDoorSearch();return false;">
   <select name="dtd_select" id="dtd_select" >
-    <option value="경동택배" selected>경동택배</option>
+	<option value="대한통운" selected>대한통운</option>
+<!--<option value="경동택배" selected>경동택배</option>
     <option value="대신택배">대신택배</option>
     <option value="대한통운">CS대한통운</option>
     <option value="동부익스프레스">동부익스프레스</option>
@@ -207,13 +242,14 @@ function checkValidDoor(query) {
     <option value="KG옐로우캡택배">KG옐로우캡택배</option>
     <option value="KGB택배">KGB택배</option>
     <option value="TNT Express">TNT Express</option>
-    <option value="UPS">UPS</option>
+    <option value="UPS">UPS</option>-->
   </select>
   <input type="text" style="width:201px;" class="input_off" name="dtd_number_query" id="dtd_number_query" value="'-'를 제외하고 입력하세요." onClick="this.value=''">
   <input type="submit" value="조회">
 </form>
 		<form name="frm" id="frm" action="track.do" method="post">
 		<div id="track"></div>
-		<input type="hidden" name="track" value=""></form>
+		<input type="hidden" name="track" value="">
+		</form>
 </body>
 </html>
