@@ -1,28 +1,30 @@
 package command.seller;
 
+import java.io.File;
 import java.io.IOException;
-import java.sql.Blob;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.ha.deploy.FarmWarDeployer;
+import org.apache.commons.io.FileUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.Command;
+import dao.GoodsDao;
 import dto.GoodsDto;
 
-public class goodsInsertOk implements Command {
+public class InsertGoodsOk implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String uploadPath = request.getSession() // session 기본 객체
 				.getServletContext() // application 기본객체
-				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
-											// 구해옴
+				.getRealPath("/images/dressroom/jumper.png"); // upload는 폴더명 / 폴더의 경로를
+		final String mPath = uploadPath;
+		byte[] imageBytes = FileUtils.readFileToByteArray(new File(mPath)); // 구해옴
 
 		// out.print(uploadPath);
 
@@ -48,39 +50,45 @@ public class goodsInsertOk implements Command {
 		} catch (Exception e) {
 			e.getStackTrace();
 		} // 업로드 종료
-		return null;
 
 		// 파라미터를 DTO에 담기
-		Integer g_num = Integer.parseInt(request.getParameter("num"));
-		String g_name = request.getParameter("name");
-		Integer gprice = Integer.parseInt(request.getParameter("gprice"));
-		Integer sprice = Integer.parseInt(request.getParameter("sprice"));
-		String g_size = request.getParameter("size");
-		String g_color = request.getParameter("color");
-		String g_inven = request.getParameter("id");
-		String g_maker = request.getParameter("maker");
-		String g_code = request.getParameter("gcode");
-		Blob g_image = request.getParameter("image");
-		// BinaryStream
-		String s_code = request.getParameter("scode");
-		Integer g_prior = Integer.parseInt(request.getParameter("prior"));
-		String g_status = request.getParameter("status");
+		try {
+			Integer g_num = Integer.parseInt(request.getParameter("num"));
+			System.out.println(g_num);
+			String g_name = request.getParameter("name");
+			Integer gprice = Integer.parseInt(request.getParameter("gprice"));
+			Integer sprice = Integer.parseInt(request.getParameter("sprice"));
+			String g_size = request.getParameter("size");
+			String g_color = request.getParameter("color");
+			String g_inven = request.getParameter("id");
+			String g_maker = request.getParameter("maker");
+			String g_code = request.getParameter("gcode");
+			byte[] g_image = imageBytes; // BinaryStream
+			String s_code = request.getParameter("scode");
+			Integer g_prior = Integer.parseInt(request.getParameter("prior"));
+			String g_status = request.getParameter("status");
+			GoodsDto dto = new GoodsDto();
+			dto.setG_num(g_num);
+			dto.setG_name(g_name);
+			dto.setG_price(gprice);
+			dto.setS_price(sprice);
+			dto.setG_size(g_size);
+			dto.setColor(g_color);
+			dto.setG_inven(g_inven);
+			dto.setMaker(g_maker);
+			dto.setG_code(g_code);
+			dto.setG_image(g_image);
+			dto.setG_sex(s_code);
+			dto.setG_prior(g_prior);
+			dto.setG_status(g_status);
 
-		GoodsDto dto = new GoodsDto();
-		dto.setNumber(g_num);
-		dto.setName(g_name);
-		dto.setGprice(gprice);
-		dto.setSprice(sprice);
-		dto.setSize(g_size);
-		dto.setColor(g_color);
-		dto.setInventory(g_inven);
-		dto.setMaker(g_maker);
-		dto.setGcode(g_code);
-		dto.setScode(s_code);
-		dto.setprior(g_prior);
-		dto.setStatus(g_status);
+			GoodsDao dao = new GoodsDao();
+			dao.GoodsInsert(dto);
 
-		return null;
+		} catch (NullPointerException nbp) {
+			System.out.println(nbp);
+		}
+		return "HTML/kjw/goodsList.jsp";
 	}
 
 }

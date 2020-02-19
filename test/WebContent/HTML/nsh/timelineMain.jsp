@@ -5,7 +5,7 @@
 <head>
 </head>
 <body>
-	eee
+	
 	<!-- page content start -->
 	<div class="tab-content" id="maintabContent">
 		<div class="tab-pane fade show active" id="home" role="tabpanel"

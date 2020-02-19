@@ -12,10 +12,12 @@
 	var trs =null;
 	$(document).ready(function(){
 		trs = document.querySelectorAll("tr");
-		trs[1].addEventListener("click",function(){
-			var log = trs[1].children[0].innerText;
+		for(i=1;i<trs.length-1;i++){
+		trs[i].addEventListener("click",function(){
+			var log = trs[i].children[0].innerText;
 			console.log(log);	
 		});
+		}
 	});
 </script>
 </head>

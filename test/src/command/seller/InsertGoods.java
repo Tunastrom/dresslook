@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class goodsInsert implements Command {
+public class InsertGoods implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		return "HTML/kjw/goodsInsert.jsp";
+		return "HTML/kjw/InsertGoods.jsp";
 	}
 
 }

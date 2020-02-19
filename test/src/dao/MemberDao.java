@@ -139,20 +139,29 @@ public class MemberDao extends DAO {
 		return n;
 
 	}
-
-	public int delete(int id) {
-		int n = 0;
+	
+	public int track(MemberDto dto) {
+		int n=0;
+		close();
+		return n;
+	}
+	
+//휴먼계정 변경- 삭제 아님
+	public int delete(MemberDto dto) throws SQLException {
 		// 삭제 조인해야 함
-		String sql = "delete m_id from member where m_id= ?";
+		String sql = "update member set m_status='062' where m_id= ?";
+		int r = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_id());
-			n = psmt.executeUpdate();
+			 r = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			conn.commit();
+			close();
 		}
-		close();
-		return n;
+		return r;
 	}
 
 //	id중복체크
