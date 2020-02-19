@@ -88,7 +88,7 @@
 				</div>
 
 				<div class="col-12 align-self-end mb-4 text-center">
-					Don't have account yet?<br> <a href="memberLogin.jsp"
+					Don't have account yet?<br> <a href="memberInsert.do"
 						class="text-white font-weight-bold">Sign up</a> here.
 				</div>
 			</div>
