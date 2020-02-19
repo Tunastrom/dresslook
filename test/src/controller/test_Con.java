@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import command.Command;
 import command.MemberList;
 import command.MemberMain;
+import command.Memberupdate;
 import command.Mgoods;
 import command.crawling;
 import command.deleteMember;
@@ -85,7 +86,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/memberdelete.do", new deleteMember());
-		//cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
+		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
 
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/lookSelect.do", new LookSelect());

@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,11 +13,8 @@ import dao.MemberDao;
 import dto.MemberDto;
 
 @WebServlet("/memberupdate.do")
-public class Memberupdate extends HttpServlet{
+public class Memberupdate implements Command{
 	private static final long serialVersionUID = 1L;
-    public Memberupdate() {
-        super();
-    }
 	private Object dto;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -58,9 +54,16 @@ public class Memberupdate extends HttpServlet{
                 //post 방식으로 이동했거나 forward로 이동했을 경우 연속해서 forward 불가능 sendRedirect 사용해야 됨
             }else{
                 System.out.println("수정 실패");
-                response.sendRedirect(context+"/memberupdateForm.do?m_id="+num);
+                response.sendRedirect(context+"/memberupdate.do?m_id="+num);
             }
         }
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	}
 

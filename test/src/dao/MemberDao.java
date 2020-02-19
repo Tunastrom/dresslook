@@ -253,6 +253,7 @@ public class MemberDao extends DAO {
 		return null;
 	}
 	
+	//회원정보 수정
 	public int updateM(MemberDto dto) {
 		int n =0;
 		String sql="update member set m_pwd=?,m_name=?,"+
@@ -286,7 +287,7 @@ public class MemberDao extends DAO {
 				return n;
 			}
 	
-
+//회원 삭제
 	public int delM(int num) {
 		String sql = "delete from member where m_id=?";
 		int delete = 0;

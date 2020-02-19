@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h2>회원 삭제</h2>
+	
 </body>
 </html>
