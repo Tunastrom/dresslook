@@ -1,6 +1,9 @@
 package dto;
 
+
 import java.util.Arrays;
+
+import java.sql.Blob;
 
 import oracle.sql.BLOB;
 
@@ -29,6 +32,7 @@ public class LookDto {
 	public void setL_image(byte[] l_image) {
 		this.l_image = l_image;
 	}
+	
 	public String getG_num() {
 		return g_num;
 	}

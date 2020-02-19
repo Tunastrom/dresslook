@@ -31,7 +31,7 @@ public class Gmail implements Authenticator {
 	
 	
 	protected PasswordAuthentication getPasswordAuthentication() {
-		return new PasswordAuthentication("Id", "password");
+		return new PasswordAuthentication("m_id", "m_pwd");
 	}
 	
 	

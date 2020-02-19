@@ -19,6 +19,20 @@ public class MemberDto {
 	private Date recent_connection;//접속일
 	private Integer m_point;	//적립금
 	private String m_sex;		//성별
+	private String track;
+
+	public String getTrack() {
+		return track;
+	}
+
+	public void setTrack(String track) {
+		this.track = track;
+	}
+
+	
+	
+	
+	
 
 	public String getM_id() {
 		return m_id;
@@ -139,13 +153,23 @@ public class MemberDto {
 	public void setM_sex(String m_sex) {
 		this.m_sex = m_sex;
 	}
+	
+	
+		
+	
+	
+
+	
+
+	
 
 	@Override
 	public String toString() {
-		return "MmemberDto [m_id=" + m_id + ", m_pwd=" + m_pwd + ", m_name=" + m_name + ", m_birth=" + m_birth
+		return "MemberDto [m_id=" + m_id + ", m_pwd=" + m_pwd + ", m_name=" + m_name + ", m_birth=" + m_birth
 				+ ", m_email=" + m_email + ", m_phone=" + m_phone + ", m_zip=" + m_zip + ", m_addr1=" + m_addr1
 				+ ", m_addr2=" + m_addr2 + ", m_grade=" + m_grade + ", m_au=" + m_au + ", m_status=" + m_status
-				+ ", recent_connection=" + recent_connection + ", m_point=" + m_point + ", m_sex=" + m_sex + "]";
+				+ ", recent_connection=" + recent_connection + ", m_point=" + m_point + ", m_sex=" + m_sex + ", track="
+				+ track + "]";
 	}
 
 }

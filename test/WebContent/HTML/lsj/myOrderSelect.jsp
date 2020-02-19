@@ -4,18 +4,17 @@
 <html lang="en">
 
 <head>
-
-
 </head>
 
 <body>
+
 
 	<!-- page content start -->
 	<div class="row">
 		<div class="container">
 			<div class="row">
 				<div class="container">
-					<h5 class="page-title">주문 내역</h5>
+					<h5 class="page-title">주문 상세</h5>
 				</div>
 			</div>
 			<div class="row my-3">
@@ -27,7 +26,7 @@
 									<p class="text-mute">2:25pm | 10/1/2020</p>
 								</div>
 								<div class="col-auto pr-1">
-									<div class="badge badge-secondary">배송정보</div>
+									<div class="badge badge-secondary">My Looks</div>
 									<i class="material-icons">keyboard_arrow_right</i>
 								</div>
 							</div>
@@ -46,6 +45,7 @@
 									<p class="mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
+								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
 							</div>
 							<hr>
 							<div class="media">
@@ -61,6 +61,7 @@
 									<p class="mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
+								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
 							</div>
 						</div>
 						<div class="card-footer">
@@ -89,7 +90,7 @@
 									<p class="text-mute">2:25pm | 10/1/2020</p>
 								</div>
 								<div class="col-auto">
-									<div class="badge badge-success">배송완료상품</div>
+									<div class="badge badge-success">Liked Looks</div>
 								</div>
 							</div>
 						</div>
@@ -107,6 +108,7 @@
 									<p class="small text-mute mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
+								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
 							</div>
 
 						</div>
@@ -132,7 +134,45 @@
 		</div>
 	</div>
 	<!-- page content ends -->
-
+	
+	<div align="center" id="dv">
+	<br />
+		<h1>회원 목록</h1>
+		<table class="table table-hover">
+			<tr>
+				<th scope="col">주문일자</th>
+			    <th scope="col">판매자</th>
+				<th scope="col">상품명</th>
+				<th scope="col">주문금액</th>
+				<th scope="col">주문상태</th>
+				<th scope="col">배송지 주소1</th>
+				<th scope="col">배송지 주소2</th>
+				
+			</tr>
+					
+			<c:forEach var="dto" items="${list}">
+			<tr>
+				<td>${dto.o_date }</td>
+				<td>${dto.s_id }</td>
+				<td>${dto.g_name }</td>
+				<td>${dto.o_price }</td>
+				<td>${dto.o_code }</td>
+				<td>${dto.m_addr1 }</td>
+				<td>${dto.m_addr2 }</td>
+				
+			</tr>			
+			</c:forEach>
+			
+		</table>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 
 </html>

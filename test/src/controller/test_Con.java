@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import command.MemberDelete;
 import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
+import command.crawling;
 import command.collection.CollectionMain;
-import command.collection.Product;
 import command.collection.LookSelect;
 import command.collection.Payment;
+import command.collection.Product;
 import command.collection.Thankyou;
 import command.collection.orderSheet;
 import command.dresslook.BoardLook;
-
-import command.dresslook.DressroomitemInfoCommand;
-
 import command.dresslook.Checkout;
+import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
@@ -83,7 +83,12 @@ public class test_Con extends HttpServlet {
 		
 		cont.put("/lookContents.do", new LookContents());
 
+
 		cont.put("/memberlist.do", new MemberList());
+
+		cont.put("/boardLook.do", new BoardLook());
+
+		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
 
@@ -113,6 +118,10 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
+		
+		cont.put("/myCoupon.do", new MyCouponCommand());
+		
+		cont.put("/memberPwSearch.do", new PwSearchCommand());
 		cont.put("/myCoupon.do", new MyCouponCommand());
 		// manager
 
@@ -122,13 +131,18 @@ public class test_Con extends HttpServlet {
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
 		cont.put("/mgoods.do", new Mgoods());
+
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
 		cont.put("/insertLooks.do", new InsertLooks());
 
 		
+
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
 		
-
+		cont.put("/memberdelete.do", new MemberDelete());
+		
+		//crawling
+		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
 
 	}
 

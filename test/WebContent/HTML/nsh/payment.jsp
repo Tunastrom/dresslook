@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -135,15 +137,15 @@
                             </div>
                         </div>
                         <div class="text-center mb-3">
-                            <a href="thankyou.html" class="btn btn-lg btn-default mb-3 mx-auto px-4">결제</a>
-                            <p class="text-mute text-center">or pay with new card</p>
+                            <a href="thankyou.jsp" class="btn btn-lg btn-default mb-3 mx-auto px-4">Pay Now</a>
+                            <p class="text-mute text-center"></p>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group float-label position-relative active">
                                     <input type="text" class="form-control " value="Noh sang hyeon">
-                                    <label class="form-control-label">이름</label>
+                                    <label class="form-control-label">Name</label>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +153,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group float-label position-relative active">
                                     <input type="text" class="form-control " value="0550 **** **** 9858 ">
-                                    <label class="form-control-label">카드 번호</label>
+                                    <label class="form-control-label">Card Number</label>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +173,7 @@
                         </div>
                     </div>
                     <div class="container align-self-end mb-4 text-center">
-                        <a href="thankyou.html" class="btn btn-lg btn-default btn-block disabled">Pay Now</a>
+                        <a href="thankyou.jsp" class="btn btn-lg btn-default btn-block disabled">Pay Now</a>
                     </div>
                 </div>
             </div>
