@@ -252,8 +252,42 @@ public class MemberDao extends DAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public int updateM(MemberDto dto) {
+		int n =0;
+		String sql="update member set m_pwd=?,m_name=?,"+
+		" m_birth=?,m_email=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?,"+
+		" m_grade=?,m_status=?,m_recent=?,m_point=?,m_sex=? "+
+		"where m_id=?";
+				
+				try {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1,dto.getM_pwd());
+					psmt.setString(2,dto.getM_name());
+					psmt.setDate(3, (Date) dto.getM_birth());
+					psmt.setString(4, dto.getM_email());
+					psmt.setString(5, dto.getM_phone());
+					psmt.setInt(6, dto.getM_zip());
+					psmt.setString(7, dto.getM_addr1());
+					psmt.setString(8, dto.getM_addr2());
+					psmt.setString(9, dto.getM_grade());
+					psmt.setString(10, dto.getM_status());
+					psmt.setDate(11, (Date)dto.getRecent_connection());
+					psmt.setInt(12, dto.getM_point());
+					psmt.setString(13, dto.getM_sex());
+					psmt.setString(14, dto.getM_id());
+					
+					 n = psmt.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close();
+				}
+				return n;
+			}
+	
 
-	public int delete(int num) {
+	public int delM(int num) {
 		String sql = "delete from member where m_id=?";
 		int delete = 0;
 		try {

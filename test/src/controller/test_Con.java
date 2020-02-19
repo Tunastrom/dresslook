@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
-import command.MemberDelete;
 import command.MemberList;
 import command.MemberMain;
 import command.Mgoods;
 import command.crawling;
+import command.deleteMember;
 import command.collection.CollectionMain;
 import command.collection.LookSelect;
 import command.collection.Payment;
@@ -84,6 +84,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
+		cont.put("/memberdelete.do", new deleteMember());
+		//cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
 
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/lookSelect.do", new LookSelect());
@@ -125,8 +127,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
-		
-		cont.put("/memberdelete.do", new MemberDelete());
 		
 		//crawling
 		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨

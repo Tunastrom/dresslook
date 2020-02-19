@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 
 @WebServlet("/deleteMember.do")
-public class deleteMember extends HttpServlet {
+public class deleteMember extends HttpServlet implements Command {
 	private static final long serialVersionUID = 1L;
     public deleteMember() {
         super();
@@ -27,7 +27,7 @@ public class deleteMember extends HttpServlet {
             response.sendRedirect(context+"/index.jsp");
         }else{
             MemberDao dao = MemberDao.getInstance();
-            int delete = dao.delete(num);
+            int delete = dao.delM(num);
             if(delete>0){
                 System.out.println("삭제 성공");
                 response.sendRedirect(context+"/memberlist.do");
@@ -41,6 +41,14 @@ public class deleteMember extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

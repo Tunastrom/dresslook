@@ -18,11 +18,11 @@
             <input type="hidden" name="id" value="${m_id}">
         </p>
         <p>
-            <label for="uPwd">pwd :</label>
+            <label for="uPwd">패스워드 :</label>
             <input type="text" id="uPwd" name="pwd" size="20" value="${m_pwd}">
         </p>
         <p>
-            <label for="uName">name :</label>
+            <label for="uName">이름 :</label>
             <input type="text" id="uName" name="name" size="20" value="${m_name}">
         </p>
         <p>
@@ -30,12 +30,12 @@
             <input type="text" id="uEmail" name="email" size="20" value="${m_email}">
         </p>
         <p>
-            <label for="uPhone">phone :</label>
+            <label for="uPhone">전화번호 :</label>
             <input type="text" id="uPhone" name="phone" size="20" value="${m_phone}">
         </p>
         <p>
         <c:choose>
-            <c:when test="${mem.admin=='0'}">
+            <c:when test="${m_au=='211'}">
                 <label for="admin">관리자</label>
                 <input type="radio" id="admin" name="admin" value="0" checked>
                 <label for="normal">일반</label>
