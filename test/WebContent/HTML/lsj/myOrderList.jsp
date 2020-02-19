@@ -26,7 +26,7 @@
 									<p class="text-mute">2:25pm | 10/1/2020</p>
 								</div>
 								<div class="col-auto pr-1">
-									<div class="badge badge-secondary">배송정보</div>
+									<div class="badge badge-secondary">My Looks</div>
 									<i class="material-icons">keyboard_arrow_right</i>
 								</div>
 							</div>
@@ -45,6 +45,7 @@
 									<p class="mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
+								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
 							</div>
 							<hr>
 							<div class="media">
@@ -60,6 +61,7 @@
 									<p class="mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
+								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
 							</div>
 						</div>
 						<div class="card-footer">
@@ -88,7 +90,7 @@
 									<p class="text-mute">2:25pm | 10/1/2020</p>
 								</div>
 								<div class="col-auto">
-									<div class="badge badge-success">배송완료상품</div>
+									<div class="badge badge-success">Liked Looks</div>
 								</div>
 							</div>
 						</div>
@@ -106,6 +108,7 @@
 									<p class="small text-mute mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
+								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
 							</div>
 
 						</div>

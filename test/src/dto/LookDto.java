@@ -1,5 +1,7 @@
 package dto;
 
+import java.sql.Blob;
+
 import oracle.sql.BLOB;
 
 public class LookDto {
@@ -22,8 +24,8 @@ public class LookDto {
 	public BLOB getL_image() {
 		return l_image;
 	}
-	public void setL_image(BLOB l_image) {
-		this.l_image = l_image;
+	public void setL_image(Blob blob) {
+		this.l_image = (BLOB) blob;
 	}
 	public Integer getG_num() {
 		return g_num;

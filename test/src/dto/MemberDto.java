@@ -20,6 +20,11 @@ public class MemberDto {
 	private Integer m_point;	//적립금
 	private String m_sex;		//성별
 
+	
+	
+	
+	
+
 	public String getM_id() {
 		return m_id;
 	}
@@ -139,6 +144,15 @@ public class MemberDto {
 	public void setM_sex(String m_sex) {
 		this.m_sex = m_sex;
 	}
+	
+	
+		
+	
+	
+
+	
+
+	
 
 	@Override
 	public String toString() {
