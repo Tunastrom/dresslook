@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import command.Command;
 import dao.GoodsDao;
 import dao.GoodsDao2;
+import dao.LookDao;
 import dto.LookDto;
 
 public class InsertLooks implements Command {
@@ -49,17 +50,20 @@ public class InsertLooks implements Command {
 		     		
 		     LookDto dto = new LookDto();
 		     dto.setL_image(file);
-		     dto.setG_num(multi.getParameter("gnum"));
-		     System.out.println("========"+dto.getG_num);
+		     dto.setG_nums(multi.getParameter("gnums"));
 		     dto.setM_id(multi.getParameter("mid"));
 		     dto.setL_open(multi.getParameter("lopen"));
 		     dto.setSize(fileSize);
+		     System.out.println(dto);
 		     
-		    LooksDao2 dao = new GoodsDao2();
-		    int result = dao.BlobInsert(dto);
-		    System.out.println(result);
-		    request.setAttribute("result", result);
-			return "redirect:GoodsList.do";
+		    LookDao dao = new LookDao();
+		    int result1 = dao.LookInsert(dto);
+		    int result2 = dao.LookDetailInsert(dto);
+		    System.out.println("result1: "+result1);
+		    System.out.println("result2: "+result2);
+		    request.setAttribute("result1", result1);
+		    request.setAttribute("result2", result2);
+			return "redirect:looksList.do";
 		
 	}
 }
