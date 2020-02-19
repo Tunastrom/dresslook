@@ -25,14 +25,14 @@
 
 
 	});
-window.addEventList("load", function(){
 	
+ window.addEventListener("load", function(){
 
 	$("input").on("click", function() {
 		$.ajax({
 			type : "post",
 			url : "/track.do",
-			dataType : "json",
+			dataType : "ajax",
 			error : function() {
 				alert("조회 실패");
 			},
@@ -40,16 +40,15 @@ window.addEventList("load", function(){
 				$("#Parse_Area").html(Parse_data);
 				alert("조회 값" + Parse_data)
 			}
-
-			var url = "../ajaxBoardList.do";
+/*
+			var url = "../track.do";
 			var data = null;
 			var callback = function(boardList) {
 				for (i = 0; i < boardList.length; i++) {
 					result.innerHTML += boardList[i].poster + "<br>"
-				}
-				;
-			
-		});
+				};
+	*/		
+		})
 	});
 })
 </script>
@@ -61,6 +60,7 @@ window.addEventList("load", function(){
 		<br />
 		<h1>회원 관리</h1>
 		<form name="frm" id="frm" action="memberdelete.do" method="post">
+		<!-- 휴면 계정 변경부 삭제기능은 없음 -->
 			<input type="hidden" name="deleteId" value="">
 			<table class="table table-hover" id="ttd">
 				<tr>
