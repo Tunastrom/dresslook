@@ -17,10 +17,12 @@ public class MyInfoCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		MemberDao dao=new MemberDao();
-		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
-		list=dao.select();
-		request.setAttribute("list", list);
+
+		MemberDao dao = new MemberDao();
+		String id =(String) request.getSession().getAttribute("id");
+		MemberDto dto = dao.select(id);
+		
+		request.setAttribute("dto", dto);
 		return "HTML/lsj/myInfo.jsp";
 	}
 

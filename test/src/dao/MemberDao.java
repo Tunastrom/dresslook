@@ -11,8 +11,6 @@ import dto.MemberDto;
 
 public class MemberDao extends DAO {
 	private MemberDto dto;
-	private ArrayList<MemberDto> list;
-
 	public MemberDao() {
 		super();
 	}
@@ -53,17 +51,14 @@ public class MemberDao extends DAO {
 	}
 
 //	1명의 회원정보 가져오기
-
-	public ArrayList<MemberDto> select(String id) {
-		dto = new MemberDto();
-
-		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
+	public MemberDto select(String id) {
+		
 		String sql = "select * from member where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, "m_id");
+			psmt.setString(1, id);
 			rs = psmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				dto = new MemberDto();
 				dto.setM_pwd(rs.getString("m_pwd"));
 				dto.setM_name(rs.getString("m_name"));
@@ -79,36 +74,17 @@ public class MemberDao extends DAO {
 				dto.setRecent_connection(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
-				list.add(dto);
-				System.out.println(list);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		close();
-		return list;
+		return dto;
 	}
 
-	/*
-	 * public MemberDto select(String id) { String sql =
-	 * "select * from member wher m_id=?"; MemberDto dto = new MemberDto(); try {
-	 * psmt = conn.prepareStatement(sql); psmt.setString(1, dto.getM_id()); rs =
-	 * psmt.executeQuery(); if (rs.next()) { dto.setM_id(rs.getString("m_id"));
-	 * dto.setM_pwd(rs.getString("m_pwd")); dto.setM_name(rs.getString("m_name"));
-	 * dto.setM_birth(rs.getDate("m_birth"));
-	 * dto.setM_email(rs.getString("m_email"));
-	 * dto.setM_phone(rs.getString("m_phone")); dto.setM_zip(rs.getInt("m_zip"));
-	 * dto.setM_addr1(rs.getString("m_add1"));
-	 * dto.setM_addr2(rs.getString("m_add2"));
-	 * dto.setM_grade(rs.getString("m_grade")); dto.setM_au(rs.getString("m_au"));
-	 * dto.setM_status(rs.getString("m_status"));
-	 * dto.setRecent_connection(rs.getDate("m_recent"));
-	 * dto.setM_point(rs.getInt("m_point")); dto.setM_sex(rs.getString("m_sex"));
-	 * 
-	 * } } catch (SQLException e) { e.printStackTrace(); } finally { close(); }
-	 * return (MemberDto) rs; }
-	 */
+	
 
 //	회원가입
 	public int insert(String userID, String name, String userPassword1, String birth, String email, String pnum,
