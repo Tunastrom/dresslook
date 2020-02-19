@@ -25,7 +25,7 @@
 
 
 	});
-	
+/*	
  window.addEventListener("load", function(){
 
 	$("input").on("click", function() {
@@ -40,17 +40,8 @@
 				$("#Parse_Area").html(Parse_data);
 				alert("조회 값" + Parse_data)
 			}
-/*
-			var url = "../track.do";
-			var data = null;
-			var callback = function(boardList) {
-				for (i = 0; i < boardList.length; i++) {
-					result.innerHTML += boardList[i].poster + "<br>"
-				};
-	*/		
-		})
 	});
-})
+})*/
 </script>
 
 </head>
@@ -97,10 +88,6 @@
 				</c:forEach>
 			</table>
 		</form>
-	</div><form id="Parse_Area">
-	<div id="Parse_data" class="Parse_data">
-		<input type="button" value="배송조회">
 	</div>
-	</form>
 </body>
 </html>
