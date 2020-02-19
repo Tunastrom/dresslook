@@ -119,25 +119,29 @@ public class MemberDao extends DAO {
 	}
 
 	public int update(MemberDto dto) {
-		int n = 0;
-		String sql = "update mmember set m_pwd=?, bContent=? where bId=?";
-
+		int r = 0;
 		try {
+
+			String sql = "Update member set m_pwd=?, m_name=?, m_email=?, m_phone=?, m_zip=? "+
+			" , m_addr1=?, m_addr2=?, m_birth=? where m_id=?";
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(9, dto.getM_id());
+			psmt.setString(2, dto.getM_name());
+			psmt.setString(1, dto.getM_pwd());
+			psmt.setDate(8, (Date) dto.getM_birth());
+			psmt.setString(3, dto.getM_email());
+			psmt.setString(4, dto.getM_phone());
+			psmt.setInt(5, dto.getM_zip());
+			psmt.setString(6, dto.getM_addr1());
+			psmt.setString(7, dto.getM_addr2());
+			r = psmt.executeUpdate();
 
-			psmt.setString(1, dto.());
-			psmt.setString(2, dto.());
-			psmt.setInt(3, dto.());
-			n = psmt.executeUpdate();
-
-		} catch (SQLException e) {
-
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
-
-		close();
-		return n;
-
+		return r;
 	}
 	
 	public int track(MemberDto dto) {

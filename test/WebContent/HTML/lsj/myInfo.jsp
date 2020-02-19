@@ -68,7 +68,7 @@
 						</div>
 
 
-						<a href="login.do"
+						<a href="memberupdatck.do"
 							class="btn btn-lg btn-default btn-block my-4">수정</a>
 					</div>
 				</div>
@@ -77,9 +77,7 @@
 				Already have account?<br> <a href="login.do"
 					class="text-dark font-weight-bold">로그인</a>
 			</div>
-		</div>
-	</div>
-
+	
 	<!-- page content ends -->
 
 

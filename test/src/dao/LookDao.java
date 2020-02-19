@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -82,7 +81,7 @@ public class LookDao extends DAO {
 	public int delete(String l_code) {
 		int n = 0;
 		// 삭제 조인해야 함
-		String sql = "delete l_code from member where L_code= ?";
+		String sql = "delete l_code from Look where L_code= ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getL_code());
@@ -108,7 +107,7 @@ public class LookDao extends DAO {
 
 			while (rs.next()) {
 
-				return rs.getString(1); 
+				return rs.getString(1);
 
 			}
 
@@ -118,7 +117,7 @@ public class LookDao extends DAO {
 
 		}
 
-		return null; 
+		return null;
 
 	}
 
