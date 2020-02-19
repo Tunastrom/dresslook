@@ -20,7 +20,7 @@ public class GoodsDao2 extends DAO {
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
 
 		try {
-			String sql = "select * from goods";
+			String sql = "select * from goods order by g_num";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
 
@@ -54,6 +54,30 @@ public class GoodsDao2 extends DAO {
 		return list;
 	}
 
+	/*
+	 * public List<GoodsDto> GoodsWhereList(GoodsDto dto) { List<GoodsDto> list =
+	 * new ArrayList<GoodsDto>();
+	 * 
+	 * try { String sql = "select * from goods where order by g_num"; psmt =
+	 * conn.prepareStatement(sql); rs = psmt.executeQuery(sql);
+	 * 
+	 * while (rs.next()) { GoodsDto dto = new GoodsDto(); Blob blob =
+	 * rs.getBlob("g_image"); dto.setG_num(rs.getInt("g_num"));
+	 * dto.setG_name(rs.getString("g_name")); dto.setG_price(rs.getInt("g_price"));
+	 * dto.setS_price(rs.getInt("s_price")); dto.setG_size(rs.getString("g_size"));
+	 * dto.setColor(rs.getString("color")); dto.setG_inven(rs.getString("g_inven"));
+	 * dto.setS_id(rs.getString("s_id")); dto.setMaker(rs.getString("g_maker"));
+	 * dto.setG_image(blob.getBytes(1, (int) blob.length()));
+	 * dto.setG_info(rs.getString("g_info")); dto.setG_code(rs.getString("g_code"));
+	 * dto.setG_sex(rs.getString("g_sex")); dto.setG_prior(rs.getInt("g_prior"));
+	 * dto.setG_status(rs.getString("g_status")); list.add(dto); }
+	 * 
+	 * } catch (SQLException e) { e.printStackTrace(); } finally { close(); }
+	 * 
+	 * return list; }
+	 */
+	
+	
 	public int BlobInsert(GoodsDto dto) {
 		System.out.println(dto);
 		int n = 0;

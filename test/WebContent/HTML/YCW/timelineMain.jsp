@@ -67,6 +67,7 @@ $(document).ready(function(){
 								<div class="col-7 py-4">
 									<h3 class="font-weight-normal">${eventList}[i].headline</h3>
 									<p class="text-mute">${eventList}[i].desc</p>
+									<!-- event 상세페이지 링크 -->
 									<a href="" class="btn btn-sm btn-default text-uppercase">ShowNow</a>
 								</div>
 								<div class="col-5 align-self-end text-center">

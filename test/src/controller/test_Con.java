@@ -54,6 +54,7 @@ import command.seller.InsertGoods;
 
 
 import command.seller.InsertGoodsOk;
+import command.seller.InsertLooks;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.goodsInsert;
@@ -80,11 +81,7 @@ public class test_Con extends HttpServlet {
 		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
 		cont.put("/lookInsert.do", new LookInsert());
 		
-
-		cont.put("boardLook.do", new BoardLook());
 		cont.put("/lookContents.do", new LookContents());
-
-		cont.put("/boardLook.do", new BoardLook());
 
 		cont.put("/memberlist.do", new MemberList());
 		cont.put("/membermain.do", new MemberMain());
@@ -126,6 +123,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
+		cont.put("/insertLooks.do", new InsertLooks());
 
 		
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());

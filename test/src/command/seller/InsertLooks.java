@@ -16,9 +16,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import command.Command;
 import dao.GoodsDao;
 import dao.GoodsDao2;
-import dto.GoodsDto;
+import dto.LookDto;
 
-public class InsertGoods implements Command {
+public class InsertLooks implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -47,26 +47,15 @@ public class InsertGoods implements Command {
 		     
 		     byte[] file = Files.readAllBytes(Paths.get(uploadPath+"/"+fileName));
 		     		
-		     GoodsDto dto = new GoodsDto();
-		     dto.setG_name(multi.getParameter("name"));
-		     System.out.println("========"+dto.getG_name());
-		     dto.setG_price(Integer.parseInt(multi.getParameter("grice")));
-		     dto.setS_price(Integer.parseInt(multi.getParameter("srice")));
-		     dto.setG_size(multi.getParameter("size"));
-		     dto.setColor(multi.getParameter("color"));
-		     dto.setG_inven(multi.getParameter("inven"));
-		     dto.setS_id(multi.getParameter("id"));
-		     dto.setMaker(multi.getParameter("maker"));
-		     dto.setG_image(file);
-		     dto.setG_info(multi.getParameter("gcode"));   
-		     dto.setG_code(multi.getParameter("scode"));
-		     dto.setG_sex(multi.getParameter("prior"));
-		     dto.setG_prior(Integer.parseInt(multi.getParameter("status")));
-		     dto.setG_status(multi.getParameter("status"));
-		     dto.setStringImage(multi.getParameter("stringImage"));
+		     LookDto dto = new LookDto();
+		     dto.setL_image(file);
+		     dto.setG_num(multi.getParameter("gnum"));
+		     System.out.println("========"+dto.getG_num);
+		     dto.setM_id(multi.getParameter("mid"));
+		     dto.setL_open(multi.getParameter("lopen"));
 		     dto.setSize(fileSize);
 		     
-		    GoodsDao2 dao = new GoodsDao2();
+		    LooksDao2 dao = new GoodsDao2();
 		    int result = dao.BlobInsert(dto);
 		    System.out.println(result);
 		    request.setAttribute("result", result);
