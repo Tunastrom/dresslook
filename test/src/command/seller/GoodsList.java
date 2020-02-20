@@ -20,7 +20,7 @@ public class GoodsList implements Command {
 			throws ServletException, IOException {
 		GoodsDao dao = new GoodsDao();
 		List<GoodsDto> list = dao.GoodsList();
-
+		//blob 데이터 img 태그 src=""안에 넣을 수 있는 String로 변환
 		for (int i = 0; i < list.size(); i++) {
 			String imageString = new String(Base64.encodeBase64(list.get(i).getG_image()));
 			String changeString = "data:image/gif;base64," + imageString;

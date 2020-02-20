@@ -345,7 +345,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
-							<div class="col-6 col-md-4 col-lg-3">
+						<div class="col-6 col-md-4 col-lg-3">
 								<div class="card border-0 mb-4">
 									<div class="card-body p-0">
 										<div class="h-150px has-background rounded mb-2">
@@ -367,6 +367,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
+
 							<div class="col-6 col-md-4 col-lg-3">
 								<div class="card border-0 mb-4">
 									<div class="card-body p-0">
