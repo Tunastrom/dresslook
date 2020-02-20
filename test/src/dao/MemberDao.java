@@ -68,7 +68,7 @@ public class MemberDao extends DAO {
 				dto.setM_birth(rs.getDate("m_birth"));
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_zip(rs.getInt("m_zip"));
+				dto.setM_zip(rs.getString("m_zip"));
 				dto.setM_addr1(rs.getString("m_add1"));
 				dto.setM_addr2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
