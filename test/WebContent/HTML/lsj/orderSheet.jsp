@@ -73,7 +73,7 @@
 			<div class="row my-3">
 				<div class="col-12 col-md-6">
 					<div class="card mb-3">
-						<a href="track.jsp" class="card-header bg-none">
+						<a href="track.do" class="card-header bg-none">
 							<div class="row">
 								<div class="col">
 									<p class="text-mute">2:25pm | 10/1/2020</p>
@@ -101,20 +101,7 @@
 								</div>
 							</c:forEach>
 							<hr>
-							<%-- <div class="media">
-									<div class="icon icon-60 mr-3 has-background">
-										<figure class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image5.jpg"
-												alt="Generic placeholder image">
-										</figure>
-									</div>
-									<div class="media-body">
-										<small class="text-mute">Rockstar</small>
-										<p class="mb-1">Shorts unisex</p>
-										<p>$ 28.99</p>
-									</div>
-								</div> --%>
+
 						</div>
 						<div class="card-footer">
 							<div class="row">
