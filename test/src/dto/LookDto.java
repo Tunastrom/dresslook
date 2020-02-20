@@ -10,15 +10,17 @@ import oracle.sql.BLOB;
 public class LookDto {
 	private String l_code;
 	private byte[] l_image;
-	private String g_num;
+	private String g_nums;
 	private String m_id;
 	private String l_open;
+	//blob저장위해 필요
 	private long size;
-
+	private String stringImage;
+	
 	@Override
 	public String toString() {
-		return "LookDto [l_code=" + l_code + ", l_image=" + Arrays.toString(l_image) + ", g_num=" + g_num + ", m_id="
-				+ m_id + ", l_open=" + l_open + ", size=" + size + "]";
+		return "LookDto [l_code=" + l_code + ", l_image=" + Arrays.toString(l_image) + ", g_nums=" + g_nums + ", m_id="
+				+ m_id + ", l_open=" + l_open + ", size=" + size + ", stringImage=" + stringImage + "]";
 	}
 	public String getL_code() {
 		return l_code;
@@ -33,11 +35,11 @@ public class LookDto {
 		this.l_image = l_image;
 	}
 	
-	public String getG_num() {
-		return g_num;
+	public String getG_nums() {
+		return g_nums;
 	}
-	public void setG_num(String g_num) {
-		this.g_num = g_num;
+	public void setG_nums(String g_nums) {
+		this.g_nums = g_nums;
 	}
 	public String getM_id() {
 		return m_id;
@@ -56,5 +58,11 @@ public class LookDto {
 	}
 	public void setSize(long size) {
 		this.size = size;
+	}
+	public String getStringImage() {
+		return stringImage;
+	}
+	public void setStringImage(String stringImage) {
+		this.stringImage = stringImage;
 	}
 }

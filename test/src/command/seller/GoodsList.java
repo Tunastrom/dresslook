@@ -25,7 +25,6 @@ public class GoodsList implements Command {
 			String imageString = new String(Base64.encodeBase64(list.get(i).getG_image()));
 			String changeString = "data:image/gif;base64," + imageString;
 			list.get(i).setStringImage(changeString);
-			System.out.println("aaaaaaaaaaaaaaaa"+list.get(i).getStringImage());
 		}
 
 		request.setAttribute("list", list);

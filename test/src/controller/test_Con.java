@@ -28,6 +28,7 @@ import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
+import command.dresslook.LooksList;
 import command.dresslook.Notifications;
 import command.dresslook.Search;
 import command.dresslook.SearchResult;
@@ -130,9 +131,11 @@ public class test_Con extends HttpServlet {
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
 		cont.put("/mgoods.do", new Mgoods());
-
+		
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
+		cont.put("/lookInsert.do", new LookInsert()); 
 		cont.put("/insertLooks.do", new InsertLooks());
+		cont.put("/looksList.do", new LooksList());
 
 		
 
