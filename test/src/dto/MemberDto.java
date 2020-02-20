@@ -29,6 +29,11 @@ public class MemberDto {
 		this.track = track;
 	}
 
+	
+	
+	
+	
+
 	public String getM_id() {
 		return m_id;
 	}
@@ -148,6 +153,15 @@ public class MemberDto {
 	public void setM_sex(String m_sex) {
 		this.m_sex = m_sex;
 	}
+	
+	
+		
+	
+	
+
+	
+
+	
 
 	@Override
 	public String toString() {

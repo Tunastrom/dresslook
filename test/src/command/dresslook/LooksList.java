@@ -1,4 +1,4 @@
-package command.seller;
+package command.dresslook;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +13,7 @@ import command.Command;
 import dao.GoodsDao;
 import dto.GoodsDto;
 
-public class GoodsList implements Command {
+public class LooksList implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

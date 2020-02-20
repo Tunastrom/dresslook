@@ -6,7 +6,13 @@ package dao;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import util.DatabaseUtillity;
+=======
+
+
+import co.minsc.dto.BoardDto;
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 import dto.MemberDto;
 
 public class MemberDao extends DAO {
@@ -19,7 +25,7 @@ public class MemberDao extends DAO {
 
 //	전체회원 목록 가져오기
 	public ArrayList<MemberDto> select() {
-		list = new ArrayList<MemberDto>();
+		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 		String sql = "select * from member";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -53,6 +59,42 @@ public class MemberDao extends DAO {
 	}
 
 //	1명의 회원정보 가져오기
+
+	public ArrayList<MemberDto> select(String id) {
+		dto = new MemberDto();
+		
+		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
+		String sql = "select * from member where m_id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "m_id");
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				dto = new MemberDto();
+				dto.setM_pwd(rs.getString("m_pwd"));
+				dto.setM_name(rs.getString("m_name"));
+				dto.setM_birth(rs.getDate("m_birth"));
+				dto.setM_email(rs.getString("m_email"));
+				dto.setM_phone(rs.getString("m_phone"));
+				dto.setM_zip(rs.getInt("m_zip"));
+				dto.setM_addr1(rs.getString("m_add1"));
+				dto.setM_addr2(rs.getString("m_add2"));
+				dto.setM_grade(rs.getString("m_grade"));
+				dto.setM_au(rs.getString("m_au"));
+				dto.setM_status(rs.getString("m_status"));
+				dto.setRecent_connection(rs.getDate("m_recent"));
+				dto.setM_point(rs.getInt("m_point"));
+				dto.setM_sex(rs.getString("m_sex"));
+				list.add(dto);
+				System.out.println(list);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		close();
+		return list;
+
 	public MemberDto select(String id) {
 		String sql = "select * from member wher m_id=?";
 		MemberDto dto = new MemberDto();
@@ -86,6 +128,7 @@ public class MemberDao extends DAO {
 		return (MemberDto) rs;
 	}
 
+	
 //	회원가입
 	public int insert(String userID, String name, String userPassword1, String birth, String email, String pnum,
 			Integer zip, String addr1, String addr2, String gender) {
@@ -114,11 +157,29 @@ public class MemberDao extends DAO {
 	}
 
 	public int update(MemberDto dto) {
-		int n = 0;
-		// 입력
+		int r = 0;
+		try {
 
-		close();
-		return n;
+			String sql = "Update member set m_pwd=?, m_name=?, m_email=?, m_phone=?, m_zip=? "+
+			" , m_addr1=?, m_addr2=?, m_birth=? where m_id=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(9, dto.getM_id());
+			psmt.setString(2, dto.getM_name());
+			psmt.setString(1, dto.getM_pwd());
+			psmt.setDate(8, (Date) dto.getM_birth());
+			psmt.setString(3, dto.getM_email());
+			psmt.setString(4, dto.getM_phone());
+			psmt.setInt(5, dto.getM_zip());
+			psmt.setString(6, dto.getM_addr1());
+			psmt.setString(7, dto.getM_addr2());
+			r = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return r;
 	}
 	
 	public int track(MemberDto dto) {
@@ -247,6 +308,40 @@ public class MemberDao extends DAO {
 		return x;
 
 	}
+	
+	public String getMEmail(String m_id) {
+
+		String sql = "SELECT M_Email FROM USER WHERE M_ID = ?";
+
+		try {
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, m_id);
+
+			rs = psmt.executeQuery();
+
+			while(rs.next()) {
+
+				return rs.getString(1); // 이메일 주소 반환
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+
+		return null; // 데이터베이스 오류
+
+	}
+
+
+
+
+
+	
 
 	public static MemberDao getInstance() {
 		// TODO Auto-generated method stub
