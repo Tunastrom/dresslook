@@ -24,7 +24,7 @@ public class MemberupdateCk implements Command {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		Integer zip = Integer.parseInt(request.getParameter("zip"));
+		String zip = request.getParameter("zip");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
 		
@@ -44,8 +44,8 @@ public class MemberupdateCk implements Command {
 		dto.setM_email(email);
 		dto.setM_phone(phone);
 		dto.setM_zip(zip);
-		dto.setM_addr1(addr1);
-		dto.setM_addr2(addr2);
+		dto.setM_add1(addr1);
+		dto.setM_add2(addr2);
 		dto.setM_birth(birth);
 		dto.setM_id(id);
 		
