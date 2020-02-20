@@ -80,7 +80,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/notifications.do", new Notifications());
 		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
 		cont.put("/lookInsert.do", new LookInsert());
-		
 		cont.put("/lookContents.do", new LookContents());
 
 

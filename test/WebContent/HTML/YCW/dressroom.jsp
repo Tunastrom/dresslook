@@ -26,11 +26,27 @@
 		let imgSample = document.getElementById("backGround");
 		imgSample.style.height = "360px"
 		imgSample.style.height = "560px"
-		category[0].on("click", function() {
+	    var targets	= $("#ContentsArea").find(".background")
+		for (i = 0; i< targets.length; i++){
+			targets[i].addEventListener("click", function(){
+				var Img = this.children[0];
+				console.log(Img);
+				var divImg = document.createElement("div").append(Img);
+				console.log("divImg"+divImg);
+				$("#palete").append(divImg);
+				var newImg = $("#palete").children().last().children();
+				newImg.removeAttr("style");
+				newImg.css("width","50%");
+				newImg.css("height","50%");
+			});
+		}
+		
+		$(".category")[0].addEventListener("click", function() {
 			console.log(this);
 			document.location.href = "/test/category" + +".do";
 		});
-		t
+		
+		
 	});
 
 	function pageMove(x) {
@@ -46,13 +62,14 @@
  div {
 	border: 1px solid gray;
 	}  
-
+ 
 #cateBar { width: 100px; }
 
 .category { width: 100px; height:50px;}
 
 .C_botton { color: white; }
 
+#palete { }
 </style>
 </head>
 <body>
@@ -73,9 +90,10 @@
 		<div class="row">
 			<div class="col" align="center" style="padding: 20px">
 				<div class="row">
-					<div class="col">
-						<img id="backGround"
-							src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
+					<div class="col" id="palete">
+						<div><img id="backGround"
+							src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png"></div>
+								
 					</div>
 				</div>
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
@@ -100,15 +118,16 @@
 					<div class="col" style="padding-left: 20px; color:white;">
 						female
 						<!-- 좌/우 클릭으로 남/녀/브랜드/이벤트변경 -->
-						<a>&lt;</a>
-						<a>&gt;</a>
+						<a class="leftRight">&lt;</a>
+						<a class="leftRight">&gt;</a>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col" style="padding-left: 5px; padding-right: 5px;">
 						<div class="row" style="margin: 1px;">
+						<!-- 상품정보 출력 -->
 							<c:forEach var="dto" items="${list}">
-								<div class="col-6 col-md-4 col-lg-4"
+								<div class="col-6 col-md-4 col-lg-4" 
 									style="padding-left: 5px; padding-right: 5px;">
 									<div class="card border-0 mb-4">
 										<div class="card-body p-0">
@@ -116,8 +135,7 @@
 											<!-- 	<div class="bottom-left m-2">
 													<a class="btn btn-sm btn-white">New</a>
 												</div> -->
-												<a href="lookContents.do" class="background"> <img
-													src="${dto.getStringImage()}" alt="">
+												<a class="background"><img src="${dto.getStringImage()}" alt="">
 												</a>
 											</div>
 											<small class="text-mute"></small>

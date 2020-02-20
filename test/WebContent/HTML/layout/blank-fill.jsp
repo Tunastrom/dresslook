@@ -99,7 +99,7 @@
                 </div>
             </div>
         </header>
-        <div class="content container-fluid">
+        <div id="ContentsArea" class="content container-fluid">
             <!-- page content start -->
 			<decorator:body/>
             <!-- page content ends -->
