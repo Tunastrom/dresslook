@@ -21,39 +21,40 @@ public class Memberupdate implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String context=request.getContextPath();
-        String Stnum =(request.getParameter("m_id"));
+        String Stnum =(request.getParameter("id"));
 
         MemberDto dto = new MemberDto();
         MemberDao dao = new MemberDao();
-        dto.setM_pwd(request.getParameter("m_pwd"));
-        dto.setM_name(request.getParameter("m_name"));
-       // dto.setM_birth(request.getParameter("m_birth"));
-        dto.setM_email(request.getParameter("m_email"));
-        dto.setM_phone(request.getParameter("m_phone"));
+        dto.setM_pwd(request.getParameter("pwd"));
+        dto.setM_name(request.getParameter("name"));
+        try {
+			dto.setM_birth(new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("m_birth")));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+        dto.setM_email(request.getParameter("email"));
+        dto.setM_phone(request.getParameter("phone"));
         dto.setM_zip(Integer.parseInt(request.getParameter("m_zip")));
-        dto.setM_addr1(request.getParameter("m_addr1"));
-        dto.setM_addr2(request.getParameter("m_addr2"));
-        dto.setM_grade(request.getParameter("m_grade"));
-        dto.setM_status(request.getParameter("m_status"));
-      //  try {
-	//		dto.setRecent_connection(new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("m_recent")));
-	//	} catch (ParseException e) {
-	//		e.printStackTrace();
-	//	}
-        dto.setM_point(Integer.parseInt(request.getParameter("m_point")));
-        dto.setM_sex(request.getParameter("m_sex"));
+        dto.setM_add1(request.getParameter("add1"));
+        dto.setM_add2(request.getParameter("add2"));
+        dto.setM_grade(request.getParameter("au"));
+        dto.setM_status(request.getParameter("status"));
+        try {                                        
+			dto.setM_recent(new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("recent")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        dto.setM_point(Integer.parseInt(request.getParameter("point")));
+        dto.setM_sex(request.getParameter("sex"));
         int update = dao.updateM(dto);
-        if(update>0){
-
-
+        String path="HTML/nsh/updateM.jsp";
+        	path="/memberlist.do";
             System.out.println("수정 성공");
-            response.sendRedirect(context+"/memberlist.do");
+            //response.sendRedirect(context+"/memberlist.do");
             //post 방식으로 이동했거나 forward로 이동했을 경우 연속해서 forward 불가능 sendRedirect 사용해야 됨
-        }else{
-            System.out.println("수정 실패");
-            response.sendRedirect(context+"/memberupdate.do?m_id="+dto);
-        }
-		return "HTML/nsh/updateM.jsp";
+            //path = "redirect:/memberlist.do?id="+dto.getM_id();
+
+		return path;
 	}
 
 	}

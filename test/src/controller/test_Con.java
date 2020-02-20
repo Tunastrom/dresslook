@@ -36,6 +36,7 @@ import command.dresslook.SearchResult;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
+import command.manager.UpdateM;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
@@ -46,7 +47,6 @@ import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
-import command.my.MyOrderTrackCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
 import command.my.memberInsertOk;
@@ -94,7 +94,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/memberdelete.do", new deleteMember());
 		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
-
+		cont.put("/updatem.do", new UpdateM());
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/lookSelect.do", new LookSelect());
 		cont.put("/product.do", new Product());

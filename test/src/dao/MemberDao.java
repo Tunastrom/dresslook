@@ -32,12 +32,12 @@ public class MemberDao extends DAO {
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
 				dto.setM_zip(rs.getInt("m_zip"));
-				dto.setM_addr1(rs.getString("m_add1"));
-				dto.setM_addr2(rs.getString("m_add2"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
 				dto.setM_au(rs.getString("m_au"));
 				dto.setM_status(rs.getString("m_status"));
-				dto.setRecent_connection(rs.getDate("m_recent"));
+				dto.setM_recent(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
 				list.add(dto);
@@ -69,12 +69,12 @@ public class MemberDao extends DAO {
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
 				dto.setM_zip(rs.getInt("m_zip"));
-				dto.setM_addr1(rs.getString("m_add1"));
-				dto.setM_addr2(rs.getString("m_add2"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
 				dto.setM_au(rs.getString("m_au"));
 				dto.setM_status(rs.getString("m_status"));
-				dto.setRecent_connection(rs.getDate("m_recent"));
+				dto.setM_recent(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
 
@@ -91,9 +91,9 @@ public class MemberDao extends DAO {
 
 //	회원가입
 	public int insert(String userID, String name, String userPassword1, String birth, String email, String pnum,
-			Integer zip, String addr1, String addr2, String gender) {
+			Integer zip, String add1, String add2, String gender) {
 		int n = 0;
-		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, m_phone, m_zip, m_addr1, m_addr2, m_sex, m_recent, m_grade)"
+		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, m_phone, m_zip, m_add1, m_add2, m_sex, m_recent, m_grade)"
 				+ " values(?,?,?,?,?,?,?,?,?,?,sysdate,'210')";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -104,8 +104,8 @@ public class MemberDao extends DAO {
 			psmt.setString(5, dto.getM_email());
 			psmt.setString(6, dto.getM_phone());
 			psmt.setInt(7, dto.getM_zip());
-			psmt.setString(8, dto.getM_addr1());
-			psmt.setString(9, dto.getM_addr2());
+			psmt.setString(8, dto.getM_add1());
+			psmt.setString(9, dto.getM_add2());
 			psmt.setString(10, dto.getM_sex());
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
@@ -121,14 +121,14 @@ public class MemberDao extends DAO {
 		try {
 
 			String sql = "Update member set m_name=?, m_email=?, m_phone=?, m_zip=? "
-					+ " , m_addr1=?, m_addr2=?, m_birth=? where m_id=?";
+					+ " , m_add1=?, m_add2=?, m_birth=? where m_id=?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_name());
 			psmt.setString(2, dto.getM_email());
 			psmt.setString(3, dto.getM_phone());
 			psmt.setInt(4, dto.getM_zip());
-			psmt.setString(5, dto.getM_addr1());
-			psmt.setString(6, dto.getM_addr2());
+			psmt.setString(5, dto.getM_add1());
+			psmt.setString(6, dto.getM_add2());
 			psmt.setDate(7, (Date) dto.getM_birth());
 			psmt.setString(8, dto.getM_id());
 			psmt.executeUpdate();
@@ -177,12 +177,12 @@ public class MemberDao extends DAO {
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
 				dto.setM_zip(rs.getInt("m_zip"));
-				dto.setM_addr1(rs.getString("m_add1"));
-				dto.setM_addr2(rs.getString("m_add2"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
 				dto.setM_au(rs.getString("m_au"));
 				dto.setM_status(rs.getString("m_status"));
-				dto.setRecent_connection(rs.getDate("m_recent"));
+				dto.setM_recent(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
 			}
@@ -289,9 +289,10 @@ public class MemberDao extends DAO {
 	// 회원정보 수정
 	public int updateM(MemberDto dto) {
 		int n = 0;
-		String sql = "update member set m_pwd=?,m_name=?," + " m_birth=?,m_email=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?,"
-				+ " m_grade=?,m_status=?,m_recent=?,m_point=?,m_sex=? " + "where m_id=?";
-
+		String sql = "update member set m_pwd=?,m_name=?," + 
+		" m_birth=?,m_email=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?,"	+ 
+		" m_grade=?,m_status=?,m_recent=?,m_point=?,m_sex=? " + 
+		"where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_pwd());
@@ -300,11 +301,11 @@ public class MemberDao extends DAO {
 			psmt.setString(4, dto.getM_email());
 			psmt.setString(5, dto.getM_phone());
 			psmt.setInt(6, dto.getM_zip());
-			psmt.setString(7, dto.getM_addr1());
-			psmt.setString(8, dto.getM_addr2());
+			psmt.setString(7, dto.getM_add1());
+			psmt.setString(8, dto.getM_add2());
 			psmt.setString(9, dto.getM_grade());
 			psmt.setString(10, dto.getM_status());
-			psmt.setDate(11, (Date) dto.getRecent_connection());
+			psmt.setDate(11, (Date) dto.getM_recent());
 			psmt.setInt(12, dto.getM_point());
 			psmt.setString(13, dto.getM_sex());
 			psmt.setString(14, dto.getM_id());
@@ -334,12 +335,12 @@ public class MemberDao extends DAO {
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
 				dto.setM_zip(rs.getInt("m_zip"));
-				dto.setM_addr1(rs.getString("m_add1"));
-				dto.setM_addr2(rs.getString("m_add2"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
 				dto.setM_au(rs.getString("m_au"));
 				dto.setM_status(rs.getString("m_status"));
-				dto.setRecent_connection(rs.getDate("m_recent"));
+				dto.setM_recent(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
 

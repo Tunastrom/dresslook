@@ -7,24 +7,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>/*
+<script>
 	var trs = null;
 	$(document).ready(function() {
 		trs = document.querySelectorAll("tr");
 		for (i = 1; i < trs.length; i++) {
-			trs[i].addEventListener("click", function() {
+			trs[i].children[13].addEventListener("click", function() {
 				var r = confirm("선택한 회원정보를 휴먼 계정으로 바꾸시겠습니까?");
 				if (r == true) {
 					console.log(this.children[0].innerText);
-					var delId = this.children[0].innerText;
-					frm.deleteId.value = delId;
+					var Id = this.children[0].innerText;
+					frm.action = "memberdelete.do"
+					frm.config.value = Id;
 					frm.submit();
 				}
+			});
+/*			trs[i].children[14].addEventListener("click", function() {
+				var r = confirm("선택한 회원정보를 휴먼 계정으로 바꾸시겠습니까?");
+				if (r == true) {
+					console.log(this.children[0].innerText);
+					var Id = this.children[0].innerText;
+					frm.config.action =  
+					frm.config.value = Id;
+					frm.submit();
+				}
+			});
+	*/		trs[i].children[14].addEventListener("click", function() {
+					console.log(this.children[0].innerText);
+					var Id = this.children[0].innerText;
+					frm.action = "updatem.do";
+					frm.config.value = Id;
+					frm.submit();
 			});
 		}
 
 
-	});*/
+	});
 /*	
  window.addEventListener("load", function(){
 
@@ -50,9 +68,10 @@
 	<div align="center" id="dv">
 		<br />
 		<h1>회원 관리</h1>
-		<form name="frm" id="frm" action="memberdelete.do" method="post">
+		<form name="frm" id="frm" action="" method="post">
 		<!-- 휴면 계정 변경부 삭제기능은 없음 -->
-			<input type="hidden" name="deleteId" value="">
+			<input type="hidden" name="config" value="">
+			<input type="hidden" name="tag" value="0">
 			<table class="table table-hover" id="ttd">
 				<tr>
 					<th scope="col">ID</th>
@@ -75,17 +94,18 @@
 						<td>${dto.m_name }</td>
 						<td>${dto.m_pwd }</td>
 						<td>${dto.m_birth }</td>
-						<td>${dto.m_addr1 }</td>
-						<td>${dto.m_addr2 }</td>
+						<td>${dto.m_add1 }</td>
+						<td>${dto.m_add2 }</td>
 						<td>${dto.m_zip }</td>
 						<td>${dto.m_phone }</td>
 						<td>${dto.m_grade }</td>
 						<td>${dto.m_status }</td>
 						<td>${dto.m_point }</td>
 						<td>${dto.m_sex }</td>
-						<td>${dto.recent_connection }</td>
-						<td><a href="delM.do?m_id=${dto.m_id }">삭제</a></td>
-						<td><a href="memberupdate.do?m_id=${dto.m_id }">수정</a></td>
+						<td>${dto.m_recent }</td>
+						<td><button>휴먼계정처리</button></td>
+					<!-- <td><a href="delM.do?m_id=${dto.m_id }">삭제</a></td>-->
+						<td><button>수정</button></td>
 					</tr>
 				</c:forEach>
 			</table>
