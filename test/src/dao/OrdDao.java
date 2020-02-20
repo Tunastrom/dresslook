@@ -30,7 +30,7 @@ public class OrdDao extends DAO {
 				dto.setO_price(rs.getInt("o_price"));
 				dto.setCard_num(rs.getInt("card_num"));
 				dto.setO_addressee(rs.getString("o_addressee"));
-				dto.setO_zip(rs.getInt("o_zip"));
+				dto.setO_zip(rs.getString("o_zip"));
 				dto.setO_addr1(rs.getString("o_add1"));
 				dto.setO_addr2(rs.getString("o_add2"));
 				dto.setO_phone(rs.getString("o_phone"));
@@ -65,7 +65,7 @@ public class OrdDao extends DAO {
 				dto.setO_price(rs.getInt("o_price"));
 				dto.setCard_num(rs.getInt("card_num"));
 				dto.setO_addressee(rs.getString("o_addressee"));
-				dto.setO_zip(rs.getInt("o_zip"));
+				dto.setO_zip(rs.getString("o_zip"));
 				dto.setO_addr1(rs.getString("o_add1"));
 				dto.setO_addr2(rs.getString("o_add2"));
 				dto.setO_phone(rs.getString("o_phone"));
@@ -102,7 +102,7 @@ public class OrdDao extends DAO {
 				dto.setO_price(rs.getInt("o_price"));
 				dto.setCard_num(rs.getInt("card_num"));
 				dto.setO_addressee(rs.getString("o_addressee"));
-				dto.setO_zip(rs.getInt("o_zip"));
+				dto.setO_zip(rs.getString("o_zip"));
 				dto.setO_addr1(rs.getString("o_add1"));
 				dto.setO_addr2(rs.getString("o_add2"));
 				dto.setO_phone(rs.getString("o_phone"));
@@ -135,7 +135,7 @@ public class OrdDao extends DAO {
 			psmt.setInt(5, dto.getO_price());
 			psmt.setInt(6, dto.getCard_num());
 			psmt.setString(7, dto.getO_addressee());
-			psmt.setInt(8, dto.getO_zip());
+			psmt.setString(8, dto.getO_zip());
 			psmt.setString(9, dto.getO_addr1());
 			psmt.setString(10, dto.getO_addr2());
 			psmt.setString(11, dto.getO_phone());

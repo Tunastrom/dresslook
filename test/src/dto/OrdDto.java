@@ -10,7 +10,7 @@ public class OrdDto {
 	private Integer o_price;
 	private Integer card_num;
 	private String o_addressee;
-	private Integer o_zip;
+	private String o_zip;
 	private String o_addr1;
 	private String o_addr2;
 	private String o_phone;
@@ -66,10 +66,10 @@ public class OrdDto {
 	public void setO_addressee(String o_addressee) {
 		this.o_addressee = o_addressee;
 	}
-	public Integer getO_zip() {
+	public String getO_zip() {
 		return o_zip;
 	}
-	public void setO_zip(int i) {
+	public void setO_zip(String i) {
 		this.o_zip = i;
 	}
 	public String getO_addr1() {
