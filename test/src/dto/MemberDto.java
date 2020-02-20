@@ -19,149 +19,168 @@ public class MemberDto {
 	private Date recent_connection;//접속일
 	private Integer m_point;	//적립금
 	private String m_sex;		//성별
-	private String track;
-
-	public String getTrack() {
-		return track;
-	}
-
-	public void setTrack(String track) {
-		this.track = track;
-	}
+	private String track;	//크롤링 배송추적
 
 	
-	
-	
-	
-
 	public String getM_id() {
 		return m_id;
 	}
+
 
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
 
+
 	public String getM_pwd() {
 		return m_pwd;
 	}
+
 
 	public void setM_pwd(String m_pwd) {
 		this.m_pwd = m_pwd;
 	}
 
+
 	public String getM_name() {
 		return m_name;
 	}
+
 
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
 	}
 
+
 	public Date getM_birth() {
 		return m_birth;
 	}
+
 
 	public void setM_birth(Date m_birth) {
 		this.m_birth = m_birth;
 	}
 
+
 	public String getM_email() {
 		return m_email;
 	}
+
 
 	public void setM_email(String m_email) {
 		this.m_email = m_email;
 	}
 
+
 	public String getM_phone() {
 		return m_phone;
 	}
+
 
 	public void setM_phone(String m_phone) {
 		this.m_phone = m_phone;
 	}
 
+
 	public Integer getM_zip() {
 		return m_zip;
 	}
+
 
 	public void setM_zip(Integer m_zip) {
 		this.m_zip = m_zip;
 	}
 
+
 	public String getM_addr1() {
 		return m_addr1;
 	}
+
 
 	public void setM_addr1(String m_addr1) {
 		this.m_addr1 = m_addr1;
 	}
 
+
 	public String getM_addr2() {
 		return m_addr2;
 	}
+
 
 	public void setM_addr2(String m_addr2) {
 		this.m_addr2 = m_addr2;
 	}
 
+
 	public String getM_grade() {
 		return m_grade;
 	}
+
 
 	public void setM_grade(String m_grade) {
 		this.m_grade = m_grade;
 	}
 
+
 	public String getM_au() {
 		return m_au;
 	}
+
 
 	public void setM_au(String m_au) {
 		this.m_au = m_au;
 	}
 
+
 	public String getM_status() {
 		return m_status;
 	}
+
 
 	public void setM_status(String m_status) {
 		this.m_status = m_status;
 	}
 
+
 	public Date getRecent_connection() {
 		return recent_connection;
 	}
+
 
 	public void setRecent_connection(Date recent_connection) {
 		this.recent_connection = recent_connection;
 	}
 
+
 	public Integer getM_point() {
 		return m_point;
 	}
+
 
 	public void setM_point(Integer m_point) {
 		this.m_point = m_point;
 	}
 
+
 	public String getM_sex() {
 		return m_sex;
 	}
 
+
 	public void setM_sex(String m_sex) {
 		this.m_sex = m_sex;
 	}
-	
-	
-		
-	
-	
 
-	
 
-	
+	public String getTrack() {
+		return track;
+	}
+
+
+	public void setTrack(String track) {
+		this.track = track;
+	}
+
 
 	@Override
 	public String toString() {
@@ -169,8 +188,11 @@ public class MemberDto {
 				+ ", m_email=" + m_email + ", m_phone=" + m_phone + ", m_zip=" + m_zip + ", m_addr1=" + m_addr1
 				+ ", m_addr2=" + m_addr2 + ", m_grade=" + m_grade + ", m_au=" + m_au + ", m_status=" + m_status
 				+ ", recent_connection=" + recent_connection + ", m_point=" + m_point + ", m_sex=" + m_sex + ", track="
-				+ track + "]";
+				+ track + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

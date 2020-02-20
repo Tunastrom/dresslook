@@ -41,6 +41,7 @@ import command.my.LoginCommand;
 import command.my.LoginOkCommand;
 import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
+import command.my.MemberupdateCk;
 import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
@@ -53,8 +54,6 @@ import command.my.memberSelect;
 import command.my.registerCheck;
 import command.seller.GoodsList;
 import command.seller.InsertGoods;
-
-
 import command.seller.InsertGoodsOk;
 import command.seller.InsertLooks;
 import command.seller.SLoginCommand;
@@ -117,7 +116,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/SloginOk.do", new SLoginOkCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
-		cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
 		cont.put("/myProfile.do", new MyProfileCommand());
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
@@ -147,6 +146,9 @@ public class test_Con extends HttpServlet {
 		
 		//crawling
 		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
+		cont.put("/memberupdateCk.do", new MemberupdateCk());
+		
+		
 
 	}
 

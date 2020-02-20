@@ -10,8 +10,35 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% MemberDto dto =(MemberDto)request.getAttribute("dto");
+	if(dto != null) {%>
 	<h1>회원정보수정</h1>
-	<form action="memberupdate.do" method="get">
+	<form action="memberupdate.do" method="post">
+		<!-- 최근 접속일 : <input type="text" name="recent" readonly value="${dto.m_recent }"><br>-->
+		아 이 디 : <input type="text" name="id" readonly value = "${dto.m_id }"><br>
+		비밀번호 : <input type="password" name="pwd" value="${dto.m_pwd }"><br>
+		이	름 : <input type="text" name="name" value="${dto.m_name }"><br>
+		E-Mail : <input type="text" name="mail" value="${dto.m_email }"><br>
+		<!-- 생	일 : <input type="date" name="birth" value="${dto.m_birth }"><br>-->
+		연 락 처 : <input type="text" name="phone" value="${dto.m_phone }"><br>
+		우편번호 : <input type="text" name="zip" value="${dto.m_zip }"><br>
+		주	소 : <input type="text" name="add1" value="${dto.m_add1 }"><br>
+		상세 주소 : <input type="text" name="add2" value="${dto.m_add2 }"><br>
+		권한정보 : <input type="text" name="au" readonly value="${dto.m_au }"><br>
+		<h5>권한 : 211 관리자 / 210 일반 회원</h5><br>
+		상태정보 : <input type="text" name="status" value="${dto.m_status }"><br>
+		<h5>상태 : 060 활성화 계정 / 061 휴먼 계정</h5><br>
+		포 인 트 : <input type="text" name="point" value="${dto.m_point }"><br>
+		성	별 : <input type="text" name="sex" readonly value="${dto.m_sex }"><br>
+		<input type="submit" value="수정">
+	</form>
+	<%}else{ %>
+	${result }<p>
+	<%} %>
+</body>
+</html>
+	
+	<!-- 
 		<p>
 			<label for="m_id">I D : ${m_id}</label> <input type="hidden"
 				name="m_id" value="${m_id}">
@@ -87,8 +114,6 @@
 			</c:choose>
 		</p>
 		<input type="submit" value="확인">
-	</form>
-</body>
-</html>
+		-->
 
 

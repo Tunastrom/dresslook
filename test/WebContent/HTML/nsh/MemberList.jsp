@@ -85,7 +85,7 @@
 						<td>${dto.m_sex }</td>
 						<td>${dto.recent_connection }</td>
 						<td><a href="delM.do?m_id=${dto.m_id }">삭제</a></td>
-						<td><a href="updateM.do?m_id=${dto.m_id }">수정</a></td>
+						<td><a href="memberupdate.do?m_id=${dto.m_id }">수정</a></td>
 					</tr>
 				</c:forEach>
 			</table>
