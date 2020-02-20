@@ -69,8 +69,8 @@ public class OrdDto {
 	public String getO_zip() {
 		return o_zip;
 	}
-	public void setO_zip(String o_zip) {
-		this.o_zip = o_zip;
+	public void setO_zip(String i) {
+		this.o_zip = i;
 	}
 	public String getO_addr1() {
 		return o_addr1;

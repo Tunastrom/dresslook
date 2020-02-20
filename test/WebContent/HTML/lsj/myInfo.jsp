@@ -12,7 +12,7 @@
 	$(document).ready(function() {
 		$("#updatebtn").click(function() {
 			document.frm.action = "memberupdateCk.do";
-			document.fem.submit();
+			document.frm.submit();
 		});
 
 	});
@@ -23,7 +23,7 @@
 <body>
 
 
-	<form id="frm" method="post">
+	<form name="frm" method="post">
 		<!-- page content starts -->
 		<div class="has-background bg-default-light">
 
@@ -65,8 +65,7 @@
 					</div>
 
 
-					<a href="memberupdateCk.do" id="updaatebtn"
-						class="btn btn-lg btn-default btn-block my-4">수정</a>
+					<span  id="updatebtn" class="btn btn-lg btn-default btn-block my-4">수정</span>
 				</div>
 			</div>
 		</div>
