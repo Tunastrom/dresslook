@@ -22,17 +22,8 @@
 					frm.submit();
 				}
 			});
-/*			trs[i].children[14].addEventListener("click", function() {
-				var r = confirm("선택한 회원정보를 휴먼 계정으로 바꾸시겠습니까?");
-				if (r == true) {
-					console.log(this.children[0].innerText);
-					var Id = this.children[0].innerText;
-					frm.config.action =  
-					frm.config.value = Id;
-					frm.submit();
-				}
-			});
-	*/		trs[i].children[14].addEventListener("click", function() {
+
+			trs[i].children[14].addEventListener("click", function() {
 					console.log(this.children[0].innerText);
 					var Id = this.children[0].innerText;
 					frm.action = "updatem.do";
@@ -87,6 +78,8 @@
 					<th scope="col">적립금</th>
 					<th scope="col">성 별</th>
 					<th scope="col">최근 접속일</th>
+					<th scope="col">휴면 계정 처리</th>
+					<th scope="col">회원 정보 수정</th>
 				</tr>
 				<c:forEach var="dto" items="${list}">
 					<tr>

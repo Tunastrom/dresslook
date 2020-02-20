@@ -10,7 +10,7 @@ public class MemberDto {
 	private Date m_birth;	//생일
 	private String m_email;	//이메일
 	private String m_phone;	//전화번호
-	private Integer m_zip;	//우편번호
+	private String m_zip;	//우편번호
 	private String m_add1;	//주소
 	private String m_add2;	//상세주소
 	private String m_grade;	//등급
@@ -63,10 +63,10 @@ public class MemberDto {
 	public void setM_phone(String m_phone) {
 		this.m_phone = m_phone;
 	}
-	public Integer getM_zip() {
+	public String getM_zip() {
 		return m_zip;
 	}
-	public void setM_zip(Integer m_zip) {
+	public void setM_zip(String m_zip) {
 		this.m_zip = m_zip;
 	}
 	public String getM_add1() {

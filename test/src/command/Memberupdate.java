@@ -34,7 +34,7 @@ public class Memberupdate implements Command{
 		}
         dto.setM_email(request.getParameter("email"));
         dto.setM_phone(request.getParameter("phone"));
-        dto.setM_zip(Integer.parseInt(request.getParameter("m_zip")));
+        dto.setM_zip(request.getParameter("m_zip"));
         dto.setM_add1(request.getParameter("add1"));
         dto.setM_add2(request.getParameter("add2"));
         dto.setM_grade(request.getParameter("au"));

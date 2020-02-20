@@ -31,7 +31,7 @@ public class MemberDao extends DAO {
 				dto.setM_birth(rs.getDate("m_birth"));
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_zip(rs.getInt("m_zip"));
+				dto.setM_zip(rs.getString("m_zip"));
 				dto.setM_add1(rs.getString("m_add1"));
 				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
@@ -68,7 +68,7 @@ public class MemberDao extends DAO {
 				dto.setM_birth(rs.getDate("m_birth"));
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_zip(rs.getInt("m_zip"));
+				dto.setM_zip(rs.getString("m_zip"));
 				dto.setM_add1(rs.getString("m_add1"));
 				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
@@ -103,7 +103,7 @@ public class MemberDao extends DAO {
 			psmt.setDate(4, (Date) dto.getM_birth());
 			psmt.setString(5, dto.getM_email());
 			psmt.setString(6, dto.getM_phone());
-			psmt.setInt(7, dto.getM_zip());
+			psmt.setString(7, dto.getM_zip());
 			psmt.setString(8, dto.getM_add1());
 			psmt.setString(9, dto.getM_add2());
 			psmt.setString(10, dto.getM_sex());
@@ -126,7 +126,7 @@ public class MemberDao extends DAO {
 			psmt.setString(1, dto.getM_name());
 			psmt.setString(2, dto.getM_email());
 			psmt.setString(3, dto.getM_phone());
-			psmt.setInt(4, dto.getM_zip());
+			psmt.setString(4, dto.getM_zip());
 			psmt.setString(5, dto.getM_add1());
 			psmt.setString(6, dto.getM_add2());
 			psmt.setDate(7, (Date) dto.getM_birth());
@@ -176,7 +176,7 @@ public class MemberDao extends DAO {
 				dto.setM_birth(rs.getDate("m_birth"));
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_zip(rs.getInt("m_zip"));
+				dto.setM_zip(rs.getString("m_zip"));
 				dto.setM_add1(rs.getString("m_add1"));
 				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
@@ -300,7 +300,7 @@ public class MemberDao extends DAO {
 			psmt.setDate(3, (Date) dto.getM_birth());
 			psmt.setString(4, dto.getM_email());
 			psmt.setString(5, dto.getM_phone());
-			psmt.setInt(6, dto.getM_zip());
+			psmt.setString(6, dto.getM_zip());
 			psmt.setString(7, dto.getM_add1());
 			psmt.setString(8, dto.getM_add2());
 			psmt.setString(9, dto.getM_grade());
@@ -334,7 +334,7 @@ public class MemberDao extends DAO {
 				dto.setM_birth(rs.getDate("m_birth"));
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_zip(rs.getInt("m_zip"));
+				dto.setM_zip(rs.getString("m_zip"));
 				dto.setM_add1(rs.getString("m_add1"));
 				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
