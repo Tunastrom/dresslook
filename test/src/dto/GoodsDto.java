@@ -1,5 +1,6 @@
 package dto;
 
+import java.util.Arrays;
 
 public class GoodsDto {
 	private Integer g_num;
@@ -18,15 +19,19 @@ public class GoodsDto {
 	private int g_prior;
 	private String g_status;
 	private String stringImage;
-	
+
+	private long size;
+
 	
 	@Override
 	public String toString() {
 		return "GoodsDto [g_num=" + g_num + ", g_name=" + g_name + ", g_price=" + g_price + ", s_price=" + s_price
 				+ ", g_size=" + g_size + ", color=" + color + ", g_inven=" + g_inven + ", s_id=" + s_id + ", maker="
-				+ maker + ", g_image=" + g_image + ", g_info=" + g_info + ", g_code=" + g_code + ", g_sex=" + g_sex
-				+ ", g_prior=" + g_prior + ", g_status=" + g_status + "]";
+				+ maker + ", g_image=" + Arrays.toString(g_image) + ", g_info=" + g_info + ", g_code=" + g_code
+				+ ", g_sex=" + g_sex + ", g_prior=" + g_prior + ", g_status=" + g_status + ", stringImage="
+				+ stringImage + ", size=" + size + "]";
 	}
+	
 	public Integer getG_num() {
 		return g_num;
 	}
@@ -123,5 +128,10 @@ public class GoodsDto {
 	public void setStringImage(String stringImage) {
 		this.stringImage = stringImage;
 	}
-
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
+	}
 }

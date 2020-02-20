@@ -102,7 +102,6 @@ public class GoodsDao extends DAO {
 		String sql = "insert into GOODS"
 				+ " (G_NUM,G_NAME,G_PRICE,S_PRICE,G_SIZE,COLOR,G_INVEN,S_ID,G_MAKER,G_IMAGE,G_INFO,G_CODE,G_SEX,G_PRIOR,G_STATUS)"
 				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, dto.getG_num());

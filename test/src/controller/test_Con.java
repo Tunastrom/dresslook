@@ -39,6 +39,7 @@ import command.my.LoginCommand;
 import command.my.LoginOkCommand;
 import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
+import command.my.MemberupdateCk;
 import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
@@ -52,8 +53,10 @@ import command.my.registerCheck;
 import command.seller.GoodsList;
 import command.seller.InsertGoods;
 import command.seller.InsertGoodsOk;
+import command.seller.InsertLooks;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
+import command.seller.goodsInsert;
 import command.seller.sellerInsert;
 
 @WebServlet("*.do")
@@ -74,10 +77,13 @@ public class test_Con extends HttpServlet {
 		cont.put("/dressRoom.do", new dressroom());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
+		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
 		cont.put("/lookInsert.do", new LookInsert());
-
-		cont.put("boardLook.do", new BoardLook());
+		
 		cont.put("/lookContents.do", new LookContents());
+
+
+		cont.put("/memberlist.do", new MemberList());
 
 		cont.put("/boardLook.do", new BoardLook());
 
@@ -121,15 +127,25 @@ public class test_Con extends HttpServlet {
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/GoodsList.do", new GoodsList());
-		cont.put("/InsertGoods.do", new InsertGoods());
+		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
 		cont.put("/mgoods.do", new Mgoods());
+
+		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
+		cont.put("/insertLooks.do", new InsertLooks());
+
+		
+
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
 		
 		cont.put("/memberdelete.do", new MemberDelete());
 		
 		//crawling
 		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
+		
+		cont.put("/memberupdateCk.do", new MemberupdateCk());
+		
+		
 
 	}
 

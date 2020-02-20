@@ -11,6 +11,7 @@ import dto.MemberDto;
 
 public class MemberDao extends DAO {
 	private MemberDto dto;
+
 	public MemberDao() {
 		super();
 	}
@@ -51,8 +52,10 @@ public class MemberDao extends DAO {
 	}
 
 //	1명의 회원정보 가져오기
+
 	public MemberDto select(String id) {
-		
+		dto = new MemberDto();
+
 		String sql = "select * from member where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -81,10 +84,10 @@ public class MemberDao extends DAO {
 		}
 
 		close();
-		return dto;
-	}
 
-	
+		return dto;
+
+	}
 
 //	회원가입
 	public int insert(String userID, String name, String userPassword1, String birth, String email, String pnum,
@@ -113,30 +116,28 @@ public class MemberDao extends DAO {
 		return n;
 	}
 
-	public int update(MemberDto dto) {
-		int r = 0;
+	public void update(MemberDto dto) {
+
 		try {
 
-			String sql = "Update member set m_pwd=?, m_name=?, m_email=?, m_phone=?, m_zip=? "
+			String sql = "Update member set m_name=?, m_email=?, m_phone=?, m_zip=? "
 					+ " , m_addr1=?, m_addr2=?, m_birth=? where m_id=?";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(9, dto.getM_id());
-			psmt.setString(2, dto.getM_name());
-			psmt.setString(1, dto.getM_pwd());
-			psmt.setDate(8, (Date) dto.getM_birth());
-			psmt.setString(3, dto.getM_email());
-			psmt.setString(4, dto.getM_phone());
-			psmt.setInt(5, dto.getM_zip());
-			psmt.setString(6, dto.getM_addr1());
-			psmt.setString(7, dto.getM_addr2());
-			r = psmt.executeUpdate();
+			psmt.setString(1, dto.getM_name());
+			psmt.setString(2, dto.getM_email());
+			psmt.setString(3, dto.getM_phone());
+			psmt.setInt(4, dto.getM_zip());
+			psmt.setString(5, dto.getM_addr1());
+			psmt.setString(6, dto.getM_addr2());
+			psmt.setDate(7, (Date) dto.getM_birth());
+			psmt.setString(8, dto.getM_id());
+			psmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		return r;
 	}
 
 	public int track(MemberDto dto) {

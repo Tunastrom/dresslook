@@ -25,14 +25,13 @@
 
 		<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto.getName()}</td>
-				<td><img src="${dto.stringImage }"></td>
-				<td>${dto.getId()}</td>
-				<td></td>
+				<td>${dto.getG_name()}</td>
+				<td><img src="${dto.getStringImage()}"></td>
+				<td>${dto.getS_id()}</td>
 			</tr>
 		</c:forEach>
 
-		<c:if test="${empty list }">
+		<c:if test="${empty list}">
 			<tr>
 				<td colspan="3">no data</td>
 			</tr>
