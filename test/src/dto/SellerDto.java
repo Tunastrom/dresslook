@@ -11,7 +11,7 @@ public class SellerDto {
 	private String s_email;
 	private Integer c_number;
 	private String phone;
-	private Integer s_zip;
+	private String s_zip;
 	private String s_addr1;
 	private String s_addr2;
 	private String s_grade;
@@ -64,11 +64,11 @@ public class SellerDto {
 		this.phone = phone;
 	}
 
-	public Integer getS_zip() {
+	public String getS_zip() {
 		return s_zip;
 	}
 
-	public void setS_zip(Integer s_zip) {
+	public void setS_zip(String s_zip) {
 		this.s_zip = s_zip;
 	}
 
