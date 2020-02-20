@@ -79,7 +79,6 @@ public class GoodsDao2 extends DAO {
 	
 	
 	public int BlobInsert(GoodsDto dto) {
-		System.out.println(dto);
 		int n = 0;
 
 		String sql = "insert into GOODS"

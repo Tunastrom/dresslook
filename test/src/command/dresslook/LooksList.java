@@ -11,25 +11,28 @@ import org.apache.tomcat.util.codec.binary.Base64;
 
 import command.Command;
 import dao.GoodsDao;
+import dao.LookDao;
 import dto.GoodsDto;
+import dto.LookDto;
 
 public class LooksList implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		GoodsDao dao = new GoodsDao();
-		List<GoodsDto> list = dao.GoodsList();
+		LookDao dao = new LookDao();
+		List<LookDto> list = dao.LooksList();
 
 		for (int i = 0; i < list.size(); i++) {
-			String imageString = new String(Base64.encodeBase64(list.get(i).getG_image()));
+			String imageString = new String(Base64.encodeBase64(list.get(i).getL_image()));
 			String changeString = "data:image/gif;base64," + imageString;
 			list.get(i).setStringImage(changeString);
-			System.out.println("aaaaaaaaaaaaaaaa"+list.get(i).getStringImage());
+			if (list.get(i).getStringImage() != null && list.get(i).getStringImage() !="") {
+				System.out.println("stringImage isn't null");
+			}	
 		}
-
 		request.setAttribute("list", list);
 
-		return "HTML/kjw/goodsList.jsp";
+		return "HTML/YCW/LooksList.jsp";
 	}
 }

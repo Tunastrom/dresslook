@@ -17,7 +17,11 @@ public class LookInsert implements Command{
 			throws ServletException, IOException {
 		//Look이미지 Look테이블로 넘김
 		//collection.do 또는 boardLook.do 연결 
-		int pageSelect = Integer.parseInt(request.getParameter("WriteORnot"));
+		String WriteOrnot = request.getParameter("WriteORnot");
+		int pageSelect = 0;
+		if (WriteOrnot != null) {
+			pageSelect = Integer.parseInt(WriteOrnot);
+		}
 		String path=null;
 		if (pageSelect == 1) {
 			path="collectionMain.do";
@@ -25,7 +29,7 @@ public class LookInsert implements Command{
 			path="orderSheet.do";
 		} else if (pageSelect == 3) {
 			path="boardLook.do";
-		}
+		} else path="HTML/YCW/LooksInsert.jsp";
 		return path;
 	}
 
