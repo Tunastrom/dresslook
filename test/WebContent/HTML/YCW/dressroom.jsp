@@ -23,9 +23,8 @@
 </script>
 <script>
 	$(document).ready(function() {
-		let imgSample = document.getElementById("backGround");
-		imgSample.style.height = "360px"
-		imgSample.style.height = "560px"
+		//상품 클릭시 팔레트 위에 배치 
+		
 		category[0].on("click", function() {
 			console.log(this);
 			document.location.href = "/test/category" + +".do";
@@ -47,12 +46,32 @@
 	border: 1px solid gray;
 	}  
 
-#cateBar { width: 100px; }
-
 .category { width: 100px; height:50px;}
 
 .C_botton { color: white; }
 
+.box {float: left; position:relative;}
+
+.front { /* position:absolute;  */
+         top: 0;
+       /*  bottom: ; */
+         left: 0; 
+       /*  right: ; */}
+
+.back { position:absolute;  
+		/* margin: 0px 30px; */
+        top: 0;
+       /*  bottom: ; */
+        left: 0; 
+       /*  right: ; */}
+
+#cateBar { width: 100px; }
+
+#mannequin { width:160; height: 460px; position }
+
+#top {width: 180px; height: 300;}
+
+ 
 </style>
 </head>
 <body>
@@ -73,20 +92,31 @@
 		<div class="row">
 			<div class="col" align="center" style="padding: 20px">
 				<div class="row">
-					<div class="col">
-						<img id="backGround"
-							src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
+					<div class="col" style="padding:0px;"></div>
+					<div class="col-auto" id="palate" align="center" style="padding: 0px;">
+						<div>
+							 <div class="box">
+						   	<img id="backGround"
+							    	src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png"></div>
+							<div class="box">
+							   <img id ="mannequin" class="back"
+							    	src="${pageContext.request.contextPath}/images/mannequin.png"></div>
+							 <div class="box">
+							  	<img id="top" class="front"
+							    	src="${pageContext.request.contextPath}/images/coat1.gif"></div> 
+						</div>	    
 					</div>
+					<div class="col" style=" width: 5px; padding:0px;"></div>
 				</div>
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
-					<div class="row">
-						<div class="col">
-							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
+				<div class="row">
+					<div class="col">
+						<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 							<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
 							<button type="button" onclick="pageMove(2)">주문</button>
 							<button type="button" onclick="pageMove(3)" id="share">룩공유</button>
-						</div>
 					</div>
+				</div>
 				</form>
 				<div class="row">
 					<div class="col" align="center" id="downBar">
