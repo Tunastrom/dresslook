@@ -81,7 +81,7 @@ public class GoodsDao2 extends DAO {
 	 */
 	
 	
-	public int BlobInsert(GoodsDto dto) {
+	public int BlobInsert1(GoodsDto dto) {
 		int n = 0;
 
 		String sql = "insert into GOODS"
@@ -113,4 +113,15 @@ public class GoodsDao2 extends DAO {
 		}
 		return n;
 	}
+	
+
+	public int BlobInsert2(GoodsDto dto) {
+		int n = 0;
+		String sql = "insert into GOODS_IMAGE"
+				   + "(g_num, gd_image, img_type)"
+				   + " values()"
+		
+		return n;
+	}
 }
+
