@@ -42,7 +42,7 @@
 	}
 </script>
 <style>
- div {
+  div {
 	border: 1px solid gray;
 	}  
 
@@ -98,12 +98,9 @@
 							 <div class="box">
 						   	<img id="backGround"
 							    	src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png"></div>
-							<div class="box">
-							   <img id ="mannequin" class="back"
-							    	src="${pageContext.request.contextPath}/images/mannequin.png"></div>
-							 <div class="box">
+							<%--  <div class="box">
 							  	<img id="top" class="front"
-							    	src="${pageContext.request.contextPath}/images/coat1.gif"></div> 
+							    	src="${pageContext.request.contextPath}/images/coat1.gif"></div>  --%>
 						</div>	    
 					</div>
 					<div class="col" style=" width: 5px; padding:0px;"></div>
@@ -124,7 +121,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col" style="padding-left: 5px; padding-right: 5px;">
+			<div class="col-auto" style="width:715px; padding-left: 5px; padding-right: 5px;">
 			<div class="container">
 				<div class="row" style="background-color:#f94620;">
 					<div class="col" style="padding-left: 20px; color:white;">
