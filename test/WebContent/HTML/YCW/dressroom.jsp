@@ -42,9 +42,9 @@
 	}
 </script>
 <style>
-  div {
+ /*  div {
 	border: 1px solid gray;
-	}  
+	}  */ 
 
 .category { width: 100px; height:50px;}
 
@@ -121,7 +121,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-auto" style="width:715px; padding-left: 5px; padding-right: 5px;">
+			<div class="col" style="padding-left: 5px; padding-right: 5px;">
+			<div class="row" style="margin-left: 1px; margin-right: 1px;">
+			<div class="col" style="padding:0px;"></div>
+			<div class="col-auto" style="width:625px; padding: 0px;">
 			<div class="container">
 				<div class="row" style="background-color:#f94620;">
 					<div class="col" style="padding-left: 20px; color:white;">
@@ -137,14 +140,17 @@
 							<c:forEach var="dto" items="${list}">
 								<div class="col-6 col-md-4 col-lg-4"
 									style="padding-left: 5px; padding-right: 5px;">
+									<!-- palete 출력 img -->
+									<img src="${dto.getStringImage_pal()}" style="display: none;">
+									<!-- palete 출력img -->
 									<div class="card border-0 mb-4">
 										<div class="card-body p-0">
 											<div class="h-150px has-background rounded mb-2">
 											<!-- 	<div class="bottom-left m-2">
 													<a class="btn btn-sm btn-white">New</a>
 												</div> -->
-												<a href="lookContents.do" class="background"> <img
-													src="${dto.getStringImage()}" alt="">
+												<a href="lookContents.do" class="background"> 
+												<img src="${dto.getStringImage()}" alt="">
 												</a>
 											</div>
 											<small class="text-mute"></small>
@@ -193,8 +199,13 @@
 						</div>
 					</div>
 				</div>
+			</div><!-- container -->
 			</div>
+			<div class="col" style="padding:0px;"></div>
+			</div> <!-- col-auto -->
 			</div>
+			</div><!-- col -->
+			
 		</div>
 	</div>
 </body>

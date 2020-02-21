@@ -22,11 +22,14 @@ public class GoodsList implements Command {
 		List<GoodsDto> list = dao.GoodsList();
 		//blob 데이터 img 태그 src=""안에 넣을 수 있는 String로 변환
 		for (int i = 0; i < list.size(); i++) {
+			/* System.out.println("list.get(i): "+list.get(i)); */
 			String imageString = new String(Base64.encodeBase64(list.get(i).getG_image()));
 			String changeString = "data:image/gif;base64," + imageString;
+			String image_palString = new String(Base64.encodeBase64(list.get(i).getG_image_pal()));
+			String pal_changeString = "data:image/gif;base64," + image_palString;
 			list.get(i).setStringImage(changeString);
+			list.get(i).setStringImage_pal(pal_changeString);
 		}
-
 		request.setAttribute("list", list);
 
 		return "HTML/kjw/goodsList.jsp";

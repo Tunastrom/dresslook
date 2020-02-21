@@ -54,10 +54,18 @@
 					<td><input type="text" id="maker" name="maker" value="nice"></td>
 				</tr>
 				<tr>
-					<td>상품이미지</td>
+					<td>상품썸네일이미지</td>
 					<td>
-						<input type="file" name="image" id="image"> 
+						<input type="file" name="imageThumb" id="imageThumb"> 
 					</td>
+				</tr>
+				<tr>
+					<td>상품착용이미지</td>
+					<td>
+						<input type="file" name="imageTake" id="imageTake"> 
+					</td>
+				</tr>
+				<tr>
 				</tr>
 				<tr>
 					<td>상품정보</td>
