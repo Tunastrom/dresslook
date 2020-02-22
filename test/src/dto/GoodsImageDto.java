@@ -6,13 +6,14 @@ public class GoodsImageDto {
 	Integer g_num;
 	byte[] gd_image;
 	String img_type;
-	
 	long size;
+	
+	private String stringImage; 
 	
 	@Override
 	public String toString() {
 		return "GoodsImageDto [g_num=" + g_num + ", gd_image=" + Arrays.toString(gd_image) + ", img_type=" + img_type
-				+ ", size=" + size + "]";
+				+ ", size=" + size + ", stringImage=" + stringImage + "]";
 	}
 	public Integer getG_num() {
 		return g_num;
@@ -37,7 +38,11 @@ public class GoodsImageDto {
 	}
 	public void setSize(long size) {
 		this.size = size;
+	}
+	public String getStringImage() {
+		return stringImage;
+	}
+	public void setStringImage(String stringImage) {
+		this.stringImage = stringImage;
 	} 
-	
-	
 }

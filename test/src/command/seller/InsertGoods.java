@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -15,11 +16,10 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.Command;
-import dao.GoodsDao;
 import dao.GoodsDao2;
 import dto.GoodsDto;
 import dto.GoodsImageDto;
-import dto.GooodsImageDto;
+
 
 public class InsertGoods implements Command {
 	@Override
@@ -87,10 +87,24 @@ public class InsertGoods implements Command {
 		     dto.setG_status(multi.getParameter("status"));
 		     
 		    GoodsDao2 dao = new GoodsDao2();
-		    int result1 = dao.BlobInsert(dto);
-		    int result2 = dao.
-		    System.out.println(result);
-		    request.setAttribute("result", result);
+		    int result1=0;
+			try {
+				result1 = dao.BlobInsert1(dto);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    int result2=0;
+			try {
+				result2 = dao.BlobInsert2(GIdto);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    System.out.println(result1);
+		    System.out.println(result2);
+		    request.setAttribute("result1", result1);
+		    request.setAttribute("result2", result2);
 			return "redirect:GoodsList.do";
 		
 	}

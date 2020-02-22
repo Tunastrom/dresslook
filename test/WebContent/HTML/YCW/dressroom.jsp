@@ -141,7 +141,7 @@
 								<div class="col-6 col-md-4 col-lg-4"
 									style="padding-left: 5px; padding-right: 5px;">
 									<!-- palete 출력 img -->
-									<img src="${dto.getStringImage_pal()}" style="display: none;">
+									
 									<!-- palete 출력img -->
 									<div class="card border-0 mb-4">
 										<div class="card-body p-0">
@@ -204,9 +204,7 @@
 			<div class="col" style="padding:0px;"></div>
 			</div> <!-- col-auto -->
 			</div>
-			</div><!-- col -->
-			
+			</div><!-- col -->	
 		</div>
-	</div>
 </body>
 </html>
