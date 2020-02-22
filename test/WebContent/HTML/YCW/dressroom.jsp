@@ -25,11 +25,13 @@
 	$(document).ready(function() {
 		//상품 클릭시 팔레트 위에 배치 
 		
-		category[0].on("click", function() {
+		var bg
+		
+		/* category[0].on("click", function() {
 			console.log(this);
 			document.location.href = "/test/category" + +".do";
-		});
-		t
+		}); */
+		
 	});
 
 	function pageMove(x) {
@@ -114,7 +116,6 @@
 							<button type="button" onclick="pageMove(3)" id="share">룩공유</button>
 					</div>
 				</div>
-				</form>
 				<div class="row">
 					<div class="col" align="center" id="downBar">
 						<a>&lt;</a>
@@ -137,29 +138,30 @@
 				<div class="row">
 					<div class="col" style="padding-left: 5px; padding-right: 5px;">
 						<div class="row" style="margin: 1px;">
-							<c:forEach var="dto" items="${list}">
+							<c:forEach var="dto1" items="${list1}">
 								<div class="col-6 col-md-4 col-lg-4"
 									style="padding-left: 5px; padding-right: 5px;">
-									<!-- palete 출력 img -->
-									
-									<!-- palete 출력img -->
 									<div class="card border-0 mb-4">
 										<div class="card-body p-0">
 											<div class="h-150px has-background rounded mb-2">
-											<!-- 	<div class="bottom-left m-2">
-													<a class="btn btn-sm btn-white">New</a>
-												</div> -->
 												<a href="lookContents.do" class="background"> 
-												<img src="${dto.getStringImage()}" alt="">
+												<img src="${dto1.getStringImage()}" alt="">
 												</a>
 											</div>
-											<small class="text-mute"></small>
-											<p class="mb-0">${dto.getG_name()}</p>
-											<p class="small">${dto.getS_price()}</p>
-											<p class="small">${dto.getS_id()}</p>
+											<small class="text-mute">${dto1.getG_num()}</small>
+											<p class="mb-0">${dto1.getG_name()}</p>
+											<p class="small">${dto1.getS_price()}</p>
+											<p class="small">${dto1.getS_id()}</p>
 										</div>
 									</div>
 								</div>
+							</c:forEach>
+						</div>
+						<div class="row" id="palImages">
+							<c:forEach var="dto2" items="${list2}">
+								<div><p style="display:none">${dto2.getG_num()}</p></div>
+								<div><p style="display:none">${dto2.getImg_type()}</p></div>
+								<div><img src="${dto2.getStringImage()}" style="display:none"></div>
 							</c:forEach>
 						</div>
 						<!-- row -->
