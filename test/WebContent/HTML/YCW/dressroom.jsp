@@ -24,6 +24,7 @@
 <script>
 	var goodsIndex = 0;
 	var goodsSelected = null;
+	var goodscnt=0;
 	$(document).ready(function() {
 						//상품 클릭시 팔레트 위에 배치
 						var goods = $(".container-fluid").find(".card-body"); //card-body들 변수에 저장
@@ -47,19 +48,21 @@
 					            appended.setAttribute("class","box");
 								appended.children[0].setAttribute("class","front");
 								//직전 이미지의 클래스 back으로 변경 
-								var prev = $("#palate")[0].lastChild.previousSibling.previousSibling;
+								var prev = $("#palate")[0].lastChild.previousSibling;
+								if (goodscnt==0){
+									 prev =  $("#palate")[0].lastChild.previousSibling.previousSibling;
+								} 
 								prev.children[0].setAttribute("class", "back");
 								// front클래스 이미지의 style="display:none"속성 제거
 								$(".front")[0].children[0].setAttribute("class","");
-							});
+								goodscnt++;
+							});	
 						}
 						/* category[0].on("click", function() {
 							console.log(this);
 							document.location.href = "/test/category" + +".do";
 						}); */
-
 					});
-
 	function pageMove(x) {
 		var pageValue = x;
 		if (pageValue == 2) {
@@ -67,6 +70,10 @@
 		}
 		frm.WriteORnot.value = pageValue;
 		frm.submit();
+	}
+	
+	function cntPalate(){
+		
 	}
 </script>
 <style>
