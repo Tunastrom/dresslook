@@ -30,6 +30,19 @@
 	$(document)
 			.ready(
 					function() {
+						//JSON타입 dto객체 List 불러오기
+						/* $.ajax({
+							type :"post",
+							url : "/track.do",
+							dataType : "ajax",
+							error : function() {
+								alert("조회 실패");
+							},
+							success : function(Parse_data) {
+								$("#Parse_Area").html(Parse_data);
+								alert("조회 값" + Parse_data)
+							};
+						}) */
 						//상품 클릭시 팔레트 위에 배치
 						var goods = $(".container-fluid").find(".card-body"); //card-body들 변수에 저장
 						for (i = 0; i < goods.length; i++) {
@@ -119,9 +132,9 @@
 	}
 </script>
 <style>
-div {
+/* div {
 	border: 1px solid gray;
-}
+} */
 
 .pal {
 	display: none;
@@ -168,97 +181,120 @@ div {
 </style>
 </head>
 <body>
-	<div class="tab-contents">
+	<div class="tab-contents" style="margin: 5px 15px 0px 15px; padding: 0px 15px 0px 0px ">
 		<div class="row" style="height: 35px;">
 			<div class="col" style="height: 34px;">
 				<h5 class="page-title">드레스룸</h5>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-auto" align="center" style="padding: 0px">
+			<div class="col-auto" align="center"
+				style="padding: 0px 10px 0 10px;">
 				<!-- my/추천룩이미지 -->
 				<div class="row">
-					<div class="col">
-						<p>MY</p>
+					<div class="col" align="left"
+						style="width: 45px; background-color: #f94620; color: white;">
+						<p>추천</p>
 					</div>
-					<div class="col" align="center" style="width: 600px; padding: 0px;">
+					<div class="col" align="center"
+						style="max-width: 555px; padding: 0px;">
 						<div class="col" style="padding: 0px; margin: 0px;">
-								<!-- Swiper -->
-								<div class="swiper-container categoriestab1 text-center">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+							<!-- Swiper -->
+							<div class="swiper-container categoriestab1 text-center">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
+											</div>
+										</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
+											</div>
+										</div>
+										<p class="text-uppercase small">이승진</p>
 									</div>
 								</div>
-								<!-- swiper -->
+							</div>
+							<!-- swiper -->
 						</div>
 						<!-- 슬라이더 -->
 					</div>
@@ -282,7 +318,7 @@ div {
 				<!-- 팔레트  -->
 				<!-- 룩이미지처리 -->
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
-					<div class="row">
+					<div class="row" style="margin: 5px;">
 						<div class="col">
 							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 							<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
@@ -294,96 +330,117 @@ div {
 					<!-- 룩이미지처리 -->
 					<!-- 선택한 옷 목록 -->
 					<div class="row" id="downBar">
-						<div class="col" style="padding: 0px; margin: 0px;">
-								<!-- Swiper -->
-								<div class="swiper-container categoriestab1 text-center">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+						<div class="col" align="center"
+							style="max-width: 600px; padding: 0px; margin: 0px;">
+							<!-- Swiper -->
+							<div class="swiper-container categoriestab1 text-center">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
-										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-											<div class="avatar avatar-80 has-background mb-2 rounded">
-												<div class="background">
-													<img
-														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-														alt="">
-												</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
 											</div>
-											<p class="text-uppercase small">이승진</p>
 										</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
+											</div>
+										</div>
+										<p class="text-uppercase small">이승진</p>
+									</div>
+									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+										<div class="avatar avatar-80 has-background mb-2 rounded">
+											<div class="background">
+												<img
+													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													alt="">
+											</div>
+										</div>
+										<p class="text-uppercase small">이승진</p>
 									</div>
 								</div>
-								<!-- swiper -->
+							</div>
+							<!-- swiper -->
 						</div>
 					</div>
 				</form>
 				<!-- 선택한 옷 목록 -->
 			</div>
 			<!-- 상품 검색창 -->
-			<div class="col" style="padding-left: 5px; padding-right: 5px;">
-				<div class="row" style="margin-left: 1px; margin-right: 1px;">
+			<div class="col" style="padding-left: 0px; padding-right: 0px;">
+				<div class="row" style="margin-left: 0px; margin-right: 0px;">
 					<div class="col" style="padding: 0px;"></div>
 					<!--좌 여백 -->
 					<!-- 내용 -->
 					<div class="col-auto" style="width: 1225px; padding: 0px;">
-						<div class="container">
+						<div class="container" style="margin: 0px;">
 							<!--대분류 -->
 							<div class="row" style="background-color: #f94620;">
 								<div class="col" style="padding-left: 20px; color: white;">
@@ -428,11 +485,11 @@ div {
 										<c:forEach var="dto2" items="${list2}">
 											<div class="col" style="display: none">
 												<div>
-													<img class="pal" src="${dto2.getStringImage()}">
+													<img class="pal" src="${dto2.stringImage}">
 												</div>
-												<input type="hidden" name="gnum" value="${dto2.getG_num()}">
+												<input type="hidden" name="gnum" value="${dto2.g_num}">
 												<input type="hidden" name="img_type"
-													value="${dto2.getImg_type()}">
+													value="${dto2.img_type}">
 											</div>
 										</c:forEach>
 									</div>
