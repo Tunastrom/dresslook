@@ -24,39 +24,85 @@
 <script>
 	var goodsIndex = 0;
 	var goodsSelected = null;
-	var goodscnt=0;
-	$(document).ready(function() {
+	var goodsCode = null;
+	var gNumSelected = null;
+	var goodscnt = 0;
+	$(document)
+			.ready(
+					function() {
 						//상품 클릭시 팔레트 위에 배치
 						var goods = $(".container-fluid").find(".card-body"); //card-body들 변수에 저장
 						for (i = 0; i < goods.length; i++) {
+							//카테고리에 마우스 올리면 해당 카테고리의 이름 변수에 담는 이벤트
+
+							//카테고리 클릭시 해당 카테고리에 해당하는 상품 리스트 조회해서 뿌리는 이벤트 
+
+							//상품에 마우스 올리면 해당 상품의 인덱스 변수에 담는 이벤트 
 							goods[i].addEventListener("mouseover", function() {
 								goodsIndex = $(this.parentNode.parentNode)
 										.index();
 								console.log(goodsIndex);
 							})
-							goods[i].addEventListener("click",function() {
-								//선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
-								goodsSelected = $("#palImages")[0].children[goodsIndex].children[2];
-								goodsIndex = null;
-								console.log(goodsSelected);
-								//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
-								$("#palate")[0].append(document.createElement("div"));
-								$("#palate")[0].lastChild.append(goodsSelected);
-								goodsSelected = null;
-								//가장 최근 이미지에 front클래스 추가 및 부모(div)에 box 클래스 추가
-								var appended = $("#palate")[0].lastChild;
-					            appended.setAttribute("class","box");
-								appended.children[0].setAttribute("class","front");
-								//직전 이미지의 클래스 back으로 변경 
-								var prev = $("#palate")[0].lastChild.previousSibling;
-								if (goodscnt==0){
-									 prev =  $("#palate")[0].lastChild.previousSibling.previousSibling;
-								} 
-								prev.children[0].setAttribute("class", "back");
-								// front클래스 이미지의 style="display:none"속성 제거
-								$(".front")[0].children[0].setAttribute("class","");
-								goodscnt++;
-							});	
+							//상품클릭시 팔레트에 해당 상품의 pal이미지 출력하는 이벤트
+							goods[i]
+									.addEventListener(
+											"click",
+											function() {
+												//선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
+												goodsSelected = $("#palImages")[0].children[goodsIndex].children[0];
+												goodsCode = $(".card-body")[goodsIndex].children[0];
+												console.log(goodsSelected);
+												//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
+												$("#palate")[0].append(document
+														.createElement("div"));
+												$("#palate")[0].lastChild
+														.append(goodsSelected);
+												$("#palate")[0].lastChild.children[0]
+														.append(goodsCode);
+												goodsSelected = null;
+												goodsCode = null
+												//가장 최근 이미지에 front클래스 추가 및 부모(div)에 box 클래스 추가
+												var appended = $("#palate")[0].lastChild;
+												appended.setAttribute("class",
+														"box");
+												appended.children[0]
+														.setAttribute("class",
+																"front");
+												//직전 이미지의 클래스 back으로 변경 
+												var prev = $("#palate")[0].lastChild.previousSibling; //1만큼 앞요소(<div class="box">) 선택
+												if (goodscnt == 0) {
+													prev = $("#palate")[0].lastChild.previousSibling.previousSibling; //최초실행시만 2만큼 앞 요소 선택
+												}
+												prev.children[0].setAttribute(
+														"class", "back");
+												// front클래스의 자식인 이미지의 style="display:none"속성 제거
+												var frontImg = $(".front")[0].children[0];
+												frontImg.setAttribute("class",
+														"");
+												//선택한 상품목록에 추가
+												goodsSelected = $(".card-body")[goodsIndex].children[0].children[1];
+												gNumSelected = $("#palImages")[0].children[goodsIndex].children[1];
+												$("#downBar")[0]
+														.append(document
+																.createElement("a"));
+												var div = bardocument
+														.createElement("div");
+												div.addClass("col-2");
+												var barImage = div
+														.append(goodsSelected);
+												$("#downBar")[0].children[0]
+														.append(barImage);
+												/* 		$("#downBar")[0].children[0].lastChild.children[0].setAttribute("class","background");  */
+												$("#downBar")[0].children[0].lastChild.children[0].children[0]
+														.setAttribute("class",
+																"");
+
+												frontImg.addEventListener(
+														"click", function() {
+
+														})
+												goodscnt++;
+											});
 						}
 						/* category[0].on("click", function() {
 							console.log(this);
@@ -71,17 +117,19 @@
 		frm.WriteORnot.value = pageValue;
 		frm.submit();
 	}
-	
-	function cntPalate(){
-		
-	}
 </script>
 <style>
 div {
 	border: 1px solid gray;
 }
 
-.pal { display: none; }
+.pal {
+	display: none;
+}
+
+.selected {
+	display: none;
+}
 
 .category {
 	width: 100px;
@@ -98,10 +146,10 @@ div {
 }
 
 .front {
-	/* position: absolute; */
-	top: 0px;
+	position: static; */
+	top: -20px;
 	/*  bottom: ; */
-	left: 0px;
+	left: -20px;
 	/*  right: ; */
 }
 
@@ -117,78 +165,254 @@ div {
 #cateBar {
 	width: 100px;
 }
-
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<h5 class="page-title" style="padding-bottom: 8px;">드레스룸</h5>
+	<div class="tab-contents">
+		<div class="row" style="height: 35px;">
+			<div class="col" style="height: 34px;">
+				<h5 class="page-title">드레스룸</h5>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-auto">
-				<p style="padding-top: 8px;">MY</p>
-			</div>
-			<div class="col" align="center" id="upBar">
-				<button type="button">&lt;</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col" align="center" style="padding: 20px">
+			<div class="col-auto" align="center" style="padding: 0px">
+				<!-- my/추천룩이미지 -->
 				<div class="row">
+					<div class="col">
+						<p>MY</p>
+					</div>
+					<div class="col" align="center" style="width: 600px; padding: 0px;">
+						<div class="col" style="padding: 0px; margin: 0px;">
+								<!-- Swiper -->
+								<div class="swiper-container categoriestab1 text-center">
+									<div class="swiper-wrapper">
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+									</div>
+								</div>
+								<!-- swiper -->
+						</div>
+						<!-- 슬라이더 -->
+					</div>
+				</div>
+				<!-- my/추천룩이미지 -->
+				<!-- 팔레트  -->
+				<div class="row" style="padding: 0px;">
 					<div class="col" style="padding: 0px;"></div>
-					<div class="col-auto" id="palate" align="center" style="padding: 0px;">
-						<div class="box">
-							<div class="front">
-								<img id="backGround"
-									src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
+					<div class="col-auto" style="padding: 0px;">
+						<div class="container" id="palate">
+							<div class="box">
+								<div class="front">
+									<img id="backGround"
+										src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col" style="width: 5px; padding: 0px;"></div>
 				</div>
+				<!-- 팔레트  -->
+				<!-- 룩이미지처리 -->
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
 					<div class="row">
 						<div class="col">
 							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 							<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
-							<button type="button" onclick="pageMove(2)">주문</button>
-							<button type="button" onclick="pageMove(3)" id="share">룩공유</button>
+							<button type="button" onclick="pageMove(2)" id="collection">주문</button>
+							<button type="button" onclick="pageMove(3)">초기화</button>
+							<button type="button" onclick="pageMove(4)" id="share">룩공유</button>
+						</div>
+					</div>
+					<!-- 룩이미지처리 -->
+					<!-- 선택한 옷 목록 -->
+					<div class="row" id="downBar">
+						<div class="col" style="padding: 0px; margin: 0px;">
+								<!-- Swiper -->
+								<div class="swiper-container categoriestab1 text-center">
+									<div class="swiper-wrapper">
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+										<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+											<div class="avatar avatar-80 has-background mb-2 rounded">
+												<div class="background">
+													<img
+														src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+														alt="">
+												</div>
+											</div>
+											<p class="text-uppercase small">이승진</p>
+										</div>
+									</div>
+								</div>
+								<!-- swiper -->
 						</div>
 					</div>
 				</form>
-				<div class="row">
-					<div class="col" align="center" id="downBar">
-						<a>&lt;</a>
-					</div>
-				</div>
+				<!-- 선택한 옷 목록 -->
 			</div>
+			<!-- 상품 검색창 -->
 			<div class="col" style="padding-left: 5px; padding-right: 5px;">
 				<div class="row" style="margin-left: 1px; margin-right: 1px;">
 					<div class="col" style="padding: 0px;"></div>
-					<div class="col-auto" style="width: 625px; padding: 0px;">
+					<!--좌 여백 -->
+					<!-- 내용 -->
+					<div class="col-auto" style="width: 1225px; padding: 0px;">
 						<div class="container">
+							<!--대분류 -->
 							<div class="row" style="background-color: #f94620;">
 								<div class="col" style="padding-left: 20px; color: white;">
 									female
-									<!-- 좌/우 클릭으로 남/녀/브랜드/이벤트변경 -->
+									<!-- 좌/우 클릭으로 대분류(남/녀/브랜드/이벤트)변경 -->
 									<a>&lt;</a> <a>&gt;</a>
 								</div>
 							</div>
+							<!--대분류 -->
 							<div class="row">
+								<!--상품목록 -->
 								<div class="col" style="padding-left: 5px; padding-right: 5px;">
 									<div class="row" style="margin: 1px;">
 										<c:forEach var="dto1" items="${list1}">
-											<div class="col-6 col-md-4 col-lg-4"
+											<div class="col-6 col-lg-2"
 												style="padding-left: 5px; padding-right: 5px;">
 												<div class="card border-0 mb-4">
 													<div class="card-body p-0">
+														<input type="hidden" name="gcode"
+															value="${dto1.getG_code()}">
 														<div class="h-150px has-background rounded mb-2">
 															<a class="background"> <img
 																src="${dto1.getStringImage()}" alt="">
 															</a>
+															<div class="h-150px has-background rounded mb-2">
+																<a> <img class="selected"
+																	src="${dto1.getStringImage()}">
+																</a>
+															</div>
 														</div>
 														<small class="text-mute">${dto1.getG_num()}</small>
 														<p class="mb-0">${dto1.getG_name()}</p>
@@ -199,24 +423,23 @@ div {
 											</div>
 										</c:forEach>
 									</div>
+									<!-- 팔레트용 이미지들 -->
 									<div class="row" id="palImages" style="display: none">
 										<c:forEach var="dto2" items="${list2}">
 											<div class="col" style="display: none">
 												<div>
-													<p style="display: none">${dto2.getG_num()}</p>
-												</div>
-												<div >
-													<p style="display: none">${dto2.getImg_type()}</p>
-												</div>
-												<div>
 													<img class="pal" src="${dto2.getStringImage()}">
 												</div>
+												<input type="hidden" name="gnum" value="${dto2.getG_num()}">
+												<input type="hidden" name="img_type"
+													value="${dto2.getImg_type()}">
 											</div>
 										</c:forEach>
 									</div>
-									<!-- row -->
+									<!-- 팔레트용 이미지들  -->
 								</div>
-								<!-- col -->
+								<!--상품목록 -->
+								<!--소분류(카테고리) -->
 								<div class="col-auto" id="cateBar" align="center"
 									style="padding-left: 0px; padding-right: 0px; background-color: #ffe6e6">
 									<!-- a 태그에 href="상품리스트 페이지에 뿌리는 커맨드" style: 테두리 둥근 박스모양 + 클릭시 색 아이덴티티 컬러로 변하는 이벤트 -->
@@ -251,14 +474,18 @@ div {
 										</div>
 									</div>
 								</div>
+								<!--소분류(카테고리) -->
 							</div>
 						</div>
 						<!-- container -->
 					</div>
+					<!-- 내용 -->
 					<div class="col" style="padding: 0px;"></div>
+					<!--우 여백 -->
 				</div>
-				<!-- col-auto -->
+				<!-- row -->
 			</div>
+			<!-- 상품 검색창 -->
 		</div>
 		<!-- col -->
 </body>
