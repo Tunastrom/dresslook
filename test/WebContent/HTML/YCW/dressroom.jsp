@@ -6,48 +6,44 @@
 <head>
 <title>Insert title here</title>
 <script>
-	// 상단의 선택한 상품 표시하는 영역을 아작스에서 가져오는 것으로 처리
-	/* $(document).ready(function() {
-		var url = "/test/ajax/imageGet.do"
-		var data = null;
-		var callback = function(lookList) {
-			console.log(lookList);
-			for (i = 0; i < lookList.length; i++) {
-				$("#upBar").append("<img src=\""+lookList[i].link+"\">");
-			}
-			$("#upBar").append("<button>&gt;</button>");
-		}
-		$.getJSON(url, data, callback);
-		console.log("end");
-	}); */
-</script>
-<script>
 	var goodsIndex = 0;
 	var goodsSelected = null;
 	var goodsCode = null;
 	var gNumSelected = null;
 	var goodscnt = 0;
-	$(document)
-			.ready(
-					function() {
+	window.addEventListener("load",function() {
 						//JSON타입 dto객체 List 불러오기
-						/* $.ajax({
-							type :"post",
-							url : "/track.do",
-							dataType : "ajax",
-							error : function() {
-								alert("조회 실패");
-							},
-							success : function(Parse_data) {
-								$("#Parse_Area").html(Parse_data);
-								alert("조회 값" + Parse_data)
-							};
-						}) */
+					 	var url = "./ajax/goodsListCommand.do";
+						var data = null;
+						var callback= function(GL){
+										//json타입의 dto객체 받아서 html태그 안에 필드값 끼워넣은 후 id=goodsList인 태그 아래에 추가하는 함수
+										for (i=0; i<GL.length; i++){
+										  	var newCard = $("<div class=\"col-6 col-lg-2\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
+										  	var card = $("<div class=\"card border-0 mb-4\"></div>");
+										  	var cardBody = $("<div class=\"card-body p-0\"></div>");
+										  	var gnum = $("<small class=\"text-mute\">"+GL[i].g_num+"</small>");
+										  	var gname = $("<p class=\"mb-0\">"+GL[i].g_name+"</p>");
+										  	var sprice = $("<p class=\"small\">"+GL[i].s_price+"</p>");
+										  	var sid = $("<p class=\"small\">"+GL[i].s_price+"</p>");
+										 	var hasBack = $("<div class=\"h-150px has-background rounded mb-2\"></div>");
+										    var back = $("<a class=\"background\"></a>");
+											var Img = $("<img src=\""+GL[i].stringImage+"\" alt=\"\">");
+											back.append(Img);
+											hasBack.append(back);
+											cardBody.append(hasBack);
+											card.append(cardBody);
+											newCard.append(card);
+											console.log(newCard);  //완성된 1개 요소 확인 
+										  	$("#goodsList")[0].append(newCard)
+										}
+									  } 
+						$.getJSON(url, data, callback);
+						
 						//상품 클릭시 팔레트 위에 배치
 						var goods = $(".container-fluid").find(".card-body"); //card-body들 변수에 저장
 						for (i = 0; i < goods.length; i++) {
 							//카테고리에 마우스 올리면 해당 카테고리의 이름 변수에 담는 이벤트
-
+							
 							//카테고리 클릭시 해당 카테고리에 해당하는 상품 리스트 조회해서 뿌리는 이벤트 
 
 							//상품에 마우스 올리면 해당 상품의 인덱스 변수에 담는 이벤트 
@@ -57,10 +53,7 @@
 								console.log(goodsIndex);
 							})
 							//상품클릭시 팔레트에 해당 상품의 pal이미지 출력하는 이벤트
-							goods[i]
-									.addEventListener(
-											"click",
-											function() {
+							goods[i].addEventListener("click",function() {
 												//선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
 												goodsSelected = $("#palImages")[0].children[goodsIndex].children[0];
 												goodsCode = $(".card-body")[goodsIndex].children[0];
@@ -150,7 +143,7 @@
 }
 
 .C_botton {
-	color: white;
+	color: #f94620;
 }
 
 .box {
@@ -315,14 +308,14 @@
 				<!-- 팔레트  -->
 				<!-- 룩이미지처리 -->
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
-				<div class="row"  align="center" style="max-width: 555px; padding: 0; margin: 0px; background-color: #ffe9e9;">
-						<div class="col" >
+				<div class="row"  align="center" style="max-width: 555px; padding: 0; margin: 0; background-color: #ffe9e9;">
+						<div class="col">
 							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 							<div class="row">
-								<div class="col-3" id="collection" style="color:white">컬렉션</div>
-								<div class="col-3" id="order" style="color:white">주문</div>
-								<div class="col-3" id="reset" style="color:white">초기화</div>
-								<div class="col-3" id="share" style="color:white">룩공유</div>
+								<div class="col-3" id="collection" style="color:#f94620">주문</div>
+								<div class="col-3" id="order" style="color:#f94620">컬렉션</div>
+								<div class="col-3" id="reset" style="color:#f94620">룩공유</div>
+								<div class="col-3" id="share" style="color:#f94620">초기화</div>
 							</div>
 						<!-- 	<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
 							<button type="button" onclick="pageMove(2)" id="collection">주문</button>
@@ -456,8 +449,11 @@
 							<div class="row">
 								<!--상품목록 -->
 								<div class="col" style="padding-left: 5px; padding-right: 5px;">
-									<div class="row" style="margin: 1px;">
-										<c:forEach var="dto1" items="${list1}">
+									<div class="row" id="goodsList" style="margin: 1px;">
+										
+									
+									
+										<%-- <c:forEach var="dto1" items="${list1}">
 											<div class="col-6 col-lg-2"
 												style="padding-left: 5px; padding-right: 5px;">
 												<div class="card border-0 mb-4">
@@ -481,7 +477,7 @@
 													</div>
 												</div>
 											</div>
-										</c:forEach>
+										</c:forEach> --%>
 									</div>
 									<!-- 팔레트용 이미지들 -->
 									<div class="row" id="palImages" style="display: none">

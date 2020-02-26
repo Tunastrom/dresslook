@@ -17,7 +17,7 @@ import dto.GoodsImageDto;
 
 public class GoodsDao2 extends DAO {
 
-	public List<GoodsDto> GoodsList() throws SQLException {
+	public List<GoodsDto> GoodsList() {
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
 
 		try {
@@ -27,7 +27,6 @@ public class GoodsDao2 extends DAO {
 
 			while (rs.next()) {
 				GoodsDto dto = new GoodsDto();
-				
 				dto.setG_num(rs.getInt("g_num"));
 				dto.setG_name(rs.getString("g_name"));
 				dto.setG_price(rs.getInt("g_price"));
@@ -46,9 +45,10 @@ public class GoodsDao2 extends DAO {
 				dto.setG_status(rs.getString("g_status"));
 				list.add(dto);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 
 		return list;
@@ -103,7 +103,7 @@ public class GoodsDao2 extends DAO {
 	 */
 	
 	
-	public int BlobInsert1(GoodsDto dto) throws SQLException {
+	public int BlobInsert1(GoodsDto dto) {
 		int n = 0;
 
 		String sql = "insert into GOODS"
@@ -131,14 +131,19 @@ public class GoodsDao2 extends DAO {
 		} catch (SQLException e) {
 			System.err.println("sql error = " + e);
 		} finally {
-			conn.commit();
-		}
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close();
+		} 
 		
 		return n;
 	}
 	
 
-	public int BlobInsert2(GoodsImageDto dto) throws SQLException {
+	public int BlobInsert2(GoodsImageDto dto){
 		int n = 0;
 		
 		String sql1 = "select max(g_num) g_num from goods";
@@ -164,7 +169,11 @@ public class GoodsDao2 extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.commit();
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			close();
 		}
 		return n;

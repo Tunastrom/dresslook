@@ -43,7 +43,6 @@
 
     <!-- App js page level initialization functions -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js?ver=1"></script>
-    <!-- ajax -->
     <style>
 		.page-title{ font-weight: bold;  color:#f94620; margin: 0px; padding-top: 4px;}
 		.buttons{ color: white; font-weight:bold; }

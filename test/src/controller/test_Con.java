@@ -26,6 +26,8 @@ import command.collection.orderSheet;
 import command.dresslook.BoardLook;
 import command.dresslook.Checkout;
 import command.dresslook.DressroomitemInfoCommand;
+import command.dresslook.GoodsImageListCommand;
+import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
@@ -76,6 +78,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/search.do", new Search());
 		cont.put("/searchResult.do", new SearchResult());
 		cont.put("/dressRoom.do", new dressroom());
+		cont.put("/ajax/goodsListCommand.do", new GoodsListCommand());
+		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
 		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
