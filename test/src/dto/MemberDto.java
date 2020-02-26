@@ -13,6 +13,8 @@ public class MemberDto {
 	private String m_zip;	//우편번호
 	private String m_add1;	//주소
 	private String m_add2;	//상세주소
+	private String m_addr1;	//주소
+	private String m_addr2;	//상세주소
 	private String m_grade;	//등급
 	private String m_au;	//권한
 	private String m_status;	//계정상태
@@ -24,8 +26,9 @@ public class MemberDto {
 	public String toString() {
 		return "MemberDto [m_id=" + m_id + ", m_pwd=" + m_pwd + ", m_name=" + m_name + ", m_birth=" + m_birth
 				+ ", m_email=" + m_email + ", m_phone=" + m_phone + ", m_zip=" + m_zip + ", m_add1=" + m_add1
-				+ ", m_add2=" + m_add2 + ", m_grade=" + m_grade + ", m_au=" + m_au + ", m_status=" + m_status
-				+ ", m_recent=" + m_recent + ", m_point=" + m_point + ", m_sex=" + m_sex + ", track=" + track + "]";
+				+ ", m_add2=" + m_add2 + ", m_addr1=" + m_addr1 + ", m_addr2=" + m_addr2 + ", m_grade=" + m_grade
+				+ ", m_au=" + m_au + ", m_status=" + m_status + ", m_recent=" + m_recent + ", m_point=" + m_point
+				+ ", m_sex=" + m_sex + ", track=" + track + "]";
 	}
 	public String getM_id() {
 		return m_id;
@@ -80,6 +83,18 @@ public class MemberDto {
 	}
 	public void setM_add2(String m_add2) {
 		this.m_add2 = m_add2;
+	}
+	public String getM_addr1() {
+		return m_addr1;
+	}
+	public void setM_addr1(String m_addr1) {
+		this.m_addr1 = m_addr1;
+	}
+	public String getM_addr2() {
+		return m_addr2;
+	}
+	public void setM_addr2(String m_addr2) {
+		this.m_addr2 = m_addr2;
 	}
 	public String getM_grade() {
 		return m_grade;

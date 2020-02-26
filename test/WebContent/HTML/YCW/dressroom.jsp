@@ -43,37 +43,39 @@
 	}
 </script>
 <style>
-div {
+ div {
 	border: 1px solid gray;
-}
+	}  
 
-.col {
-	padding: 5px;
-}
+#cateBar { width: 100px; }
 
-. {
-	width: 100px;
-}
+.category { width: 100px; height:50px;}
+
+.C_botton { color: white; }
+
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h5 class="page-title">드레스룸</h5>
+				<h5 class="page-title" style="padding-bottom: 8px;">드레스룸</h5>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-auto"><p style="padding-top:8px;">MY</p></div>
+			<div class="col-auto">
+				<p style="padding-top: 8px;">MY</p>
+			</div>
 			<div class="col" align="center" id="upBar">
-				 <button type="button">&lt;</button>		
+				<button type="button">&lt;</button>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col" align="center" style="padding: 20px" >
+			<div class="col" align="center" style="padding: 20px">
 				<div class="row">
 					<div class="col">
-						<img id="backGround" src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
+						<img id="backGround"
+							src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
 					</div>
 				</div>
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
@@ -81,91 +83,90 @@ div {
 						<div class="col">
 							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 							<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
-							<button type="button" onclick="pageMove(2)"> 주문</button >
+							<button type="button" onclick="pageMove(2)">주문</button>
 							<button type="button" onclick="pageMove(3)" id="share">룩공유</button>
 						</div>
 					</div>
 				</form>
 				<div class="row">
 					<div class="col" align="center" id="downBar">
-						 <button>&lt;</button>
+						<a>&lt;</a>
 					</div>
 				</div>
 			</div>
-			<div class="col">
-				<div class="container">
-					<div class="row">
-						<div class="col" style="padding-left: 20px;">
-							female
-							<button>&lt;</button>
-							<button>&gt;</button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="row">
-								<c:forEach items="${list}" var="dto">
-									<div class="col" id="products"><!--  -6 col-md-4 col-lg-3 -->
-										<div class="card border-0 mb-4">
-											<div class="card-body p-0">
-												<div class="h-150px has-background rounded mb-2">
-													<div class="top-right m-2">
-														<button class="btn btn-sm btn-white btn-rounded">
-															<i class="material-icons">favorite_border</i>
-														</button>
-													</div>
-													<div class="bottom-left m-2">
-														<button class="btn btn-sm btn-white">New</button>
-													</div>					
-													<a href="lookContents.do" class="background">
-														<img src="${dto.getStringImage()}" alt="">
-													</a>
-												</div>
-												<small class="text-mute">#남친</small>
-												<p class="mb-0">${dto.getG_name()}</p>
-												<p class="small">${dto.getS_price}</p>
-												<p class="small">${dto.getS_id()}</p>
-											</div>
-										</div>
-									</div>
-								</c:forEach>
-							</div>	<!-- row -->	
-						</div> <!-- col -->
-						<div class="col-auto" id="cateBar">
-							<div class="row">
-								<div class="col" id="category">
-									<button>hot</button>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col" id="category">
-									<button>outer</button>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col" id="category">
-									<button>top</button>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col" id="category">
-									<button>bottom</button>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col" id="category">
-									<button>shoes</button>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col" id="category">
-									<button>etc</button>
-								</div>
-							</div>
-						</div>
-						<div class="col-auto"></div>
+			<div class="col" style="padding-left: 5px; padding-right: 5px;">
+			<div class="container">
+				<div class="row" style="background-color:#f94620;">
+					<div class="col" style="padding-left: 20px; color:white;">
+						female
+						<!-- 좌/우 클릭으로 남/녀/브랜드/이벤트변경 -->
+						<a>&lt;</a>
+						<a>&gt;</a>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col" style="padding-left: 5px; padding-right: 5px;">
+						<div class="row" style="margin: 1px;">
+							<c:forEach var="dto" items="${list}">
+								<div class="col-6 col-md-4 col-lg-4"
+									style="padding-left: 5px; padding-right: 5px;">
+									<div class="card border-0 mb-4">
+										<div class="card-body p-0">
+											<div class="h-150px has-background rounded mb-2">
+											<!-- 	<div class="bottom-left m-2">
+													<a class="btn btn-sm btn-white">New</a>
+												</div> -->
+												<a href="lookContents.do" class="background"> <img
+													src="${dto.getStringImage()}" alt="">
+												</a>
+											</div>
+											<small class="text-mute"></small>
+											<p class="mb-0">${dto.getG_name()}</p>
+											<p class="small">${dto.getS_price()}</p>
+											<p class="small">${dto.getS_id()}</p>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+						<!-- row -->
+					</div>
+					<!-- col -->
+					<div class="col-auto" id="cateBar" align="center" style="padding-left: 0px; padding-right: 0px; background-color: #ffe6e6">
+						<!-- a 태그에 href="상품리스트 페이지에 뿌리는 커맨드" style: 테두리 둥근 박스모양 + 클릭시 색 아이덴티티 컬러로 변하는 이벤트 -->
+						<div class="row category">
+							<div class="col" align="left">
+								<a class="C_botton">hot</a>
+							</div>
+						</div>
+						<div class="row category">
+							<div class="col" align="left">
+								<a class="C_botton">outer</a>
+							</div>
+						</div>
+						<div class="row category">
+							<div class="col" align="left">
+								<a class="C_botton">top</a>
+							</div>
+						</div>
+						<div class="row category">
+							<div class="col" align="left">
+								<a class="C_botton">bottom</a>
+							</div>
+						</div>
+						<div class="row category">
+							<div class="col" align="left">
+								<a class="C_botton">shoes</a>
+							</div>
+						</div>
+						<div class="row category">
+							<div class="col" align="left">
+								<a class="C_botton">etc</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			</div>
 		</div>
 	</div>
