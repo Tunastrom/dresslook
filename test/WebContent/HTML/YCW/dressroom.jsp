@@ -181,7 +181,8 @@
 </style>
 </head>
 <body>
-	<div class="tab-contents" style="margin: 5px 15px 0px 15px; padding: 0px 15px 0px 0px ">
+	<!-- 페이지 크기가 col-lg일때는 패딩 적용하고, col일때는 적용안하도록 이벤트 설정 -->
+	<div class="tab-contents" style="margin: 5px 15px 0px 15px; padding: 0px 0px 0px 60px">
 		<div class="row" style="height: 35px;">
 			<div class="col" style="height: 34px;">
 				<h5 class="page-title">드레스룸</h5>
@@ -193,12 +194,10 @@
 				<!-- my/추천룩이미지 -->
 				<div class="row">
 					<div class="col" align="left"
-						style="width: 45px; background-color: #f94620; color: white;">
+						style=" width: 45px; max-width: 600px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px;">
 						<p>추천</p>
 					</div>
-					<div class="col" align="center"
-						style="max-width: 555px; padding: 0px;">
-						<div class="col" style="padding: 0px; margin: 0px;">
+						<div class="col" align="center" style="max-width: 555px; padding: 0; margin:5px 0 0 0;">
 							<!-- Swiper -->
 							<div class="swiper-container categoriestab1 text-center">
 								<div class="swiper-wrapper">
@@ -296,8 +295,6 @@
 							</div>
 							<!-- swiper -->
 						</div>
-						<!-- 슬라이더 -->
-					</div>
 				</div>
 				<!-- my/추천룩이미지 -->
 				<!-- 팔레트  -->
@@ -318,20 +315,26 @@
 				<!-- 팔레트  -->
 				<!-- 룩이미지처리 -->
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
-					<div class="row" style="margin: 5px;">
-						<div class="col">
+				<div class="row"  align="center" style="max-width: 555px; padding: 0; margin: 0px; background-color: #ffe9e9;">
+						<div class="col" >
 							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
-							<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
+							<div class="row">
+								<div class="col-3" id="collection" style="color:white">컬렉션</div>
+								<div class="col-3" id="order" style="color:white">주문</div>
+								<div class="col-3" id="reset" style="color:white">초기화</div>
+								<div class="col-3" id="share" style="color:white">룩공유</div>
+							</div>
+						<!-- 	<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
 							<button type="button" onclick="pageMove(2)" id="collection">주문</button>
 							<button type="button" onclick="pageMove(3)">초기화</button>
-							<button type="button" onclick="pageMove(4)" id="share">룩공유</button>
+							<button type="button" onclick="pageMove(4)" id="share">룩공유</button> -->
 						</div>
 					</div>
 					<!-- 룩이미지처리 -->
 					<!-- 선택한 옷 목록 -->
 					<div class="row" id="downBar">
 						<div class="col" align="center"
-							style="max-width: 600px; padding: 0px; margin: 0px;">
+							style="max-width: 600px; padding: 0px; margin:5px 0 0 0;">
 							<!-- Swiper -->
 							<div class="swiper-container categoriestab1 text-center">
 								<div class="swiper-wrapper">
