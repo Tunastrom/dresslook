@@ -257,7 +257,7 @@ p:last-child {
 
 .background > img {
   display: none;
-}
+} 
 
 .background + * {
   position: relative;

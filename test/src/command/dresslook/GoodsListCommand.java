@@ -28,8 +28,9 @@ public class GoodsListCommand implements Command{
 			String imageString1 = new String(Base64.encodeBase64(list1.get(i).getG_image()));
 			String changeString1 = "data:image/gif;base64," + imageString1;
 			list1.get(i).setStringImage(changeString1);
-			list1JS = JSONArray.fromObject(list1).toString(); 
+			list1.get(i).setG_image(null);
 		}
+		list1JS = JSONArray.fromObject(list1).toString(); 
 		return "ajax:" + list1JS;
 	}
 
