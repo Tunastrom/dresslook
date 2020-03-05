@@ -39,7 +39,7 @@ public class MemberupdateCk implements Command {
 
 		MemberDto dto = new MemberDto();
 		
-		java.sql.Date sBirth = new java.sql.Date(birth.getTime());
+		java.util.Date sBirth = new java.sql.Date(birth.getTime());
 		
 
 		dto.setM_name(name);

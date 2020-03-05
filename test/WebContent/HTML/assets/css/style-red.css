@@ -257,7 +257,7 @@ p:last-child {
 
 .background > img {
   display: none;
-}
+} 
 
 .background + * {
   position: relative;
@@ -921,8 +921,9 @@ p:last-child {
 
 .offerslide2tab1 .swiper-slide,
 .offerslide2tab2 .swiper-slide {
-  width: 310px;
-  padding: 0 5px 0 15px;
+  width: 100px;
+  padding: 0px 0px;
+  margin: 0px;
 }
 
 .offerslide2tab1 .swiper-pagination,

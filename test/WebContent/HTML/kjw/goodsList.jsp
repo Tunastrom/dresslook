@@ -15,29 +15,49 @@
 		</tr>
 	</table>
 	<br>
-
+	<div>
+	<span>
 	<table width="80%" border=1 cellspacing=0>
 		<tr height=30 bgcolor="#FFFF99">
 			<th>CODE</th>
 			<th>FILENAME</th>
 			<th>BLOBDATA</th>
 		</tr>
-
-		<c:forEach items="${list}" var="dto">
+		<c:forEach items="${list1}" var="dto1">
 			<tr>
-				<td>${dto.getG_name()}</td>
-				<td><img src="${dto.getStringImage()}"></td>
-				<td>${dto.getS_id()}</td>
-			</tr>
+				<td>${dto1.getG_num()}</td>
+				<td>${dto1.getG_name()}</td>
+				<td><img src="${dto1.getStringImage()}"></td>
+			<tr>	
 		</c:forEach>
-
-		<c:if test="${empty list}">
+		<c:if test="${empty list1}">
 			<tr>
 				<td colspan="3">no data</td>
 			</tr>
 		</c:if>
-
-
 	</table>
+	</span>
+	<span>
+	<table width="80%" border=1 cellspacing=0>
+		<tr>
+			<th>Code</th>
+			<th>Img_type</th>
+			<th>Filename</th>
+		</tr>
+		<c:forEach items="${list2}" var="dto2">
+		<tr>
+			<td>${dto2.getG_num()}</td>
+			<td>${dto2.getImg_type()}</td>
+			<td><img src="${dto2.getStringImage()}"></td>
+		</tr>
+		</c:forEach>
+		<c:if test="${empty list2}">
+			<tr>
+				<td colspan="3">no data</td>
+			</tr>
+		</c:if>
+	</table>
+	</span>
+	</div>
 </body>
 </html>

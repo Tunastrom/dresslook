@@ -19,7 +19,7 @@
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=0" rel="stylesheet"> 
 
     <!-- swiper stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css?ver=2" rel="stylesheet">
 
     <!-- template stylesheet -->
     <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css?ver=1" rel="stylesheet" id="style">
@@ -43,9 +43,8 @@
 
     <!-- App js page level initialization functions -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js?ver=1"></script>
-    <!-- ajax -->
     <style>
-		.page-title{ font-weight: bold;  color:#f94620}
+		.page-title{ font-weight: bold;  color:#f94620; margin: 0px; padding-top: 4px;}
 		.buttons{ color: white; font-weight:bold; }
         .btn btn-warning btn-40 ml-2 text-white { background-color:#f94620; }
 	</style>
@@ -54,17 +53,17 @@
 
 <body class="ui-rounded sidebar-fill header-fill" data-page="homepage">
    
-    <div class="background reveal-background">
+   <%--  <div class="background reveal-background">
         <img src="${pageContext.request.contextPath}/HTML/assets/img/image7.jpg" alt="">
-    </div>
+    </div> --%>
     
     <div class="sidebar sidebar-left overlay-sidebar">
         <div class="content">
-            <figure class="avatar avatar-100 rounded-circle has-background mx-auto username d-block">
+           <%--  <figure class="avatar avatar-100 rounded-circle has-background mx-auto username d-block">
                 <div class="background">
                     <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
                 </div>
-            </figure>
+            </figure> --%>
             <h5 class="text-center mb-0 username-text">Maxartkiller</h5>
             <p class="text-center small text-mute username-text">New York, United States</p>
 

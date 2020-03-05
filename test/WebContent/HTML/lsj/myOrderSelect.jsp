@@ -45,7 +45,7 @@
 									<p class="mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
-								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
+								<div><button onclick="location.href='track.do'">배송정보</button></div>
 							</div>
 							<hr>
 							<div class="media">
@@ -61,7 +61,7 @@
 									<p class="mb-1">${GoodsDto.g_name }</p>
 									<p>${GoodsDto.g_price }</p>
 								</div>
-								<div><button onclick="location.href='myOrderTrack.do'">배송정보</button></div>
+								<div><button onclick="location.href='track.do'">배송정보</button></div>
 							</div>
 						</div>
 						<div class="card-footer">

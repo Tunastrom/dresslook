@@ -27,6 +27,8 @@ import command.collection.orderSheet;
 import command.dresslook.BoardLook;
 import command.dresslook.Checkout;
 import command.dresslook.DressroomitemInfoCommand;
+import command.dresslook.GoodsImageListCommand;
+import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
 import command.dresslook.LookInsert;
@@ -77,16 +79,14 @@ public class test_Con extends HttpServlet {
 		cont.put("/search.do", new Search());
 		cont.put("/searchResult.do", new SearchResult());
 		cont.put("/dressRoom.do", new dressroom());
+		cont.put("/ajax/goodsListCommand.do", new GoodsListCommand());
+		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
 		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
 		cont.put("/lookInsert.do", new LookInsert());
 		
 		cont.put("/lookContents.do", new LookContents());
-
-
-		cont.put("/memberlist.do", new MemberList());
-
 		cont.put("/boardLook.do", new BoardLook());
 
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
@@ -137,9 +137,6 @@ public class test_Con extends HttpServlet {
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
 		cont.put("/insertLooks.do", new InsertLooks());
-
-		
-
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
 		
 		//crawling
