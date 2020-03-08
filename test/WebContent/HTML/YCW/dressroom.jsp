@@ -12,94 +12,72 @@
 	var gNumSelected = null;
 	var goodscnt = 0;
 	window.addEventListener("load", function() {
-	/* 	  var xhttp = new XMLHttpRequest();
-		  xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		    xmlDoc= xhttp.responseXML;
-			    var GL = xmlDoc;
-			    for (i = 0; i < GL.length; i++) {
-			    	var newCard = $("<div class=\"col-6 col-lg-2\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
-					var card = $("<div class=\"card border-0 mb-4\"></div>");
-					var cardBody = $("<div class=\"card-body p-0\"></div>");
-					var gnum = $("<small class=\"text-mute\">"
-							+ GL[i].g_num + "</small>");
-					var gname = $("<p class=\"mb-0\">"
-							+ GL[i].g_name + "</p>");
-					var sprice = $("<p class=\"small\">"
-							+ GL[i].s_price + "</p>");
-					var sid = $("<p class=\"small\">" + GL[i].s_id + "</p>");
-					var hasBack = $("<div class=\"h-150px has-background rounded mb-2\"></div>");
-					var back = $("<a class=\"background\"style=\"background-image: url(&quot;"+GL[i].stringImage+"&quot;)\"></a>");
-					hasBack.append(back);
-					cardBody.append(hasBack, gnum, gname, sprice, sid);
-					card.append(cardBody);
-					newCard.append(card);
-					console.log(newCard); //완성된 1개 요소 확인
-					$("#goodsList").append(newCard);
-			    }
-		  }
-		  xhttp.open("GET",  "./ajax/goodsListCommand.do", true);
-		  xhttp.send();
-		}
-		  xhttp = new XMLHttpRequest();
-		  xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-			xmlDoc= xhttp.responseXML;
-			    var GIL = xmlDoc;
-				var backGRs = document.querySelectorAll(".card-body .background");
-				console.log(backGRs);
-				for (i = 0; i < GIL.length; i++) {
-					var Img = $("<img src=\""+GIL[i].stringImage+"\">");
-					backGRs[i].append(Img);
-				}
-		    }
-		  xhttp.open("GET",  "./ajax/goodsImageListCommand.do", true);
-		  xhttp.send();
-		 } */
-		 goodsList1();
-		 
-		 goodsImageList2();
-		 			 
-		/* 	category[0].on("click", function() {
-			console.log(this);
-			document.location.href = "/test/category" + +".do";
-			}); */
+	    getGoodsList();
 	});
 	
-	function goodsList(categoryNum){
-		var categoryName = null;
-		//categoryNum 숫자에 매핑되는 카테고리 이름 categoryName에 저
-		if (categoryNum == 0){
-			categoryName = "Hot"
+	function getGoodsList(categoryNum){
+		//goods table 조회
+		function getList(categoryNum){
+			  if (categoryNum == null){
+				  categoryNum = 0;
+			  };
+			  var deferred = $.Deferred();
+			  var param = "no="+ categoryNum;
+			  var xhr = new XMLHttpRequest();
+			  xhr.open("GET","./ajax/goodsListCommand.do",true);
+			  xhr.addEventListener('load',function(){
+			    if(xhr.status === 200){
+			      var obj = JSON.parse(xhr.response);
+			      deferred.resolve(obj); // call done() method
+			    }else{
+			      deferred.reject("HTTP error: " + xhr.status);
+			    }
+			  },false) 
+			  
+			  xhr.send();
+			  return deferred.promise();
+			  
 		}
-		goodsList1(categoryName);
-		goodsList2(categoryName);
-	}
-	
-	function goodsList1(categoryName){
-		//JSON타입 dto객체 List 불러오기
-		var url = null;
-		if (categoryName == null) {
-			url = "./ajax/goodsListCommand.do";
-		} else {
-			url = "./ajax/goods"+categoryName+"ListCommand.do";
+		//goodsImage table 조회
+		function getPalImages(categoryNum){
+			  if (categoryNum == null){
+				  categoryNum = 0;
+			  };
+			  var deferred = $.Deferred();
+			  var param = "no="+ categoryNum;
+			  var xhr = new XMLHttpRequest();
+			  xhr.open("GET","./ajax/goodsImageListCommand.do",true);
+			  xhr.addEventListener('load',function(){
+			    if(xhr.status === 200){
+			      var obj = JSON.parse(xhr.response);
+			      deferred.resolve(obj); // call done() method
+			    }else{
+			      deferred.reject("HTTP error: " + xhr.status);
+			    }
+			  },false) 
+			  
+			  xhr.send();
+			  return deferred.promise();
 		}
-		var data = null;
-		var callback = function(GL) {
-			//json타입의 dto객체 받아서 html태그 안에 필드값 끼워넣은 후 id=goodsList인 태그 아래에 추가하는 함수
-			for (i = 0; i < GL.length; i++) {
+		//ajax로 비동기처리한  getList, getPalImages 리턴값 모두 가져온다음, html/css코드와 결합 & #goodsList에 append
+		$.when(getList(categoryNum), getPalImages(categoryNum)).done(function (result1, result2){
+			for (i = 0; i < result1.length; i++) {
 				var newCard = $("<div class=\"col-6 col-lg-2\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
 				var card = $("<div class=\"card border-0 mb-4\"></div>");
 				var cardBody = $("<div class=\"card-body p-0\"></div>");
-				var gnum = $("<small class=\"text-mute\">"
-						+ GL[i].g_num + "</small>");
-				var gname = $("<p class=\"mb-0\">"
-						+ GL[i].g_name + "</p>");
-				var sprice = $("<p class=\"small\">"
-						+ GL[i].s_price + "</p>");
-				var sid = $("<p class=\"small\">" + GL[i].s_id + "</p>");
 				var hasBack = $("<div class=\"h-150px has-background rounded mb-2\"></div>");
-				var back = $("<a class=\"background\"style=\"background-image: url(&quot;"+GL[i].stringImage+"&quot;)\"></a>");
+				var back = $("<a class=\"background\"style=\"background-image: url(&quot;"+result1[i].stringImage+"&quot;)\"></a>");
+				var Img1 = $("<img src=\""+result1[i].stringImage+"\">");
+				var Img2 = $("<img src=\""+result2[i].stringImage+"\">");
+				var gnum = $("<small class=\"text-mute\">"
+						+ result1[i].g_num + "</small>");
+				var gname = $("<p class=\"mb-0\">"
+						+ result1[i].g_name + "</p>");
+				var sprice = $("<p class=\"small\">"
+						+ result1[i].s_price + "</p>");
+				var sid = $("<p class=\"small\">" + result1[i].s_id + "</p>");
+				back.append(Img1);
+				back.append(Img2);
 				hasBack.append(back);
 				cardBody.append(hasBack, gnum, gname, sprice, sid);
 				card.append(cardBody);
@@ -107,28 +85,9 @@
 				console.log(newCard); //완성된 1개 요소 확인
 				$("#goodsList").append(newCard);
 			}
-		}
-		$.getJSON(url, data, callback);	
-	}
-	
-	function goodsImageList2(categoryName){
-		var url = null;
-		if (categoryName == null) {
-			url = "./ajax/goodsImageListCommand.do";
-		} else {
-			url = "./ajax/goods"+categoryName+"ImageListCommand.do"; 
-		}
-		var data = null;
-		var callback = function (GIL) {
-			var backGRs = document.querySelectorAll(".card-body .background");
-			console.log(backGRs);
-			for (i = 0; i < GIL.length; i++) {
-				var Img = $("<img src=\""+GIL[i].stringImage+"\">");
-				backGRs[i].append(Img);
-			}
-		}
-		$.getJSON(url, data, callback);  
-	}
+			/* GoodsClickEvent(); */
+		});	
+	} 
 	
 	function GoodsClickEvent(){
 		//상품 클릭시 팔레트 위에 배치
@@ -142,8 +101,8 @@
 			//상품클릭시 팔레트에 해당 상품의 pal이미지 출력하는 이벤트
 		    goods[i].addEventListener("click",function() {
 			    //선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
-				goodsSelected = $("#palImages")[0].children[goodsIndex].children[0];
-			    goodsCode = $(".card-body")[goodsIndex].children[0];
+				goodsSelected = $(".container-fluid .card-body")[goodsIndex].children[0].children[0].children[1];
+			    goodsCode = $(".container-fluid .card-body")[goodsIndex];
 			    console.log(goodsSelected);
 				//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
 			    $("#palate").append(document.createElement("div"));
@@ -165,7 +124,7 @@
 				var frontImg = $(".front")[0].children[0]; 
 				frontImg.setAttribute("class","");
 				//선택한 상품목록에 추가
-				goodsSelected = $(".card-body")[goodsIndex].children[0].children[1];
+				goodsSelected = goods[goodsIndex].children[0].children[1];
 				gNumSelected = $("#palImages")[0].children[goodsIndex].children[1];
 				$("#downBar")[0].append(document.createElement("a"));
 				var div = bardocument.createElement("div");
@@ -518,46 +477,7 @@ div {
 								<!--상품목록 -->
 								<div class="col" style="padding-left: 5px; padding-right: 5px;">
 									<div class="row" id="goodsList" style="margin: 1px;">
-
-										<%-- <c:forEach var="dto1" items="${list1}">
-											<div class="col-6 col-lg-2"
-												style="padding-left: 5px; padding-right: 5px;">
-												<div class="card border-0 mb-4">
-													<div class="card-body p-0">
-														<input type="hidden" name="gcode"
-															value="${dto1.getG_code()}">
-														<div class="h-150px has-background rounded mb-2">
-															<a class="background"> <img
-																src="${dto1.getStringImage()}" alt="">
-															</a>
-															<div class="h-150px has-background rounded mb-2">
-																<a> <img class="selected"
-																	src="${dto1.getStringImage()}">
-																</a>
-															</div>
-														</div>
-														<small class="text-mute">${dto1.getG_num()}</small>
-														<p class="mb-0">${dto1.getG_name()}</p>
-														<p class="small">${dto1.getS_price()}</p>
-														<p class="small">${dto1.getS_id()}</p>
-													</div>
-												</div>
-											</div>
-										</c:forEach> --%>
 									</div>
-									<!-- 팔레트용 이미지들 -->
-									<%-- <div class="row" id="palImages" style="display: none">
-										<c:forEach var="dto2" items="${list2}">
-											<div class="col" style="display: none">
-												<div>
-													<img class="pal" src="${dto2.stringImage}">
-												</div>
-												<input type="hidden" name="gnum" value="${dto2.g_num}">
-												<input type="hidden" name="img_type"
-													value="${dto2.img_type}">
-											</div>
-										</c:forEach>
-									</div> --%>
 									<!-- 팔레트용 이미지들  -->
 								</div>
 								<!--상품목록 -->
