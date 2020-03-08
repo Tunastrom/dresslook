@@ -17,11 +17,17 @@ import dto.GoodsImageDto;
 
 public class GoodsDao2 extends DAO {
 
-	public List<GoodsDto> GoodsList() {
+	public List<GoodsDto> GoodsList(String no) {
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
-
 		try {
-			String sql = "select * from goods order by g_num";
+			String sql = null;
+			if (no.equals("0")) {
+				//성별, 상품코드, 좋아요 기반 추천 구현
+				sql = "select * from goods order by g_num where g_sex = 051 and g_code = ?";
+			} else {
+				sql = "select * from goods order by g_num where g_sex = 051 and g_code = ?";
+			}
+			
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
 
@@ -70,7 +76,6 @@ public class GoodsDao2 extends DAO {
 				list.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close();
@@ -83,8 +88,8 @@ public class GoodsDao2 extends DAO {
 	 * public List<GoodsDto> GoodsWhereList(GoodsDto dto) { List<GoodsDto> list =
 	 * new ArrayList<GoodsDto>();
 	 * 
-	 * try { String sql = "select * from goods where order by g_num"; psmt =
-	 * conn.prepareStatement(sql); rs = psmt.executeQuery(sql);
+	 * try { String sql = "select * from goods where order by g_num";
+       psmt = conn.prepareStatement(sql); rs = psmt.executeQuery(sql);
 	 * 
 	 * while (rs.next()) { GoodsDto dto = new GoodsDto(); Blob blob =
 	 * rs.getBlob("g_image"); dto.setG_num(rs.getInt("g_num"));

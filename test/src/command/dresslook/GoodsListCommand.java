@@ -20,8 +20,9 @@ public class GoodsListCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
+		String no = request.getAttribute("no").toString();
 		GoodsDao2 dao = new GoodsDao2();
-		List<GoodsDto> list1 = dao.GoodsList();
+		List<GoodsDto> list1 = dao.GoodsList(no);
 		String list1JS =null;
 		for (int i = 0; i < list1.size(); i++) {
 			/* System.out.println("list.get(i): "+list.get(i)); */

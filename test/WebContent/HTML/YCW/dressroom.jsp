@@ -6,25 +6,35 @@
 <head>
 <title>Insert title here</title>
 <script>
+	var categoryIndex = 0;
 	var goodsIndex = 0;
 	var goodsSelected = null;
 	var goodsCode = null;
 	var gNumSelected = null;
 	var goodscnt = 0;
 	window.addEventListener("load", function() {
+		category();
 	    getGoodsList();
 	});
 	
+	function category(){
+		var categorys = $(".category");
+		for (i=0; i<categorys.length; i++){
+			var categoryNum = categoryIndex;
+			categorys[i].addEventListner("click", getGoodsList(categoryNum));
+		}
+	}
+	
 	function getGoodsList(categoryNum){
+		  if (categoryNum == null){
+			  categoryNum = 0;
+		  }
 		//goods table 조회
 		function getList(categoryNum){
-			  if (categoryNum == null){
-				  categoryNum = 0;
-			  };
 			  var deferred = $.Deferred();
 			  var param = "no="+ categoryNum;
 			  var xhr = new XMLHttpRequest();
-			  xhr.open("GET","./ajax/goodsListCommand.do",true);
+			  xhr.open("GET","./ajax/goodsListCommand.do?"+param,true);
 			  xhr.addEventListener('load',function(){
 			    if(xhr.status === 200){
 			      var obj = JSON.parse(xhr.response);
@@ -40,13 +50,10 @@
 		}
 		//goodsImage table 조회
 		function getPalImages(categoryNum){
-			  if (categoryNum == null){
-				  categoryNum = 0;
-			  };
 			  var deferred = $.Deferred();
 			  var param = "no="+ categoryNum;
 			  var xhr = new XMLHttpRequest();
-			  xhr.open("GET","./ajax/goodsImageListCommand.do",true);
+			  xhr.open("GET","./ajax/goodsImageListCommand.do?"+param,true);
 			  xhr.addEventListener('load',function(){
 			    if(xhr.status === 200){
 			      var obj = JSON.parse(xhr.response);
@@ -77,6 +84,7 @@
 				var sprice = $("<p class=\"small\">"
 						+ result1[i].s_price + "</p>");
 				var sid = $("<p class=\"small\">" + result1[i].s_id + "</p>");
+				var gcode = $("<p>"+ result1[i].g_code+"</p>");
 				back.append(Img1);
 				back.append(Img2);
 				hasBack.append(back);
