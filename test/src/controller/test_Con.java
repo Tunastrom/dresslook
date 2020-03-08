@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
-import command.MemberDelete;
 import command.MemberList;
 import command.MemberMain;
+import command.Memberupdate;
 import command.Mgoods;
 import command.crawling;
+import command.deleteMember;
 import command.collection.CollectionMain;
 import command.collection.LookSelect;
 import command.collection.Payment;
@@ -37,6 +38,7 @@ import command.dresslook.SearchResult;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
+import command.manager.UpdateM;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
@@ -47,7 +49,6 @@ import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
-import command.my.MyOrderTrackCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
 import command.my.memberInsertOk;
@@ -86,16 +87,14 @@ public class test_Con extends HttpServlet {
 		cont.put("/lookInsert.do", new LookInsert());
 		
 		cont.put("/lookContents.do", new LookContents());
-
-
-		cont.put("/memberlist.do", new MemberList());
-
 		cont.put("/boardLook.do", new BoardLook());
 
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
-
+		cont.put("/memberdelete.do", new deleteMember());
+		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
+		cont.put("/updatem.do", new UpdateM());
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/lookSelect.do", new LookSelect());
 		cont.put("/product.do", new Product());
@@ -117,7 +116,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/SloginOk.do", new SLoginOkCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
-		cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
 		cont.put("/myProfile.do", new MyProfileCommand());
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
@@ -138,16 +137,10 @@ public class test_Con extends HttpServlet {
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
 		cont.put("/insertLooks.do", new InsertLooks());
-
-		
-
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
-		
-		cont.put("/memberdelete.do", new MemberDelete());
 		
 		//crawling
 		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
-		
 		cont.put("/memberupdateCk.do", new MemberupdateCk());
 		
 		

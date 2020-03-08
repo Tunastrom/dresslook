@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 import dto.MemberDto;
 
-
+//휴먼계정으로 //실제 회원 삭제아님
 
 
 public class MemberDelete implements Command{
