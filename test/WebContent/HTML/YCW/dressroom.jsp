@@ -59,6 +59,7 @@
 			  xhr.send();
 			  return deferred.promise();
 		}
+		
 		//ajax로 비동기처리한  getList, getPalImages 리턴값 모두 가져온다음, html/css코드와 결합 & #goodsList에 append
 		$.when(getList(categoryNum), getPalImages(categoryNum)).done(function (result1, result2){
 			for (i = 0; i < result1.length; i++) {
@@ -147,6 +148,10 @@
 		}
 		frm.WriteORnot.value = pageValue;
 		frm.submit();
+	}
+	
+	function pagetearas(){
+		
 	}
 </script>
 <style>
