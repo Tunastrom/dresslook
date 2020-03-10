@@ -6,31 +6,41 @@
 <head>
 <title>Insert title here</title>
 <script>
-	var categoryIndex = 0;
-	var goodsIndex = 0;
-	var goodsSelected = null;
-	var goodsCode = null;
-	var gNumSelected = null;
-	var goodscnt = 0;
+
 	window.addEventListener("load", function() {
+		var categoryIndex = 0;
+		var goodsIndex = 0;
+		var goodsSelected = null;
+		var goodsCode = null;
+		var gNumSelected = null;
+		var goodscnt = 0;
 		category();
-	    getGoodsList();
+		getGoodsList();
 	});
 	
 	function category(){
 		var categorys = $(".category");
 		for (i=0; i<categorys.length; i++){
-			var categoryNum = categoryIndex;
-			categorys[i].addEventListner("click", getGoodsList(categoryNum));
+			categorys[i].addEventListener("mouseover",function(){
+				categoryIndex = $(".category").index(this);
+				console.log(categoryIndex);
+			});
+			categorys[i].addEventListener("click", function(){
+				var categoryNum = categoryIndex;
+				getGoodsList(categoryNum);
+				$("#goodsList").children().remove();
+			});
 		}
 	}
 	
 	function getGoodsList(categoryNum){
 		  if (categoryNum == null){
 			  categoryNum = 0;
+			  console.log(categoryNum);
 		  }
 		//goods table 조회
-		function getList(categoryNum){
+		function getList(categoryNum){ 
+			  console.log(categoryNum);
 			  var deferred = $.Deferred();
 			  var param = "no="+ categoryNum;
 			  var xhr = new XMLHttpRequest();
@@ -158,9 +168,6 @@
 		frm.submit();
 	}
 	
-	function pagetearas(){
-		
-	}
 </script>
 <style>
 div {
@@ -467,7 +474,6 @@ div {
 					</div>
 				</form>
 				<!-- 선택한 옷 목록 -->
-			
 			</div>
 			<!-- 상품 검색창 -->
 			<div class="col" style="padding-left: 10px; padding-right: 10px;" >

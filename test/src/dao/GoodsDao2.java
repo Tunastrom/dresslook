@@ -22,13 +22,17 @@ public class GoodsDao2 extends DAO {
 		try {
 			String sql = null;
 			if (no.equals("0")) {
-				//성별, 상품코드, 좋아요 기반 추천 구현
-				sql = "select * from goods order by g_num where g_sex = 051 and g_code = ?";
+				//성별, 좋아요 기반 추천 되도록 쿼리구현
+				sql = "select * from goods where g_sex = 051 order by g_num";
 			} else {
+				//성별, 좋아요, 상품코드 기반 추천 되도록 쿼리구현
 				sql = "select * from goods order by g_num where g_sex = 051 and g_code = ?";
 			}
 			
 			psmt = conn.prepareStatement(sql);
+			if  (!no.equals("0")) {
+				
+			}
 			rs = psmt.executeQuery(sql);
 
 			while (rs.next()) {

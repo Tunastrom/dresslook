@@ -20,7 +20,7 @@ public class GoodsListCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
-		String no = request.getAttribute("no").toString();
+		String no = request.getParameter("no");
 		GoodsDao2 dao = new GoodsDao2();
 		List<GoodsDto> list1 = dao.GoodsList(no);
 		String list1JS =null;
@@ -34,5 +34,4 @@ public class GoodsListCommand implements Command{
 		list1JS = JSONArray.fromObject(list1).toString(); 
 		return "ajax:" + list1JS;
 	}
-
 }
