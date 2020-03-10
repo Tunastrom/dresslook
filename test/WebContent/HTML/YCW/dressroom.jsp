@@ -6,7 +6,6 @@
 <head>
 <title>Insert title here</title>
 <script>
-
 	window.addEventListener("load", function() {
 		var categoryIndex = 0;
 		var goodsCnt = 0;
@@ -132,24 +131,34 @@
 			    $("#palate").children("div:last");
 				$("#palate").children("div:last").children("div").append(goodsSelected);
 				goodsSelected = null;
-				goodsCode = null;
 				//직전 이미지의 클래스 back으로 변경 
 				var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
 				prev.children().attr("class", "back");
 				// front클래스의 자식인 이미지의 style="display:none"속성 제거
 				var frontImg = $(".front").children(); 
 				frontImg.attr("class","");
-				//선택한 상품목록에 추가
-				goodsSelected = $(".container-fluid").find(".card-body").children("div:eq("+i+")"). children().children();
-				$("#downBar").append(document.createElement("a"));
-				var div = document.createElement("div");
-				div.addClass("col-2");
-				var barImage = div.append(goodsSelected);
-				$("#downBar")[0].children[0].append(barImage);
-				$("#downBar")[0].children[0].lastChild.children[0].setAttribute("class","background");  
-			    $("#downBar")[0].children[0].lastChild.children[0].children[0].setAttribute("class","");
-			    frontImg.addEventListener("click", function() {
-			    });
+				/*선택한 상품목록에 추가*/
+				//선택한 상품의 background class 태그의 style 속성(이미지 url)선택해 저장 & 이름 선택해 저장 
+				goodsSelected = $(".container-fluid").find(".card-body").children("div:eq("+goodsIndex+")").children().attr("style");
+				console.log(goodsSelected);
+				var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+goodsIndex+")");
+				//swiper-slide 클래스 div 태그 생성 및 결합
+				if (goodsCnt > 0){
+					var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
+					var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
+					var background = $("<div class=\"background\"style=\""+goodsSelected+"\"></div>");
+					var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
+					var gCode = $("<p style\"display:none;\">"+goodsCode+"</p>");
+					background.append(name, gCode);
+					avatar.append(background);
+					swiperSlide.append(avatar);
+					//#downBar의 swiper-wrapper 태그에 append
+					$("#downBar .swiper-wrapper:last").append(swiperSlide);
+				} else if (goodsCnt == 0) {
+					$("#downBar .background").attr("style","\""+goodsSelected+"\"");
+					$("#downBar .background").append("<p style\"display:none;\">"+goodsCode+"</p>");
+				}
+				
 				goodsCnt++;
 			}); 
 		} 
@@ -225,7 +234,7 @@ div {
 		<div class="row">
 			<div class="col-auto" align="center" style="padding: 0px 10px 0 10px;">
 				<!-- my/추천룩이미지 -->
-				<div class="row" style="max-width:600px; margin:0px">
+				<div class="row" id="upBar" style="max-width:600px; margin:0px">
 					<div class="col" align="left"
 						style="width: 45px; max-width: 600px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
 						<p>추천</p>
@@ -376,9 +385,6 @@ div {
 									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 										<div class="avatar avatar-80 has-background mb-2 rounded">
 											<div class="background">
-												<img
-													src=""
-													alt="">
 											</div>
 										</div>
 										<p class="text-uppercase small"><p></p></p>
