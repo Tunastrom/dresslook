@@ -140,13 +140,14 @@
 				/*선택한 상품목록에 추가*/
 				//선택한 상품의 background class 태그의 style 속성(이미지 url)선택해 저장 & 이름 선택해 저장 
 				goodsSelected = $(".container-fluid").find(".card-body").children("div:eq("+goodsIndex+")").children().attr("style");
-				console.log(goodsSelected);
+				var goodsUrl = goodsSelected.substring(23, goodsSelected.length-2); 
+				console.log(goodsUrl);
 				var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+goodsIndex+")");
 				//swiper-slide 클래스 div 태그 생성 및 결합
 				if (goodsCnt > 0){
 					var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
 					var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
-					var background = $("<div class=\"background\"style=\""+goodsSelected+"\"></div>");
+					var background = $("<div class=\"background\"style=\"background-image: url(&quot;"+goodsUrl+"&quot;)\"></div>");
 					var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
 					var gCode = $("<p style\"display:none;\">"+goodsCode+"</p>");
 					background.append(name, gCode);
@@ -155,10 +156,11 @@
 					//#downBar의 swiper-wrapper 태그에 append
 					$("#downBar .swiper-wrapper:last").append(swiperSlide);
 				} else if (goodsCnt == 0) {
-					$("#downBar .background").attr("style","\""+goodsSelected+"\"");
+					$("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")");
 					$("#downBar .background").append("<p style\"display:none;\">"+goodsCode+"</p>");
+					$("#downBar .small").text(""+gName);
+					$("#downBar .small").children("p").remove();
 				}
-				
 				goodsCnt++;
 			}); 
 		} 
@@ -387,6 +389,7 @@ div {
 											<div class="background">
 											</div>
 										</div>
+										<!-- p태그 안의 p는 여백주기 위해 일부러 준것 -->
 										<p class="text-uppercase small"><p></p></p>
 									</div>
 								</div>
