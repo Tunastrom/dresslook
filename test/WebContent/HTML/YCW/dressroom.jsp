@@ -9,11 +9,11 @@
 
 	window.addEventListener("load", function() {
 		var categoryIndex = 0;
+		var goodsCnt = 0;
 		var goodsIndex = 0;
 		var goodsSelected = null;
 		var goodsCode = null;
 		var gNumSelected = null;
-		var goodscnt = 0;
 		category();
 		getGoodsList();
 	});
@@ -33,7 +33,7 @@
 		}
 	}
 	
-	function getGoodsList(categoryNum){
+	function getGoodsList(categoryNum, goodsCnt){
 		  if (categoryNum == null){
 			  categoryNum = 0;
 			  console.log(categoryNum);
@@ -52,7 +52,7 @@
 			    }else{
 			      deferred.reject("HTTP error: " + xhr.status);
 			    }
-			  },false) 
+			  },false); 
 			  
 			  xhr.send();
 			  return deferred.promise();
@@ -71,8 +71,8 @@
 			    }else{
 			      deferred.reject("HTTP error: " + xhr.status);
 			    }
-			  },false) 
-			  
+			  },false); 
+			
 			  xhr.send();
 			  return deferred.promise();
 		}
@@ -94,21 +94,21 @@
 				var sprice = $("<p class=\"small\">"
 						+ result1[i].s_price + "</p>");
 				var sid = $("<p class=\"small\">" + result1[i].s_id + "</p>");
-				var gcode = $("<p>"+ result1[i].g_code+"</p>");
+				var gcode = $("<p style=\"display: none;\">"+ result1[i].g_code+"</p>");
 				back.append(Img1);
 				back.append(Img2);
 				hasBack.append(back);
-				cardBody.append(hasBack, gnum, gname, sprice, sid);
+				cardBody.append(hasBack, gnum, gname, sprice, sid, gcode);
 				card.append(cardBody);
 				newCard.append(card);
 				console.log(newCard); //완성된 1개 요소 확인
 				$("#goodsList").append(newCard);
 			}
-			/* GoodsClickEvent(); */
+			GoodsClickEvent(goodsCnt);
 		});	
 	} 
 	
-	function GoodsClickEvent(){
+	function GoodsClickEvent(goodsCnt){
 		//상품 클릭시 팔레트 위에 배치
 		var goods = $(".container-fluid").find(".card-body"); //card-body들 변수에 저장
 		for (i = 0; i < goods.length; i++) {
@@ -118,47 +118,43 @@
 				console.log(goodsIndex);
 			});
 			//상품클릭시 팔레트에 해당 상품의 pal이미지 출력하는 이벤트
-		    goods[i].addEventListener("click",function() {
+		    goods[i].addEventListener("click",function(goodsCnt) {
 			    //선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
-				goodsSelected = $(".container-fluid .card-body")[goodsIndex].children[0].children[0].children[1];
-			    goodsCode = $(".container-fluid .card-body")[goodsIndex];
+				goodsSelected = $(".container-fluid .card-body:eq("+goodsIndex+")").children().children().children("img:eq(1)");
+			    goodsCode = $(".container-fluid .card-body:eq("+goodsIndex+")").children("p:eq(3)").text();
 			    console.log(goodsSelected);
+			    console.log(goodsCode);
 				//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
-			    $("#palate").append(document.createElement("div"));
-				$("#palate").lastChild.append(goodsSelected);
-				$("#palate").lastChild.children[0].append(goodsCode);
+				var box = $("<div class=\"box\"></div>");
+				box.append("<div class=\"front\"></div>");
+				box.append("<p style=\"display:none;\"></p>");
+			    $("#palate").append(box);
+			    $("#palate").children("div:last");
+				$("#palate").children("div:last").children("div").append(goodsSelected);
 				goodsSelected = null;
-				goodsCode = null
-			    //가장 최근 이미지에 front클래스 추가 및 부모(div)에 box 클래스 추가
-			    var appended = $("#palate").lastChild;
-			    appended.setAttribute("class","box");
-				appended.children[0].setAttribute("class","front");
+				goodsCode = null;
 				//직전 이미지의 클래스 back으로 변경 
-				var prev = $("#palate")[0].lastChild.previousSibling; //1만큼 앞요소(<div class="box">) 선택
-				if (goodscnt == 0) {
-					prev = $("#palate")[0].lastChild.previousSibling.previousSibling; //최초실행시만 2만큼 앞 요소 선택
-				}
-				prev.children[0].setAttribute("class", "back");
+				var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
+				prev.children().attr("class", "back");
 				// front클래스의 자식인 이미지의 style="display:none"속성 제거
-				var frontImg = $(".front")[0].children[0]; 
-				frontImg.setAttribute("class","");
+				var frontImg = $(".front").children(); 
+				frontImg.attr("class","");
 				//선택한 상품목록에 추가
-				goodsSelected = goods[goodsIndex].children[0].children[1];
-				gNumSelected = $("#palImages")[0].children[goodsIndex].children[1];
-				$("#downBar")[0].append(document.createElement("a"));
-				var div = bardocument.createElement("div");
+				goodsSelected = $(".container-fluid").find(".card-body").children("div:eq("+i+")"). children().children();
+				$("#downBar").append(document.createElement("a"));
+				var div = document.createElement("div");
 				div.addClass("col-2");
 				var barImage = div.append(goodsSelected);
 				$("#downBar")[0].children[0].append(barImage);
 				$("#downBar")[0].children[0].lastChild.children[0].setAttribute("class","background");  
 			    $("#downBar")[0].children[0].lastChild.children[0].children[0].setAttribute("class","");
 			    frontImg.addEventListener("click", function() {
-	
 			    });
-				goodscnt++;
+				goodsCnt++;
 			}); 
 		} 
 	}	
+	
 	function pageMove(x) {
 		var pageValue = x;
 		if (pageValue == 2) {
@@ -381,91 +377,11 @@ div {
 										<div class="avatar avatar-80 has-background mb-2 rounded">
 											<div class="background">
 												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
+													src=""
 													alt="">
 											</div>
 										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
-									</div>
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-												<img
-													src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-													alt="">
-											</div>
-										</div>
-										<p class="text-uppercase small">이승진</p>
+										<p class="text-uppercase small"><p></p></p>
 									</div>
 								</div>
 							</div>
