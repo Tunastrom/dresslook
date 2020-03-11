@@ -8,7 +8,6 @@
 <script>
 	window.addEventListener("load", function() {
 		var categoryIndex = 0;
-		var goodsCnt = 0;
 		var goodsIndex = 0;
 		var goodsSelected = null;
 		var goodsCode = null;
@@ -22,7 +21,6 @@
 		for (i=0; i<categorys.length; i++){
 			categorys[i].addEventListener("mouseover",function(){
 				categoryIndex = $(".category").index(this);
-				console.log(categoryIndex);
 			});
 			categorys[i].addEventListener("click", function(){
 				var categoryNum = categoryIndex;
@@ -32,7 +30,7 @@
 		}
 	}
 	
-	function getGoodsList(categoryNum, goodsCnt){
+	function getGoodsList(categoryNum){
 		  if (categoryNum == null){
 			  categoryNum = 0;
 			  console.log(categoryNum);
@@ -100,24 +98,23 @@
 				cardBody.append(hasBack, gnum, gname, sprice, sid, gcode);
 				card.append(cardBody);
 				newCard.append(card);
-				console.log(newCard); //완성된 1개 요소 확인
+		      /*console.log(newCard); //완성된 1개 요소 확인 */
 				$("#goodsList").append(newCard);
 			}
-			GoodsClickEvent(goodsCnt);
+			GoodsClickEvent();
 		});	
 	} 
 	
-	function GoodsClickEvent(goodsCnt){
+	function GoodsClickEvent(){
 		//상품 클릭시 팔레트 위에 배치
 		var goods = $(".container-fluid").find(".card-body"); //card-body들 변수에 저장
 		for (i = 0; i < goods.length; i++) {
 			//상품에 마우스 올리면 해당 상품의 인덱스 변수에 담는 이벤트 
 			goods[i].addEventListener("mouseover", function() {
 				goodsIndex = $(this.parentNode.parentNode).index();
-				console.log(goodsIndex);
 			});
 			//상품클릭시 팔레트에 해당 상품의 pal이미지 출력하는 이벤트
-		    goods[i].addEventListener("click",function(goodsCnt) {
+		    goods[i].addEventListener("click",function() {
 			    //선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
 				goodsSelected = $(".container-fluid .card-body:eq("+goodsIndex+")").children().children().children("img:eq(1)");
 			    goodsCode = $(".container-fluid .card-body:eq("+goodsIndex+")").children("p:eq(3)").text();
@@ -142,26 +139,31 @@
 				goodsSelected = $(".container-fluid").find(".card-body").children("div:eq("+goodsIndex+")").children().attr("style");
 				var goodsUrl = goodsSelected.substring(23, goodsSelected.length-2); 
 				console.log(goodsUrl);
-				var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+goodsIndex+")");
+				var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+goodsIndex+")").text();
 				//swiper-slide 클래스 div 태그 생성 및 결합
-				if (goodsCnt > 0){
+					var background = $("<div class=\"background\"style=\"background-image: url(&quot;"+goodsUrl+"&quot;)\"></div>");
+					var gCode = $("<p style=\"display:none;\">"+goodsCode+"</p>");
+					background.append(gCode);
+					palCnt = $("#palate").children().length;
+					console.log()
+				if (palCnt > 2){
+					console.log("1"+gName);
 					var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
 					var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
-					var background = $("<div class=\"background\"style=\"background-image: url(&quot;"+goodsUrl+"&quot;)\"></div>");
 					var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
-					var gCode = $("<p style\"display:none;\">"+goodsCode+"</p>");
-					background.append(name, gCode);
+					background.append(gCode);
 					avatar.append(background);
 					swiperSlide.append(avatar);
+					swiperSlide.append(name);
 					//#downBar의 swiper-wrapper 태그에 append
 					$("#downBar .swiper-wrapper:last").append(swiperSlide);
-				} else if (goodsCnt == 0) {
-					$("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")");
-					$("#downBar .background").append("<p style\"display:none;\">"+goodsCode+"</p>");
+				} else if (palCnt == 2) {
+					/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
+					$("#downBar .avatar").append(background);
+					console.log("2"+gName);
 					$("#downBar .small").text(""+gName);
-					$("#downBar .small").children("p").remove();
+					$("#downBar .small").children().remove();
 				}
-				goodsCnt++;
 			}); 
 		} 
 	}	
@@ -249,7 +251,7 @@ div {
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 										<div class="background">
-											<img
+											<img 
 												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
 												alt="">
 										</div>
@@ -389,8 +391,8 @@ div {
 											<div class="background">
 											</div>
 										</div>
-										<!-- p태그 안의 p는 여백주기 위해 일부러 준것 -->
-										<p class="text-uppercase small"><p></p></p>
+										<!-- p태그 안의 div는 여백주기 위해 일부러 준것 -->
+										<p class="text-uppercase small"><br></p>
 									</div>
 								</div>
 							</div>
