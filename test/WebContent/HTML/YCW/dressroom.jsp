@@ -14,6 +14,7 @@
 		var gNumSelected = null;
 		category();
 		getGoodsList();
+		getlooksList();
 	});
 	
 	function category(){
@@ -147,7 +148,6 @@
 					palCnt = $("#palate").children().length;
 					console.log()
 				if (palCnt > 2){
-					console.log("1"+gName);
 					var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
 					var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
 					var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
@@ -160,13 +160,32 @@
 				} else if (palCnt == 2) {
 					/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
 					$("#downBar .avatar").append(background);
-					console.log("2"+gName);
 					$("#downBar .small").text(""+gName);
 					$("#downBar .small").children().remove();
 				}
 			}); 
 		} 
 	}	
+	
+	function getlooksList(){
+		
+		function addLooks(){
+			var ImgCnt = $("#upBar .swiper-wrapper").children().length;
+				for (i=0; i<ImgCnt; i++){
+					//test용  url
+					var lookCode = 0;
+					var lName = "올블랙";
+					var lookUrl= "${pageContext.request.contextPath}/images/dressroom/look.png";
+					var background = $("<div class=\"background\"style=\"background-image: url(&quot;"+lookUrl+"&quot;)\"></div>");
+					var lCode = $("<p style=\"display:none;\">"+lookCode+"</p>");
+					background.append(lCode);	
+					$("#upBar .avatar:eq("+i+")").append(background);
+					$("#upBar .small:eq("+i+")").text(""+lName);
+					$("#upBar .small:eq("+i+")").children().remove();
+				}
+		}	
+		addLooks();
+	}
 	
 	function pageMove(x) {
 		var pageValue = x;
@@ -179,9 +198,9 @@
 	
 </script>
 <style>
-div {
+div 
 	border: 1px solid gray;
-}
+
 
 .pal {
 	display: none;
@@ -238,105 +257,45 @@ div {
 		<div class="row">
 			<div class="col-auto" align="center" style="padding: 0px 10px 0 10px;">
 				<!-- my/추천룩이미지 -->
-				<div class="row" id="upBar" style="max-width:600px; margin:0px">
+				<div class="row" id="upBar" style="max-width:570px; margin:0px">
 					<div class="col" align="left"
-						style="width: 45px; max-width: 600px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
+						style="width: 40px; max-width: 600px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
 						<p>추천</p>
 					</div>
 					<div class="col" align="center"
-						style="max-width: 555px; padding: 0; margin:1px 0 0 0;">
+						style="max-width: 535px; padding: 0; margin:1px 0 0 0;">
 						<!-- Swiper -->
 						<div class="swiper-container categoriestab1 text-center">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img 
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
 									</div>
-									<p class="text-uppercase small">이승진</p>
+									<p class="text-uppercase small"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
 									</div>
-									<p class="text-uppercase small">이승진</p>
+									<p class="text-uppercase small"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
 									</div>
-									<p class="text-uppercase small">이승진</p>
+									<p class="text-uppercase small"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
 									</div>
-									<p class="text-uppercase small">이승진</p>
+									<p class="text-uppercase small"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
 									</div>
-									<p class="text-uppercase small">이승진</p>
+									<p class="text-uppercase small"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
 									</div>
-									<p class="text-uppercase small">이승진</p>
-								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
-									</div>
-									<p class="text-uppercase small">이승진</p>
-								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
-									</div>
-									<p class="text-uppercase small">이승진</p>
-								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
-										<div class="background">
-											<img
-												src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg"
-												alt="">
-										</div>
-									</div>
-									<p class="text-uppercase small">이승진</p>
+									<p class="text-uppercase small"><br></p>
 								</div>
 							</div>
 						</div>
@@ -408,7 +367,7 @@ div {
 					<!-- <div class="col" style="padding: 0px;"></div> -->
 					<!--좌 여백 -->
 					<!-- 내용 -->
-					<div class="col-auto" style="width: 1260px; margin: 0" >
+					<div class="col-auto" style="width: 1130px; margin: 0" >
 						<div class="container" style="padding: 0; margin: 0;">
 							<!--대분류 -->
 							<div class="row" style="background-color: #f94620;">

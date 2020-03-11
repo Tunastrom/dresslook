@@ -22,7 +22,7 @@
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css?ver=2" rel="stylesheet">
 
     <!-- template stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css?ver=1" rel="stylesheet" id="style">
+    <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css?ver=5" rel="stylesheet" id="style">
 
 	<!-- Template js files -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/jquery-3.3.1.min.js"></script>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="col">
                     <div class="logo-header">
-                        <img src="${pageContext.request.contextPath}/HTML/assets/img/logo_small.svg" alt="" class="logo-img">
+                        <img <%-- src="${pageContext.request.contextPath}/HTML/assets/img/logo_small.svg"  --%>alt="" class="logo-img">
                         <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>LOOKing every wear</small></h5>
                     </div>
                 </div>

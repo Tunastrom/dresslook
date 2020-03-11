@@ -1266,7 +1266,7 @@ p:last-child {
 }
 
 .header-fill .header .logo-img {
-  content: url("../../assets/img/logo-small-white.svg");
+  content: url("../../assets/img/logo_small_dl_white.svg");
 }
 
 /* float label */
@@ -1916,7 +1916,7 @@ body.layout-dark .header .btn-link {
 }
 
 body.layout-dark .header .logo-img {
-  content: url("../../assets/img/logo-small-white.svg");
+  content: url("../../assets/img/logo_small_white.svg");
 }
 
 body.layout-dark .tabs-small .nav-item .nav-link {
