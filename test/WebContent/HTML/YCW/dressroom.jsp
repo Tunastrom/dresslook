@@ -400,7 +400,7 @@
 				<!-- 선택한 옷 목록 -->
 			</div>
 			<!-- 상품 검색창 -->
-			<div class="col" style=" min-width:600px; margin: 0 10px 0 10px;padding-left: 10px; padding-right: 10px;" >
+			<div class="col" style=" min-width:400px; margin: 0 10px 0 10px;padding-left: 10px; padding-right: 10px;" >
 						<div class="container" style="padding: 0 10px 0 10px; margin: 0;">
 							<!--대분류 -->
 							<div class="row" style="background-color: #f94620;">
