@@ -9,6 +9,7 @@
 	window.addEventListener("load", function() {
 		var categoryIndex = 0;
 		var goodsIndex = 0;
+		var selectedIndex = 0;
 		var goodsSelected = null;
 		var goodsCode = null;
 		var gNumSelected = null;
@@ -78,7 +79,7 @@
 		//ajax로 비동기처리한  getList, getPalImages 리턴값 모두 가져온다음, html/css코드와 결합 & #goodsList에 append
 		$.when(getList(categoryNum), getPalImages(categoryNum)).done(function (result1, result2){
 			for (i = 0; i < result1.length; i++) {
-				var newCard = $("<div class=\"col-6 col-lg-2\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
+				var newCard = $("<div class=\"col-6 col-sm-4 col-md-3 col-lg-2\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
 				var card = $("<div class=\"card border-0 mb-4\"></div>");
 				var cardBody = $("<div class=\"card-body p-0\"></div>");
 				var hasBack = $("<div class=\"h-150px has-background rounded mb-2\"></div>");
@@ -124,7 +125,7 @@
 				//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
 				var box = $("<div class=\"box\"></div>");
 				box.append("<div class=\"front\"></div>");
-				box.append("<p style=\"display:none;\"></p>");
+				box.append("<input type=\"hidden\" value=\""+goodsCode+"\">");
 			    $("#palate").append(box);
 			    $("#palate").children("div:last");
 				$("#palate").children("div:last").children("div").append(goodsSelected);
@@ -143,10 +144,10 @@
 				var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+goodsIndex+")").text();
 				//swiper-slide 클래스 div 태그 생성 및 결합
 					var background = $("<div class=\"background\"style=\"background-image: url(&quot;"+goodsUrl+"&quot;)\"></div>");
-					var gCode = $("<p style=\"display:none;\">"+goodsCode+"</p>");
+					var gCode = $("<input type=\"hidden\" value=\""+goodsCode+"\">");
 					background.append(gCode);
 					palCnt = $("#palate").children().length;
-					console.log()
+					//
 				if (palCnt > 2){
 					var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
 					var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
@@ -163,6 +164,23 @@
 					$("#downBar .small").text(""+gName);
 					$("#downBar .small").children().remove();
 				}
+				//선택목록 상품에 마우스 올리면 해당 상품이 팔레트의 front가 되도록 하는 이벤트
+				var selectedGoods = $("#downBar .swiper-slide");
+				selectedGoods.on("mouseover", function(selectedGoods){
+					selectedGcode=$(this).find(".background").children("input").attr("value");
+					console.log(selectedGcode);
+					var pal = $("#palate input[value="+selectedGcode+"]").parent();
+					console.log("pal "+pal);
+					if (pal.children("div").attr("class") == "back"){
+						pal.children("div").attr("class","first");
+						$("#palate").append(pal);
+						$("#palate").children("div:last").prev().children("div").attr("class","back");					
+					}			
+				});
+			    //선택목록 상품 클릭하면 해당상품의 상세정보를 1) 상세정보 2) 제외 선택가능한 메뉴창 기능 
+				selectedGoods.on("click", function(){
+					
+				})
 			}); 
 		} 
 	}	
@@ -198,9 +216,9 @@
 	
 </script>
 <style>
-div 
+/* div {
 	border: 1px solid gray;
-
+} */
 
 .pal {
 	display: none;
@@ -247,7 +265,9 @@ div
 </style>
 </head>
 <body>
-	<div class="tab-contents">
+	<div class="row">
+	<div class="col col-md-1 col-lg-1" style="max-width:75px; margin:0; padding:0"></div>
+	<div class="col" style="padding:10px; align: center;">
 		<!-- style="margin: 5px 15px 0px 15px; padding: 0px 0px 0px 60px" -->
 		<div class="row" style="height: 25px;">
 			<div class="col" style="height: 24px;">
@@ -255,18 +275,38 @@ div
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-auto" align="center" style="padding: 0px 10px 0 10px;">
+			<div class="col" align="center" style="min-width:400px; max-width:800px; padding: 0px 10px 0 10px;">
 				<!-- my/추천룩이미지 -->
-				<div class="row" id="upBar" style="max-width:570px; margin:0px">
-					<div class="col" align="left"
-						style="width: 40px; max-width: 600px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
+				<div class="row" id="upBar" style="min-width:400px; max-width:800px; margin:0px">
+					<div class="col-12 col-md-12 col-lg-1" align="left"
+						style="min-width: 40px; max-width: 800px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
 						<p>추천</p>
 					</div>
-					<div class="col" align="center"
-						style="max-width: 535px; padding: 0; margin:1px 0 0 0;">
+					<div class="col"
+						style="min-width: 400px; max-width: 800px; padding: 0; margin:1px 0 0 0;">
 						<!-- Swiper -->
 						<div class="swiper-container categoriestab1 text-center">
-							<div class="swiper-wrapper">
+							<div class="swiper-wrapper" style="min-width:400px; max-width:800px;">
+								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+									<div class="avatar avatar-80 has-background mb-2 rounded">
+									</div>
+									<p class="text-uppercase small"><br></p>
+								</div>
+								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+									<div class="avatar avatar-80 has-background mb-2 rounded">
+									</div>
+									<p class="text-uppercase small"><br></p>
+								</div>
+								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+									<div class="avatar avatar-80 has-background mb-2 rounded">
+									</div>
+									<p class="text-uppercase small"><br></p>
+								</div>
+								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+									<div class="avatar avatar-80 has-background mb-2 rounded">
+									</div>
+									<p class="text-uppercase small"><br></p>
+								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
@@ -304,7 +344,7 @@ div
 				</div>
 				<!-- my/추천룩이미지 -->
 				<!-- 팔레트  -->
-				<div class="row" style="padding: 0px;">
+				<div class="row" style="min-width:400px; max-width:800px; minpadding: 0px;">
 					<div class="col" style="padding: 0px;"></div>
 					<div class="col-auto" style="padding: 0px;">
 						<div class="container" id="palate">
@@ -322,7 +362,7 @@ div
 				<!-- 룩이미지처리 -->
 				<form id="frm" name="frm" action="lookInsert.do" method="post">
 					<div class="row"
-						style="max-width: 555px; padding: 0; margin: 0; background-color: #ffe9e9;">
+						style="min-width:400px; max-width:800px; padding: 0; margin: 0; background-color: #ffe9e9;">
 						<div class="col">
 							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 							<div class="row">
@@ -339,16 +379,14 @@ div
 					</div>
 					<!-- 룩이미지처리 -->
 					<!-- 선택한 옷 목록 -->
-					<div class="row" id="downBar" style="max-width:600px; margin:0">
+					<div class="row" id="downBar" style="min-width:400px; max-width:800px; margin:0">
 						<div class="col" align="center"
-							style="max-width: 600px; padding: 0px; margin: 1px 0 0 0;">
+							style="padding: 0px; margin: 1px 0 0 0;">
 							<!-- Swiper -->
 							<div class="swiper-container categoriestab1 text-center">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 										<div class="avatar avatar-80 has-background mb-2 rounded">
-											<div class="background">
-											</div>
 										</div>
 										<!-- p태그 안의 div는 여백주기 위해 일부러 준것 -->
 										<p class="text-uppercase small"><br></p>
@@ -362,13 +400,8 @@ div
 				<!-- 선택한 옷 목록 -->
 			</div>
 			<!-- 상품 검색창 -->
-			<div class="col" style="padding-left: 10px; padding-right: 10px;" >
-				<div class="row" style="margin-left: 0px; margin-right: 0px; padding: 0;">
-					<!-- <div class="col" style="padding: 0px;"></div> -->
-					<!--좌 여백 -->
-					<!-- 내용 -->
-					<div class="col-auto" style="width: 1130px; margin: 0" >
-						<div class="container" style="padding: 0; margin: 0;">
+			<div class="col" style=" min-width:600px; margin: 0 10px 0 10px;padding-left: 10px; padding-right: 10px;" >
+						<div class="container" style="padding: 0 10px 0 10px; margin: 0;">
 							<!--대분류 -->
 							<div class="row" style="background-color: #f94620;">
 								<div class="col" style="padding: 0 20px 0 20px; margin:0; color: white;">
@@ -425,16 +458,12 @@ div
 							</div>
 						</div>
 						<!-- container -->
-					</div>
-					<!-- 내용 -->
-					<!-- <div class="col" style="padding: 0px;"></div> -->
-					<!--우 여백 -->
-				</div>
-				<!-- row -->
 			</div>
 			<!-- 상품 검색창 -->
 		</div>
 		<!-- col -->
+	</div>
+	<div class="col col-md-1 col-lg-1" style="max-width:75px; margin:0; padding:0"></div>
 	</div>
 </body>
 </html>
