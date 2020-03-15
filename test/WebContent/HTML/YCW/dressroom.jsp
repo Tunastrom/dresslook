@@ -14,6 +14,7 @@
 		var goodsCode = null;
 		var gNumSelected = null;
 		category();
+		formEvent();
 		getGoodsList();
 		getlooksList();
 	});
@@ -30,6 +31,34 @@
 				$("#goodsList").children().remove();
 			});
 		}
+	}
+	
+	function formEvent() {
+		$("form .row").on("click", function(event){
+			var id = event.target.getAttribute("id");
+			var destination = 0;
+				if (id == "collection"){
+					destination = 1;
+					frm.WriteORnot.value = destination
+					frm.submit();
+				} else if (id == "order"){
+					destination = 2;
+					frm.WriteORnot.value = destination
+					frm.submit();
+				} else if (id == "share"){
+					destination = 3;
+					frm.WriteORnot.value = destination
+					frm.submit();
+				} else if (id == "reset"){
+					$("#palate .box:gt(0)").remove();
+					$("#palate .back").attr("class","front");
+					$("#downBar .swiper-slide:gt(0)").remove();
+					$("#downBar .swiper-slide .has-background div").remove();
+					$("#downBar .swiper-slide p").text("");s
+					$("#downBar .swiper-slide p").append("<br>")
+					return false;
+				} 			
+		});
 	}
 	
 	function getGoodsList(categoryNum){
@@ -118,7 +147,7 @@
 			//상품클릭시 팔레트에 해당 상품의 pal이미지 출력하는 이벤트
 		    goods[i].addEventListener("click",function() {
 			    //선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
-				goodsSelected = $(".container-fluid .card-body:eq("+goodsIndex+")").children().children().children("img:eq(1)");
+				goodsSelected = $(".container-fluid .card-body:eq("+goodsIndex+")").children().children().children("img:eq(1)").attr("src");
 			    goodsCode = $(".container-fluid .card-body:eq("+goodsIndex+")").children("p:eq(3)").text();
 			    console.log(goodsSelected);
 			    console.log(goodsCode);
@@ -128,7 +157,7 @@
 				box.append("<input type=\"hidden\" value=\""+goodsCode+"\">");
 			    $("#palate").append(box);
 			    $("#palate").children("div:last");
-				$("#palate").children("div:last").children("div").append(goodsSelected);
+				$("#palate").children("div:last").children("").append("<img src=\""+goodsSelected+"\">");
 				goodsSelected = null;
 				//직전 이미지의 클래스 back으로 변경 
 				var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
@@ -204,16 +233,6 @@
 		}	
 		addLooks();
 	}
-	
-	function pageMove(x) {
-		var pageValue = x;
-		if (pageValue == 2) {
-			// 룩저장할지 묻는 알림창  
-		}
-		frm.WriteORnot.value = pageValue;
-		frm.submit();
-	}
-	
 </script>
 <style>
 /* div {
@@ -360,23 +379,15 @@
 				</div>
 				<!-- 팔레트  -->
 				<!-- 룩이미지처리 -->
-				<form id="frm" name="frm" action="lookInsert.do" method="post">
-					<div class="row"
-						style="min-width:400px; max-width:800px; padding: 0; margin: 0; background-color: #ffe9e9;">
-						<div class="col">
-							<input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
-							<div class="row">
+				<form id="frm" name="frm" action="lookInsert.do" method="post" onsubmit="return formEvent()">
+					<div class="row" style="min-width:400px; max-width:800px; padding: 0; margin: 0; background-color: #ffe9e9;">
+							    <input type="hidden" name="WriteORnot" id="WriteORnot" value="0">
 								<div class="col-3" id="collection" style="color: #f94620">주문</div>
 								<div class="col-3" id="order" style="color: #f94620">컬렉션</div>
-								<div class="col-3" id="reset" style="color: #f94620">룩공유</div>
-								<div class="col-3" id="share" style="color: #f94620">초기화</div>
-							</div>
-							<!-- 	<button type="button" onclick="pageMove(1)" id="collection">컬렉션</button>
-							<button type="button" onclick="pageMove(2)" id="collection">주문</button>
-							<button type="button" onclick="pageMove(3)">초기화</button>
-							<button type="button" onclick="pageMove(4)" id="share">룩공유</button> -->
-						</div>
+								<div class="col-3" id="share" style="color: #f94620">룩공유</div>
+								<div class="col-3" id="reset" style="color: #f94620">초기화</div>
 					</div>
+				</form>
 					<!-- 룩이미지처리 -->
 					<!-- 선택한 옷 목록 -->
 					<div class="row" id="downBar" style="min-width:400px; max-width:800px; margin:0">
@@ -396,7 +407,6 @@
 							<!-- swiper -->
 						</div>
 					</div>
-				</form>
 				<!-- 선택한 옷 목록 -->
 			</div>
 			<!-- 상품 검색창 -->
