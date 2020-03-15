@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
 	window.addEventListener("load", function() {
 		var categoryIndex = 0;
@@ -33,14 +34,26 @@
 		}
 	}
 	
-	function formEvent() {
-		$("form .row").on("click", function(event){
+	function formEvent(){
+		$("form .row").on("click", function(event){	
 			var id = event.target.getAttribute("id");
 			var destination = 0;
+			if (id == "reset"){
+				$("#palate .box:gt(0)").remove();
+				$("#palate .back").attr("class","front");
+				$("#downBar .swiper-slide:gt(0)").remove();
+				$("#downBar .swiper-slide .has-background div").remove();
+				$("#downBar .swiper-slide p").text("");
+				$("#downBar .swiper-slide p").append("<br>")
+				return false;
+			} else {
+				html2canvas(document.querySelector("#palate")).then(canvas => {
+					console.log(canvas.toDataURL("image/jpeg"));
+				});
 				if (id == "collection"){
 					destination = 1;
 					frm.WriteORnot.value = destination
-					frm.submit();
+					return false;
 				} else if (id == "order"){
 					destination = 2;
 					frm.WriteORnot.value = destination
@@ -49,15 +62,8 @@
 					destination = 3;
 					frm.WriteORnot.value = destination
 					frm.submit();
-				} else if (id == "reset"){
-					$("#palate .box:gt(0)").remove();
-					$("#palate .back").attr("class","front");
-					$("#downBar .swiper-slide:gt(0)").remove();
-					$("#downBar .swiper-slide .has-background div").remove();
-					$("#downBar .swiper-slide p").text("");s
-					$("#downBar .swiper-slide p").append("<br>")
-					return false;
-				} 			
+				}
+			}			
 		});
 	}
 	
@@ -157,7 +163,7 @@
 				box.append("<input type=\"hidden\" value=\""+goodsCode+"\">");
 			    $("#palate").append(box);
 			    $("#palate").children("div:last");
-				$("#palate").children("div:last").children("").append("<img src=\""+goodsSelected+"\">");
+				$("#palate").children("div:last").children("").append("<div class=\"background\" style=\"background-image: url(&quot;"+goodsSelected+"&quot;)\"></div>");
 				goodsSelected = null;
 				//직전 이미지의 클래스 back으로 변경 
 				var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
@@ -301,8 +307,7 @@
 						style="min-width: 40px; max-width: 800px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
 						<p>추천</p>
 					</div>
-					<div class="col"
-						style="min-width: 400px; max-width: 800px; padding: 0; margin:1px 0 0 0;">
+					<div class="col" style="min-width: 400px; max-width: 800px; padding: 0; margin:1px 0 0 0;">
 						<!-- Swiper -->
 						<div class="swiper-container categoriestab1 text-center">
 							<div class="swiper-wrapper" style="min-width:400px; max-width:800px;">
@@ -369,8 +374,8 @@
 						<div class="container" id="palate">
 							<div class="box">
 								<div class="front">
-									<img id="backGround"
-										src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png">
+									<div class="background" style="background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)">
+									</div>
 								</div>
 							</div>
 						</div>
