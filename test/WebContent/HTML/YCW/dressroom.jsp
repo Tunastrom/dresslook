@@ -35,7 +35,7 @@
 	}
 	
 	function formEvent(){
-		var backGR = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
+		var backGR = $("<div class=\"background\" data-html2canvas-ignore=\"true\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
 		$("#palate .front").append(backGR);
 		$("form .row").on("click", function(event){	
 			var id = event.target.getAttribute("id");
@@ -49,12 +49,10 @@
 				$("#downBar .swiper-slide p").append("<br>");
 				return false;
 			} else {
-				html2canvas(document.querySelector("#palate").parentElement, {
-					allowTaint: true,
-					useCORS: true
-				}).then(function(canvas) {
+				html2canvas(document.querySelector("#palate").parentElement)
+				.then(function(canvas) {
 					console.log(canvas.toDataURL("image/png"));
-					$("body").append("<img src="+canvas.toDataURL("image/png")+">");
+					
 				});
 				if (id == "collection"){
 					destination = 1;
@@ -72,11 +70,7 @@
 			}			
 		});
 	}
-	
-	function nonono(){
-		
-	}
-	
+
 	function getGoodsList(categoryNum){
 		  if (categoryNum == null){
 			  categoryNum = 0;
@@ -173,11 +167,11 @@
 				box.append("<input type=\"hidden\" value=\""+goodsCode+"\">");
 			    $("#palate").append(box);
 			    $("#palate").children("div:last");
-				$("#palate").children("div:last").children("").append("<div class=\"background\" style=\"background-image: url(&quot;"+goodsSelected+"&quot;)\"></div>");
+				$("#palate").children("div:last").children("div").append("<div class=\"background\" style=\"background-image: url(&quot;"+goodsSelected+"&quot;)\"></div>");
 				goodsSelected = null;
 				//직전 이미지의 클래스 back으로 변경 
 				var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
-				prev.children().attr("class", "back");
+				prev.children("div").attr("class", "back");
 				// front클래스의 자식인 이미지의 style="display:none"속성 제거
 				var frontImg = $(".front").children(); 
 				frontImg.attr("class","background");
