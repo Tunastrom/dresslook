@@ -73,6 +73,10 @@
 		});
 	}
 	
+	function nonono(){
+		
+	}
+	
 	function getGoodsList(categoryNum){
 		  if (categoryNum == null){
 			  categoryNum = 0;
