@@ -35,6 +35,8 @@
 	}
 	
 	function formEvent(){
+		var backGR = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
+		$("#palate .front").append(backGR);
 		$("form .row").on("click", function(event){	
 			var id = event.target.getAttribute("id");
 			var destination = 0;
@@ -44,23 +46,27 @@
 				$("#downBar .swiper-slide:gt(0)").remove();
 				$("#downBar .swiper-slide .has-background div").remove();
 				$("#downBar .swiper-slide p").text("");
-				$("#downBar .swiper-slide p").append("<br>")
+				$("#downBar .swiper-slide p").append("<br>");
 				return false;
 			} else {
-				html2canvas(document.querySelector("#palate")).then(canvas => {
-					console.log(canvas.toDataURL("image/jpeg"));
+				html2canvas(document.querySelector("#palate").parentElement, {
+					allowTaint: true,
+					useCORS: true
+				}).then(function(canvas) {
+					console.log(canvas.toDataURL("image/png"));
+					$("body").append("<img src="+canvas.toDataURL("image/png")+">");
 				});
 				if (id == "collection"){
 					destination = 1;
-					frm.WriteORnot.value = destination
+					frm.WriteORnot.value = destination;
 					return false;
 				} else if (id == "order"){
 					destination = 2;
-					frm.WriteORnot.value = destination
+					frm.WriteORnot.value = destination;
 					frm.submit();
 				} else if (id == "share"){
 					destination = 3;
-					frm.WriteORnot.value = destination
+					frm.WriteORnot.value = destination;
 					frm.submit();
 				}
 			}			
@@ -170,7 +176,7 @@
 				prev.children().attr("class", "back");
 				// front클래스의 자식인 이미지의 style="display:none"속성 제거
 				var frontImg = $(".front").children(); 
-				frontImg.attr("class","");
+				frontImg.attr("class","background");
 				/*선택한 상품목록에 추가*/
 				//선택한 상품의 background class 태그의 style 속성(이미지 url)선택해 저장 & 이름 선택해 저장 
 				goodsSelected = $(".container-fluid").find(".card-body").children("div:eq("+goodsIndex+")").children().attr("style");
@@ -207,7 +213,7 @@
 					var pal = $("#palate input[value="+selectedGcode+"]").parent();
 					console.log("pal "+pal);
 					if (pal.children("div").attr("class") == "back"){
-						pal.children("div").attr("class","first");
+						pal.children("div").attr("class","front");
 						$("#palate").append(pal);
 						$("#palate").children("div:last").prev().children("div").attr("class","back");					
 					}			
@@ -270,18 +276,22 @@
 .front {
 	position: static; */
 	top: -20px;
-	/*  bottom: ; */
 	left: -20px;
+	width: 400px;
+	height:560px;
+	/*  right: ; */
 	/*  right: ; */
 }
 
 .back {
 	position: absolute;
-	/* margin: 0px 30px; */
 	top: 0px;
-	/*  bottom: ; */
 	left: 0px;
+	width: 400px;
+	height:560px;
 	/*  right: ; */
+	/*  bottom: ; */
+	/* margin: 0px 30px; */
 }
 
 #cateBar {
@@ -291,7 +301,7 @@
 </head>
 <body>
 	<div class="row">
-	<div class="col col-md-1 col-lg-1" style="max-width:75px; margin:0; padding:0"></div>
+	<div class="col col-lg-1" style="max-width:75px; margin:0; padding:0"></div>
 	<div class="col" style="padding:10px; align: center;">
 		<!-- style="margin: 5px 15px 0px 15px; padding: 0px 0px 0px 60px" -->
 		<div class="row" style="height: 25px;">
@@ -303,7 +313,7 @@
 			<div class="col" align="center" style="min-width:400px; max-width:800px; padding: 0px 10px 0 10px;">
 				<!-- my/추천룩이미지 -->
 				<div class="row" id="upBar" style="min-width:400px; max-width:800px; margin:0px">
-					<div class="col-12 col-md-12 col-lg-1" align="left"
+					<div class="col-12 col-sm-12col-md-12 col-lg-1" align="left"
 						style="min-width: 40px; max-width: 800px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
 						<p>추천</p>
 					</div>
@@ -374,8 +384,6 @@
 						<div class="container" id="palate">
 							<div class="box">
 								<div class="front">
-									<div class="background" style="background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)">
-									</div>
 								</div>
 							</div>
 						</div>
@@ -478,7 +486,7 @@
 		</div>
 		<!-- col -->
 	</div>
-	<div class="col col-md-1 col-lg-1" style="max-width:75px; margin:0; padding:0"></div>
+	<div class="col col-lg-1" style="max-width:75px; margin:0; padding:0"></div>
 	</div>
 </body>
 </html>
