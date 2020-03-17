@@ -10,9 +10,9 @@ import oracle.sql.BLOB;
 public class LookDto {
 	private String l_code;
 	private byte[] l_image;
-	private String g_nums;
 	private String m_id;
 	private String l_open;
+	private String g_nums;
 	//blob저장위해 필요
 	private long size;
 	private String stringImage;

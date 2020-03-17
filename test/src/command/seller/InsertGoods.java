@@ -28,7 +28,7 @@ public class InsertGoods implements Command {
 		    String uploadPath = request.getSession() // session 기본 객체
 				.getServletContext() // application 기본객체
 				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
-									    // 구해옴ss
+									    // 구해옴
 		    System.out.println(uploadPath);
 			MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 					request, 

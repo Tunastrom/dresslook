@@ -64,7 +64,6 @@ public class GoodsDao extends DAO {
 			System.out.println("파일이 존재 하지 않습니다.");
 			System.exit(1);
 		}
-
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		FileInputStream fis = null;
 		try {

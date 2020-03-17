@@ -66,15 +66,16 @@
 				var gNumTags = document.querySelectorAll("#palate .gNum");
 				var gNums = new Array(); 
 				var i = 0;
-				gNumTags.forEach(gNumTag => { gNums[i] = $(gNumTag).attr("value"); 
-					                          i++; });
+				gNumTags.forEach(gNumTag => { gNums[i] = $(gNumTag).attr("value"); i++; });
 				i=null;
-				gNums.join(",");
+				gNums = gNums.join(",");
 				console.log(gNums);
 				var xhr = new XMLHttpRequest();
 				var formData = new FormData();
 				formData.append("lookImg",Blob);
-				formData.append("gNums", gNums);
+				formData.append("gNums",gNums);
+				console.log("gNums: "+formData.get("gNums"));
+				console.log("lookImg: "+formData.get("lookImg"));
 				xhr.onload = function(){
 					if(xhr.status === 200 || xhr.status === 201){
 						if (id != "collection"){
