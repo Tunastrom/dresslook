@@ -25,7 +25,6 @@ public class GoodsListCommand implements Command{
 		List<GoodsDto> list1 = dao.GoodsList(no);
 		String list1JS =null;
 		for (int i = 0; i < list1.size(); i++) {
-			/* System.out.println("list.get(i): "+list.get(i)); */
 			String imageString1 = new String(Base64.encodeBase64(list1.get(i).getG_image()));
 			String changeString1 = "data:image/gif;base64," + imageString1;
 			list1.get(i).setStringImage(changeString1);

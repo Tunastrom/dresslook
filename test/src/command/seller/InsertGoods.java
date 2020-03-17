@@ -88,19 +88,9 @@ public class InsertGoods implements Command {
 		     
 		    GoodsDao2 dao = new GoodsDao2();
 		    int result1=0;
-			try {
-				result1 = dao.BlobInsert1(dto);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			result1 = dao.BlobInsert1(dto);
 		    int result2=0;
-			try {
-				result2 = dao.BlobInsert2(GIdto);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			result2 = dao.BlobInsert2(GIdto);
 		    System.out.println(result1);
 		    System.out.println(result2);
 		    request.setAttribute("result1", result1);

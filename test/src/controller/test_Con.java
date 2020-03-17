@@ -31,10 +31,12 @@ import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
-import command.dresslook.LookInsert;
+import command.dresslook.CollectionInsertCommand;
 import command.dresslook.Notifications;
+import command.dresslook.OrderInsertCommand;
 import command.dresslook.Search;
 import command.dresslook.SearchResult;
+import command.dresslook.ShareInsertCommand;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
@@ -83,9 +85,9 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
-		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
-		cont.put("/lookInsert.do", new LookInsert());
-		
+		cont.put("/collectionInsertCommand.do", new CollectionInsertCommand());
+		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
+		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
 		cont.put("/lookContents.do", new LookContents());
 		cont.put("/boardLook.do", new BoardLook());
 
