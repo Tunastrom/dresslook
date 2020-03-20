@@ -1,12 +1,16 @@
 package command.dresslook;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.SerializationUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -23,13 +27,13 @@ public class CollectionInsertCommand implements Command{
 		//Look이미지 Look테이블로 넘김
 		String uploadPath = request.getSession().getServletContext().getRealPath("/images");
 		MultipartRequest multi = new MultipartRequest(
-				                 request,
-				                 uploadPath,
-				                 10*1024*1024,
-				                 "utf-8", new DefaultFileRenamePolicy()
+				                 request, uploadPath, 10*1024*1024, "utf-8", new DefaultFileRenamePolicy()
 				                 );
-				
-		byte[] l_image = SerializationUtils.serialize(multi.getParameter("lookImg"));
+		System.out.println("lookImg: "+ multi.getParameter("lookImg"));
+		ByteArrayOutputStream  baos = new ByteArrayOutputStream(); 
+		baos.write(Integer.parseInt(multi.getParameter("lookImg")));
+		byte[] l_image = baos.toByteArray();
+		System.out.println("l_image: "+ Arrays.toString(l_image));
 		String g_nums = multi.getParameter("gNums");
 		System.out.println("g_nums: " + g_nums);
 		System.out.println("l_image: " + l_image);

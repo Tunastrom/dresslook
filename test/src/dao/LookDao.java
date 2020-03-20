@@ -13,14 +13,13 @@ public class LookDao extends DAO {
 
 	private LookDto dto;
 	private ArrayList<LookDto> list;
-
 	public LookDao() {
 		super();
 	}
-
+	
 	public ArrayList<LookDto> LooksList() {
 		list = new ArrayList<LookDto>();
-		String sql = "select * from look order by l_code";
+		String sql = "select * from look order by l_code ";
 		//where 조건으로 open 여부, 추천기능 차후구현
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -49,6 +48,14 @@ public class LookDao extends DAO {
 		return dto;
 	}
 
+	/*
+	 * public ArrayList<LookDto> LookDetailList(){ list = new ArrayList<LookDto>();
+	 * String sql1 = "" String sql2 =
+	 * "select rownum, a.* from look_detail a where rownum <= 0 order by l_code";
+	 * 
+	 * }
+	 */
+	
 //	Look Insert
 	public int LookInsert(LookDto dto) {
 		int n = 0;

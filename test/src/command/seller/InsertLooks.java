@@ -26,15 +26,14 @@ public class InsertLooks implements Command {
 		    String uploadPath = request.getSession() // session 기본 객체
 				.getServletContext() // application 기본객체
 				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
-									    // 구해옴ss
+									    // 구해옴
 			MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 					request, 
 					uploadPath, // 파일을 저장할 디렉토리 지정
 					10 * 1024 * 1024, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
 					"utf-8", // 인코딩 방식 지정
 					new DefaultFileRenamePolicy()// 중복 파일 처리(동일한 파일명이 업로드되면 뒤에 숫자 등을 붙여 중복 회피)
-			); 
-			
+			);
 		     String fileInput = "image";
 		     String fileName = "";
 		     File fileObj = null;  //java.io 사용함
@@ -54,13 +53,15 @@ public class InsertLooks implements Command {
 		     dto.setM_id(multi.getParameter("mid"));
 		     dto.setL_open(multi.getParameter("lopen"));
 		     dto.setSize(fileSize);
-		     System.out.println(dto);
+		/* System.out.println(dto); */
 		     
 		    LookDao dao = new LookDao();
 		    int result1 = dao.LookInsert(dto);
 		    int result2 = dao.LookDetailInsert(dto);
-		    System.out.println("result1: "+result1);
-		    System.out.println("result2: "+result2);
+		/*
+		 * System.out.println("result1: "+result1);
+		 * System.out.println("result2: "+result2);
+		 */
 		    request.setAttribute("result1", result1);
 		    request.setAttribute("result2", result2);
 			return "redirect:looksList.do";

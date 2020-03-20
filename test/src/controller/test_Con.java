@@ -29,8 +29,10 @@ import command.dresslook.Checkout;
 import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
+import command.dresslook.LGnumListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
+import command.dresslook.LooksListCommand;
 import command.dresslook.CollectionInsertCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
@@ -88,6 +90,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/collectionInsertCommand.do", new CollectionInsertCommand());
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
+		cont.put("/ajax/looksListCommand.do", new LooksListCommand());
+		cont.put("/ajax/lGnumListCommand.do", new LGnumListCommand());
 		cont.put("/lookContents.do", new LookContents());
 		cont.put("/boardLook.do", new BoardLook());
 

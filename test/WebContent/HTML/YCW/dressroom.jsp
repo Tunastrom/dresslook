@@ -17,7 +17,7 @@
 		category();
 		formEvent();
 		getGoodsList();
-		getlooksList();
+		/* getlooksList(); */
 	});
 	
 	function category(){
@@ -47,34 +47,59 @@
 				$("#downBar .swiper-slide p").text("");
 				$("#downBar .swiper-slide p").append("<br>");
 			} else {
-				html2canvas(document.querySelector("#palate").parentElement)
-				.then(function(canvas) {
-					var DataUrl = canvas.toDataURL("image/png");
-					var Blob = dataURItoBlob(DataUrl)
-				});
+				var Blob = null;
+				function html2can(){
+					var deferred = $.Deferred();
+					try{
+						html2canvas(document.querySelector("#palate").parentElement)
+						.then(function(canvas) {
+							var DataUrl = canvas.toDataURL("image/png");
+							Blob = dataURItoBlob(DataUrl);
+							console.log("toDataURL: "+ Blob);
+							deferred.resolve(Blob);
+						});
+					} catch (err){
+						deferred.reject("html2canvas Error");
+					}
+					return deferred.promise();	  
+				}
 				var destination = null;
 				if (id == "collection"){
 					//ajax로 db저장후 페이지전환 X
-					destination = "./collectionInsertCommand.do"
+					destination = "./collectionInsertCommand.do";
 				} else if (id == "order"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "./orderInsertCommand.do"
+					destination = "./orderInsertCommand.do";
 				} else if (id == "share"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "./shareInsertCommand.do"
+					destination = "./shareInsertCommand.do";
 				}
 				var gNumTags = document.querySelectorAll("#palate .gNum");
-				var gNums = new Array(); 
+				var gNums = new Array();
 				var i = 0;
 				gNumTags.forEach(gNumTag => { gNums[i] = $(gNumTag).attr("value"); i++; });
-				i=null;
+				i= null;
 				gNums = gNums.join(",");
-				console.log(gNums);
-				var xhr = new XMLHttpRequest();
 				var formData = new FormData();
-				formData.append("lookImg",Blob);
 				formData.append("gNums",gNums);
-				console.log("gNums: "+formData.get("gNums"));
+				$.when(html2can()).done(function (result){
+					formData.append("lookImg",Blob);
+					console.log(formData.get("lookImg"));
+					 $.ajax({ 
+					        type : 'post',
+					        url : destination,
+					        data : formData,
+					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
+					        contentType : false// application/x-www-form-urlencoded; 방지!! 
+					    }).done(function(data){
+					    			console.log(data);
+							    	if (id != "collection"){
+									     window.location.href=xhr.responseText;
+								    }
+					           });
+				});
+				/* var xhr = new XMLHttpRequest(); */
+				/* console.log("gNums: "+formData.get("gNums"));
 				console.log("lookImg: "+formData.get("lookImg"));
 				xhr.onload = function(){
 					if(xhr.status === 200 || xhr.status === 201){
@@ -86,7 +111,7 @@
 					}	
 				}
 				xhr.open("POST", destination);
-				xhr.send(formData);
+				xhr.send(formData); */
 			}			
 		});
 	}
@@ -100,8 +125,9 @@
 		       ia[i] = byteString.charCodeAt(i);
 		  }
 		  var bb = new Blob([ab], { "type": mimeString });
+		  console.log(bb);
 		  return bb;
-	}
+	} 
 	
 	function getGoodsList(categoryNum){
 		  if (categoryNum == null){
@@ -261,27 +287,56 @@
 		} 
 	}	
 	
-	function getlooksList(){
-		
-		function addLooks(){
-			var ImgCnt = $("#upBar .swiper-wrapper").children().length;
-				for (i=0; i<ImgCnt; i++){
-					//test용  url
-					var lookCode = 0;
-					var lName = "올블랙";
-					var lookUrl= "${pageContext.request.contextPath}/images/dressroom/look.png"; 
+	/* function getlooksList(){
+		function getImglist(){
+			  var deferred = $.Deferred();
+			  var xhr = new XMLHttpRequest();
+			  xhr.open("GET","./ajax/looksListCommand.do?",true);
+			  xhr.addEventListener('load',function(){
+			    if(xhr.status === 200){
+			      var obj = JSON.parse(xhr.response);
+			      deferred.resolve(obj); // call done() method
+			    }else{
+			      deferred.reject("HTTP error: " + xhr.status);
+			    }
+			  },false); 
+			  
+			  xhr.send();
+			  return deferred.promise();
+		};
+	 	function getGnumlist(){
+			  var deferred = $.Deferred();
+			  var xhr = new XMLHttpRequest();
+			  xhr.open("GET","./ajax/lGnumListCommand.do?",true);
+			  xhr.addEventListener('load',function(){
+			    if(xhr.status === 200){
+			      var obj = JSON.parse(xhr.response);
+			      deferred.resolve(obj); // call done() method
+			    }else{
+			      deferred.reject("HTTP error: " + xhr.status);
+			    }
+			  },false); 
+			  
+			  xhr.send();
+			  return deferred.promise();
+		};
+		$.when(getImglist(), getGnumlist()).done(function addLooks(result1, result2){
+			var upBars = $("#upBar .swiper-wrapper").children();
+			var i=0;
+			    upBars.forEach (slider => { 
+			    	var lookCode = 0;
 					var background = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
-					/* var look = $("<div class=\"background\"style=\"background-image: url(&quot;"+lookUrl+"&quot;)\"></div>"); */
-					var lCode = $("<p style=\"display:none;\">"+lookCode+"</p>");
-					$("#upBar .avatar:eq("+i+")").append(background);
-					/* $("#upBar .avatar:eq("+i+")").append(look); */
-					$(".avatar").append(lCode);
-					$("#upBar .small:eq("+i+")").text(""+lName);
-					$("#upBar .small:eq("+i+")").children().remove();
-				}
-		}	
-		addLooks();
-	}
+					var look = $("<div class=\"background\"style=\"background-image: url(&quot;"+result1[i]+"&quot;)\"></div>");
+						    	$(slider).children("div").append(background);
+						    	$(slider).children("div").append(look); 
+								$(".avatar").append(lCode);
+								$("#upBar .small:eq("+i+")").text(""+lName);
+								$("#upBar .small:eq("+i+")").children().remove();
+								i++;
+			    			  });
+			    i=null;			
+		}});	
+	} */
 </script>
 <style>
 /* div {
