@@ -66,13 +66,13 @@
 				var destination = null;
 				if (id == "collection"){
 					//ajax로 db저장후 페이지전환 X
-					destination = "./collectionInsertCommand.do";
+					destination = "collection";
 				} else if (id == "order"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "./orderInsertCommand.do";
+					destination = "order";
 				} else if (id == "share"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "./shareInsertCommand.do";
+					destination = "share";
 				}
 				var gNumTags = document.querySelectorAll("#palate .gNum");
 				var gNums = new Array();
@@ -82,21 +82,24 @@
 				gNums = gNums.join(",");
 				var formData = new FormData();
 				formData.append("gNums",gNums);
+				formData.append("destination", destination);
 				$.when(html2can()).done(function (result){
 					formData.append("lookImg",Blob);
 					console.log(formData.get("lookImg"));
 					 $.ajax({ 
 					        type : 'post',
-					        url : destination,
+					        url : "./CanvasUpload.do",
 					        data : formData,
 					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
-					        contentType : false// application/x-www-form-urlencoded; 방지!! 
-					    }).done(function(data){
-					    			console.log(data);
-							    	if (id != "collection"){
-									     window.location.href=xhr.responseText;
-								    }
-					           });
+					        contentType : false, // application/x-www-form-urlencoded; 방지!! 
+					        success : function(data) {
+					            if(data.result){
+					                alert("Success");
+					            }else{
+					                alert(data.result);
+					            } 
+					        }
+					 });
 				});
 				/* var xhr = new XMLHttpRequest(); */
 				/* console.log("gNums: "+formData.get("gNums"));

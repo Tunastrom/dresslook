@@ -15,6 +15,7 @@ public class LookDto {
 	private String g_nums;
 	//blob저장위해 필요
 	private long size;
+	//blob꺼낼때 필요
 	private String stringImage;
 	
 	@Override
