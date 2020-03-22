@@ -13,20 +13,30 @@ import java.util.List;
 import java.util.Scanner;
 
 import dto.GoodsDto;
+import dto.GoodsImageDto;
 
 public class GoodsDao2 extends DAO {
 
-	public List<GoodsDto> GoodsList() {
+	public List<GoodsDto> GoodsList(String no) {
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
-
 		try {
-			String sql = "select * from goods order by g_num";
+			String sql = null;
+			if (no.equals("0")) {
+				//성별, 좋아요 기반 추천 되도록 쿼리구현
+				sql = "select * from goods where g_sex = 051 order by g_num";
+			} else {
+				//성별, 좋아요, 상품코드 기반 추천 되도록 쿼리구현
+				sql = "select * from goods order by g_num where g_sex = 051 and g_code = ?";
+			}
+			
 			psmt = conn.prepareStatement(sql);
+			if  (!no.equals("0")) {
+				
+			}
 			rs = psmt.executeQuery(sql);
 
 			while (rs.next()) {
 				GoodsDto dto = new GoodsDto();
-				Blob blob = rs.getBlob("g_image");
 				dto.setG_num(rs.getInt("g_num"));
 				dto.setG_name(rs.getString("g_name"));
 				dto.setG_price(rs.getInt("g_price"));
@@ -36,6 +46,7 @@ public class GoodsDao2 extends DAO {
 				dto.setG_inven(rs.getString("g_inven"));
 				dto.setS_id(rs.getString("s_id"));
 				dto.setMaker(rs.getString("g_maker"));
+				Blob blob = rs.getBlob("g_image");
 				dto.setG_image(blob.getBytes(1, (int) blob.length()));
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
@@ -44,7 +55,6 @@ public class GoodsDao2 extends DAO {
 				dto.setG_status(rs.getString("g_status"));
 				list.add(dto);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -53,13 +63,37 @@ public class GoodsDao2 extends DAO {
 
 		return list;
 	}
+	
+	public List<GoodsImageDto> GIlist(){
+		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>(); 
+		
+		String sql = "select * from goods_image";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				GoodsImageDto dto = new GoodsImageDto();
+				Blob blob = rs.getBlob("gd_image");
+				dto.setG_num(rs.getInt("g_num"));
+				dto.setGd_image(blob.getBytes(1, (int) blob.length()));
+				dto.setImg_type(rs.getString("img_type"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
 
 	/*
 	 * public List<GoodsDto> GoodsWhereList(GoodsDto dto) { List<GoodsDto> list =
 	 * new ArrayList<GoodsDto>();
 	 * 
-	 * try { String sql = "select * from goods where order by g_num"; psmt =
-	 * conn.prepareStatement(sql); rs = psmt.executeQuery(sql);
+	 * try { String sql = "select * from goods where order by g_num";
+       psmt = conn.prepareStatement(sql); rs = psmt.executeQuery(sql);
 	 * 
 	 * while (rs.next()) { GoodsDto dto = new GoodsDto(); Blob blob =
 	 * rs.getBlob("g_image"); dto.setG_num(rs.getInt("g_num"));
@@ -78,7 +112,7 @@ public class GoodsDao2 extends DAO {
 	 */
 	
 	
-	public int BlobInsert(GoodsDto dto) {
+	public int BlobInsert1(GoodsDto dto) {
 		int n = 0;
 
 		String sql = "insert into GOODS"
@@ -93,7 +127,7 @@ public class GoodsDao2 extends DAO {
 			psmt.setString(5, dto.getColor());
 			psmt.setString(6, dto.getG_inven());
 			psmt.setString(7, dto.getS_id());
-			psmt.setString(8, dto.getMaker());
+			psmt.setString(8, dto.getMaker());	
 			psmt.setBinaryStream(9, new ByteArrayInputStream(dto.getG_image()),dto.getSize());
 			psmt.setString(10, dto.getG_info());
 			psmt.setString(11, dto.getG_code());
@@ -103,10 +137,55 @@ public class GoodsDao2 extends DAO {
 			n = psmt.executeUpdate();
 			System.out.println("업로드 성공!");
 			psmt.close();
-			conn.close();
 		} catch (SQLException e) {
 			System.err.println("sql error = " + e);
+		} finally {
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close();
+		} 
+		
+		return n;
+	}
+	
+
+	public int BlobInsert2(GoodsImageDto dto){
+		int n = 0;
+		
+		String sql1 = "select max(g_num) g_num from goods";
+		int g_num = 0;
+		try {
+			psmt = conn.prepareStatement(sql1);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+			g_num = rs.getInt("g_num");	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String sql2 = "insert into GOODS_IMAGE"
+				   + "(g_num, gd_image, img_type)"
+				   + " values(?,?,?)";
+		try {
+			psmt=conn.prepareStatement(sql2);
+			psmt.setInt(1, g_num);
+			psmt.setBinaryStream(2,new ByteArrayInputStream(dto.getGd_image()),dto.getSize());
+			psmt.setString(3,dto.getImg_type());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close();
 		}
 		return n;
 	}
 }
+

@@ -33,7 +33,7 @@ public class SellerDao extends DAO {
 			psmt.setString(3, dto.getS_cname());
 			psmt.setString(4, dto.getS_email());
 			psmt.setString(5, dto.getPhone());
-			psmt.setInt(6, dto.getS_zip());
+			psmt.setString(6, dto.getS_zip());
 			psmt.setString(7, dto.getS_addr1());
 			psmt.setString(8, dto.getS_addr2());
 			psmt.executeUpdate();

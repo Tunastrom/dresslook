@@ -13,14 +13,13 @@ public class LookDao extends DAO {
 
 	private LookDto dto;
 	private ArrayList<LookDto> list;
-
 	public LookDao() {
 		super();
 	}
-
+	
 	public ArrayList<LookDto> LooksList() {
 		list = new ArrayList<LookDto>();
-		String sql = "select * from look order by l_code";
+		String sql = "select * from look order by l_code ";
 		//where 조건으로 open 여부, 추천기능 차후구현
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -49,15 +48,24 @@ public class LookDao extends DAO {
 		return dto;
 	}
 
+	/*
+	 * public ArrayList<LookDto> LookDetailList(){ list = new ArrayList<LookDto>();
+	 * String sql1 = "" String sql2 =
+	 * "select rownum, a.* from look_detail a where rownum <= 0 order by l_code";
+	 * 
+	 * }
+	 */
+	
 //	Look Insert
 	public int LookInsert(LookDto dto) {
 		int n = 0;
 		String sql = "insert into look(l_code, l_image, m_id, l_open) "
 				   + "values((select nvl(max(l_code),0)+1 from look),?,?,?)";
 		try {
+			
 			ByteArrayInputStream inputStream = new ByteArrayInputStream(dto.getL_image());
 			psmt = conn.prepareStatement(sql);
-			psmt.setBinaryStream(1, inputStream,dto.getSize());
+			psmt.setBinaryStream(1, inputStream);
 			psmt.setString(2, dto.getM_id());
 			psmt.setString(3, dto.getL_open());
 			n = psmt.executeUpdate();
@@ -65,28 +73,23 @@ public class LookDao extends DAO {
 			e.printStackTrace();
 		}
 		return n;
-		
 	}
 	
 	public int LookDetailInsert(LookDto dto) {
 		int n = 0;
 		String sql1= "select nvl(max(l_code),0) l_code from look";
 		String gnums = dto.getG_nums();
-		String gnum[] = gnums.split("-");
+		String gnum[] = gnums.split(",");
 		System.out.println("gnum.split.length: "+gnum.length);
 		String sql2 = "insert into LOOK_DETAIL(l_code, g_num) "
 			       + "values(?, ?)";  
-		
 		try {
-			ByteArrayInputStream inputStream = new ByteArrayInputStream(dto.getL_image());
 			psmt = conn.prepareStatement(sql1);
 			rs = psmt.executeQuery();
-			
 			if(rs.next()) {
 				String lcode = rs.getString("l_code");
-				
 				psmt = conn.prepareStatement(sql2);
-				for (int i=0; i<gnum.length; i++) {
+				for (int i=0; i< gnum.length; i++) {
 					psmt.setString(1, lcode);
 					System.out.println("gnum["+i+"]="+gnum[i]);
 					psmt.setInt(2, Integer.parseInt(gnum[i]));
@@ -99,8 +102,6 @@ public class LookDao extends DAO {
 		close();
 		return n;
 	}
-	
-	
 	
 	public int update(MemberDto dto) {
 		int n = 0;
@@ -124,7 +125,6 @@ public class LookDao extends DAO {
 		close();
 		return n;
 	}
-
 	public String getCount(String m_id) {
 
 		String sql = "SELECT count(l_code) FROM USER WHERE M_ID = ?";

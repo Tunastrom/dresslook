@@ -14,8 +14,9 @@ import dao.GoodsDao;
 import dao.LookDao;
 import dto.GoodsDto;
 import dto.LookDto;
+import net.sf.json.JSONArray;
 
-public class LooksList implements Command {
+public class LooksListCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -29,10 +30,9 @@ public class LooksList implements Command {
 			list.get(i).setStringImage(changeString);
 			if (list.get(i).getStringImage() != null && list.get(i).getStringImage() !="") {
 				System.out.println("stringImage isn't null");
-			}	
+			}
 		}
-		request.setAttribute("list", list);
-
-		return "HTML/YCW/LooksList.jsp";
+		String list1JS = JSONArray.fromObject(list).toString(); 
+		return "ajax:"+list1JS;
 	}
 }

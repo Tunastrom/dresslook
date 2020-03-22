@@ -3,6 +3,7 @@ package dto;
 import java.util.Arrays;
 
 public class GoodsDto {
+	//이미지 insert할때 사용
 	private Integer g_num;
 	private String g_name;
 	private Integer g_price;
@@ -18,23 +19,25 @@ public class GoodsDto {
 	private String g_sex;
 	private int g_prior;
 	private String g_status;
-	private String stringImage;
-
 	private long size;
+	//이미지 select후 반환할 때 사용
+	private String stringImage;
 
 	
 	@Override
 	public String toString() {
 		return "GoodsDto [g_num=" + g_num + ", g_name=" + g_name + ", g_price=" + g_price + ", s_price=" + s_price
 				+ ", g_size=" + g_size + ", color=" + color + ", g_inven=" + g_inven + ", s_id=" + s_id + ", maker="
-				+ maker + ", g_image=" + Arrays.toString(g_image) + ", g_info=" + g_info + ", g_code=" + g_code
-				+ ", g_sex=" + g_sex + ", g_prior=" + g_prior + ", g_status=" + g_status + ", stringImage="
-				+ stringImage + ", size=" + size + "]";
+				+ maker + ", g_image=" + Arrays.toString(g_image) + ", g_image_pal=" 
+				+ ", g_info=" + g_info + ", g_code=" + g_code + ", g_sex=" + g_sex + ", g_prior=" + g_prior
+				+ ", g_status=" + g_status + ", stringImage=" + stringImage + ", stringImage_pal="
+				+ ", size=" + size +"]";
 	}
-	
+
 	public Integer getG_num() {
 		return g_num;
 	}
+	
 	public void setG_num(Integer g_num) {
 		this.g_num = g_num;
 	}
@@ -89,6 +92,7 @@ public class GoodsDto {
 	public byte[] getG_image() {
 		return g_image;
 	}
+	
 	public void setG_image(byte[] g_image) {
 		this.g_image = g_image;
 	}

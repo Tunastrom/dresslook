@@ -46,6 +46,9 @@ public class MemberupdateCk implements Command {
 		dto.setM_email(email);
 		dto.setM_phone(phone);
 		dto.setM_zip(zip);
+		dto.setM_add1(addr1);
+		dto.setM_add2(addr2);
+		dto.setM_birth(birth);
 		dto.setM_addr1(addr1);
 		dto.setM_addr2(addr2);
 		dto.setM_birth(sBirth);

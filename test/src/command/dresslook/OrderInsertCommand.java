@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class LookInsert implements Command{
+public class OrderInsertCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

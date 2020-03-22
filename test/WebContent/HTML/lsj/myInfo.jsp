@@ -11,10 +11,12 @@
 <script>
 	$(document).ready(function() {
 		$("#updatebtn").click(function() {
+<<<<<<< HEAD
+=======
 			document.frm.action = "memberupdateCk.do";
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 			document.frm.submit();
 		});
-
 	});
 </script>
 
@@ -23,7 +25,11 @@
 <body>
 
 
+<<<<<<< HEAD
+	<form id="frm" action="memberupdateCK.do" method="post">
+=======
 	<form name="frm" method="post">
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 		<!-- page content starts -->
 		<div class="has-background bg-default-light">
 
@@ -63,9 +69,13 @@
 							<label class="form-control-label">생년월일</label>
 						</div>
 					</div>
+<<<<<<< HEAD
+					<a href="" id="updatebtn" class="btn btn-lg btn-default btn-block my-4">수정</a>
+=======
 
 
 					<span  id="updatebtn" class="btn btn-lg btn-default btn-block my-4">수정</span>
+>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 				</div>
 			</div>
 		</div>
