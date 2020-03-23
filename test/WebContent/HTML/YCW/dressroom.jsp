@@ -67,18 +67,19 @@
 				function html2can(){
 					var deferred = $.Deferred();
 					try{
-						html2canvas(document.querySelector("#palate").parentElement)
-						.then(function(canvas) {
+						/* var Comcanvas = document.createElement("canvas");
+						Comcanvas.width=400; Comcanvas.height=560; */
+						html2canvas(document.querySelector("#palate").parentElement,
+								    {backgroundColor: null , scale: 1})	
+						.then(function(canvas){
+							/* Comcanvas.drawImage(canvas, 0, 0); */
+							console.log(canvas);
 							var DataUrl = canvas.toDataURL();
-							var a = $("<a></a>");
-							a.href = DataUrl.replace("image/png","image/octect-stream");
-							a.download = 'C:/Users/User/Downloads/test.png';
-							a.click();
-						/* 	$("body").append("<img src=\""+DataUrl+"\">"); */
+							$("body").append("<img src=\""+DataUrl+"\">"); 
 							Blob = dataURItoBlob(DataUrl);
 							console.log("toDataURL: "+ Blob);
 							deferred.resolve(Blob);
-						});
+						}); 
 					} catch (err){
 						deferred.reject("html2canvas Error");
 					}
@@ -324,7 +325,6 @@
 			    			  });
 			    i=null;			
 	}	
-	function(){};
 </script>
 <style>
 /* div {
@@ -468,10 +468,10 @@
 				</div>
 				<!-- my/추천룩이미지 -->
 				<!-- 팔레트  -->
-				<div class="row" style="min-width:400px; max-width:800px; minpadding: 0px;">
+				<div class="row" style="min-width:400px; max-width:800px; padding: 0px;">
 					<div class="col" style="padding: 0px;"></div>
-					<div class="col-auto" style="padding: 0px;">
-						<div class="container" id="palate">
+					<div class="col-auto" style="width:400px; height:560px; padding: 0px;">
+						<div class="container" id="palate" style="padding:0px;">
 							<div class="box">
 								<div class="front">
 								</div>

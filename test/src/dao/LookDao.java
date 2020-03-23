@@ -93,7 +93,7 @@ public class LookDao extends DAO {
 		String gnums = dto.getG_nums();
 		String gnum[] = gnums.split(",");
 		System.out.println("gnum.split.length: "+gnum.length);
-		String sql2 = "insert into LOOK_DETAIL(l_code, g_num) "
+		String sql2 = "insert into LOOK_DETAIL(l_code, g_nums) "
 			       + "values(?, ?)";  
 		try {
 			psmt = conn.prepareStatement(sql1);
