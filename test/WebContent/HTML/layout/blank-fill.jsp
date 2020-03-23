@@ -51,8 +51,7 @@
     <decorator:head/> 
 </head>
 
-<body class="ui-rounded sidebar-fill header-fill" data-page="homepage">
-   
+<body class="ui-rounded sidebar-fill header-fill" data-page="homepage"> 
     <div class="sidebar sidebar-left overlay-sidebar">
         <div class="content">
             <h5 class="text-center mb-0 username-text">Maxartkiller</h5>

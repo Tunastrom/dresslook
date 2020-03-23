@@ -67,12 +67,9 @@
 				function html2can(){
 					var deferred = $.Deferred();
 					try{
-						/* var Comcanvas = document.createElement("canvas");
-						Comcanvas.width=400; Comcanvas.height=560; */
 						html2canvas(document.querySelector("#palate").parentElement,
-								    {backgroundColor: null , scale: 1})	
+								    {backgroundColor: null , scale: 1, x: 192.5, y: 210})	
 						.then(function(canvas){
-							/* Comcanvas.drawImage(canvas, 0, 0); */
 							console.log(canvas);
 							var DataUrl = canvas.toDataURL();
 							$("body").append("<img src=\""+DataUrl+"\">"); 
@@ -315,14 +312,12 @@
 	function addLooks(result){
 			var upBars = $("#upBar .swiper-wrapper").children();
 			    $.each(upBars,(i,slider) => { 
-					var background = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
-					var look = $("<div class=\"background\"style=\"background-image: url(&quot;"+result[i].stringImage+"&quot;)\"></div>");
-						    	$(slider).children("div").append(background);
-						    	$(slider).children("div").append(look);
-								$("#upBar .small:eq("+i+")").text(""+result[i].m_id);
-								$("#upBar .small:eq("+i+")").children().remove();
-								$(slider).append("<p style=\"display: none;\">"+result[i].g_nums+"</p>");
-			    			  });
+					$(slider).children().append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
+					$(slider).children().append("<div class=\"background\"style=\"background-image: url(&quot;"+result[i].stringImage+"&quot;)\"></div>");
+			    	$("#upBar .small:eq("+i+")").text(""+result[i].m_id);
+					$("#upBar .small:eq("+i+")").children().remove();
+					$(slider).append("<p style=\"display: none;\">"+result[i].g_nums+"</p>");
+			    });
 			    i=null;			
 	}	
 </script>
