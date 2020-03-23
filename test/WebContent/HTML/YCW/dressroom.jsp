@@ -82,7 +82,7 @@
 					} catch (err){
 						deferred.reject("html2canvas Error");
 					}
-					return deferred.promise();	  
+					return deferred.promise();
 				}
 				var destination = null;
 				if (id == "collection"){
@@ -324,6 +324,7 @@
 			    			  });
 			    i=null;			
 	}	
+	function(){};
 </script>
 <style>
 /* div {
