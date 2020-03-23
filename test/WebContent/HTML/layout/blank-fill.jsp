@@ -51,19 +51,9 @@
     <decorator:head/> 
 </head>
 
-<body class="ui-rounded sidebar-fill header-fill" data-page="homepage">
-   
-   <%--  <div class="background reveal-background">
-        <img src="${pageContext.request.contextPath}/HTML/assets/img/image7.jpg" alt="">
-    </div> --%>
-    
+<body class="ui-rounded sidebar-fill header-fill" data-page="homepage"> 
     <div class="sidebar sidebar-left overlay-sidebar">
         <div class="content">
-           <%--  <figure class="avatar avatar-100 rounded-circle has-background mx-auto username d-block">
-                <div class="background">
-                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
-                </div>
-            </figure> --%>
             <h5 class="text-center mb-0 username-text">Maxartkiller</h5>
             <p class="text-center small text-mute username-text">New York, United States</p>
 
@@ -98,7 +88,7 @@
                 </div>
             </div>
         </header>
-        <div class="content container-fluid">
+        <div id="ContentsArea" class="content container-fluid">
             <!-- page content start -->
 			<decorator:body/>
             <!-- page content ends -->

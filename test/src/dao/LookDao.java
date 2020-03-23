@@ -19,10 +19,12 @@ public class LookDao extends DAO {
 	
 	public ArrayList<LookDto> LooksList() {
 		list = new ArrayList<LookDto>();
-		String sql = "select * from look order by l_code ";
+		String sql1 = "select * from look order by l_code ";
+		String sql2 = "select g_num from look_detail where l_code=?";
 		//where 조건으로 open 여부, 추천기능 차후구현
+		String l_code = null;
 		try {
-			psmt = conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql1);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				dto = new LookDto();
@@ -30,9 +32,18 @@ public class LookDao extends DAO {
 				dto.setL_code(rs.getString("l_code"));
 				dto.setL_image(blob.getBytes(1, (int) blob.length()));
 				dto.setM_id(rs.getString("m_id"));
-				dto.setL_open(rs.getString("l_open"));
 				list.add(dto);
 				/* System.out.println(list); */
+			}
+			psmt = conn.prepareStatement(sql2);
+			for(int i=0; i<list.size(); i++) {
+				dto = list.get(i);
+				psmt.setString(1, dto.getL_code());
+				rs = psmt.executeQuery();
+				while (rs.next()) {
+					dto.setG_nums(rs.getString("g_num"));
+					list.set(i,dto);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,19 +52,20 @@ public class LookDao extends DAO {
 		return list;
 	}
 
-	public LookDto select(String l_code) {
-		dto = new LookDto();
-
-		close();
-		return dto;
-	}
-
+	
+	 public ArrayList<LookDto> LookDetailList(){ 
+		 list = new ArrayList<LookDto>();
+		 String sql1 = "select l_code from "; 
+		 
+		 String sql2 ="select rownum, a.* from look_detail a where rownum <= 0 order by l_code";
+		 return list;
+	 }
+	 
+	
 	/*
-	 * public ArrayList<LookDto> LookDetailList(){ list = new ArrayList<LookDto>();
-	 * String sql1 = "" String sql2 =
-	 * "select rownum, a.* from look_detail a where rownum <= 0 order by l_code";
+	 * public LookDto select(String l_code) { dto = new LookDto();
 	 * 
-	 * }
+	 * close(); return dto; }
 	 */
 	
 //	Look Insert
@@ -81,7 +93,7 @@ public class LookDao extends DAO {
 		String gnums = dto.getG_nums();
 		String gnum[] = gnums.split(",");
 		System.out.println("gnum.split.length: "+gnum.length);
-		String sql2 = "insert into LOOK_DETAIL(l_code, g_num) "
+		String sql2 = "insert into LOOK_DETAIL(l_code, g_nums) "
 			       + "values(?, ?)";  
 		try {
 			psmt = conn.prepareStatement(sql1);

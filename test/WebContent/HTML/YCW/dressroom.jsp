@@ -7,6 +7,22 @@
 <title>Insert title here</title>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
+	// 상단의 선택한 상품 표시하는 영역을 아작스에서 가져오는 것으로 처리
+	/* $(document).ready(function() {
+		var url = "/test/ajax/imageGet.do"
+		var data = null;
+		var callback = function(lookList) {
+			console.log(lookList);
+			for (i = 0; i < lookList.length; i++) {
+				$("#upBar").append("<img src=\""+lookList[i].link+"\">");
+			}
+			$("#upBar").append("<button>&gt;</button>");
+		}
+		$.getJSON(url, data, callback);
+		console.log("end");
+	}); */
+</script>
+<script>	
 	window.addEventListener("load", function() {
 		var categoryIndex = 0;
 		var goodsIndex = 0;
@@ -16,8 +32,8 @@
 		var gNumSelected = null;
 		category();
 		formEvent();
-		getGoodsList();
-		/* getlooksList(); */
+	 	getGoodsList(); 
+		getlooksList(); 
 	});
 	
 	function category(){
@@ -51,17 +67,20 @@
 				function html2can(){
 					var deferred = $.Deferred();
 					try{
-						html2canvas(document.querySelector("#palate").parentElement)
-						.then(function(canvas) {
-							var DataUrl = canvas.toDataURL("image/png");
+						html2canvas(document.querySelector("#palate").parentElement,
+								    {backgroundColor: null , scale: 1, x: 192.5, y: 210})	
+						.then(function(canvas){
+							console.log(canvas);
+							var DataUrl = canvas.toDataURL();
+							$("body").append("<img src=\""+DataUrl+"\">"); 
 							Blob = dataURItoBlob(DataUrl);
 							console.log("toDataURL: "+ Blob);
 							deferred.resolve(Blob);
-						});
+						}); 
 					} catch (err){
 						deferred.reject("html2canvas Error");
 					}
-					return deferred.promise();	  
+					return deferred.promise();
 				}
 				var destination = null;
 				if (id == "collection"){
@@ -101,20 +120,6 @@
 					        }
 					 });
 				});
-				/* var xhr = new XMLHttpRequest(); */
-				/* console.log("gNums: "+formData.get("gNums"));
-				console.log("lookImg: "+formData.get("lookImg"));
-				xhr.onload = function(){
-					if(xhr.status === 200 || xhr.status === 201){
-						if (id != "collection"){
-							window.location.href=xhr.responseText;
-						}
-					} else {
-						alert("look을 전송중 에러가 발생하였습니다.");
-					}	
-				}
-				xhr.open("POST", destination);
-				xhr.send(formData); */
 			}			
 		});
 	}
@@ -290,65 +295,44 @@
 		} 
 	}	
 	
-	/* function getlooksList(){
-		function getImglist(){
-			  var deferred = $.Deferred();
+	function getlooksList(){
 			  var xhr = new XMLHttpRequest();
-			  xhr.open("GET","./ajax/looksListCommand.do?",true);
-			  xhr.addEventListener('load',function(){
-			    if(xhr.status === 200){
-			      var obj = JSON.parse(xhr.response);
-			      deferred.resolve(obj); // call done() method
+			  xhr.open("GET","./ajax/lookListCommand.do?",true);
+			  xhr.onreadystatechange =function(){
+				if (this.readyState == 4 && this.status == 200) {
+			      var obj = JSON.parse(xhr.responseText);
+			      addLooks(obj);
 			    }else{
-			      deferred.reject("HTTP error: " + xhr.status);
+			
 			    }
-			  },false); 
-			  
+			  }
 			  xhr.send();
-			  return deferred.promise();
 		};
-	 	function getGnumlist(){
-			  var deferred = $.Deferred();
-			  var xhr = new XMLHttpRequest();
-			  xhr.open("GET","./ajax/lGnumListCommand.do?",true);
-			  xhr.addEventListener('load',function(){
-			    if(xhr.status === 200){
-			      var obj = JSON.parse(xhr.response);
-			      deferred.resolve(obj); // call done() method
-			    }else{
-			      deferred.reject("HTTP error: " + xhr.status);
-			    }
-			  },false); 
-			  
-			  xhr.send();
-			  return deferred.promise();
-		};
-		$.when(getImglist(), getGnumlist()).done(function addLooks(result1, result2){
+		
+	function addLooks(result){
 			var upBars = $("#upBar .swiper-wrapper").children();
-			var i=0;
-			    upBars.forEach (slider => { 
-			    	var lookCode = 0;
-					var background = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
-					var look = $("<div class=\"background\"style=\"background-image: url(&quot;"+result1[i]+"&quot;)\"></div>");
-						    	$(slider).children("div").append(background);
-						    	$(slider).children("div").append(look); 
-								$(".avatar").append(lCode);
-								$("#upBar .small:eq("+i+")").text(""+lName);
-								$("#upBar .small:eq("+i+")").children().remove();
-								i++;
-			    			  });
+			    $.each(upBars,(i,slider) => { 
+					$(slider).children().append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
+					$(slider).children().append("<div class=\"background\"style=\"background-image: url(&quot;"+result[i].stringImage+"&quot;)\"></div>");
+			    	$("#upBar .small:eq("+i+")").text(""+result[i].m_id);
+					$("#upBar .small:eq("+i+")").children().remove();
+					$(slider).append("<p style=\"display: none;\">"+result[i].g_nums+"</p>");
+			    });
 			    i=null;			
-		}});	
-	} */
+	}	
 </script>
 <style>
 /* div {
 	border: 1px solid gray;
-} */
+	}  
+*/
+#cateBar { width: 100px; }
+} 
 
 .pal {
 	display: none;
 }
+
 
 .selected {
 	display: none;
@@ -358,6 +342,7 @@
 	width: 100px;
 	height: 50px;
 } 
+
 
 .C_botton {
 	color: #f94620;
@@ -389,6 +374,11 @@
 	/* margin: 0px 30px; */
 }
 
+.upSlider{
+	margin:0;
+}
+
+
 #cateBar {
 	width: 100px;
 }
@@ -419,52 +409,52 @@
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
-									<p class="text-uppercase small"><br></p>
+									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 							</div>
 						</div>
@@ -473,10 +463,10 @@
 				</div>
 				<!-- my/추천룩이미지 -->
 				<!-- 팔레트  -->
-				<div class="row" style="min-width:400px; max-width:800px; minpadding: 0px;">
+				<div class="row" style="min-width:400px; max-width:800px; padding: 0px;">
 					<div class="col" style="padding: 0px;"></div>
-					<div class="col-auto" style="padding: 0px;">
-						<div class="container" id="palate">
+					<div class="col-auto" style="width:400px; height:560px; padding: 0px;">
+						<div class="container" id="palate" style="padding:0px;">
 							<div class="box">
 								<div class="front">
 								</div>
@@ -488,7 +478,6 @@
 				<!-- 팔레트  -->
 				<!-- 룩이미지처리 -->
 					<div class="row" id="lookControll" style="min-width:400px; max-width:800px; padding: 0; margin: 0; background-color: #ffe9e9;">
-							   <!--  <input type="hidden" name="WriteORnot" id="WriteORnot" value="0"> -->	    
 								<div class="col-3" id="order" style="color: #f94620">주문</div>
 								<div class="col-3" id="collection" style="color: #f94620">컬렉션</div>
 								<div class="col-3" id="share" style="color: #f94620">룩공유</div>
