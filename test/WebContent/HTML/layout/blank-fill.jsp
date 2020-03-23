@@ -74,7 +74,7 @@
                 <a href="/test/memberlist.do" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
                 <a href="/test/myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
                 </div>
-                <a href="loginCommand.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
+                <a href="loginSelect.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
             </div>
         </div> 
     <div class="main-container">

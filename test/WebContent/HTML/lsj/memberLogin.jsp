@@ -65,7 +65,7 @@
 								<div
 									class="form-group float-label style-light position-relative">
 									<div class="bottom-right mb-2   ">
-										<a href="forgotid.jsp" class="text-white">Forgot?</a>
+										<a href="memberIdSearch.do" class="text-white">Forgot?</a>
 									</div>
 									<input type="text" class="form-control " id="id" name="id">
 									<label class="form-control-label">Id</label>
@@ -73,7 +73,7 @@
 								<div
 									class="form-group float-label style-light position-relative">
 									<div class="bottom-right mb-2   ">
-										<a href="forgotpassword.jsp" class="text-white">Forgot?</a>
+										<a href="memberPwSearch.do" class="text-white">Forgot?</a>
 									</div>
 									<input type="password" class="form-control " id="pwd"
 										name="pwd"> <label class="form-control-label">Password</label>
@@ -89,7 +89,7 @@
 				</div>
 
 				<div class="col-12 align-self-end mb-4 text-center">
-					Don't have account yet?<br> <a href="memberInsert.do"
+					Don't have account yet?<br> <a href="memberSelect.do"
 						class="text-white font-weight-bold">Sign up</a> here.
 				</div>
 			</div>

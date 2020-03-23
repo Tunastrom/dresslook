@@ -28,8 +28,11 @@ public class MemberupdateCk implements Command {
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
 
-		DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat sdFormat = new SimpleDateFormat("yyyy-mm-dd");
+		System.out.println("birth:" + request.getParameter("birth"));
+
 		Date birth = (Date) request.getSession().getAttribute("birth");
+
 		try {
 			birth = (Date) sdFormat.parse(request.getParameter("birth"));
 		} catch (ParseException e) {
@@ -38,17 +41,13 @@ public class MemberupdateCk implements Command {
 		String id = (String) request.getSession().getAttribute("id");
 
 		MemberDto dto = new MemberDto();
-		
+
 		java.util.Date sBirth = new java.sql.Date(birth.getTime());
-		
 
 		dto.setM_name(name);
 		dto.setM_email(email);
 		dto.setM_phone(phone);
 		dto.setM_zip(zip);
-		dto.setM_add1(addr1);
-		dto.setM_add2(addr2);
-		dto.setM_birth(birth);
 		dto.setM_addr1(addr1);
 		dto.setM_addr2(addr2);
 		dto.setM_birth(sBirth);

@@ -43,6 +43,7 @@ import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
 import command.manager.UpdateM;
+import command.manager.loginSelect;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
@@ -114,6 +115,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberInsertOk.do", new memberInsertOk());
 		cont.put("/ajax/registerCheck.do", new registerCheck());
 		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
+		cont.put("/loginSelect.do", new loginSelect());
 
 		// my
 		cont.put("/login.do", new LoginCommand());
@@ -127,11 +129,9 @@ public class test_Con extends HttpServlet {
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
-		
 		cont.put("/myCoupon.do", new MyCouponCommand());
 		
-		cont.put("/memberPwSearch.do", new PwSearchCommand());
-		cont.put("/myCoupon.do", new MyCouponCommand());
+		
 		// manager
 
 		// seller
