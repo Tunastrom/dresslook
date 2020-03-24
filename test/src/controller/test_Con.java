@@ -136,9 +136,9 @@ public class test_Con extends HttpServlet {
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
-		cont.put("/GoodsList.do", new GoodsList());
+		/* cont.put("/GoodsList.do", new GoodsList()); */
 		cont.put("/goodsInsert.do", new goodsInsert());
-		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
+		/* cont.put("/InsertGoodsOk.do", new InsertGoodsOk()); */
 		cont.put("/mgoods.do", new Mgoods());
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력

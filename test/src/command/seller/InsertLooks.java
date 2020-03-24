@@ -15,7 +15,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.Command;
 import dao.GoodsDao;
-import dao.GoodsDao2;
+import dao.GoodsDao;
 import dao.LookDao;
 import dto.LookDto;
 
@@ -23,10 +23,12 @@ public class InsertLooks implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    String uploadPath = request.getSession() // session 기본 객체
-				.getServletContext() // application 기본객체
-				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
-									    // 구해옴
+			String addPath = "c:Temp";
+		    String uploadPath = addPath + File.separator + "goodsImgs/lookImg";
+//		    	request.getSession() // session 기본 객체
+//				.getServletContext() // application 기본객체
+//				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
+//									    // 구해옴
 			MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 					request, 
 					uploadPath, // 파일을 저장할 디렉토리 지정
@@ -45,10 +47,10 @@ public class InsertLooks implements Command {
 		         fileSize = fileObj.length();  
 		     }
 		     
-		     byte[] file = Files.readAllBytes(Paths.get(uploadPath+"/"+fileName));
+		/* byte[] file = Files.readAllBytes(Paths.get(uploadPath+"/"+fileName)); */
 		     		
 		     LookDto dto = new LookDto();
-		     dto.setL_image(file);
+		/* dto.setL_image(file); */
 		     dto.setG_nums(multi.getParameter("gnums"));
 		     dto.setM_id(multi.getParameter("mid"));
 		     dto.setL_open(multi.getParameter("lopen"));
