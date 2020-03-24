@@ -55,7 +55,8 @@ import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
-import command.my.memberInsertOk;
+import command.my.memberInsertOk1;
+import command.my.memberInsterOk;
 import command.my.memberSelect;
 import command.my.registerCheck;
 import command.seller.GoodsList;
@@ -112,7 +113,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/loginCommand.do", new LoginCommand());
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
-		cont.put("/memberInsertOk.do", new memberInsertOk());
+		cont.put("/memberInsertOk.do", new memberInsterOk());
 		cont.put("/ajax/registerCheck.do", new registerCheck());
 		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
 		cont.put("/loginSelect.do", new loginSelect());

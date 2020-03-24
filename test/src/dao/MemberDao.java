@@ -90,11 +90,11 @@ public class MemberDao extends DAO {
 	}
 
 //	회원가입
-	public int insert(String userID, String name, String userPassword1, String birth, String email, String pnum,
-			Integer zip, String add1, String add2, String gender) {
+	public int insert(MemberDto dto) {
 		int n = 0;
-		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, m_phone, m_zip, m_add1, m_add2, m_sex, m_recent, m_grade)"
-				+ " values(?,?,?,?,?,?,?,?,?,?,sysdate,'210')";
+		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, "
+				+ " m_phone, m_zip, m_add1, m_add2, m_sex, m_join, m_au, m_grade, m_status, m_recent, m_point)"
+				+ " values(?,?,?,?,?,?,?,?,?,?,sysdate,'210', '040', '060', sysdate, 0)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_id());

@@ -49,7 +49,7 @@
 							<div class="logo-header"></div>
 						</div>
 						<div class="col-auto">
-							<a href="memberLogin.jsp" class="btn text-white">Signup</a>
+							<a href="memberInsert.do" class="btn text-white">Signup</a>
 						</div>
 					</div>
 				</div>

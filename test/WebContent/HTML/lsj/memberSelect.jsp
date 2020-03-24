@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="col-12 align-self-end mb-4 text-center">
-                    Have account already?<br><a href="loginSelect.do" class="text-white font-weight-bold">Sign in</a> here.
+                    Already have account?<br><a href="loginSelect.do" class="text-white font-weight-bold">Sign in</a> here.
                 </div>
             </div>
         </div>
