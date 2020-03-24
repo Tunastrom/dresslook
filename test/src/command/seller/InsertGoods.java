@@ -16,7 +16,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.Command;
-import dao.GoodsDao2;
+import dao.GoodsDao;
 import dto.GoodsDto;
 import dto.GoodsImageDto;
 
@@ -25,10 +25,13 @@ public class InsertGoods implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    String uploadPath = request.getSession() // session 기본 객체
-				.getServletContext() // application 기본객체
-				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
-									    // 구해옴
+		    /* String addPath = "c:/Temp"; */
+		    String uploadPath = /* addPath + File.separator + "goodsImgs"; */
+		                     request.getSession()
+		                     .getServletContext() // application 기본객체
+		                     .getRealPath("/images/goodsImg"); // session 기본 객체 .getServletContext() // application 기본객체
+		                    // upload는 폴더명 / 폴더의 경로를 // 구해옴
+		 	
 		    System.out.println(uploadPath);
 			MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 					request, 
@@ -37,12 +40,11 @@ public class InsertGoods implements Command {
 					"utf-8", // 인코딩 방식 지정
 					new DefaultFileRenamePolicy()// 중복 파일 처리(동일한 파일명이 업로드되면 뒤에 숫자 등을 붙여 중복 회피)
 			); 
-			
 		     String fileName = "";
 		     File fileObj = null;  //java.io 사용함
 		     long fileSize = 0;
 		     //업로드 된 복수의 파일 Enumeration 타입 변수에 저장 
-			 Enumeration files = multi.getFileNames();  
+			 Enumeration files = multi.getFileNames(); 
 			 //Goodsdto, GoodsPaleteDto 선언
 			 GoodsDto dto = new GoodsDto();
 			 GoodsImageDto GIdto = new GoodsImageDto();
@@ -56,16 +58,18 @@ public class InsertGoods implements Command {
 			         fileObj = multi.getFile(fileInput); //파일객체 가져옴
 					 fileSize = fileObj.length();  
 			     } 
-				 byte[] file = Files.readAllBytes(Paths.get(uploadPath+"/"+fileName)); //파일 바이트 타입으로 변환
+			/* byte[] file = Files.readAllBytes(Paths.get(uploadPath+"/"+fileName)); */ //파일 바이트 타입으로 변환
 				 //색깔별 옷 저장기능 구현시 if문에 구현
 				 if (palAndnot==0) {
-					 GIdto.setGd_image(file);
+				/* GIdto.setGd_image(file); */
+					 GIdto.setGd_fileName(fileName);
 					 GIdto.setSize(fileSize);
 					 GIdto.setImg_type("pal");
-					 file=null;
+				/* file=null; */
 					 fileSize=0;
 				 } else if (palAndnot==1) {
-					 dto.setG_image(file);
+				/* dto.setG_image(file); */
+					 dto.setG_fileName(fileName);
 					 dto.setSize(fileSize);
 				 }
 				 palAndnot++;
@@ -86,16 +90,16 @@ public class InsertGoods implements Command {
 		     dto.setG_prior(Integer.parseInt(multi.getParameter("prior")));
 		     dto.setG_status(multi.getParameter("status"));
 		     
-		    GoodsDao2 dao = new GoodsDao2();
+		    GoodsDao dao = new GoodsDao();
 		    int result1=0;
-			result1 = dao.BlobInsert1(dto);
+			result1 = dao.goodsInsert(dto);
 		    int result2=0;
-			result2 = dao.BlobInsert2(GIdto);
+			result2 = dao.giInsert(GIdto);
 		    System.out.println(result1);
 		    System.out.println(result2);
 		    request.setAttribute("result1", result1);
 		    request.setAttribute("result2", result2);
-			return "redirect:GoodsList.do";
+			return "goodsInsert.do";
 		
 	}
 }

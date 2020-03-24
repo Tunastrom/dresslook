@@ -33,7 +33,7 @@
 		category();
 		formEvent();
 	 	getGoodsList(); 
-		getlooksList(); 
+	    getlooksList();   
 	});
 	
 	function category(){
@@ -68,7 +68,7 @@
 					var deferred = $.Deferred();
 					try{
 						html2canvas(document.querySelector("#palate").parentElement,
-								    {backgroundColor: null , scale: 1, x: 192.5, y: 210})	
+								    {backgroundColor: null , scale: 1/* , x: 192.5, y: 210 */})	
 						.then(function(canvas){
 							console.log(canvas);
 							var DataUrl = canvas.toDataURL();
@@ -188,9 +188,8 @@
 				var card = $("<div class=\"card border-0 mb-4\"></div>");
 				var cardBody = $("<div class=\"card-body p-0\"></div>");
 				var hasBack = $("<div class=\"h-150px has-background rounded mb-2\"></div>");
-				var back = $("<a class=\"background\"style=\"background-image: url(&quot;"+result1[i].stringImage+"&quot;)\"></a>");
-				var Img1 = $("<img src=\""+result1[i].stringImage+"\">");
-				var Img2 = $("<img src=\""+result2[i].stringImage+"\">");
+				var back = $("<a class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+result1[i].g_fileName+"&quot;)\"></a>");
+				var palImg = $("<img src=\"${pageContext.request.contextPath}/images/goodsImg/"+result2[i].gd_fileName+"\">");
 				var gnum = $("<small class=\"text-mute\">"
 						+ result1[i].g_num + "</small>");
 				var gname = $("<p class=\"mb-0\">"
@@ -199,8 +198,7 @@
 						+ result1[i].s_price + "</p>");
 				var sid = $("<p class=\"small\">" + result1[i].s_id + "</p>");
 				var gcode = $("<p style=\"display: none;\">"+ result1[i].g_code+"</p>");
-				back.append(Img1);
-				back.append(Img2);
+				back.append(palImg);
 				hasBack.append(back);
 				cardBody.append(hasBack, gnum, gname, sprice, sid, gcode);
 				card.append(cardBody);
@@ -223,7 +221,7 @@
 			//상품클릭시 팔레트에 해당 상품의 pal이미지 출력하는 이벤트
 		    goods[i].addEventListener("click",function() {
 			    //선택한 상품의 인덱스와 일치하는 팔레트용 이미지 저장
-				goodsSelected = $(".container-fluid .card-body:eq("+goodsIndex+")").children().children().children("img:eq(1)").attr("src");
+				goodsSelected = $(".container-fluid .card-body:eq("+goodsIndex+")").children().children().children("img:eq(0)").attr("src");
 			    goodsNum = $(".container-fluid .card-body:eq("+goodsIndex+")").children("small:eq(0)").text();
 			    goodsCode = $(".container-fluid .card-body:eq("+goodsIndex+")").children("p:eq(3)").text();
 			    console.log(goodsSelected);
@@ -287,10 +285,10 @@
 						$("#palate").children("div:last").prev().children("div").attr("class","back");					
 					}			
 				});
-			    //선택목록 상품 클릭하면 해당상품의 상세정보를 1) 상세정보 2) 제외 선택가능한 메뉴창 기능 
+			    /* //선택목록 상품 클릭하면 해당상품의 상세정보를 1) 상세정보 2) 제외 선택가능한 메뉴창 기능 
 				selectedGoods.on("click", function(){
 					
-				})
+				}) */
 			}); 
 		} 
 	}	
@@ -312,14 +310,45 @@
 	function addLooks(result){
 			var upBars = $("#upBar .swiper-wrapper").children();
 			    $.each(upBars,(i,slider) => { 
-					$(slider).children().append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
-					$(slider).children().append("<div class=\"background\"style=\"background-image: url(&quot;"+result[i].stringImage+"&quot;)\"></div>");
-			    	$("#upBar .small:eq("+i+")").text(""+result[i].m_id);
-					$("#upBar .small:eq("+i+")").children().remove();
-					$(slider).append("<p style=\"display: none;\">"+result[i].g_nums+"</p>");
+			    	if (i == result.length){
+						return false;
+					} 
+					//마네킹 img
+					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
+					//look img
+					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/lookImg/"+result[i].l_fileName+"&quot;)\"></div>");
+			    	/* $("#upBar .small:eq("+i+")").text(""+result[i].m_id);
+					$("#upBar .small:eq("+i+")").children().remove(); */
+					$(slider).append("<p class=\"gNums\" style=\"display: none;\">"+result[i].g_nums+"</p>");
 			    });
-			    i=null;			
+			    $("#upBar .swiper-wrapper").on("click", ".swiper-slide", function(event){
+			    	console.log($(this).children(".gNums").text());
+			    	var gNums = $(this).children(".gNums").text();
+			    	getPalImgOnPal(gNums);
+				});	
 	}	
+	
+	function getPalImgOnPal(gNums){
+		  var formData = new FormData();
+		  formData.append("g_nums", gNums);	
+		  console.log("g_nums: "+  formData.get("g_nums"));
+		  $.ajax({ 
+		        type : 'POST',
+		        url : "./ajax/goodsImageListCommand.do?",
+		        data : formData,
+		       	dataType: "json",
+		       	processData : false,
+		        contentType : false,
+		        success : function(data) {
+		            	console.log(data);
+		        }
+		 });
+	};
+	
+	function putOnPal(result){
+		console.log(result);
+	}
+	
 </script>
 <style>
 /* div {

@@ -11,26 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import command.Command;
-import dao.GoodsDao2;
+import dao.GoodsDao;
 import dto.GoodsDto;
 import net.sf.json.JSONArray;
 
-public class GoodsListCommand implements Command{
+public class GoodsListCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
 		String no = request.getParameter("no");
-		GoodsDao2 dao = new GoodsDao2();
+		GoodsDao dao = new GoodsDao();
 		List<GoodsDto> list1 = dao.GoodsList(no);
-		String list1JS =null;
-		for (int i = 0; i < list1.size(); i++) {
-			String imageString1 = new String(Base64.encodeBase64(list1.get(i).getG_image()));
-			String changeString1 = "data:image/gif;base64," + imageString1;
-			list1.get(i).setStringImage(changeString1);
-			list1.get(i).setG_image(null);
-		}
-		list1JS = JSONArray.fromObject(list1).toString(); 
+		String list1JS = null;
+		/*
+		 * for (int i = 0; i < list1.size(); i++) {
+		 * 
+		 * String imageString1 = new
+		 * String(Base64.encodeBase64(list1.get(i).getG_image()));
+		 * 
+		 * String changeString1 = "data:image/gif;base64," + imageString1;
+		 * list1.get(i).setStringImage(changeString1); list1.get(i).setG_image(null); }
+		 */
+		list1JS = JSONArray.fromObject(list1).toString();
 		return "ajax:" + list1JS;
 	}
 }

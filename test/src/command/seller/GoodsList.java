@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import command.Command;
-import dao.GoodsDao2;
+import dao.GoodsDao;
 import dto.GoodsDto;
 import dto.GoodsImageDto;
 
@@ -20,7 +20,7 @@ public class GoodsList implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		GoodsDao2 dao = new GoodsDao2();
+		GoodsDao dao = new GoodsDao();
 		List<GoodsDto> list1=null;
 		try {
 			list1 = dao.GoodsList();

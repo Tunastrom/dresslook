@@ -27,7 +27,7 @@
 			<tr>
 				<td>${dto1.getG_num()}</td>
 				<td>${dto1.getG_name()}</td>
-				<td><img src="${dto1.getStringImage()}"></td>
+				<td><img src="D:\dev\aaa\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\test\images${dto1.getG_fileName()}"></td>
 			<tr>	
 		</c:forEach>
 		<c:if test="${empty list1}">
@@ -48,7 +48,7 @@
 		<tr>
 			<td>${dto2.getG_num()}</td>
 			<td>${dto2.getImg_type()}</td>
-			<td><img src="${dto2.getStringImage()}"></td>
+			<td><img src="D:\dev\aaa\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\test\images${dto2.getGd_fileName()}"></td>
 		</tr>
 		</c:forEach>
 		<c:if test="${empty list2}">
