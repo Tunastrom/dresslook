@@ -163,11 +163,10 @@
 			  
 		}
 		//goodsImage table 조회
-		function getPalImages(categoryNum){
+		function getPalImages(){
 			  var deferred = $.Deferred();
-			  var param = "no="+ categoryNum;
 			  var xhr = new XMLHttpRequest();
-			  xhr.open("GET","./ajax/goodsImageListCommand.do?"+param,true);
+			  xhr.open("POST","./ajax/goodsImageListCommand.do?",true);
 			  xhr.addEventListener('load',function(){
 			    if(xhr.status === 200){
 			      var obj = JSON.parse(xhr.response);
@@ -176,7 +175,6 @@
 			      deferred.reject("HTTP error: " + xhr.status);
 			    }
 			  },false); 
-			
 			  xhr.send();
 			  return deferred.promise();
 		}
@@ -324,30 +322,105 @@
 			    $("#upBar .swiper-wrapper").on("click", ".swiper-slide", function(event){
 			    	console.log($(this).children(".gNums").text());
 			    	var gNums = $(this).children(".gNums").text();
+			    	getGoodsOnPal(gNums);
 			    	getPalImgOnPal(gNums);
+			    	$.when(getPalImgOnPal(gNums), getPalImgOnPal(gNums)).done(function (result1, result2){
+			    		console.log(result);
+			    		var palCnt = $("#palate").children().length;
+			    		if (palCnt > 1){
+			    			$("#palate .box:gt(0)").remove();
+			    			$("#palate .back").attr("class","front");
+			    			$("#downBar .swiper-slide:gt(0)").remove();
+			    			$("#downBar .swiper-slide .has-background div").remove();
+			    			$("#downBar .swiper-slide p").text("");
+			    			$("#downBar .swiper-slide p").append("<br>");
+			    		}
+			    		$.each(result2, (i, palJson) => {
+			    			var box = $("<div class=\"box\"></div>");
+			    			box.append("<div class=\"front\"></div>");
+			    			box.append("<input type=\"hidden\" class=\"gNum\"value=\""+palJson.g_nums+"\">");
+			    			/* box.append("<input type=\"hidden\" value=\""+goodsCode+"\">"); */
+			    			$("#palate").append(box);
+			    			$("#palate").children("div:last");
+			    		    $("#palate").children("div:last").children("div").append("<div class=\"background\" style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+palJson.gd_fileName+"&quot;)\"></div>");
+			    		    var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
+			    			prev.children("div").attr("class", "back");
+			    		});
+			    		$.each(result1, (i, goodsJson) => {
+			    			console.log("goodsJson:"+goodsJson.g_fileName);
+			    			var downwCnt = $("#downBar .swiper-slide");
+			    			var background = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+goodsJson.g_fileName+"&quot;)\"></div>");
+			    			var gCode = $("<input type=\"hidden\" value=\""+goodsJson.g_code+"\">");
+			    			var gNum = $("<input type=\"hidden\" value=\""+goodsJson.g_num+"\">");
+			    			if (downwCnt > 1){
+			    				var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
+			    				var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
+			    				var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
+			    				avatar.append(background);
+			    				avatar.append(gNum);
+			    				avatar.append(gCode);
+			    				swiperSlide.append(avatar);
+			    				swiperSlide.append(name);
+			    				//#downBar의 swiper-wrapper 태그에 append
+			    				$("#downBar .swiper-wrapper:last").append(swiperSlide);
+			    			} else if (downwCnt == 1) {
+			    				/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
+			    				$("#downBar .avatar").append(background);
+			    				$("#downBar .avatar").append(gNum);
+			    				$("#downBar .avatar").append(gCode);
+			    				$("#downBar .small").text(""+gName);
+			    				$("#downBar .small").children().remove();
+			    			}
+			    		});
+			    	});
 				});	
 	}	
 	
-	function getPalImgOnPal(gNums){
-		  var formData = new FormData();
-		  formData.append("g_nums", gNums);	
-		  console.log("g_nums: "+  formData.get("g_nums"));
+	function getGoodsOnPal(gNums){
+		  var deferred = $.Deferred();
+		  var formData1 = new FormData();
+		  formData1.append("g_nums", gNums);	
+		  console.log("g_nums1: "+ formData1.get("g_nums"));
 		  $.ajax({ 
 		        type : 'POST',
-		        url : "./ajax/goodsImageListCommand.do?",
-		        data : formData,
+		        url : "./ajax/goodsListCommand.do?",
+		        data : formData1,
 		       	dataType: "json",
 		       	processData : false,
 		        contentType : false,
-		        success : function(data) {
-		            	console.log(data);
-		        }
+		        success : function(data){
+		        	if (data){
+		        		 deferred.resolve(data);
+		        	} else{
+		        		 deferred.reject("error");
+		        	}
+		        }       		
 		 });
+		 return deferred.promise();
 	};
-	
-	function putOnPal(result){
-		console.log(result);
-	}
+
+	function getPalImgOnPal(gNums){
+		var deferred = $.Deferred();
+		  var formData2 = new FormData();
+		  formData2.append("g_nums", gNums);	
+		  console.log("g_nums2: "+  formData2.get("g_nums"));
+		  $.ajax({ 
+		        type : 'POST',
+		        url : "./ajax/goodsImageListCommand.do?",
+		        data : formData2,
+		       	dataType: "json",
+		       	processData : false,
+		        contentType : false,
+		        success : function(data){
+		        	if (data){
+		        		 deferred.resolve(data);
+		        	} else{
+		        		 deferred.reject("error");
+		        	}
+		        }       		
+		 });
+		 return  deferred.promise();
+	};
 	
 </script>
 <style>

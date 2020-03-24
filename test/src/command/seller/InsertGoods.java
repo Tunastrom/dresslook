@@ -24,14 +24,13 @@ import dto.GoodsImageDto;
 public class InsertGoods implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		    /* String addPath = "c:/Temp"; */
-		    String uploadPath = /* addPath + File.separator + "goodsImgs"; */
-		                     request.getSession()
+			throws ServletException, IOException { 
+		    String uploadPath = request.getSession()
 		                     .getServletContext() // application 기본객체
-		                     .getRealPath("/images/goodsImg"); // session 기본 객체 .getServletContext() // application 기본객체
+		                     .getRealPath("/images/goodsImg");
+		    				  /* addPath + File.separator + "goodsImgs"; */
+		                      // session 기본 객체 .getServletContext() // application 기본객체
 		                    // upload는 폴더명 / 폴더의 경로를 // 구해옴
-		 	
 		    System.out.println(uploadPath);
 			MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 					request, 
@@ -49,28 +48,32 @@ public class InsertGoods implements Command {
 			 GoodsDto dto = new GoodsDto();
 			 GoodsImageDto GIdto = new GoodsImageDto();
 			 //복수의 이미지파일 dto의 byte[]필드에 저장
-			 int palAndnot = 0;
+			 int palAndnot=0;
 			 while (files.hasMoreElements()) {
 				 String fileInput = (String)files.nextElement(); //file의 input 태그에 저장한 name속성 값 가져옴  	
 				 fileName = multi.getFilesystemName(fileInput); //파일의 실제 이름 가져옴
+				 System.out.println("fileName:" + fileName);
 				 // 파일명
 				 if (fileName != null) { 
 			         fileObj = multi.getFile(fileInput); //파일객체 가져옴
-					 fileSize = fileObj.length();  
+					 fileSize = fileObj.length();
 			     } 
 			/* byte[] file = Files.readAllBytes(Paths.get(uploadPath+"/"+fileName)); */ //파일 바이트 타입으로 변환
 				 //색깔별 옷 저장기능 구현시 if문에 구현
 				 if (palAndnot==0) {
+					 
 				/* GIdto.setGd_image(file); */
 					 GIdto.setGd_fileName(fileName);
 					 GIdto.setSize(fileSize);
 					 GIdto.setImg_type("pal");
+					 System.out.println("palAndnot: "+palAndnot);
 				/* file=null; */
 					 fileSize=0;
 				 } else if (palAndnot==1) {
 				/* dto.setG_image(file); */
 					 dto.setG_fileName(fileName);
 					 dto.setSize(fileSize);
+					 System.out.println("g_fileName: "+dto.getG_fileName());
 				 }
 				 palAndnot++;
 			 }
