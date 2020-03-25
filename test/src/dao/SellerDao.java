@@ -20,10 +20,10 @@ public class SellerDao extends DAO {
 		return sellerDao;
 	}
 
-	private final String SELLER_INSERT = "INSERT INTO MEMBER(S_ID, S_PWD, C_NAME, S_EMAIL, S_JOIN, S_PHONE, S_ZIP, S_ADDR1, S_ADDR2)" 
+	private final String SELLER_INSERT = "INSERT INTO SELLER(S_ID, S_PWD, C_NAME, S_EMAIL, S_JOIN, S_PHONE, S_ZIP, S_ADDR1, S_ADDR2)" 
 			+ " VALUES(?,?,?,?,sysdate,?,?,?,?)";
 	
-	private final String SELLER_LOGIN = "SELECT * FROM MEMBER WHERE S_ID=? AND S_PWD=?";
+	
 
 	public void sellerInsert(SellerDto dto) {
 		try {
@@ -44,27 +44,38 @@ public class SellerDao extends DAO {
 		}
 	}
 
-	public Boolean sloginCheck(String id, String pw) {// 로그인 메소드
-		Boolean check=false;
-
+	/*
+	 * public Boolean sloginCheck(String id, String pw) {// 로그인 메소드 Boolean
+	 * check=false;
+	 * 
+	 * try { psmt = conn.prepareStatement(SELLER_LOGIN); psmt.setString(1, id);
+	 * psmt.setString(2, pw); rs = psmt.executeQuery(); check=rs.next();
+	 * 
+	 * 
+	 * 
+	 * 
+	 * } catch (SQLException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); }
+	 * 
+	 * close();
+	 * 
+	 * return check;// 로그인 성공시 권한부여 }
+	 */
+	public String sloginCheck(String s_id, String s_pwd) {
+		String grant = null;
+		String sql = "select s_grade from seller where s_id = ? and s_pwd = ? ";
 		try {
-			psmt = conn.prepareStatement(SELLER_LOGIN);
-			psmt.setString(1, id);
-			psmt.setString(2, pw);
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, s_id);
+			psmt.setString(2, s_pwd);
 			rs = psmt.executeQuery();
-			check=rs.next();
-			
-
-			
-
+			if (rs.next())
+				grant = rs.getString("s_grade");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		close();
-
-		return check;// 로그인 성공시 권한부여
+		return grant;// 로그인 성공시 권한을 넘겨준다.
 	}
 
 }

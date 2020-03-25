@@ -15,7 +15,7 @@ public class MemberInsert implements Command {
 			throws ServletException, IOException {
 		
 
-		return "HTML/lsj/memberInsert.jsp";
+		return "HTML/lsj/memberinsertF.jsp";
 
 	}
 
