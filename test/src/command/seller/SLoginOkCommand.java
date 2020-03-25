@@ -18,10 +18,10 @@ public class SLoginOkCommand implements command.Command {
 		request.setCharacterEncoding("euc-kr");
 		// 로그인 화면에 입력된 아이디와 비밀번호를 가져온다
 
-		MemberDao dao = new MemberDao();
+		SellerDao dao = new SellerDao();
 		String sid = request.getParameter("sid");
 		String spw = request.getParameter("spwd");
-		String au = dao.loginCheck(sid, spw);
+		String au = dao.sloginCheck(sid, spw);
 
 		if (au == null) {
 			return "Slogin.do";
