@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.MemberDao;
+
 import dao.SellerDao;
 
 public class SLoginOkCommand implements command.Command {
@@ -28,7 +28,7 @@ public class SLoginOkCommand implements command.Command {
 		} else {
 			HttpSession httpsession = request.getSession();// 자바 객체를 이용해서 session 객체(servlet session 객체)를 이용할때
 			httpsession.setAttribute("sid", sid);
-			httpsession.setAttribute("au", au);// 브라우저 종료시까지 유지. 세션
+			//httpsession.setAttribute("au", au);// 브라우저 종료시까지 유지. 세션
 
 			return "timeline.do";
 		}
