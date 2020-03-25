@@ -22,6 +22,7 @@ public class GoodsImageListCommand implements Command {
 			throws ServletException, IOException, ParseException {
 		GoodsDao dao = new GoodsDao();
 		String g_nums = request.getParameter("g_nums");
+		System.out.println("GIg_nums: "+g_nums);
 		List<GoodsImageDto> list2 = dao.GIlist(g_nums);
 		String list2JS = null;
 		/*

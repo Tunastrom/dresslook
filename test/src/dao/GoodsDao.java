@@ -116,7 +116,7 @@ public class GoodsDao {
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>(); 
 		String sql1 = "select * from goods_image where img_type='pal'";
 		if (g_nums != null) {
-			sql1 += ", g_nums in ("+g_nums+")";
+			sql1 += "and g_num in ("+g_nums+")";
 		}
 		try {
 			psmt = conn.prepareStatement(sql1);
