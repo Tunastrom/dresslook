@@ -17,6 +17,7 @@ public class Mgoods implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		//dao 호출
 		MemberDao dao = new MemberDao();
 		

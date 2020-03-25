@@ -64,6 +64,7 @@ import command.seller.InsertLooks;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.goodsInsert;
+import command.seller.goodsListCommand;
 import command.seller.sellerInsert;
 
 @WebServlet("*.do")
@@ -135,9 +136,8 @@ public class test_Con extends HttpServlet {
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
-		/* cont.put("/GoodsList.do", new GoodsList()); */
+		cont.put("/goodsList.do", new goodsListCommand());
 		cont.put("/goodsInsert.do", new goodsInsert());
-		/* cont.put("/InsertGoodsOk.do", new InsertGoodsOk()); */
 		cont.put("/mgoods.do", new Mgoods());
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
