@@ -77,13 +77,13 @@
             </div>
                 <c:choose>
 							<c:when test="${id !=null && sid==null}">
-								<a href="logout.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>
+								<a href="logout.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>>
 							</c:when>
 							<c:when test="${sid !=null && id==null}">
-								<a href="Slogout.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>
+								<a href="Slogout.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>>
 							</c:when>
 							<c:otherwise>
-								<a href="loginSelect.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
+								<a href="loginSelect.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>>
 							</c:otherwise>
                 
                 </c:choose>

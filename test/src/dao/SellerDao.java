@@ -43,24 +43,6 @@ public class SellerDao extends DAO {
 			close();
 		}
 	}
-
-	/*
-	 * public Boolean sloginCheck(String id, String pw) {// 로그인 메소드 Boolean
-	 * check=false;
-	 * 
-	 * try { psmt = conn.prepareStatement(SELLER_LOGIN); psmt.setString(1, id);
-	 * psmt.setString(2, pw); rs = psmt.executeQuery(); check=rs.next();
-	 * 
-	 * 
-	 * 
-	 * 
-	 * } catch (SQLException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * close();
-	 * 
-	 * return check;// 로그인 성공시 권한부여 }
-	 */
 	public String sloginCheck(String s_id, String s_pwd) {
 		String grant = null;
 		String sql = "select s_grade from seller where s_id = ? and s_pwd = ? ";
