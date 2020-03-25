@@ -63,14 +63,14 @@ public class SellerDao extends DAO {
 	 */
 	public String sloginCheck(String s_id, String s_pwd) {
 		String grant = null;
-		String sql = "select s_grade from member where s_id = ? and s_pwd = ? ";
+		String sql = "select s_grade from seller where s_id = ? and s_pwd = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, s_id);
 			psmt.setString(2, s_pwd);
 			rs = psmt.executeQuery();
 			if (rs.next())
-				grant = rs.getString("S_grade");
+				grant = rs.getString("s_grade");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
