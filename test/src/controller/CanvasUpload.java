@@ -20,7 +20,6 @@ import javax.servlet.http.Part;
 
 import command.Command;
 import command.collection.OrderSheetCommand;
-import command.dresslook.DressRoomCommand;
 import command.dresslook.TimelineWriteCommand;
 
 /*import org.apache.commons.io.FileUtils;*/
@@ -37,20 +36,20 @@ import dto.LookDto;
 public class CanvasUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * HashMap<String, Command> cont = new HashMap<>();
-	 * 
-	 * public CanvasUpload() { super(); }
-	 */
+
+	HashMap<String, Command> cont = new HashMap<>();
+	 
+	public CanvasUpload() { super(); }
+	
 	
 	private static final String SAVE_DIR = "/lookImg";
 	
-	/*
-	 * public void init(ServletConfig config) throws ServletException { String
-	 * result = null; cont.put("re_dressRoomCommand.do", new DressRoomCommand());
-	 * cont.put("new_TimelineWriteCommand.do", new TimelineWriteCommand());
-	 * cont.put("new_orderSheetCommand.do", new OrderSheetCommand()); }
-	 */
+	
+	public void init(ServletConfig config) throws ServletException { 
+	    cont.put("new_TimelineWriteCommand.do", new TimelineWriteCommand());
+        cont.put("new_orderSheetCommand.do", new OrderSheetCommand()); 
+    }
+	 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -66,6 +65,7 @@ public class CanvasUpload extends HttpServlet {
 		LookDto dto = new LookDto();
 		LookDao dao = new LookDao();
 		File lookFile = null;
+		String destination = null;
 		for (Part part : request.getParts()) {
 			System.out.println("///GCT: "+part.getContentType());
 			if (part.getContentType() != null) {
@@ -86,28 +86,59 @@ public class CanvasUpload extends HttpServlet {
 				/* dto.setSize(part.getSize()); */
 				dao.LookInsert(dto);
 				dao.LookDetailInsert(dto);
+				destination = request.getParameter("destination");
 			}
-			
 		}
-		
-		/*
-		 * // 실행할 Class객체를 찾아주는 부분 // hashMap의 키값인 문자열 ".xxxxx"를 만드는 과정
-		 * request.setCharacterEncoding("utf-8"); String uri = request.getRequestURI();
-		 * String context = request.getContextPath(); String path =
-		 * uri.substring(context.length()); // 로그처리 System.out.println("path=" + path);
-		 * // 권한체크(로그인 체크)
-		 * 
-		 * Command commandImpl = cont.get(path); if(commandImpl != null) { //return 된
-		 * viewpage 주소 텍스트 실행 try { commandImpl.execute(request, response); } catch
-		 * (ParseException e) { // TODO Auto-generated catch block e.printStackTrace();
-		 * } }
-		 */
-		/*
-		 * // 파라미터 읽기 String strParam = request.getParameter("strParam");
-		 * request.setAttribute("message", "파일업로드에 성공 하였습니다.!");
-		 * response.getWriter().append("success");
-		 */
+	
+		  // 실행할 Class객체를 찾아주는 부분 // hashMap의 키값인 문자열 ".xxxxx"를 만드는 과정
+		String uri = null;
+		String context = null;
+		String path = null;
+		Command commandImpl = null;
+		request.setCharacterEncoding("utf-8"); 
+		if (destination.equals("share")) {
+			commandImpl = cont.get("new_TimelineWriteCommand.do");
+		} else if (destination.equals("order")) {
+			commandImpl = cont.get("new_orderSheetCommand.do");
+		} /*
+			 * else { uri = request.getRequestURI(); context = request.getContextPath();
+			 * path = uri.substring(context.length()); // 로그처리 System.out.println("path=" +
+			 * path); commandImpl = cont.get(path); }
+			 */
+		 // 권한체크(로그인 체크)
+		 String page = null;
+		 if(commandImpl != null) { //return 된
+			// viewpage 주소 텍스트 실행 
+			 try { 
+				 page = commandImpl.execute(request, response); 
+			 } catch (ParseException e) { 
+				 e.printStackTrace();
+		     } 
+			 System.out.println(page);
+				if (page != null & !page.isEmpty()) {
+					if (page.startsWith("redirect:")) {
+						String view = page.substring(9);
+						/* response.sendRedirect(view); */
+					} else if (page.startsWith("ajax:")) {
+						response.getWriter().append(page.substring(5));
+						/* System.out.println(page.substring(5)); */
+					} else if (page.startsWith("script:")) {
+						response.getWriter().append("<script>").append(page.substring(7)).append("</script>");
+					} else {
+						request.getRequestDispatcher(page).forward(request, response);
+					}
+				}
+		 
+		 
+		 }
+		 
 	}
+	
+	/*
+	 * // 파라미터 읽기 String strParam = request.getParameter("strParam");
+	 * request.setAttribute("message", "파일업로드에 성공 하였습니다.!");
+	 * response.getWriter().append("success");
+	 */	 
 	
 	/*
 	 * private String extractFileName(Part part) { String contentDisp =

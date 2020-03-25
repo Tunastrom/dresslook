@@ -31,6 +31,7 @@ import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
+import command.dresslook.LookInsertCommandForm;
 import command.dresslook.LookListCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
@@ -87,15 +88,13 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
-
-		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
+		cont.put("/lookInertCommand.do", new LookInsertCommandForm());
 		cont.put("/collectionInsertCommand.do", new CollectionInsertCommand());
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
 		cont.put("/TimelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/lookContents.do", new LookContents());
-
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());

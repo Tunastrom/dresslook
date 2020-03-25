@@ -72,7 +72,7 @@
 						.then(function(canvas){
 							console.log(canvas);
 							var DataUrl = canvas.toDataURL();
-							$("body").append("<img src=\""+DataUrl+"\">"); 
+							/* $("body").append("<img src=\""+DataUrl+"\">");  */
 							Blob = dataURItoBlob(DataUrl);
 							console.log("toDataURL: "+ Blob);
 							deferred.resolve(Blob);
@@ -83,15 +83,12 @@
 					return deferred.promise();
 				}
 				var destination = null;
-				if (id == "collection"){
-					//ajax로 db저장후 페이지전환 X
-					destination = "collection";
-				} else if (id == "order"){
-					//ajax로 db저장후 페이지전환 O
-					destination = "order";
-				} else if (id == "share"){
+				if(id == "share"){
 					//ajax로 db저장후 페이지전환 O
 					destination = "share";
+				} else if(id == "order"){
+					//ajax로 db저장후 페이지전환 O
+					destination = "order";
 				}
 				var gNumTags = document.querySelectorAll("#palate .gNum");
 				var gNums = new Array();

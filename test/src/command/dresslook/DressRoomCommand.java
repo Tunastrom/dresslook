@@ -44,7 +44,7 @@ public class DressRoomCommand implements Command {
            String sex=dto.getM_sex(); 
            request.setAttribute("sex", sex);
 		*/
-		return "HTML/YCW/dressRoom.jsp";
+		return "HTML/YCW/DressRoom.jsp";
 	}
 
 }

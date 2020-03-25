@@ -15,7 +15,7 @@ public class TimelineWriteCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 		   throws ServletException, IOException, ParseException {
 		   
-		return null;
+		return "";
 	}
 
 }
