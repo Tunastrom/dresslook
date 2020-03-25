@@ -79,8 +79,9 @@
 										name="pwd"> <label class="form-control-label">Password</label>
 								</div>
 								<input type="submit" class="btn btn-lg btn-white btn-block my-4"
-									value="로그인">
-								<input type="button" class="btn btn-lg btn-white btn-block my-4" value="회원가입" onclick="location.href='memberSelect.do'" >
+									value="로그인"> <input type="button"
+									class="btn btn-lg btn-white btn-block my-4" value="회원가입"
+									onclick="location.href='memberSelect.do'">
 							</form>
 						</div>
 
@@ -88,7 +89,7 @@
 				</div>
 
 				<div class="col-12 align-self-end mb-4 text-center">
-					Don't have account yet?<br> <a href="memberLogin.jsp"
+					Don't have account yet?<br> <a href="memberInsert.do"
 						class="text-white font-weight-bold">Sign up</a> here.
 				</div>
 			</div>

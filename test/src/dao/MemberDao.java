@@ -6,11 +6,11 @@ package dao;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import dto.MemberDto;
 
 public class MemberDao extends DAO {
 	private MemberDto dto;
-	private ArrayList<MemberDto> list;
 
 	public MemberDao() {
 		super();
@@ -18,7 +18,7 @@ public class MemberDao extends DAO {
 
 //	전체회원 목록 가져오기
 	public ArrayList<MemberDto> select() {
-		list = new ArrayList<MemberDto>();
+		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 		String sql = "select * from member";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -31,13 +31,13 @@ public class MemberDao extends DAO {
 				dto.setM_birth(rs.getDate("m_birth"));
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_zip(rs.getInt("m_zip"));
-				dto.setM_addr1(rs.getString("m_add1"));
-				dto.setM_addr2(rs.getString("m_add2"));
+				dto.setM_zip(rs.getString("m_zip"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
 				dto.setM_grade(rs.getString("m_grade"));
 				dto.setM_au(rs.getString("m_au"));
 				dto.setM_status(rs.getString("m_status"));
-				dto.setRecent_connection(rs.getDate("m_recent"));
+				dto.setM_recent(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
 				list.add(dto);
@@ -52,18 +52,48 @@ public class MemberDao extends DAO {
 	}
 
 //	1명의 회원정보 가져오기
+
 	public MemberDto select(String id) {
 		dto = new MemberDto();
 
+		String sql = "select * from member where m_id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new MemberDto();
+				dto.setM_pwd(rs.getString("m_pwd"));
+				dto.setM_name(rs.getString("m_name"));
+				dto.setM_birth(rs.getDate("m_birth"));
+				dto.setM_email(rs.getString("m_email"));
+				dto.setM_phone(rs.getString("m_phone"));
+				dto.setM_zip(rs.getString("m_zip"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
+				dto.setM_grade(rs.getString("m_grade"));
+				dto.setM_au(rs.getString("m_au"));
+				dto.setM_status(rs.getString("m_status"));
+				dto.setM_recent(rs.getDate("m_recent"));
+				dto.setM_point(rs.getInt("m_point"));
+				dto.setM_sex(rs.getString("m_sex"));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		close();
+
 		return dto;
+
 	}
 
 //	회원가입
 	public int insert(String userID, String name, String userPassword1, String birth, String email, String pnum,
-			Integer zip, String addr1, String addr2, String gender) {
+			Integer zip, String add1, String add2, String gender) {
 		int n = 0;
-		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, m_phone, m_zip, m_addr1, m_addr2, m_sex, m_recent, m_grade)"
+		String sql = "insert into member(m_id, m_name, m_pwd, m_birth, m_email, m_phone, m_zip, m_add1, m_add2, m_sex, m_recent, m_grade)"
 				+ " values(?,?,?,?,?,?,?,?,?,?,sysdate,'210')";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -73,9 +103,9 @@ public class MemberDao extends DAO {
 			psmt.setDate(4, (Date) dto.getM_birth());
 			psmt.setString(5, dto.getM_email());
 			psmt.setString(6, dto.getM_phone());
-			psmt.setInt(7, dto.getM_zip());
-			psmt.setString(8, dto.getM_addr1());
-			psmt.setString(9, dto.getM_addr2());
+			psmt.setString(7, dto.getM_zip());
+			psmt.setString(8, dto.getM_add1());
+			psmt.setString(9, dto.getM_add2());
 			psmt.setString(10, dto.getM_sex());
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
@@ -86,27 +116,84 @@ public class MemberDao extends DAO {
 		return n;
 	}
 
-	public int update(MemberDto dto) {
-		int n = 0;
-		// 입력
+	public void update(MemberDto dto) {
 
+		try {
+
+			String sql = "Update member set m_name=?, m_email=?, m_phone=?, m_zip=? "
+					+ " , m_add1=?, m_add2=?, m_birth=? where m_id=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getM_name());
+			psmt.setString(2, dto.getM_email());
+			psmt.setString(3, dto.getM_phone());
+			psmt.setString(4, dto.getM_zip());
+			psmt.setString(5, dto.getM_add1());
+			psmt.setString(6, dto.getM_add2());
+			psmt.setDate(7, (Date) dto.getM_birth());
+			psmt.setString(8, dto.getM_id());
+			psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
+	public int track(MemberDto dto) {
+		int n = 0;
 		close();
 		return n;
 	}
 
-	public int delete(int id) {
-		int n = 0;
-		// 삭제 조인해야 함
-		String sql = "delete m_id from member where m_id= ?";
+//휴먼계정 변경- 삭제 아님
+	public int delete(MemberDto dto) throws SQLException {
+		String sql = "update member set m_status='062' where m_id= ?";
+		int r = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_id());
+			r = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conn.commit();
+			close();
+		}
+		return r;
+	}
+
+	public int delM(MemberDto dto) throws SQLException { // 회원삭제 del+Member
+		String sql = "delete from member where m_id=?";
+		int n = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getM_id());
+			if (rs.next()) {
+				dto.setM_id(rs.getString("m_id"));
+				dto.setM_pwd(rs.getString("m_pwd"));
+				dto.setM_name(rs.getString("m_name"));
+				dto.setM_birth(rs.getDate("m_birth"));
+				dto.setM_email(rs.getString("m_email"));
+				dto.setM_phone(rs.getString("m_phone"));
+				dto.setM_zip(rs.getString("m_zip"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
+				dto.setM_grade(rs.getString("m_grade"));
+				dto.setM_au(rs.getString("m_au"));
+				dto.setM_status(rs.getString("m_status"));
+				dto.setM_recent(rs.getDate("m_recent"));
+				dto.setM_point(rs.getInt("m_point"));
+				dto.setM_sex(rs.getString("m_sex"));
+			}
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
-		close();
 		return n;
+
 	}
 
 //	id중복체크
@@ -179,4 +266,90 @@ public class MemberDao extends DAO {
 
 	}
 
+	public String getMEmail(String m_id) {
+		String sql = "SELECT M_Email FROM USER WHERE M_ID = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, m_id);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				return rs.getString(1); // 이메일 주소 반환
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null; // 데이터베이스 오류
+	}
+
+	public static MemberDao getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// 회원정보 수정
+	public int updateM(MemberDto dto) {
+		int n = 0;
+		String sql = "update member set m_pwd=?,m_name=?," + 
+		" m_birth=?,m_email=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?,"	+ 
+		" m_grade=?,m_status=?,m_recent=?,m_point=?,m_sex=? " + 
+		"where m_id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getM_pwd());
+			psmt.setString(2, dto.getM_name());
+			psmt.setDate(3, (Date) dto.getM_birth());
+			psmt.setString(4, dto.getM_email());
+			psmt.setString(5, dto.getM_phone());
+			psmt.setString(6, dto.getM_zip());
+			psmt.setString(7, dto.getM_add1());
+			psmt.setString(8, dto.getM_add2());
+			psmt.setString(9, dto.getM_grade());
+			psmt.setString(10, dto.getM_status());
+			psmt.setDate(11, (Date) dto.getM_recent());
+			psmt.setInt(12, dto.getM_point());
+			psmt.setString(13, dto.getM_sex());
+			psmt.setString(14, dto.getM_id());
+
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return n;
+	}
+
+//회원 삭제
+	public int delM(int num) {
+		String sql = "delete from member where m_id=?";
+		int delete = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getM_id());
+			delete = psmt.executeUpdate();
+			if (rs.next()) {
+				dto.setM_id(rs.getString("m_id"));
+				dto.setM_pwd(rs.getString("m_pwd"));
+				dto.setM_name(rs.getString("m_name"));
+				dto.setM_birth(rs.getDate("m_birth"));
+				dto.setM_email(rs.getString("m_email"));
+				dto.setM_phone(rs.getString("m_phone"));
+				dto.setM_zip(rs.getString("m_zip"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
+				dto.setM_grade(rs.getString("m_grade"));
+				dto.setM_au(rs.getString("m_au"));
+				dto.setM_status(rs.getString("m_status"));
+				dto.setM_recent(rs.getDate("m_recent"));
+				dto.setM_point(rs.getInt("m_point"));
+				dto.setM_sex(rs.getString("m_sex"));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return delete;
+	}
 }

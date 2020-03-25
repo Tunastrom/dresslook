@@ -8,21 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta name="description" content="Mobileshop HTML mobile template by Maxartkiller. Bootstrap UI UX, Bootstrap theme, Bootstrap HTML, Bootstrap template, Bootstrap mobile app, multipurpose mobile app template. get bootstrap template, mobile app">
     <meta name="author" content="Maxartkiller">
-    <link rel=icon href="${pageContext.request.contextPath}/HTML/assets/img/logo-small.png" sizes="any">
+    <link rel=icon href="${pageContext.request.contextPath}/HTML/assets/img/logo-small.svg" sizes="any">
 
     <title>dresslook</title>
-
+	
     <!-- material icons stylesheet -->
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/materializeicon/material-icons.css" rel="stylesheet">
 
     <!-- bootstrap stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=0" rel="stylesheet"> 
 
     <!-- swiper stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css?ver=2" rel="stylesheet">
 
     <!-- template stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css?ver=1" rel="stylesheet" id="style">
+    <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css?ver=5" rel="stylesheet" id="style">
 
 	<!-- Template js files -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/jquery-3.3.1.min.js"></script>
@@ -43,28 +43,17 @@
 
     <!-- App js page level initialization functions -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/app.js?ver=1"></script>
-    <!-- ajax -->
     <style>
-		.page-title{ font-weight: bold;  color:#f94620}
+		.page-title{ font-weight: bold;  color:#f94620; margin: 0px; padding-top: 4px;}
 		.buttons{ color: white; font-weight:bold; }
         .btn btn-warning btn-40 ml-2 text-white { background-color:#f94620; }
 	</style>
     <decorator:head/> 
 </head>
 
-<body class="ui-rounded sidebar-fill header-fill" data-page="homepage">
-   
-    <div class="background reveal-background">
-        <img src="${pageContext.request.contextPath}/HTML/assets/img/image7.jpg" alt="">
-    </div>
-    
+<body class="ui-rounded sidebar-fill header-fill" data-page="homepage"> 
     <div class="sidebar sidebar-left overlay-sidebar">
         <div class="content">
-            <figure class="avatar avatar-100 rounded-circle has-background mx-auto username d-block">
-                <div class="background">
-                    <img src="${pageContext.request.contextPath}/HTML/assets/img/image4.jpg" alt="">
-                </div>
-            </figure>
             <h5 class="text-center mb-0 username-text">Maxartkiller</h5>
             <p class="text-center small text-mute username-text">New York, United States</p>
 
@@ -72,11 +61,8 @@
                 <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="/test/myOrderList.do" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
-                <a href="settings.jsp" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
-                <a href="" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
-                <a href="notifications.jsp" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
-                <a href="memberlist.do" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
-                <a href="myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
+                <a href="/test/memberlist.do" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
+                <a href="/test/myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
                 </div>
                 <a href="loginCommand.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
             </div>
@@ -89,7 +75,7 @@
                 </div>
                 <div class="col">
                     <div class="logo-header">
-                        <img src="${pageContext.request.contextPath}/HTML/assets/img/logo-small.svg" alt="" class="logo-img">
+                        <img alt="" class="logo-img">
                         <h5 class="logo-header-text"><span class="text-uppercase">dresslook</span><br><small>LOOKing every wear</small></h5>
                     </div>
                 </div>
@@ -102,7 +88,7 @@
                 </div>
             </div>
         </header>
-        <div class="content container-fluid">
+        <div id="ContentsArea" class="content container-fluid">
             <!-- page content start -->
 			<decorator:body/>
             <!-- page content ends -->

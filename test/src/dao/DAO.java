@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dao;
 
 import java.sql.Connection;
@@ -9,16 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-/**
- * @author Yoo Cheolwon
- * write date: 2019-11-07
- * 상위 Dao 객체
- */
+
 public class DAO {
 	protected Connection conn;
 	protected PreparedStatement psmt;
@@ -26,7 +16,9 @@ public class DAO {
 	protected DataSource ds; //커넥션 pool 사용을 위한 데이터연결 생성 객체
 	
 	private String driver="oracle.jdbc.driver.OracleDriver";
-	private String url="jdbc:oracle:thin:@192.168.0.85:1522:orcl";
+
+	private String url="jdbc:oracle:thin:@39.116.34.40:1524:dl";
+	//private String url="jdbc:oracle:thin:@localhost:1523:dl"; //개인PC 서버
 	private String user="dl";
 	private String password="dl";
 	

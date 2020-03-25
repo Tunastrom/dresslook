@@ -23,7 +23,7 @@ public class MemberMain implements Command{
 		list = dao.select();
 		
 		request.setAttribute("list", list);
-		return "HTML/nsh/MemberMain.jsp";
+		return "timeline.do";
 		
 			
 	}

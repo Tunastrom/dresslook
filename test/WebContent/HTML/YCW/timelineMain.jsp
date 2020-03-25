@@ -67,6 +67,7 @@ $(document).ready(function(){
 								<div class="col-7 py-4">
 									<h3 class="font-weight-normal">${eventList}[i].headline</h3>
 									<p class="text-mute">${eventList}[i].desc</p>
+									<!-- event 상세페이지 링크 -->
 									<a href="" class="btn btn-sm btn-default text-uppercase">ShowNow</a>
 								</div>
 								<div class="col-5 align-self-end text-center">
@@ -344,7 +345,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
-							<div class="col-6 col-md-4 col-lg-3">
+						<div class="col-6 col-md-4 col-lg-3">
 								<div class="card border-0 mb-4">
 									<div class="card-body p-0">
 										<div class="h-150px has-background rounded mb-2">
@@ -366,6 +367,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
+
 							<div class="col-6 col-md-4 col-lg-3">
 								<div class="card border-0 mb-4">
 									<div class="card-body p-0">

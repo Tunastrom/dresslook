@@ -22,12 +22,10 @@ public class InsertGoodsOk implements Command {
 			throws ServletException, IOException {
 		String uploadPath = request.getSession() // session 기본 객체
 				.getServletContext() // application 기본객체
-				.getRealPath("/images/dressroom/jumper.png"); // upload는 폴더명 / 폴더의 경로를
+				.getRealPath("/images"); // upload는 폴더명 / 폴더의 경로를
 		final String mPath = uploadPath;
 		byte[] imageBytes = FileUtils.readFileToByteArray(new File(mPath)); // 구해옴
-
 		// out.print(uploadPath);
-
 		try {
 			MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 					request, uploadPath, // 파일을 저장할 디렉토리 지정
@@ -91,7 +89,7 @@ public class InsertGoodsOk implements Command {
 		} catch (NullPointerException nbp) {
 			
 		}
-		return "HTML/kjw/goodsList.jsp";
+		return "redirect:goodsList.jsp";
 	}
 
 }

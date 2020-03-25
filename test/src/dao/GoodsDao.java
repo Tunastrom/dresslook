@@ -1,32 +1,87 @@
 package dao;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+//import java.io.ByteArrayInputStream;
+//import java.io.ByteArrayOutputStream;
+//import java.io.File;
+//import java.io.FileInputStream;
+//import java.io.FileNotFoundException;
+//import java.io.IOException;
+//import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+//import java.util.Scanner;
+
+import javax.sql.DataSource;
 
 import dto.GoodsDto;
+import dto.GoodsImageDto;
 
-public class GoodsDao extends DAO {
+public class GoodsDao {
 
-	public List<GoodsDto> GoodsList() {
-		List<GoodsDto> list = new ArrayList<GoodsDto>();
+	private Connection conn;
+	private PreparedStatement psmt;
+	private ResultSet rs;
+	private DataSource ds; //커넥션 pool 사용을 위한 데이터연결 생성 객체
+	
+	private String driver="oracle.jdbc.driver.OracleDriver";
 
+	private String url="jdbc:oracle:thin:@39.116.34.40:1524:dl";
+	//private String url="jdbc:oracle:thin:@localhost:1523:dl"; //개인PC 서버
+	private String user="dl";
+	private String password="dl";
+	
+	public void DAO(){
 		try {
-			String sql = "select * from goods";
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, user, password);
+			System.out.println("good");
+		} catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void close() {
+		try {
+			if(rs != null) rs.close();
+			if(psmt != null) psmt.close();
+			if(conn != null) conn.close();
+		}catch(SQLException e) {
+			
+		}
+	}
+	
+	public List<GoodsDto> GoodsList(String noOrG_nums, String value) {
+		DAO();
+		List<GoodsDto> list = new ArrayList<GoodsDto>();
+		try {
+			String sql = null;
+			sql = "select * from goods where g_sex = 051"; 
+			if (noOrG_nums.equals("N")) {
+				//category별 검색
+				if (value.equals("0")) {
+					//성별, 좋아요 기반 추천 되도록 쿼리구현
+					sql += " order by g_num";
+				} else {
+					//성별, 좋아요, 상품코드 기반 추천 되도록 쿼리구현
+					sql += " and g_code = ? order by g_num";
+				}
+			} else if (noOrG_nums.equals("G")) {
+				//특정 상품 번호들 검색
+				sql+= " and g_num in("+value+")";
+			}
+			
 			psmt = conn.prepareStatement(sql);
+			if (noOrG_nums.equals("N") && !value.equals("0")) {
+	
+			} 
 			rs = psmt.executeQuery(sql);
-
 			while (rs.next()) {
 				GoodsDto dto = new GoodsDto();
-				Blob blob = rs.getBlob("g_image");
 				dto.setG_num(rs.getInt("g_num"));
 				dto.setG_name(rs.getString("g_name"));
 				dto.setG_price(rs.getInt("g_price"));
@@ -36,7 +91,11 @@ public class GoodsDao extends DAO {
 				dto.setG_inven(rs.getString("g_inven"));
 				dto.setS_id(rs.getString("s_id"));
 				dto.setMaker(rs.getString("g_maker"));
-				dto.setG_image(blob.getBytes(1, (int) blob.length()));
+				/*
+				 * Blob blob = rs.getBlob("g_image"); dto.setG_image(blob.getBytes(1, (int)
+				 * blob.length()));
+				 */
+				dto.setG_fileName(rs.getString("g_filename"));
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
 				dto.setG_sex(rs.getString("g_sex"));
@@ -44,89 +103,151 @@ public class GoodsDao extends DAO {
 				dto.setG_status(rs.getString("g_status"));
 				list.add(dto);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-
 		return list;
 	}
-
-	public int GoodsInsert(GoodsDto dto) {
-		int n = 0;
-		Scanner sc = new Scanner(System.in);
-		System.out.print("업로드 할 파일 = ");
-		String filename = sc.next();
-		File f = new File(filename);
-		if (!f.exists()) {
-			System.out.println("파일이 존재 하지 않습니다.");
-			System.exit(1);
+	
+	public List<GoodsImageDto> GIlist(String g_nums){
+		DAO();
+		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>(); 
+		String sql1 = "select * from goods_image where img_type='pal'";
+		if (g_nums != null) {
+			sql1 += ", g_nums in ("+g_nums+")";
 		}
-
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		FileInputStream fis = null;
 		try {
-			fis = new FileInputStream(f);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		while (true) {
-			int x = 0;
-			try {
-				x = fis.read();
-			} catch (IOException e) {
-				
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			psmt = conn.prepareStatement(sql1);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				GoodsImageDto dto = new GoodsImageDto();
+				/* Blob blob = rs.getBlob("gd_image"); */
+				dto.setG_num(rs.getInt("g_num"));
+				/* dto.setGd_image(blob.getBytes(1, (int) blob.length())); */
+				dto.setGd_fileName(rs.getString("gd_filename"));
+				dto.setImg_type(rs.getString("img_type"));
+				list.add(dto);
 			}
-			if (x == -1)
-				break;
-			bos.write(x);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		/*
+		 * String sql2 = "select g_code from goods where g_nums = ?"; try { psmt =
+		 * conn.prepareStatement(sql2); rs = psmt.executeQuery(); while(rs.next()) {
+		 * .setG_code(); } } catch (SQLException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */ finally { 
+			close(); 
 		}
-		try {
-			fis.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			bos.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-		String sql = "insert into GOODS"
-				+ " (G_NUM,G_NAME,G_PRICE,S_PRICE,G_SIZE,COLOR,G_INVEN,S_ID,G_MAKER,G_IMAGE,G_INFO,G_CODE,G_SEX,G_PRIOR,G_STATUS)"
-				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		 
+		return list;
+	}
+	
 
+	/*
+	 * public List<GoodsDto> GoodsWhereList(GoodsDto dto) { List<GoodsDto> list =
+	 * new ArrayList<GoodsDto>();
+	 * 
+	 * try { String sql = "select * from goods where order by g_num";
+       psmt = conn.prepareStatement(sql); rs = psmt.executeQuery(sql);
+	 * 
+	 * while (rs.next()) { GoodsDto dto = new GoodsDto(); Blob blob =
+	 * rs.getBlob("g_image"); dto.setG_num(rs.getInt("g_num"));
+	 * dto.setG_name(rs.getString("g_name")); dto.setG_price(rs.getInt("g_price"));
+	 * dto.setS_price(rs.getInt("s_price")); dto.setG_size(rs.getString("g_size"));
+	 * dto.setColor(rs.getString("color")); dto.setG_inven(rs.getString("g_inven"));
+	 * dto.setS_id(rs.getString("s_id")); dto.setMaker(rs.getString("g_maker"));
+	 * dto.setG_image(blob.getBytes(1, (int) blob.length()));
+	 * dto.setG_info(rs.getString("g_info")); dto.setG_code(rs.getString("g_code"));
+	 * dto.setG_sex(rs.getString("g_sex")); dto.setG_prior(rs.getInt("g_prior"));
+	 * dto.setG_status(rs.getString("g_status")); list.add(dto); }
+	 * 
+	 * } catch (SQLException e) { e.printStackTrace(); } finally { close(); }
+	 * 
+	 * return list; }
+	 */
+	
+	
+	public int goodsInsert(GoodsDto dto) {
+		DAO();
+		int n = 0;
+		String sql = "insert into GOODS"
+				+ " (G_NUM,G_NAME,G_PRICE,S_PRICE,G_SIZE,COLOR,G_INVEN,S_ID,G_MAKER,G_INFO,G_CODE,G_SEX,G_PRIOR,G_STATUS,G_FILENAME)"
+				+ " values((select nvl(max(g_num),0)+1 from goods),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, dto.getG_num());
-			psmt.setString(2, dto.getG_name());
-			psmt.setInt(3, dto.getG_price());
-			psmt.setInt(4, dto.getS_price());
-			psmt.setString(5, dto.getG_size());
-			psmt.setString(6, dto.getColor());
-			psmt.setString(7, dto.getG_inven());
-			psmt.setString(8, dto.getS_id());
-			psmt.setString(9, dto.getMaker());
-			psmt.setBinaryStream(10, bis, bos.size());
-			psmt.setString(11, dto.getG_info());
-			psmt.setString(12, dto.getG_code());
-			psmt.setString(13, dto.getG_sex());
-			psmt.setInt(14, dto.getG_prior());
-			psmt.setString(15, dto.getG_status());
+			psmt.setString(1, dto.getG_name());
+			psmt.setInt(2, dto.getG_price());
+			psmt.setInt(3, dto.getS_price());
+			psmt.setString(4, dto.getG_size());
+			psmt.setString(5, dto.getColor());
+			psmt.setString(6, dto.getG_inven());
+			psmt.setString(7, dto.getS_id());
+			psmt.setString(8, dto.getMaker());	
+			//psmt.setBinaryStream(9, new ByteArrayInputStream(dto.getG_image()),dto.getSize());
+			psmt.setString(9, dto.getG_info());
+			psmt.setString(10, dto.getG_code());
+			psmt.setString(11, dto.getG_sex());
+			psmt.setInt(12, dto.getG_prior());
+			psmt.setString(13, dto.getG_status());
+			psmt.setString(14,dto.getG_fileName());
 			n = psmt.executeUpdate();
 			System.out.println("업로드 성공!");
 			psmt.close();
-			conn.close();
 		} catch (SQLException e) {
 			System.err.println("sql error = " + e);
+		} finally {
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close();
+		} 
+		
+		return n;
+	}
+	
+	public int giInsert(GoodsImageDto dto){
+		DAO();
+		int n = 0;
+		String sql1 = "select max(g_num) g_num from goods";
+		int g_num = 0;
+		try {
+			psmt = conn.prepareStatement(sql1);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				g_num = rs.getInt("g_num");	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String sql2 = "insert into GOODS_IMAGE"
+				   + "(g_num, img_type, gd_filename)"
+				   + " values(?,?,?)";
+		try {
+			psmt=conn.prepareStatement(sql2);
+			psmt.setInt(1, g_num);
+			/*
+			 * psmt.setBinaryStream(2,new
+			 * ByteArrayInputStream(dto.getGd_image()),dto.getSize());
+			 */
+			psmt.setString(2,dto.getImg_type());
+			psmt.setString(3,dto.getGd_fileName());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close();
 		}
 		return n;
 	}
 }
+

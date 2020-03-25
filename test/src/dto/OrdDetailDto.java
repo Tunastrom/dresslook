@@ -1,6 +1,6 @@
 package dto;
 
-
+import java.util.Arrays;
 
 public class OrdDetailDto {
 	private Integer o_num;
@@ -8,11 +8,10 @@ public class OrdDetailDto {
 	private Integer od_price;
 	private Integer o_count;
 	private Integer c_num;
-	@Override
-	public String toString() {
-		return "OrdDetailDto [o_num=" + o_num + ", g_num=" + g_num + ", od_price=" + od_price + ", o_count=" + o_count
-				+ ", c_num=" + c_num + "]";
-	}
+	private String m_id;
+	private String maker;
+	private byte[] g_image;
+	private String g_name;
 	public Integer getO_num() {
 		return o_num;
 	}
@@ -43,6 +42,49 @@ public class OrdDetailDto {
 	public void setC_num(Integer c_num) {
 		this.c_num = c_num;
 	}
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+	public String getMaker() {
+		return maker;
+	}
+	public void setMaker(String maker) {
+		this.maker = maker;
+	}
+	public byte[] getG_image() {
+		return g_image;
+	}
+	public void setG_image(byte[] g_image) {
+		this.g_image = g_image;
+	}
+	public String getG_name() {
+		return g_name;
+	}
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
+	}
+	@Override
+	public String toString() {
+		return "OrdDetailDto [o_num=" + o_num + ", g_num=" + g_num + ", od_price=" + od_price + ", o_count=" + o_count
+				+ ", c_num=" + c_num + ", m_id=" + m_id + ", maker=" + maker + ", g_image=" + Arrays.toString(g_image)
+				+ ", g_name=" + g_name + "]";
+	}
+	public OrdDetailDto() {
+		super();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }

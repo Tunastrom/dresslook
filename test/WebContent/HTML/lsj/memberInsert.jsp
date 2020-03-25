@@ -19,12 +19,12 @@
 			success : function(result) { //result를 받아올꺼죠
 				if (result == 1) {
 					$('#idcheck1').html("you can use this ID"); //이 id 값에다가 저장해주세요
-					
+
 				} else {
 					$('#idcheck1').html("you can not use this ID");
-					
+
 				}
-				
+
 			}
 		})
 	}
@@ -143,10 +143,11 @@
 									</div>
 								</div>
 								<input type="submit"
-									class="btn btn-lg btn-default btn-block my-4" value="Sign up">
-								<input type="button"
-									class="btn btn-lg btn-default btn-block my-4" value="취소"
-									onclick="location.href='login.do'">
+									class="btn btn-lg btn-default btn-block my-4" value="Sign up"
+									onclick="location.href='memberInsertOk.do'"> 
+									<input
+									type="button" class="btn btn-lg btn-default btn-block my-4"
+									value="취소" onclick="location.href='login.do'">
 
 							</form>
 						</div>

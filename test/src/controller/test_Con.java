@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
@@ -13,47 +14,54 @@ import javax.servlet.http.HttpServletResponse;
 import command.Command;
 import command.MemberList;
 import command.MemberMain;
+import command.Memberupdate;
 import command.Mgoods;
+import command.crawling;
+import command.deleteMember;
 import command.collection.CollectionMain;
-import command.collection.Product;
 import command.collection.LookSelect;
 import command.collection.Payment;
+import command.collection.Product;
 import command.collection.Thankyou;
 import command.collection.orderSheet;
 import command.dresslook.BoardLook;
-
-import command.dresslook.DressroomitemInfoCommand;
-
 import command.dresslook.Checkout;
+import command.dresslook.DressroomitemInfoCommand;
+import command.dresslook.GoodsImageListCommand;
+import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
-import command.dresslook.LookInsert;
+import command.dresslook.LookListCommand;
+import command.dresslook.CollectionInsertCommand;
 import command.dresslook.Notifications;
+import command.dresslook.OrderInsertCommand;
 import command.dresslook.Search;
 import command.dresslook.SearchResult;
+import command.dresslook.ShareInsertCommand;
 import command.dresslook.Timeline;
 import command.dresslook.dressroom;
 import command.dresslook.imageGet;
+import command.manager.UpdateM;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
 import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
+import command.my.MemberupdateCk;
 import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
-import command.my.MyOrderTrackCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
 import command.my.memberInsertOk;
 import command.my.memberSelect;
 import command.my.registerCheck;
-import command.seller.GoodsList;
 import command.seller.InsertGoods;
-import command.seller.InsertGoodsOk;
+import command.seller.InsertLooks;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
+import command.seller.goodsInsert;
 import command.seller.sellerInsert;
 
 @WebServlet("*.do")
@@ -72,19 +80,25 @@ public class test_Con extends HttpServlet {
 		cont.put("/search.do", new Search());
 		cont.put("/searchResult.do", new SearchResult());
 		cont.put("/dressRoom.do", new dressroom());
+		cont.put("/ajax/goodsListCommand.do", new GoodsListCommand());
+		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
-		cont.put("/lookInsert.do", new LookInsert());
 
-		cont.put("boardLook.do", new BoardLook());
+		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
+		cont.put("/collectionInsertCommand.do", new CollectionInsertCommand());
+		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
+		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
+		cont.put("/ajax/lookListCommand.do", new LookListCommand());
 		cont.put("/lookContents.do", new LookContents());
-
 		cont.put("/boardLook.do", new BoardLook());
 
-		cont.put("/memberlist.do", new MemberList());
+		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
-
+		cont.put("/memberdelete.do", new deleteMember());
+		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
+		cont.put("/updatem.do", new UpdateM());
 		cont.put("/collectionMain.do", new CollectionMain());
 		cont.put("/lookSelect.do", new LookSelect());
 		cont.put("/product.do", new Product());
@@ -106,25 +120,34 @@ public class test_Con extends HttpServlet {
 		cont.put("/SloginOk.do", new SLoginOkCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
-		cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
 		cont.put("/myProfile.do", new MyProfileCommand());
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
+		cont.put("/memberPwSearch.do", new PwSearchCommand());
+		
+		cont.put("/myCoupon.do", new MyCouponCommand());
+		
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 		cont.put("/myCoupon.do", new MyCouponCommand());
 		// manager
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
-		cont.put("/GoodsList.do", new GoodsList());
-		cont.put("/InsertGoods.do", new InsertGoods());
-		cont.put("/InsertGoodsOk.do", new InsertGoodsOk());
+		/* cont.put("/GoodsList.do", new GoodsList()); */
+		cont.put("/goodsInsert.do", new goodsInsert());
+		/* cont.put("/InsertGoodsOk.do", new InsertGoodsOk()); */
 		cont.put("/mgoods.do", new Mgoods());
 
-		
+		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
+		cont.put("/insertLooks.do", new InsertLooks());
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
 		
-
+		//crawling
+		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
+		cont.put("/memberupdateCk.do", new MemberupdateCk());
+		
+		
 
 	}
 
@@ -144,15 +167,20 @@ public class test_Con extends HttpServlet {
 		String page = null;
 		response.setContentType("text/html; charset=UTF-8");
 		if (commandImpl != null) {
-			page = commandImpl.execute(request, response);
+			try {
+				page = commandImpl.execute(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println(page);
 			if (page != null & !page.isEmpty()) {
 				if (page.startsWith("redirect:")) {
 					String view = page.substring(9);
-					response.sendRedirect(view);
+					/* response.sendRedirect(view); */
 				} else if (page.startsWith("ajax:")) {
 					response.getWriter().append(page.substring(5));
-					System.out.println(page.substring(5));
+					/* System.out.println(page.substring(5)); */
 				} else if (page.startsWith("script:")) {
 					response.getWriter().append("<script>").append(page.substring(7)).append("</script>");
 				} else {
