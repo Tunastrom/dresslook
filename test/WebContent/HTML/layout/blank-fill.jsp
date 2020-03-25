@@ -96,26 +96,26 @@
 		 <footer class="tabs-footer">
             <ul class="nav nav-tabs justify-content-center" id="maintab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" href="timeline.do">
+                    <a class="nav-link active" id="home-tab" href="timelineCommand.do">
                         <i class="material-icons">store</i>
                         <small class="sr-only">Store</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="search-tab" href="search.do" aria-controls="search" aria-selected="true">
+                    <a class="nav-link" id="search-tab" href="searchCommand.do" aria-controls="search" aria-selected="true">
                         <i class="material-icons">find_in_page</i>
                         <small class="sr-only">Search</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="cart-tab" href="dressRoom.do" aria-controls="cart" aria-selected="true">
+                    <a class="nav-link" id="cart-tab" href="dressRoomCommand.do" aria-controls="cart" aria-selected="true">
                         <i class="material-icons">local_mall</i>
                         <span class="notification-point"></span>
                         <small class="sr-only">Local Mall</small>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="favorite-tab" href="collectionMain.do" aria-controls="favorite" aria-selected="false">
+                    <a class="nav-link" id="favorite-tab" href="collectionMainCommand.do" aria-controls="favorite" aria-selected="false">
                         <i class="material-icons">bookmark</i>
                         <small class="sr-only">Bookmarks</small>
                     </a>

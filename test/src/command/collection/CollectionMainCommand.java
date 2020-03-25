@@ -1,4 +1,4 @@
-package command.dresslook;
+package command.collection;
 
 import java.io.IOException;
 
@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class Search implements Command{
+public class CollectionMainCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "HTML/YCW/Search.jsp";
+		return "HTML/YCW/collectionMain.jsp";
 	}
-
 }

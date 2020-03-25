@@ -1,12 +1,15 @@
 package controller;
 
-import java.io.BufferedInputStream;
+/*import java.io.BufferedInputStream;*/
 import java.io.File;
-import java.io.FileOutputStream;
+/*import java.io.FileOutputStream;*/
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.text.ParseException;
+/*import java.io.InputStream;
+import java.io.OutputStream;*/
+import java.util.HashMap;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import org.apache.commons.io.FileUtils;
+import command.Command;
+import command.collection.OrderSheetCommand;
+import command.dresslook.DressRoomCommand;
+import command.dresslook.TimelineWriteCommand;
+
+/*import org.apache.commons.io.FileUtils;*/
 
 import dao.LookDao;
 import dto.LookDto;
@@ -29,11 +37,25 @@ import dto.LookDto;
 public class CanvasUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String SAVE_DIR = "lookImg";
+	/*
+	 * HashMap<String, Command> cont = new HashMap<>();
+	 * 
+	 * public CanvasUpload() { super(); }
+	 */
+	
+	private static final String SAVE_DIR = "/lookImg";
+	
+	/*
+	 * public void init(ServletConfig config) throws ServletException { String
+	 * result = null; cont.put("re_dressRoomCommand.do", new DressRoomCommand());
+	 * cont.put("new_TimelineWriteCommand.do", new TimelineWriteCommand());
+	 * cont.put("new_orderSheetCommand.do", new OrderSheetCommand()); }
+	 */
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String appPath = /* "c:/Temp"; */ request.getServletContext().getRealPath("/images");
+		
+		String appPath = "C:/USers/User/git/dresslook/test/WebContent/images"; /*request.getServletContext().getRealPath("/images");*/
 		String savePath = appPath + File.separator + SAVE_DIR;
 		// 서버에 savePath에 해당하는 디렉토리가 있는지 확인해서 없으면 만들어라
 		File fileSaveDir = new File(savePath);
@@ -45,6 +67,7 @@ public class CanvasUpload extends HttpServlet {
 		LookDao dao = new LookDao();
 		File lookFile = null;
 		for (Part part : request.getParts()) {
+			System.out.println("///GCT: "+part.getContentType());
 			if (part.getContentType() != null) {
 				// String fileName = extractFileName(part);
 			    long t = System.currentTimeMillis();
@@ -64,13 +87,28 @@ public class CanvasUpload extends HttpServlet {
 				dao.LookInsert(dto);
 				dao.LookDetailInsert(dto);
 			}
+			
 		}
-		// 파라미터 읽기
-		String strParam = request.getParameter("strParam");
-		request.setAttribute("message", "파일업로드에 성공 하였습니다.!");
-		response.getWriter().append("success");
+		
+		/*
+		 * // 실행할 Class객체를 찾아주는 부분 // hashMap의 키값인 문자열 ".xxxxx"를 만드는 과정
+		 * request.setCharacterEncoding("utf-8"); String uri = request.getRequestURI();
+		 * String context = request.getContextPath(); String path =
+		 * uri.substring(context.length()); // 로그처리 System.out.println("path=" + path);
+		 * // 권한체크(로그인 체크)
+		 * 
+		 * Command commandImpl = cont.get(path); if(commandImpl != null) { //return 된
+		 * viewpage 주소 텍스트 실행 try { commandImpl.execute(request, response); } catch
+		 * (ParseException e) { // TODO Auto-generated catch block e.printStackTrace();
+		 * } }
+		 */
+		/*
+		 * // 파라미터 읽기 String strParam = request.getParameter("strParam");
+		 * request.setAttribute("message", "파일업로드에 성공 하였습니다.!");
+		 * response.getWriter().append("success");
+		 */
 	}
-
+	
 	/*
 	 * private String extractFileName(Part part) { String contentDisp =
 	 * part.getHeader("content-disposition"); String[] items =

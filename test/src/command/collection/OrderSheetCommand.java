@@ -11,7 +11,7 @@ import command.Command;
 import dao.LookDao;
 import dto.LookDto;
 
-public class orderSheet implements Command {
+public class OrderSheetCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -28,6 +28,6 @@ public class orderSheet implements Command {
 		 * }
 		 */
 
-		return "HTML/YCW/orderSheet.jsp";
+		return "HTML/YCW/OrderSheet.jsp";
 	}
 }

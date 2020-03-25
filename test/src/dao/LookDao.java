@@ -63,19 +63,26 @@ public class LookDao extends DAO {
 //	Look Insert
 	public int LookInsert(LookDto dto) {
 		int n = 0;
-		String sql = "insert into look(l_code, l_filename, m_id, l_open) "
-				   + "values((select nvl(max(l_code),0)+1 from look),?,?,?)";
+		String sql1 = "select nvl(max(to_number(l_code)),0)+1 from look";
+	
+		String sql2 = "insert into look(l_code, l_filename, m_id, l_open) "
+				   + "values(?,?,?,?)";
 		try {
-			
+			psmt = conn.prepareStatement(sql1);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto.setL_code(rs.getString(1));
+			}
 			/*
 			 * ByteArrayInputStream inputStream = new
 			 * ByteArrayInputStream(dto.getL_image());
 			 */
-			psmt = conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql2);
 //			psmt.setBinaryStream(1, inputStream);
-			psmt.setString(1, dto.getL_fileName());
-			psmt.setString(2, dto.getM_id());
-			psmt.setString(3, dto.getL_open());
+			psmt.setString(1, dto.getL_code());
+			psmt.setString(2, dto.getL_fileName());
+			psmt.setString(3, dto.getM_id());
+			psmt.setString(4, dto.getL_open());
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,25 +92,20 @@ public class LookDao extends DAO {
 	
 	public int LookDetailInsert(LookDto dto) {
 		int n = 0;
-		String sql1= "select nvl(max(l_code),0) l_code from look";
 		String gnums = dto.getG_nums();
 		String gnum[] = gnums.split(",");
 		System.out.println("gnum.split.length: "+gnum.length);
 		String sql2 = "insert into LOOK_DETAIL(l_code, g_nums) "
 			       + "values(?, ?)";  
 		try {
-			psmt = conn.prepareStatement(sql1);
-			rs = psmt.executeQuery();
-			if(rs.next()) {
-				String lcode = rs.getString("l_code");
 				psmt = conn.prepareStatement(sql2);
 				for (int i=0; i< gnum.length; i++) {
-					psmt.setString(1, lcode);
+					psmt.setString(1, dto.getL_code());
 					System.out.println("gnum["+i+"]="+gnum[i]);
 					psmt.setInt(2, Integer.parseInt(gnum[i]));
 					n += psmt.executeUpdate();
 				}
-			}
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 

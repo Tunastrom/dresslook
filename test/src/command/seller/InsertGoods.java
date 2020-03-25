@@ -25,9 +25,12 @@ public class InsertGoods implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException { 
-		    String uploadPath = request.getSession()
-		                     .getServletContext() // application 기본객체
-		                     .getRealPath("/images/goodsImg");
+		    String addPath = "C:/USers/User/git/dresslook/test/WebContent/images";
+		    String uploadPath = addPath + File.separator + "/goodsImg";
+							/*
+							 * request.getSession() .getServletContext() // application 기본객체
+							 * .getRealPath("/images/goodsImg");
+							 */
 		    				  /* addPath + File.separator + "goodsImgs"; */
 		                      // session 기본 객체 .getServletContext() // application 기본객체
 		                    // upload는 폴더명 / 폴더의 경로를 // 구해옴

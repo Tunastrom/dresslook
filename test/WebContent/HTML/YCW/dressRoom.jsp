@@ -608,7 +608,7 @@
 								<div class="col" style="padding: 0 20px 0 20px; margin:0; color: white;">
 									female
 									<!-- 좌/우 클릭으로 대분류(남/녀/브랜드/이벤트)변경 -->
-									<a>&lt;</a> <a>&gt;</a>
+									<!-- <a>&lt;</a> <a>&gt;</a> -->
 								</div>
 							</div>
 							<!--대분류 -->
