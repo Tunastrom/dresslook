@@ -98,13 +98,12 @@
 				gNums = gNums.join(",");
 				var formData = new FormData();
 				formData.append("gNums",gNums);
-				formData.append("destination", destination);
 				$.when(html2can()).done(function (result){
 					formData.append("lookImg",Blob);
 					console.log(formData.get("lookImg"));
 					 $.ajax({ 
 					        type : 'post',
-					        url : "./CanvasUpload.do",
+					        url : "./"+ destination +".do",
 					        data : formData,
 					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
 					        contentType : false, // application/x-www-form-urlencoded; 방지!! 

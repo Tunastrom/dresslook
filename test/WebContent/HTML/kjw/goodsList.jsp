@@ -58,7 +58,6 @@
 			xhr.send();
 			return deferred.promise();
 		}
-
 		//ajax로 비동기처리한  getList, getPalImages 리턴값 모두 가져온다음, html/css코드와 결합 & #goodsList에 append
 		$
 				.when(getList(categoryNum), getPalImages(categoryNum))
@@ -95,69 +94,16 @@
 							GoodsClickEvent();
 						});
 	}
+
+		
 </script>
 </head>
 <body>
-	<div class="col"
-		style="min-width: 400px; margin: 0 10px 0 10px; padding-left: 10px; padding-right: 10px;">
-		<div class="container" style="padding: 0 10px 0 10px; margin: 0;">
-			<!--대분류 -->
-			<div class="row" style="background-color: #f94620;">
-				<div class="col"
-					style="padding: 0 20px 0 20px; margin: 0; color: white;">
-					female
-					<!-- 좌/우 클릭으로 대분류(남/녀/브랜드/이벤트)변경 -->
-					<a>&lt;</a> <a>&gt;</a>
-				</div>
-			</div>
-			<!--대분류 -->
-			<div class="row">
-				<!--상품목록 -->
-				<div class="col" style="padding-left: 5px; padding-right: 5px;">
-					<div class="row" id="goodsList" style="margin: 1px;"></div>
-					<!-- 팔레트용 이미지들  -->
-				</div>
-				<!--상품목록 -->
-				<!--소분류(카테고리) -->
-				<div class="col-auto" id="cateBar" align="center"
-					style="padding-left: 0px; padding-right: 0px; background-color: #ffe6e6">
-					<!-- a 태그에 href="상품리스트 페이지에 뿌리는 커맨드" style: 테두리 둥근 박스모양 + 클릭시 색 아이덴티티 컬러로 변하는 이벤트 -->
-					<div class="row category">
-						<div class="col" align="left">
-							<a class="C_botton">hot</a>
-						</div>
-					</div>
-					<div class="row category">
-						<div class="col" align="left">
-							<a class="C_botton">outer</a>
-						</div>
-					</div>
-					<div class="row category">
-						<div class="col" align="left">
-							<a class="C_botton">top</a>
-						</div>
-					</div>
-					<div class="row category">
-						<div class="col" align="left">
-							<a class="C_botton">bottom</a>
-						</div>
-					</div>
-					<div class="row category">
-						<div class="col" align="left">
-							<a class="C_botton">shoes</a>
-						</div>
-					</div>
-					<div class="row category">
-						<div class="col" align="left">
-							<a class="C_botton">etc</a>
-						</div>
-					</div>
-				</div>
-				<!--소분류(카테고리) -->
-			</div>
-		</div>
-		<!-- container -->
+	<div>
+	<script>
+		
+	</script>
 	</div>
-	<!-- 상품 검색창 -->
+	
 </body>
 </html>

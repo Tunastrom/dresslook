@@ -86,25 +86,15 @@ public class CanvasUpload extends HttpServlet {
 				/* dto.setSize(part.getSize()); */
 				dao.LookInsert(dto);
 				dao.LookDetailInsert(dto);
-				destination = request.getParameter("destination");
 			}
 		}
 	
 		  // 실행할 Class객체를 찾아주는 부분 // hashMap의 키값인 문자열 ".xxxxx"를 만드는 과정
-		String uri = null;
-		String context = null;
-		String path = null;
-		Command commandImpl = null;
 		request.setCharacterEncoding("utf-8"); 
-		if (destination.equals("share")) {
-			commandImpl = cont.get("new_TimelineWriteCommand.do");
-		} else if (destination.equals("order")) {
-			commandImpl = cont.get("new_orderSheetCommand.do");
-		} /*
-			 * else { uri = request.getRequestURI(); context = request.getContextPath();
-			 * path = uri.substring(context.length()); // 로그처리 System.out.println("path=" +
-			 * path); commandImpl = cont.get(path); }
-			 */
+		String uri = request.getRequestURI(); 
+		String context = request.getContextPath();
+		String path = uri.substring(context.length()); // 로그처리 System.out.println("path=" +
+		Command commandImpl = cont.get(path);
 		 // 권한체크(로그인 체크)
 		 String page = null;
 		 if(commandImpl != null) { //return 된
