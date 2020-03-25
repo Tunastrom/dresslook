@@ -353,7 +353,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <a href="Slogin.do" class="btn">Sign in</a>
+                            <a href="login.do" class="btn">Sign in</a>
                         </div>
                     </div>
                 </div>
@@ -381,7 +381,7 @@
                                 </div>
                                 <div class="form-group float-label active">
                                     <input type="text" class="form-control " id="name" name="name">
-                                    <label class="form-control-label">회사명</label>
+                                    <label class="form-control-label">이름</label>
                                     <div class="eheck_font" id="name_check"></div>
                                 </div>
                                 <div class="form-group float-label active">
@@ -389,16 +389,9 @@
                                         class="form-control-label">Email</label>
                                     <div class="eheck_font" id="email_check"></div>
                                 </div>
-                                
-                                <div class="form-group float-label active">
-								<input type="text" id="bizNum" name="bizNum" maxlength="12"
-									class="form-control "> <label
-									class="form-control-label">사업자 등록번호<span>"10자리"</span></label>
-							   </div>
-                                
                                 <div class="form-group float-label active">
                                     <input type="tel" class="form-control " id="pnum" name="pnum" required> <label
-                                        class="form-control-label">담당자 전화번호</label>
+                                        class="form-control-label">휴대전화번호</label>
                                     <div class="eheck_font" id="phone_check"></div>
                                 </div>
                                 <div class="form-group float-label active">
@@ -426,7 +419,19 @@
                                 </div>
 
                                 <div class="form-group float-label active">
-                                    
+                                    <p>성별</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <input type="radio" id="gender" name="gender" value="050"
+                                                    aria-label="Radio button for following text input"
+                                                    checked="checked"> 남 
+                                                <input type="radio" id="gender" name="gender"
+                                                    value="051" aria-label="Radio button for following text input"> 여
+                              
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group float-label active">
 
                                         <input type="checkbox" id="box1" name="box1" value="Bike"> 전체동의<br> 
@@ -437,7 +442,7 @@
                                 </div>
                                 <input type="submit" class="btn btn-lg btn-default btn-block my-4" value="Sign up">
                                 <input type="button" class="btn btn-lg btn-default btn-block my-4" value="취소"
-                                    onclick="location.href='Slogin.do'">
+                                    onclick="location.href='login.do'">
 
                             </form>
                         </div>
@@ -445,7 +450,7 @@
                 </div>
                 <div class="col-12 align-self-end mb-4 text-center">
                     Already have account?<br> 
-                    <a href="Slogin.do" class="text-dark font-weight-bold">Sign in</a>
+                    <a href="login.do" class="text-dark font-weight-bold">Sign in</a>
                     here.
                 </div>
             </div>
