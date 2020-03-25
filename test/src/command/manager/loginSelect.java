@@ -1,18 +1,21 @@
-package command.seller;
+package command.manager;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SLoginCommand implements command.Command {
+import command.Command;
+
+public class loginSelect implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, ParseException {
 		// TODO Auto-generated method stub
-		return "HTML/lsj/sellerLogin.jsp";
+		return "HTML/lsj/loginSelect.jsp";
 	}
 
 }

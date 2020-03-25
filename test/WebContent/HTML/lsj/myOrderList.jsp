@@ -57,7 +57,7 @@
 				%>
 				<div class="col-12 col-md-6">
 					<div class="card mb-3">
-						<a href="myOrderTrack.do" class="card-header bg-none">
+						<a href="track.do" class="card-header bg-none">
 							<div class="row">
 								<div class="col">
 									<p class="text-mute" id="clk"></p>
@@ -143,7 +143,7 @@
 									<p>${GoodsDto.g_price }</p>
 								</div>
 								<div>
-									<button onclick="location.href='myOrderTrack.do'">배송정보</button>
+									<button onclick="location.href='track.do'">배송정보</button>
 								</div>
 							</div>
 

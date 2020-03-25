@@ -1,6 +1,7 @@
 package command.my;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import command.Command;
 import dao.MemberDao;
 
-public class memberInsertOk implements Command {
+public class memberInsertOk1 implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -17,12 +18,12 @@ public class memberInsertOk implements Command {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String userID = request.getParameter("userID");
-		String userPassword1 = request.getParameter("userPassword1");
-		String userPassword2 = request.getParameter("userPassword2");
+		String userPW = request.getParameter("userPW");
+		String userPW2 = request.getParameter("userPW2");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String pnum = request.getParameter("pnum");
-		Integer zip = Integer.parseInt(request.getParameter("zip"));
+		String zip = request.getParameter("zip");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
 		String birth = request.getParameter("birth");
@@ -35,8 +36,8 @@ public class memberInsertOk implements Command {
 		 */
 
 		// 빈칸이 하나라도 있으면 안됨
-		if (userID == null || userID.equals("") || userPassword1 == null || userPassword1.equals("")
-				|| userPassword2 == null || userPassword2.equals("") || name == null || name.equals("") || email == null
+		if (userID == null || userID.equals("") || userPW == null || userPW.equals("")
+				|| userPW2 == null || userPW2.equals("") || name == null || name.equals("") || email == null
 				|| email.equals("") || pnum == null || pnum.equals("") || zip == null || zip.equals("") || addr1 == null
 				|| addr1.equals("") || addr2 == null || addr2.equals("") || birth == null || birth.equals("")
 				|| gender == null || gender.equals("")) {
@@ -48,7 +49,7 @@ public class memberInsertOk implements Command {
 			response.sendRedirect("index.jsp");
 			return null;
 		}
-		if (!userPassword1.equals(userPassword2)) {
+		if (!userPW.equals(userPW2)) {
 			request.getSession().setAttribute("messageType", "오류 메시지");
 			request.getSession().setAttribute("messageContent", "two password are not equal");
 			response.sendRedirect("index.jsp");
@@ -57,7 +58,7 @@ public class memberInsertOk implements Command {
 
 		// register함수가 여기서 쓰임
 		// UserDAO() //생성자 .register (그 class안에서register함수를 실행)
-		int result = new MemberDao().insert(userID, userPassword1, name, email, pnum, addr1, zip, addr1, birth, gender);
+		int result = new MemberDao().insert(userID, userPW, name, email, pnum, addr1, zip, addr2, birth, gender);
 		System.out.println(result);
 		if (result == 1) {
 			request.getSession().setAttribute("messageType", "성공 메시지");
