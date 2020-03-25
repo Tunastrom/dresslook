@@ -31,7 +31,7 @@
                 <div class="col-12 align-self-center">
                     <div class="row justify-content-center">
                         <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
-                        	
+                        	<h1 class="text-center font-weight-normal mb-5">${id}로그아웃 성공</h1>
                             <h1 class="text-center font-weight-normal mb-5">로그인 선택</h1>            
                             <a href="login.do" class="btn btn-lg btn-white btn-block my-4">일반 회원</a>
                             <a href="Slogin.do" class="btn btn-lg btn-white btn-block my-4">판매자 회원</a>

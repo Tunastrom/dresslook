@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 
 <head>
@@ -56,17 +57,43 @@
         <div class="content">
             <h5 class="text-center mb-0 username-text">Maxartkiller</h5>
             <p class="text-center small text-mute username-text">New York, United States</p>
-
+			
             <div class="list-group list-group-flush nav-list">
+                <c:if test="${id !=null && sid==null}">
                 <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="/test/myOrderList.do" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
+                <c:if test="${au == '211' }">
                 <a href="/test/memberlist.do" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
+                </c:if>
                 <a href="/test/myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
-                </div>
-                <a href="loginSelect.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
+           		</c:if>
+           		<c:if test="${sid !=null && id==null }">
+                <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
+                <a href="/test/myOrderList.do" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
+                <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
+                <a href="/test/myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
+           		</c:if>
             </div>
+                <c:choose>
+							<c:when test="${id !=null && sid==null}">
+								<a href="logout.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>
+							</c:when>
+							<c:when test="${sid !=null && id==null}">
+								<a href="Slogout.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>
+							</c:when>
+							<c:otherwise>
+								<a href="loginSelect.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
+							</c:otherwise>
+                
+                </c:choose>
+                
+                
+                
+	        
+					
         </div> 
+    </div> 
     <div class="main-container">
         <header class="header">
             <div class="row no-gutters">

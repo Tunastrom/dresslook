@@ -25,13 +25,13 @@ import command.collection.Product;
 import command.collection.Thankyou;
 import command.collection.OrderSheetCommand;
 import command.dresslook.Checkout;
+import command.dresslook.CollectionInsertCommand;
 import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
 import command.dresslook.LookListCommand;
-import command.dresslook.CollectionInsertCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
 import command.dresslook.SearchCommand;
@@ -46,6 +46,7 @@ import command.manager.loginSelect;
 import command.my.IdSearchCommand;
 import command.my.LoginCommand;
 import command.my.LoginOkCommand;
+import command.my.LogoutCommand;
 import command.my.MemberIdCheckAction;
 import command.my.MemberInsert;
 import command.my.MemberupdateCk;
@@ -55,14 +56,15 @@ import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
-import command.my.memberInsertOk1;
 import command.my.memberInsterOk;
 import command.my.memberSelect;
 import command.my.registerCheck;
 import command.seller.InsertGoods;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
+import command.seller.SLogoutCommand;
 import command.seller.goodsInsert;
+import command.seller.goodsListCommand;
 import command.seller.sellerInsert;
 
 @WebServlet("*.do")
@@ -120,6 +122,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/loginOk.do", new LoginOkCommand());
 		cont.put("/Slogin.do", new SLoginCommand());
 		cont.put("/SloginOk.do", new SLoginOkCommand());
+		cont.put("/logout.do", new LogoutCommand());
+		cont.put("/Slogout.do", new SLogoutCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
 		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
@@ -134,9 +138,8 @@ public class test_Con extends HttpServlet {
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
-		/* cont.put("/GoodsList.do", new GoodsList()); */
+		cont.put("/goodsList.do", new goodsListCommand());
 		cont.put("/goodsInsert.do", new goodsInsert());
-		/* cont.put("/InsertGoodsOk.do", new InsertGoodsOk()); */
 		cont.put("/mgoods.do", new Mgoods());
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력

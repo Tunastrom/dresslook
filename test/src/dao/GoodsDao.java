@@ -91,10 +91,6 @@ public class GoodsDao {
 				dto.setG_inven(rs.getString("g_inven"));
 				dto.setS_id(rs.getString("s_id"));
 				dto.setMaker(rs.getString("g_maker"));
-				/*
-				 * Blob blob = rs.getBlob("g_image"); dto.setG_image(blob.getBytes(1, (int)
-				 * blob.length()));
-				 */
 				dto.setG_fileName(rs.getString("g_filename"));
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
@@ -111,6 +107,42 @@ public class GoodsDao {
 		return list;
 	}
 	
+	public List<GoodsDto> SellerGoodsList(String sid) {
+		DAO();
+		List<GoodsDto> list = new ArrayList<GoodsDto>();
+		try {
+			String sql = null;
+			sql = "select * from goods order by g_num"; 
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery(sql);
+			while (rs.next()) {
+				GoodsDto dto = new GoodsDto();
+				dto.setG_num(rs.getInt("g_num"));
+				dto.setG_name(rs.getString("g_name"));
+				dto.setG_price(rs.getInt("g_price"));
+				dto.setS_price(rs.getInt("s_price"));
+				dto.setG_size(rs.getString("g_size"));
+				dto.setColor(rs.getString("color"));
+				dto.setG_inven(rs.getString("g_inven"));
+				dto.setS_id(rs.getString("s_id"));
+				dto.setMaker(rs.getString("g_maker"));
+				dto.setG_fileName(rs.getString("g_filename"));
+				dto.setG_info(rs.getString("g_info"));
+				dto.setG_code(rs.getString("g_code"));
+				dto.setG_sex(rs.getString("g_sex"));
+				dto.setG_prior(rs.getInt("g_prior"));
+				dto.setG_status(rs.getString("g_status"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
+	
 	public List<GoodsImageDto> GIlist(String g_nums){
 		DAO();
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>(); 
@@ -123,9 +155,7 @@ public class GoodsDao {
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				GoodsImageDto dto = new GoodsImageDto();
-				/* Blob blob = rs.getBlob("gd_image"); */
-				dto.setG_num(rs.getInt("g_num"));
-				/* dto.setGd_image(blob.getBytes(1, (int) blob.length())); */
+				dto.setG_num(rs.getInt("g_num"));	
 				dto.setGd_fileName(rs.getString("gd_filename"));
 				dto.setImg_type(rs.getString("img_type"));
 				list.add(dto);
@@ -133,42 +163,40 @@ public class GoodsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-		/*
-		 * String sql2 = "select g_code from goods where g_nums = ?"; try { psmt =
-		 * conn.prepareStatement(sql2); rs = psmt.executeQuery(); while(rs.next()) {
-		 * .setG_code(); } } catch (SQLException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 */ finally { 
+		 finally { 
 			close(); 
 		}
 		 
 		return list;
 	}
-	
+	public List<GoodsImageDto> SellerGIlist(String g_nums){
+		DAO();
+		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>(); 
+		String sql1 = "select * from goods_image where img_type='pal'";
+		if (g_nums != null) {
+			sql1 += ", g_nums in ("+g_nums+")";
+		}
+		try {
+			psmt = conn.prepareStatement(sql1);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				GoodsImageDto dto = new GoodsImageDto();
+				dto.setG_num(rs.getInt("g_num"));	
+				dto.setGd_fileName(rs.getString("gd_filename"));
+				dto.setImg_type(rs.getString("img_type"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		 finally { 
+			close(); 
+		}
+		 
+		return list;
+	}
 
-	/*
-	 * public List<GoodsDto> GoodsWhereList(GoodsDto dto) { List<GoodsDto> list =
-	 * new ArrayList<GoodsDto>();
-	 * 
-	 * try { String sql = "select * from goods where order by g_num";
-       psmt = conn.prepareStatement(sql); rs = psmt.executeQuery(sql);
-	 * 
-	 * while (rs.next()) { GoodsDto dto = new GoodsDto(); Blob blob =
-	 * rs.getBlob("g_image"); dto.setG_num(rs.getInt("g_num"));
-	 * dto.setG_name(rs.getString("g_name")); dto.setG_price(rs.getInt("g_price"));
-	 * dto.setS_price(rs.getInt("s_price")); dto.setG_size(rs.getString("g_size"));
-	 * dto.setColor(rs.getString("color")); dto.setG_inven(rs.getString("g_inven"));
-	 * dto.setS_id(rs.getString("s_id")); dto.setMaker(rs.getString("g_maker"));
-	 * dto.setG_image(blob.getBytes(1, (int) blob.length()));
-	 * dto.setG_info(rs.getString("g_info")); dto.setG_code(rs.getString("g_code"));
-	 * dto.setG_sex(rs.getString("g_sex")); dto.setG_prior(rs.getInt("g_prior"));
-	 * dto.setG_status(rs.getString("g_status")); list.add(dto); }
-	 * 
-	 * } catch (SQLException e) { e.printStackTrace(); } finally { close(); }
-	 * 
-	 * return list; }
-	 */
-	
+
 	
 	public int goodsInsert(GoodsDto dto) {
 		DAO();
@@ -186,7 +214,6 @@ public class GoodsDao {
 			psmt.setString(6, dto.getG_inven());
 			psmt.setString(7, dto.getS_id());
 			psmt.setString(8, dto.getMaker());	
-			//psmt.setBinaryStream(9, new ByteArrayInputStream(dto.getG_image()),dto.getSize());
 			psmt.setString(9, dto.getG_info());
 			psmt.setString(10, dto.getG_code());
 			psmt.setString(11, dto.getG_sex());
@@ -230,10 +257,6 @@ public class GoodsDao {
 		try {
 			psmt=conn.prepareStatement(sql2);
 			psmt.setInt(1, g_num);
-			/*
-			 * psmt.setBinaryStream(2,new
-			 * ByteArrayInputStream(dto.getGd_image()),dto.getSize());
-			 */
 			psmt.setString(2,dto.getImg_type());
 			psmt.setString(3,dto.getGd_fileName());
 			n = psmt.executeUpdate();
