@@ -36,7 +36,6 @@
 	    getlooksList();   
 	});
 	
-	function (){}
 	function category(){
 		var categorys = $(".category");
 		for (i=0; i<categorys.length; i++){
