@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!doctype html>
-
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <html lang="en">
 
 <head>
@@ -118,12 +116,13 @@
 					<a href="/test/timeline.do"
 						class="list-group-item list-group-item-action active"><i
 						class="material-icons">store</i> <span class="text-link">Home</span></a>
-					<a href="/test/goodsList.do"
+					<a href="/test/myOrderList.do"
 						class="list-group-item list-group-item-action"><i
-						class="material-icons">view_carousel</i> <span class="text-link">상품관리</span></a>
+						class="material-icons">view_carousel</i> <span class="text-link">My
+							Orders</span></a>
 					<a href="/test/notifications.do"
 						class="list-group-item list-group-item-action"><i
-						class="material-icons">notifications</i> <span class="text-link">주문관리</span></a>
+						class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
 					<a href="/test/myProfile.do"
 						class="list-group-item list-group-item-action"><i
 						class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
@@ -133,15 +132,17 @@
 				<c:when test="${id !=null && sid==null}">
 					<a href="logout.do" class="list-group-item text-danger"><i
 						class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>
-							</c:when>
+				</c:when>
+
 				<c:when test="${sid !=null && id==null}">
 					<a href="Slogout.do" class="list-group-item text-danger"><i
 						class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>
-							</c:when>
+				</c:when>
 				<c:otherwise>
 					<a href="loginSelect.do" class="list-group-item text-danger"><i
 						class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
-							</c:otherwise>
+
+				</c:otherwise>
 
 			</c:choose>
 
@@ -214,7 +215,6 @@
 		</footer>
 	</div>
 	<!-- MainContainer End -->
-	>>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
 </body>
 
 </html>
