@@ -30,9 +30,6 @@
 </head>
 
 <body>
-
-
-
 	<!-- page content starts -->
 	<div class="has-background bg-default">
 		<figure class="background opacity-30">
@@ -40,7 +37,6 @@
 				src="${pageContext.request.contextPath}/HTML/assets/img/image10.jpg"
 				alt="">
 		</figure>
-
 		<div class="login-container">
 			<div class="row no-gutters">
 				<div class="col-12 align-self-start header">
@@ -53,7 +49,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-12 align-self-center">
 					<div class="row justify-content-center">
 
