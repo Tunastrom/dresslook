@@ -68,6 +68,9 @@ public class InsertGoodsOk implements Command {
 			Integer g_prior = Integer.parseInt(request.getParameter("prior"));
 			String g_status = request.getParameter("status");
 			GoodsDto dto = new GoodsDto();
+			GoodsDao dao = new GoodsDao();
+			
+			
 			dto.setG_num(g_num);
 			dto.setG_name(g_name);
 			dto.setG_price(gprice);
@@ -82,11 +85,11 @@ public class InsertGoodsOk implements Command {
 			dto.setG_prior(g_prior);
 			dto.setG_status(g_status);
 
-			GoodsDao dao = new GoodsDao();
+			
 			dao.GoodsInsert(dto);
 
 		} catch (NullPointerException nbp) {
-			System.out.println(nbp);
+			
 		}
 		return "HTML/kjw/goodsList.jsp";
 	}
