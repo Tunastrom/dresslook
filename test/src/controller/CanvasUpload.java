@@ -30,27 +30,22 @@ import dto.LookDto;
 /**
  * Servlet implementation class CanvasUpload
  */
-@WebServlet("/CanvasUpload.do")
+@WebServlet("*.doCU")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 30, maxRequestSize = 1024 * 1024
 		* 50, location = "c:/Temp")
 public class CanvasUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final String SAVE_DIR = "/lookImg";
 
 	HashMap<String, Command> cont = new HashMap<>();
 	 
 	public CanvasUpload() { super(); }
 	
-	
-	private static final String SAVE_DIR = "/lookImg";
-	
-	
 	public void init(ServletConfig config) throws ServletException { 
-	    cont.put("new_TimelineWriteCommand.do", new TimelineWriteCommand());
-        cont.put("new_orderSheetCommand.do", new OrderSheetCommand()); 
+	    cont.put("new_TimelineWriteCommand.doCU", new TimelineWriteCommand());
+        cont.put("new_orderSheetCommand.doCU", new OrderSheetCommand()); 
     }
 	 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -88,23 +83,24 @@ public class CanvasUpload extends HttpServlet {
 				dao.LookDetailInsert(dto);
 			}
 		}
-	
+		request.setCharacterEncoding("utf-8");
 		  // 실행할 Class객체를 찾아주는 부분 // hashMap의 키값인 문자열 ".xxxxx"를 만드는 과정
-		request.setCharacterEncoding("utf-8"); 
 		String uri = request.getRequestURI(); 
 		String context = request.getContextPath();
-		String path = uri.substring(context.length()); // 로그처리 System.out.println("path=" +
+		String path = uri.substring(context.length()); // 로그처리 
+		System.out.println("CU path=" + path);
 		Command commandImpl = cont.get(path);
 		 // 권한체크(로그인 체크)
 		 String page = null;
+		 response.setContentType("text/html; charset=UTF-8");
 		 if(commandImpl != null) { //return 된
 			// viewpage 주소 텍스트 실행 
 			 try { 
 				 page = commandImpl.execute(request, response); 
-			 } catch (ParseException e) { 
+			 } catch (ServletException | IOException | ParseException e) { 
 				 e.printStackTrace();
 		     } 
-			 System.out.println(page);
+			 System.out.println("CU:" +page);
 				if (page != null & !page.isEmpty()) {
 					if (page.startsWith("redirect:")) {
 						String view = page.substring(9);
@@ -118,8 +114,6 @@ public class CanvasUpload extends HttpServlet {
 						request.getRequestDispatcher(page).forward(request, response);
 					}
 				}
-		 
-		 
 		 }
 		 
 	}

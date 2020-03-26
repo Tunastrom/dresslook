@@ -160,7 +160,6 @@ public class test_Con extends HttpServlet {
 		// 로그처리
 		System.out.println("path=" + path);
 		// 권한체크(로그인 체크)
-		
 		Command commandImpl = cont.get(path);
 		String page = null;
 		response.setContentType("text/html; charset=UTF-8");
@@ -168,7 +167,6 @@ public class test_Con extends HttpServlet {
 			try {
 				page = commandImpl.execute(request, response);
 			} catch (ServletException | IOException | ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println(page);
@@ -185,7 +183,6 @@ public class test_Con extends HttpServlet {
 					request.getRequestDispatcher(page).forward(request, response);
 				}
 			}
-
 		} else {
 			response.getWriter().append("잘못된 요청");
 		}

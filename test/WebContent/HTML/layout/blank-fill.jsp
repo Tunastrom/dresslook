@@ -185,7 +185,7 @@
         </footer>
     </div>
     <!-- MainContainer End -->
-			<div class="list-group list-group-flush nav-list">
+		<%-- 	<div class="list-group list-group-flush nav-list">
 				<c:if test="${id !=null && sid==null}">
 					<a href="/test/timeline.do"
 						class="list-group-item list-group-item-action active"><i
@@ -221,8 +221,8 @@
 						class="list-group-item list-group-item-action"><i
 						class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
 				</c:if>
-			</div>
-			<c:choose>
+			</div> --%>
+			<%-- <c:choose>
 				<c:when test="${id !=null && sid==null}">
 					<a href="logout.do" class="list-group-item text-danger"><i
 						class="material-icons">exit_to_app</i> <span class="text-link">로그아웃</span></a>
@@ -238,8 +238,8 @@
 
 				</c:otherwise>
 
-			</c:choose>
-	<div class="main-container">
+			</c:choose> --%>
+<%-- 	<div class="main-container">
 		<header class="header">
 			<div class="row no-gutters">
 				<div class="col-auto">
@@ -301,8 +301,7 @@
 			</ul>
 		</footer>
 	</div>
-	<!-- MainContainer End -->
->>>>>>> branch 'master' of https://github.com/Tunastrom/dresslook.git
+	<!-- MainContainer End --> --%>
 </body>
 
 </html>

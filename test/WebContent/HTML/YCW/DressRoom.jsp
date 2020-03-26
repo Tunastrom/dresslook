@@ -85,10 +85,10 @@
 				var destination = null;
 				if(id == "share"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "share";
+					destination = "new_TimelineWrite";
 				} else if(id == "order"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "order";
+					destination = "new_orderSheet";
 				}
 				var gNumTags = document.querySelectorAll("#palate .gNum");
 				var gNums = new Array();
@@ -103,7 +103,7 @@
 					console.log(formData.get("lookImg"));
 					 $.ajax({ 
 					        type : 'post',
-					        url : "./"+ destination +".do",
+					        url : "./"+ destination +"Command.doCU",
 					        data : formData,
 					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
 					        contentType : false, // application/x-www-form-urlencoded; 방지!! 
