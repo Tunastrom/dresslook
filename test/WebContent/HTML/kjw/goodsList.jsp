@@ -18,10 +18,9 @@ function transData(n) {
 	<div align="center" id="dv">
 		<br />
 		<h2>상품 관리</h2>
+		<br><br><br><br>
 		<form name="frm" id="frm" action="goodsRead.do" method="post">
-			<!-- 휴면 계정 변경부 삭제기능은 없음 -->
-			<input type="hidden" name="config" value=""> <input
-				type="hidden" name="tag" value="0">
+			<input type="hidden" id="id" name="id">
 			<table class="table table-hover" id="ttd">
 				<tr>
 					<th scope="col">상품번호</th>
@@ -38,7 +37,9 @@ function transData(n) {
 
 				</tr>
 				<c:forEach var="dto" items="${list}">
-					<tr onclick="transData(${dto.g_num })">
+					<tr onmouseover="this.style.backgroundColor='#FFFF99'"
+						onmouseout="this.style.backgroundColor=''"
+						onclick="transData(${dto.g_num })">
 						<td>${dto.g_num }</td>
 						<td>${dto.g_name }</td>
 						<td>${dto.g_price }</td>
@@ -48,13 +49,16 @@ function transData(n) {
 						<td>${dto.g_inven }</td>
 						<td>${dto.g_code }</td>
 						<td>${dto.maker }</td>
-						<td><img alt="" src="${pageContext.request.contextPath}/images/goodsImg/${dto.g_fileName}" width="100" height="100"></td>
+						<td><img alt=""
+							src="${pageContext.request.contextPath}/images/goodsImg/${dto.g_fileName}"
+							width="100" height="100"></td>
 						<td>${dto.g_sex }</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</form>
-		<input type="button" value="상품등록하기" onclick="location.href='goodsInsert.do'">
+		<input type="button" value="상품등록하기"
+			onclick="location.href='goodsInsert.do'">
 	</div>
 </body>
 </html>
