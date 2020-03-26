@@ -16,7 +16,6 @@ public class OrderSheetCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		/*
 		 * LookDao dao = new LookDao(); List<LookDto> list = dao.selectList(); String id
 		 * = request.getParameter("m_id"); String cnt = dao.getCount("m_id");
@@ -27,7 +26,6 @@ public class OrderSheetCommand implements Command {
 		 * 
 		 * }
 		 */
-
 		return "HTML/YCW/OrderSheet.jsp";
 	}
 }

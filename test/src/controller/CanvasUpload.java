@@ -42,8 +42,8 @@ public class CanvasUpload extends HttpServlet {
 	public CanvasUpload() { super(); }
 	
 	public void init(ServletConfig config) throws ServletException { 
-	    cont.put("new_TimelineWriteCommand.doCU", new TimelineWriteCommand());
-        cont.put("new_orderSheetCommand.doCU", new OrderSheetCommand()); 
+	    cont.put("/new_TimelineWriteCommand.doCU", new TimelineWriteCommand());
+        cont.put("/new_orderSheetCommand.doCU", new OrderSheetCommand()); 
     }
 	 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -90,6 +90,7 @@ public class CanvasUpload extends HttpServlet {
 		String path = uri.substring(context.length()); // 로그처리 
 		System.out.println("CU path=" + path);
 		Command commandImpl = cont.get(path);
+		System.out.println("commandImpl: "+ commandImpl);
 		 // 권한체크(로그인 체크)
 		 String page = null;
 		 response.setContentType("text/html; charset=UTF-8");
