@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="timeline.do"/>
+<jsp:forward page="timelineCommand.do"/>
 </body>
 </html>

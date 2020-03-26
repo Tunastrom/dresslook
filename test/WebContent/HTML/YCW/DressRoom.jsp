@@ -72,7 +72,7 @@
 						.then(function(canvas){
 							console.log(canvas);
 							var DataUrl = canvas.toDataURL();
-							$("body").append("<img src=\""+DataUrl+"\">"); 
+							/* $("body").append("<img src=\""+DataUrl+"\">");  */
 							Blob = dataURItoBlob(DataUrl);
 							console.log("toDataURL: "+ Blob);
 							deferred.resolve(Blob);
@@ -83,15 +83,12 @@
 					return deferred.promise();
 				}
 				var destination = null;
-				if (id == "collection"){
-					//ajax로 db저장후 페이지전환 X
-					destination = "collection";
-				} else if (id == "order"){
-					//ajax로 db저장후 페이지전환 O
-					destination = "order";
-				} else if (id == "share"){
+				if(id == "share"){
 					//ajax로 db저장후 페이지전환 O
 					destination = "share";
+				} else if(id == "order"){
+					//ajax로 db저장후 페이지전환 O
+					destination = "order";
 				}
 				var gNumTags = document.querySelectorAll("#palate .gNum");
 				var gNums = new Array();
@@ -101,13 +98,12 @@
 				gNums = gNums.join(",");
 				var formData = new FormData();
 				formData.append("gNums",gNums);
-				formData.append("destination", destination);
 				$.when(html2can()).done(function (result){
 					formData.append("lookImg",Blob);
 					console.log(formData.get("lookImg"));
 					 $.ajax({ 
 					        type : 'post',
-					        url : "./CanvasUpload.do",
+					        url : "./"+ destination +".do",
 					        data : formData,
 					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
 					        contentType : false, // application/x-www-form-urlencoded; 방지!! 
@@ -227,8 +223,8 @@
 				//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
 				var box = $("<div class=\"box\"></div>");
 				box.append("<div class=\"front\"></div>");
-				box.append("<input type=\"hidden\" class=\"gNum\"value=\""+goodsNum+"\">");
-				box.append("<input type=\"hidden\" value=\""+goodsCode+"\">");
+				box.append("<input type=\"hidden\" class=\"gNum\" value=\""+goodsNum+"\">");
+				box.append("<input type=\"hidden\" class=\"gCode\" value=\""+goodsCode+"\">");
 			    $("#palate").append(box);
 			    $("#palate").children("div:last");
 				$("#palate").children("div:last").children("div").append("<div class=\"background\" style=\"background-image: url(&quot;"+goodsSelected+"&quot;)\"></div>");
@@ -310,7 +306,7 @@
 			    $.each(upBars,(i,slider) => { 
 			    	if (i == result.length){
 						return false;
-					} 
+					}
 					//마네킹 img
 					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
 					//look img
@@ -324,8 +320,9 @@
 			    	var gNums = $(this).children(".gNums").text();
 			    	getGoodsOnPal(gNums);
 			    	getPalImgOnPal(gNums);
-			    	$.when(getPalImgOnPal(gNums), getPalImgOnPal(gNums)).done(function (result1, result2){
-			    		console.log(result);
+			    	$.when(getPalImgOnPal(gNums), getGoodsOnPal(gNums)).done(function (result1, result2){
+			    		console.log("result1: "+result1);
+			    		console.log("result2: "+result2);
 			    		var palCnt = $("#palate").children().length;
 			    		if (palCnt > 1){
 			    			$("#palate .box:gt(0)").remove();
@@ -335,7 +332,7 @@
 			    			$("#downBar .swiper-slide p").text("");
 			    			$("#downBar .swiper-slide p").append("<br>");
 			    		}
-			    		$.each(result2, (i, palJson) => {
+			    		$.each(result1, (i, palJson) => {
 			    			var box = $("<div class=\"box\"></div>");
 			    			box.append("<div class=\"front\"></div>");
 			    			box.append("<input type=\"hidden\" class=\"gNum\"value=\""+palJson.g_nums+"\">");
@@ -346,30 +343,33 @@
 			    		    var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
 			    			prev.children("div").attr("class", "back");
 			    		});
-			    		$.each(result1, (i, goodsJson) => {
-			    			console.log("goodsJson:"+goodsJson.g_fileName);
-			    			var downwCnt = $("#downBar .swiper-slide");
+			    		var downCnt = $("#downBar .swiper-slide").length;
+			    		$.each(result2, (i, goodsJson) => {
+			    			console.log("downCnt:"+downCnt);
 			    			var background = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+goodsJson.g_fileName+"&quot;)\"></div>");
 			    			var gCode = $("<input type=\"hidden\" value=\""+goodsJson.g_code+"\">");
 			    			var gNum = $("<input type=\"hidden\" value=\""+goodsJson.g_num+"\">");
-			    			if (downwCnt > 1){
+			    			if (downCnt > 1){
 			    				var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
 			    				var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
-			    				var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
+			    				var name = $("<p class=\"text-uppercase small\">"+goodsJson.g_name+"</p>");							
 			    				avatar.append(background);
 			    				avatar.append(gNum);
 			    				avatar.append(gCode);
 			    				swiperSlide.append(avatar);
 			    				swiperSlide.append(name);
-			    				//#downBar의 swiper-wrapper 태그에 append
 			    				$("#downBar .swiper-wrapper:last").append(swiperSlide);
-			    			} else if (downwCnt == 1) {
-			    				/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
+			    				$("#palate .box:last .gNum").attr("value",""+goodsJson.g_num);
+			    				$("#palate .box:last").append("<input class=\"gCode\" type=\"hidden\" value=\""+goodsJson.g_code+"\"/>");
+			    			} else if (downCnt == 1) {
 			    				$("#downBar .avatar").append(background);
 			    				$("#downBar .avatar").append(gNum);
 			    				$("#downBar .avatar").append(gCode);
-			    				$("#downBar .small").text(""+gName);
+			    				$("#downBar .small").text(""+goodsJson.g_name);
 			    				$("#downBar .small").children().remove();
+			    				$("#palate .box:eq(1) .gNum").attr("value",""+goodsJson.g_num);
+			    				$("#palate .box:eq(1)").append("<input class=\"gCode\" type=\"hidden\" value=\""+goodsJson.g_code+"\"/>");
+			    				downCnt++;
 			    			}
 			    		});
 			    	});
@@ -378,16 +378,11 @@
 	
 	function getGoodsOnPal(gNums){
 		  var deferred = $.Deferred();
-		  var formData1 = new FormData();
-		  formData1.append("g_nums", gNums);	
-		  console.log("g_nums1: "+ formData1.get("g_nums"));
 		  $.ajax({ 
-		        type : 'POST',
+		        type : "POST",
 		        url : "./ajax/goodsListCommand.do?",
-		        data : formData1,
+		        data : {g_nums: "1,2"},
 		       	dataType: "json",
-		       	processData : false,
-		        contentType : false,
 		        success : function(data){
 		        	if (data){
 		        		 deferred.resolve(data);
@@ -398,19 +393,14 @@
 		 });
 		 return deferred.promise();
 	};
-
+	
 	function getPalImgOnPal(gNums){
 		var deferred = $.Deferred();
-		  var formData2 = new FormData();
-		  formData2.append("g_nums", gNums);	
-		  console.log("g_nums2: "+  formData2.get("g_nums"));
 		  $.ajax({ 
-		        type : 'POST',
+		        type : "POST",
 		        url : "./ajax/goodsImageListCommand.do?",
-		        data : formData2,
+		        data : {g_nums: gNums},
 		       	dataType: "json",
-		       	processData : false,
-		        contentType : false,
 		        success : function(data){
 		        	if (data){
 		        		 deferred.resolve(data);
@@ -614,7 +604,7 @@
 								<div class="col" style="padding: 0 20px 0 20px; margin:0; color: white;">
 									female
 									<!-- 좌/우 클릭으로 대분류(남/녀/브랜드/이벤트)변경 -->
-									<a>&lt;</a> <a>&gt;</a>
+									<!-- <a>&lt;</a> <a>&gt;</a> -->
 								</div>
 							</div>
 							<!--대분류 -->

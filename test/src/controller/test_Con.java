@@ -18,13 +18,12 @@ import command.Memberupdate;
 import command.Mgoods;
 import command.crawling;
 import command.deleteMember;
-import command.collection.CollectionMain;
+import command.collection.CollectionMainCommand;
 import command.collection.LookSelect;
 import command.collection.Payment;
 import command.collection.Product;
 import command.collection.Thankyou;
-import command.collection.orderSheet;
-import command.dresslook.BoardLook;
+import command.collection.OrderSheetCommand;
 import command.dresslook.Checkout;
 import command.dresslook.CollectionInsertCommand;
 import command.dresslook.DressroomitemInfoCommand;
@@ -32,14 +31,16 @@ import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
+import command.dresslook.LookInsertCommandForm;
 import command.dresslook.LookListCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
-import command.dresslook.Search;
+import command.dresslook.SearchCommand;
 import command.dresslook.SearchResult;
 import command.dresslook.ShareInsertCommand;
-import command.dresslook.Timeline;
-import command.dresslook.dressroom;
+import command.dresslook.TimelineCommand;
+import command.dresslook.TimelineWriteCommand;
+import command.dresslook.DressRoomCommand;
 import command.dresslook.imageGet;
 import command.manager.UpdateM;
 import command.manager.loginSelect;
@@ -60,7 +61,6 @@ import command.my.memberInsterOk;
 import command.my.memberSelect;
 import command.my.registerCheck;
 import command.seller.InsertGoods;
-import command.seller.InsertLooks;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.SLogoutCommand;
@@ -79,34 +79,32 @@ public class test_Con extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		// dresslook
-		cont.put("/timeline.do", new Timeline());
+		cont.put("/timelineCommand.do", new TimelineCommand());
 		cont.put("/like.do", new Like());
-		cont.put("/search.do", new Search());
+		cont.put("/searchCommand.do", new SearchCommand());
 		cont.put("/searchResult.do", new SearchResult());
-		cont.put("/dressRoom.do", new dressroom());
+		cont.put("/dressRoomCommand.do", new DressRoomCommand());
 		cont.put("/ajax/goodsListCommand.do", new GoodsListCommand());
 		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
-
-		/* cont.put("/lookInertForm.do", new LookInsertForm()); */
+		cont.put("/lookInertCommand.do", new LookInsertCommandForm());
 		cont.put("/collectionInsertCommand.do", new CollectionInsertCommand());
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
+		cont.put("/TimelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/lookContents.do", new LookContents());
-		cont.put("/boardLook.do", new BoardLook());
-
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/memberdelete.do", new deleteMember());
 		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
 		cont.put("/updatem.do", new UpdateM());
-		cont.put("/collectionMain.do", new CollectionMain());
+		cont.put("/collectionMainCommand.do", new CollectionMainCommand());
 		cont.put("/lookSelect.do", new LookSelect());
 		cont.put("/product.do", new Product());
-		cont.put("/orderSheet.do", new orderSheet());
+		cont.put("/orderSheetCommand.do", new OrderSheetCommand());
 		cont.put("/payment.do", new Payment());
 		cont.put("/checkout.do", new Checkout());
 		cont.put("/thankyou.do", new Thankyou());
@@ -144,17 +142,13 @@ public class test_Con extends HttpServlet {
 		cont.put("/mgoods.do", new Mgoods());
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
-		cont.put("/insertLooks.do", new InsertLooks());
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
 		
 		//crawling
 		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
 		cont.put("/memberupdateCk.do", new MemberupdateCk());
-		
-		
-
 	}
-
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 실행할 Class객체를 찾아주는 부분
@@ -166,7 +160,7 @@ public class test_Con extends HttpServlet {
 		// 로그처리
 		System.out.println("path=" + path);
 		// 권한체크(로그인 체크)
-
+		
 		Command commandImpl = cont.get(path);
 		String page = null;
 		response.setContentType("text/html; charset=UTF-8");

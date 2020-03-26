@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
 
-public class CollectionMain implements Command{
+public class CollectionMainCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

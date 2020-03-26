@@ -1,11 +1,8 @@
-package command.seller;
-
+package command.dresslook;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -16,17 +13,18 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.Command;
-import dao.GoodsDao;
+import dao.LookDao;
 import dto.GoodsDto;
 import dto.GoodsImageDto;
+import dto.LookDto;
 
+public class LookInsertCommandForm implements Command {
 
-public class InsertGoods implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException { 
+			throws ServletException, IOException, ParseException {
 		    String addPath = "C:/USers/User/git/dresslook/test/WebContent/images";
-		    String uploadPath = addPath + File.separator + "/goodsImg";
+		    String uploadPath = addPath + File.separator + "/lookImg";
 							/*
 							 * request.getSession() .getServletContext() // application 기본객체
 							 * .getRealPath("/images/goodsImg");
@@ -48,10 +46,10 @@ public class InsertGoods implements Command {
 		     //업로드 된 복수의 파일 Enumeration 타입 변수에 저장 
 			 Enumeration files = multi.getFileNames(); 
 			 //Goodsdto, GoodsPaleteDto 선언
-			 GoodsDto dto = new GoodsDto();
-			 GoodsImageDto GIdto = new GoodsImageDto();
+			 LookDto dto = new LookDto();
+			 LookDao dao = new LookDao();
 			 //복수의 이미지파일 dto의 byte[]필드에 저장
-			 int palAndnot=0;
+			 
 			 while (files.hasMoreElements()) {
 				 String fileInput = (String)files.nextElement(); //file의 input 태그에 저장한 name속성 값 가져옴  	
 				 fileName = multi.getFilesystemName(fileInput); //파일의 실제 이름 가져옴
@@ -61,51 +59,17 @@ public class InsertGoods implements Command {
 			         fileObj = multi.getFile(fileInput); //파일객체 가져옴
 					 fileSize = fileObj.length();
 			     } 
-			/* byte[] file = Files.readAllBytes(Paths.get(uploadPath+"/"+fileName)); */ //파일 바이트 타입으로 변환
-				 //색깔별 옷 저장기능 구현시 if문에 구현
-				 if (palAndnot==0) {
-					 
-				/* GIdto.setGd_image(file); */
-					 GIdto.setGd_fileName(fileName);
-					 GIdto.setSize(fileSize);
-					 GIdto.setImg_type("pal");
-					 System.out.println("palAndnot: "+palAndnot);
-				/* file=null; */
-					 fileSize=0;
-				 } else if (palAndnot==1) {
-				/* dto.setG_image(file); */
-					 dto.setG_fileName(fileName);
-					 dto.setSize(fileSize);
-					 System.out.println("g_fileName: "+dto.getG_fileName());
-				 }
-				 palAndnot++;
-			 }
-		     //나머지 값 dto의 각 필드에 저장
-		     dto.setG_name(multi.getParameter("name"));
-		     System.out.println("========"+dto.getG_name());
-		     dto.setG_price(Integer.parseInt(multi.getParameter("grice")));
-		     dto.setS_price(Integer.parseInt(multi.getParameter("srice")));
-		     dto.setG_size(multi.getParameter("size"));
-		     dto.setColor(multi.getParameter("color"));
-		     dto.setG_inven(multi.getParameter("inven"));
-		     dto.setS_id(multi.getParameter("id"));
-		     dto.setMaker(multi.getParameter("maker"));
-		     dto.setG_info(multi.getParameter("info"));   
-		     dto.setG_code(multi.getParameter("gcode"));
-		     dto.setG_sex(multi.getParameter("scode"));
-		     dto.setG_prior(Integer.parseInt(multi.getParameter("prior")));
-		     dto.setG_status(multi.getParameter("status"));
-		     
-		    GoodsDao dao = new GoodsDao();
-		    int result1=0;
-			result1 = dao.goodsInsert(dto);
-		    int result2=0;
-			result2 = dao.giInsert(GIdto);
-		    System.out.println(result1);
-		    System.out.println(result2);
-		    request.setAttribute("result1", result1);
-		    request.setAttribute("result2", result2);
-			return "goodsInsert.do";
 		
+			 }
+			 String destination = multi.getParameter("destination");
+			 if (destination.equals("collection")) {
+				 
+			 }
+			 
+			 String result=null;
+			 
+			 
+			 
+			 return result;
 	}
 }
