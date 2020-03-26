@@ -28,7 +28,7 @@
 			var deferred = $.Deferred();
 			var param = "no=" + categoryNum;
 			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "./ajax/goodsListCommand.do?" + param, true);
+			xhr.open("GET", "./goodsList.do?" + param, true);
 			xhr.addEventListener('load', function() {
 				if (xhr.status === 200) {
 					var obj = JSON.parse(xhr.response);
@@ -42,68 +42,16 @@
 			return deferred.promise();
 
 		}
-		//goodsImage table 조회
-		function getPalImages() {
-			var deferred = $.Deferred();
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "./ajax/goodsImageListCommand.do?", true);
-			xhr.addEventListener('load', function() {
-				if (xhr.status === 200) {
-					var obj = JSON.parse(xhr.response);
-					deferred.resolve(obj); // call done() method
-				} else {
-					deferred.reject("HTTP error: " + xhr.status);
-				}
-			}, false);
-			xhr.send();
-			return deferred.promise();
-		}
-		//ajax로 비동기처리한  getList, getPalImages 리턴값 모두 가져온다음, html/css코드와 결합 & #goodsList에 append
-		$
-				.when(getList(categoryNum), getPalImages(categoryNum))
-				.done(
-						function(result1, result2) {
-							for (i = 0; i < result1.length; i++) {
-								var newCard = $("<div class=\"col-6 col-sm-4 col-md-3 col-lg-2\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
-								var card = $("<div class=\"card border-0 mb-4\"></div>");
-								var cardBody = $("<div class=\"card-body p-0\"></div>");
-								var hasBack = $("<div class=\"h-150px has-background rounded mb-2\"></div>");
-								var back = $("<a class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"
-										+ result1[i].g_fileName
-										+ "&quot;)\"></a>");
-								var palImg = $("<img src=\"${pageContext.request.contextPath}/images/goodsImg/"+result2[i].gd_fileName+"\">");
-								var gnum = $("<small class=\"text-mute\">"
-										+ result1[i].g_num + "</small>");
-								var gname = $("<p class=\"mb-0\">"
-										+ result1[i].g_name + "</p>");
-								var sprice = $("<p class=\"small\">"
-										+ result1[i].s_price + "</p>");
-								var sid = $("<p class=\"small\">"
-										+ result1[i].s_id + "</p>");
-								var gcode = $("<p style=\"display: none;\">"
-										+ result1[i].g_code + "</p>");
-								back.append(palImg);
-								hasBack.append(back);
-								cardBody.append(hasBack, gnum, gname, sprice,
-										sid, gcode);
-								card.append(cardBody);
-								newCard.append(card);
-								/*console.log(newCard); //완성된 1개 요소 확인 */
-								$("#goodsList").append(newCard);
-							}
-							GoodsClickEvent();
-						});
+
 	}
-
-		
 </script>
 </head>
 <body>
 	<div>
-	<script>
-		
-	</script>
+		<script>
+			
+		</script>
 	</div>
-	
+
 </body>
 </html>
