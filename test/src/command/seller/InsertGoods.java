@@ -105,7 +105,7 @@ public class InsertGoods implements Command {
 		    System.out.println(result2);
 		    request.setAttribute("result1", result1);
 		    request.setAttribute("result2", result2);
-			return "goodsInsert.do";
+			return "goodsList.do";
 		
 	}
 }
