@@ -15,7 +15,7 @@
         // 비밀번호 정규식
         var pwJ = /^[A-Za-z0-9]{4,12}$/;
         // 이름 정규식
-        var nameJ = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+        var cnameJ = /^[가-힣a-zA-Z0-9]{1,10}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
         //사업자번호 정규식
 		var cnumJ = /^[0-9]{10}$/;        
         
@@ -31,20 +31,20 @@
         $(document).ready(function () {
             var address = $('#addr2');
             //아이디 중복확인
-            $("#userID").blur(function () {
-                if ($('#userID').val() == '') {
+            $("#sellerID").blur(function () {
+                if ($('#sellerID').val() == '') {
                     $('#id_check').text('아이디를 입력하세요.');
                     $('#id_check').css('color', 'red');
-                } else if (idJ.test($('#userID').val()) != true) {
+                } else if (idJ.test($('#sellerID').val()) != true) {
                     $('#id_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
                     $('#id_check').css('color', 'red');
-                } else if ($('#userID').val() != '') {
-                    var userID = $('#userID').val();
+                } else if ($('#sellerID').val() != '') {
+                    var sellerID = $('#sellerID').val();
                     $.ajax({
                         async: true,
                         type: 'POST',
-                        data: userID,//userID라는 이름으로 userID라는 데이터를 @WebServlet("/registerCheck.do")에 보내겠다
-                        url: './ajax/registerCheck.do',
+                        data: sellerID,//sellerID라는 이름으로 sellerID라는 데이터를 @WebServlet("/registerCheck.do")에 보내겠다
+                        url: './ajax/sRegisterCheck.do',
                         dateType: 'json',
                         contentType: "application/json; charset=UTF-8",
                         success: function (data) {
@@ -53,12 +53,12 @@
                                 $('#id_check').css('color', 'red');
                                 $("#usercheck").attr("disabled", true);
                             } else {
-                                if (idJ.test(userID)) {
+                                if (idJ.test(sellerID)) {
                                     $('#id_check').text('사용가능한 아이디 입니다.');
                                     $('#id_check').css('color', 'blue');
                                     $("#usercheck").attr("disabled", false);
                                 }
-                                else if (userID == '') {
+                                else if (sellerID == '') {
                                     $('#id_check').text('아이디를 입력해주세요.');
                                     $('#id_check').css('color', 'red');
                                     $("#usercheck").attr("disabled", true);
@@ -75,7 +75,7 @@
             });//blur
             $('form').on('submit', function () {
                 var inval_Arr = new Array(10).fill(false);
-                if (idJ.test($('#userID').val())) {
+                if (idJ.test($('#sellerID').val())) {
                     inval_Arr[0] = true;
                 } else {
                     inval_Arr[0] = false;
@@ -83,8 +83,8 @@
                     return false;
                 }
                 // 비밀번호가 같은 경우 && 비밀번호 정규식
-                if (($('#userPW').val() == ($('#userPW2').val()))
-                    && pwJ.test($('#userPW').val())) {
+                if (($('#sellerPW').val() == ($('#sellerPW2').val()))
+                    && pwJ.test($('#sellerPW').val())) {
                     inval_Arr[1] = true;
                 } else {
                     inval_Arr[1] = false;
@@ -92,7 +92,7 @@
                     return false;
                 }
                 // 이름 정규식
-                if (nameJ.test($('#name').val())) {
+                if (cnameJ.test($('#cname').val())) {
                     inval_Arr[2] = true;
                 } else {
                     inval_Arr[2] = false;
@@ -123,8 +123,8 @@
                 
                 
                 // 휴대폰번호 정규식
-                if (phoneJ.test($('#pnum').val())) {
-                    console.log(phoneJ.test($('#pnum').val()));
+                if (phoneJ.test($('#cpnum').val())) {
+                    console.log(phoneJ.test($('#cpnum').val()));
                     inval_Arr[5] = true;
                 } else {
                     inval_Arr[5] = false;
@@ -181,8 +181,8 @@
                     alert('정보를 다시 확인하세요.')
                 }
             });
-            $('#userID').blur(function () {
-                if (idJ.test($('#userID').val())) {
+            $('#sellerID').blur(function () {
+                if (idJ.test($('#sellerID').val())) {
                     console.log('true');
                     $('#id_check').text('');
                 } else {
@@ -191,8 +191,8 @@
                     $('#id_check').css('color', 'red');
                 }
             });
-            $('#userPW').blur(function () {
-                if (pwJ.test($('#userPW').val())) {
+            $('#sellerPW').blur(function () {
+                if (pwJ.test($('#sellerPW').val())) {
                     console.log('true');
                     $('#pw_check').text('');
                 } else {
@@ -202,8 +202,8 @@
                 }
             });
             //1~2 패스워드 일치 확인
-            $('#userPW2').blur(function () {
-                if ($('#userPW').val() != $(this).val()) {
+            $('#sellerPW2').blur(function () {
+                if ($('#sellerPW').val() != $(this).val()) {
                     $('#pw2_check').text('비밀번호가 일치하지 않습니다.');
                     $('#pw2_check').css('color', 'red');
                 } else {
@@ -211,13 +211,13 @@
                 }
             });
             //이름에 특수문자 들어가지 않도록 설정
-            $("#name").blur(function () {
-                if (nameJ.test($(this).val())) {
-                    console.log(nameJ.test($(this).val()));
-                    $("#name_check").text('');
+            $("#cname").blur(function () {
+                if (cnameJ.test($(this).val())) {
+                    console.log(cnameJ.test($(this).val()));
+                    $("#cname_check").text('');
                 } else {
-                    $('#name_check').text('한글 2~4자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
-                    $('#name_check').css('color', 'red');
+                    $('#cname_check').text('10자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
+                    $('#cname_check').css('color', 'red');
                 }
             });
             $("#email").blur(function () {
@@ -243,7 +243,7 @@
             
             
             // 휴대전화
-            $('#pnum').blur(function () {
+            $('#cpnum').blur(function () {
                 if (phoneJ.test($(this).val())) {
                     console.log(nameJ.test($(this).val()));
                     $("#phone_check").text('');
@@ -333,29 +333,29 @@
                 <div class="col-12 align-self-center">
                     <div class="row justify-content-center">
                         <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
-                            <h1 class="text-center font-weight-normal mb-5">회원가입</h1>
+                            <h2 class="text-center font-weight-normal mb-5">판매자 회원가입</h2>
                             <form action="sellerInsertOk.do" method="post" name="loginInfo">
                                 <div class="form-group float-label active">
 
-                                    <input type="text" class="form-control" id="userID" name="userID"> <label
+                                    <input type="text" class="form-control" id="sellerID" name="sellerID"> <label
                                         class="form-control-label">Id</label>
                                     <div class="eheck_font" id="id_check"></div>
                                 </div>
 
                                 <div class="form-group float-label">
-                                    <input type="password" class="form-control" id="userPW" name="userPW"> <label
+                                    <input type="password" class="form-control" id="sellerPW" name="sellerPW"> <label
                                         class="form-control-label">비밀번호</label>
                                     <div class="eheck_font" id="pw_check"></div>
                                 </div>
                                 <div class="form-group float-label">
-                                    <input type="password" class="form-control" id="userPW2" name="userPW2"> 
+                                    <input type="password" class="form-control" id="sellerPW2" name="sellerPW2"> 
                                     <label class="form-control-label">비밀번호  확인</label>
                                     <div class="eheck_font" id="pw2_check"></div>
                                 </div>
                                 <div class="form-group float-label active">
-                                    <input type="text" class="form-control " id="name" name="name">
+                                    <input type="text" class="form-control " id="cname" name="cname">
                                     <label class="form-control-label">회사명</label>
-                                    <div class="eheck_font" id="name_check"></div>
+                                    <div class="eheck_font" id="cname_check"></div>
                                 </div>
                                 <div class="form-group float-label active">
                                     <input type="text" class="form-control " id="email" name="email"> <label
@@ -370,7 +370,7 @@
 							</div>
                                 
                                 <div class="form-group float-label active">
-                                    <input type="tel" class="form-control " id="pnum" name="pnum" required> <label
+                                    <input type="tel" class="form-control " id="cpnum" name="cpnum" required> <label
                                         class="form-control-label">휴대전화번호</label>
                                     <div class="eheck_font" id="phone_check"></div>
                                 </div>

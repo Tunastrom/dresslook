@@ -260,9 +260,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 align-self-end mb-4 text-center">
-            Already have account?<br> <a href="login.do" class="text-dark font-weight-bold">로그인</a>
-        </div>
+        
     </form>
     <!-- page content ends -->
 </body>

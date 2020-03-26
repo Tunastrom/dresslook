@@ -55,7 +55,7 @@
 						<div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
 							<form action="loginOk.do" method="post" name="loginInfo"
 								onsubmit="return checkValue()">
-								<h1 class="text-center font-weight-normal mb-5">Login</h1>
+								<h1 class="text-center font-weight-normal mb-5">로그인</h1>
 
 								<div
 									class="form-group float-label style-light position-relative">

@@ -33,11 +33,11 @@
 								alt="">
 						</div>
 					</figure>
-					<h5 class="text-center mb-0 username-text">${id}</h5>
+					<h5 class="text-center mb-0 username-text">${sid}</h5>
 					<p class="text-center small text-mute username-text">환영합니다</p>
 
 					<div class="list-group my-3">
-						<a href="myInfo.do"
+						<a href="sellerInfo.do"
 							class="list-group-item list-group-item-action">내 계정 <i
 							class="material-icons float-right text-mute h6 my-0">keyboard_arrow_right</i></a>
 						<a href="myOrderList.do"
