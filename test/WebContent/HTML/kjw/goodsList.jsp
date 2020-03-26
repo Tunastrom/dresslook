@@ -48,7 +48,7 @@ function transData(n) {
 						<td>${dto.g_inven }</td>
 						<td>${dto.g_code }</td>
 						<td>${dto.maker }</td>
-						<td><img alt="" src="${pageContext.request.contextPath}/images/goodsImg/${dto.g_fileName}"></td>
+						<td><img alt="" src="${pageContext.request.contextPath}/images/goodsImg/${dto.g_fileName}" width="100" height="100"></td>
 						<td>${dto.g_sex }</td>
 					</tr>
 				</c:forEach>

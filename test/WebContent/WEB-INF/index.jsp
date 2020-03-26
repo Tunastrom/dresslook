@@ -9,9 +9,9 @@
 </head>
 <body>
 	<script>
-		location.href = '/timeline.do';
+		location.href = '/timelineCommand.do';
 	</script>
-<!--<jsp:include page="/menu.jsp"/>
+	<!--<jsp:include page="/menu.jsp"/>
 <h1>회원관리</h1>
 <a href='/${initParam.context_root }/register_form.jsp'>회원가입폼</a><br>
 <a href='/${initParam.context_root }/login_form.jsp'>로그인폼</a>
