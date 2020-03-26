@@ -8,50 +8,53 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-	window.addEventListener("load", function() {
-		var categoryIndex = 0;
-		var goodsIndex = 0;
-		var selectedIndex = 0;
-		var goodsSelected = null;
-		var goodsCode = null;
-		var gNumSelected = null;
-		getGoodsList();
-	});
-	function getGoodsList(categoryNum) {
-		if (categoryNum == null) {
-			categoryNum = 0;
-			console.log(categoryNum);
-		}
-		//goods table 조회
-		function getList(categoryNum) {
-			console.log(categoryNum);
-			var deferred = $.Deferred();
-			var param = "no=" + categoryNum;
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "./goodsList.do?" + param, true);
-			xhr.addEventListener('load', function() {
-				if (xhr.status === 200) {
-					var obj = JSON.parse(xhr.response);
-					deferred.resolve(obj); // call done() method
-				} else {
-					deferred.reject("HTTP error: " + xhr.status);
-				}
-			}, false);
-
-			xhr.send();
-			return deferred.promise();
-
-		}
-
-	}
+function transData(n) {
+	frm.id.value = n;
+	frm.submit();
+}
 </script>
 </head>
 <body>
-	<div>
-		<script>
-			
-		</script>
-	</div>
+	<div align="center" id="dv">
+		<br />
+		<h2>상품 관리</h2>
+		<form name="frm" id="frm" action="goodsRead.do" method="post">
+			<!-- 휴면 계정 변경부 삭제기능은 없음 -->
+			<input type="hidden" name="config" value=""> <input
+				type="hidden" name="tag" value="0">
+			<table class="table table-hover" id="ttd">
+				<tr>
+					<th scope="col">상품번호</th>
+					<th scope="col">상 품 명</th>
+					<th scope="col">판 매 가</th>
+					<th scope="col">공 급 가</th>
+					<th scope="col">사 이 즈</th>
+					<th scope="col">색 상</th>
+					<th scope="col">재고유무</th>
+					<th scope="col">상품분류코드</th>
+					<th scope="col">브 랜 드</th>
+					<th scope="col">상품이미지</th>
+					<th scope="col">성 별</th>
 
+				</tr>
+				<c:forEach var="dto" items="${list}">
+					<tr onclick="transData(${dto.g_num })">
+						<td>${dto.g_num }</td>
+						<td>${dto.g_name }</td>
+						<td>${dto.g_price }</td>
+						<td>${dto.s_price }</td>
+						<td>${dto.g_size }</td>
+						<td>${dto.color }</td>
+						<td>${dto.g_inven }</td>
+						<td>${dto.g_code }</td>
+						<td>${dto.maker }</td>
+						<td><img alt="" src="${pageContext.request.contextPath}/images/goodsImg/${dto.g_fileName}"></td>
+						<td>${dto.g_sex }</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</form>
+		<input type="button" value="상품등록하기" onclick="location.href='goodsInsert.do'">
+	</div>
 </body>
 </html>

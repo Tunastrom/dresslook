@@ -65,7 +65,8 @@ import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.SLogoutCommand;
 import command.seller.goodsInsert;
-import command.seller.goodsListCommand;
+import command.seller.goodsList;
+import command.seller.goodsRead;
 import command.seller.sellerInsert;
 
 @WebServlet("*.do")
@@ -95,11 +96,11 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
 		cont.put("/TimelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/lookContents.do", new LookContents());
-		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
+		cont.put("/memberlist.do", new MemberList());// 회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/memberdelete.do", new deleteMember());
-		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
+		cont.put("/memberupdate.do", new Memberupdate());// 회원정보 수정
 		cont.put("/updatem.do", new UpdateM());
 		cont.put("/collectionMainCommand.do", new CollectionMainCommand());
 		cont.put("/lookSelect.do", new LookSelect());
@@ -125,30 +126,30 @@ public class test_Con extends HttpServlet {
 		cont.put("/Slogout.do", new SLogoutCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
-		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		// cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
 		cont.put("/myProfile.do", new MyProfileCommand());
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 		cont.put("/myCoupon.do", new MyCouponCommand());
-		
-		
+
 		// manager
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
-		cont.put("/goodsList.do", new goodsListCommand());
+		cont.put("/goodsList.do", new goodsList());
+		cont.put("/goodsRead.do", new goodsRead());
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/mgoods.do", new Mgoods());
 
-		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
+		cont.put("/insertGoods.do", new InsertGoods()); // 상품 샘플 입력
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
-		
-		//crawling
-		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
+
+		// crawling
+		cont.put("/track.do", new crawling());// 주문목록에서 배송조회 버튼이랑 연결해야됨
 		cont.put("/memberupdateCk.do", new MemberupdateCk());
 	}
-	
+
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 실행할 Class객체를 찾아주는 부분
