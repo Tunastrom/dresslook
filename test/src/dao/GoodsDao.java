@@ -195,8 +195,6 @@ public class GoodsDao {
 		 
 		return list;
 	}
-
-
 	
 	public int goodsInsert(GoodsDto dto) {
 		DAO();

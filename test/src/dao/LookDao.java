@@ -17,6 +17,7 @@ public class LookDao extends DAO {
 		super();
 	}
 	
+	
 	public ArrayList<LookDto> LooksList() {
 		list = new ArrayList<LookDto>();
 		String sql1 = "select * from look order by l_code";
@@ -54,6 +55,52 @@ public class LookDao extends DAO {
 		return list;
 	}
 	
+	public LookDto LookSelect(String l_code){
+		LookDto dto = null;
+		String sql = null;
+		if (l_code.equals("0")) {
+			sql = "select * from look where l_code = (select max(to_number(l_code)) from look)";
+		} else {
+			sql = "select * from look where l_code = ?";
+		}
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (!l_code.equals("0")) {
+				psmt.setString(1, l_code);
+			}
+			rs = psmt.executeQuery(sql);
+			if (rs.next()) {
+				dto = new LookDto();
+				dto.setL_code(rs.getString("l_code"));
+				dto.setL_fileName(rs.getString("l_fileName"));
+				dto.setL_open(rs.getString("l_open"));
+				dto.setM_id(rs.getString("m_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
+	
+	public String lookDetailSelect(String l_code) {
+			String result = null;
+			String sql = "SELECT WM_CONCAT(G_NUMS) G_NUMS" + 
+				      " FROM LOOK_DETAIL" + 
+				      " GROUP BY L_CODE" +
+				      " HAVING L_CODE = ?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, l_code);
+				psmt.executeQuery();
+				if(rs.next()) {
+					result = rs.getString("g_nums");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return result; 
+	}
 	/*
 	 * public LookDto select(String l_code) { dto = new LookDto();
 	 * 
@@ -61,7 +108,7 @@ public class LookDao extends DAO {
 	 */
 	
 //	Look Insert
-	public int LookInsert(LookDto dto) {
+	public String LookInsert(LookDto dto) {
 		int n = 0;
 		String sql1 = "select nvl(max(to_number(l_code)),0)+1 from look";
 	
@@ -87,10 +134,10 @@ public class LookDao extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return n;
+		return ""+n;
 	}
 	
-	public int LookDetailInsert(LookDto dto) {
+	public String LookDetailInsert(LookDto dto) {
 		int n = 0;
 		String gnums = dto.getG_nums();
 		String gnum[] = gnums.split(",");
@@ -105,12 +152,16 @@ public class LookDao extends DAO {
 					psmt.setInt(2, Integer.parseInt(gnum[i]));
 					n += psmt.executeUpdate();
 				}
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
+		try {
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		close();
-		return n;
+		return ""+n;
 	}
 	
 	public int update(MemberDto dto) {

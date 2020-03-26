@@ -31,7 +31,6 @@ import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
 import command.dresslook.LookContents;
-import command.dresslook.LookInsertCommandForm;
 import command.dresslook.LookListCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
@@ -80,6 +79,7 @@ public class test_Con extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// dresslook
 		cont.put("/timelineCommand.do", new TimelineCommand());
+		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/like.do", new Like());
 		cont.put("/searchCommand.do", new SearchCommand());
 		cont.put("/searchResult.do", new SearchResult());
@@ -88,7 +88,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
-		cont.put("/lookInertCommand.do", new LookInsertCommandForm());
+		/* cont.put("/lookInsertCommand.do", new LookInsertCommandForm()); */
 		cont.put("/collectionInsertCommand.do", new CollectionInsertCommand());
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());

@@ -15,6 +15,7 @@
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.doCU</url-pattern>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>

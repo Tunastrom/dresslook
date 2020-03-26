@@ -83,12 +83,15 @@
 					return deferred.promise();
 				}
 				var destination = null;
+				var url = "CanvasUpload";
 				if(id == "share"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "new_TimelineWrite";
+					url="CanvasUploadCommand.do";
+					destination = "timelineWrite";
 				} else if(id == "order"){
 					//ajax로 db저장후 페이지전환 O
-					destination = "new_orderSheet";
+					url="CanvasUploadCommand.do";
+					destination = "orderSheet";
 				}
 				var gNumTags = document.querySelectorAll("#palate .gNum");
 				var gNums = new Array();
@@ -103,15 +106,18 @@
 					console.log(formData.get("lookImg"));
 					 $.ajax({ 
 					        type : 'post',
-					        url : "./"+ destination +"Command.doCU",
+					        url : "./"+url+".do",
 					        data : formData,
 					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
 					        contentType : false, // application/x-www-form-urlencoded; 방지!! 
 					        success : function(data) {
-					            if(data.result){
-					                alert("Success");
+					        	alert(data);
+					            if(data != null && data != "[{}]"){
+					            	if (destination =="timelineWrite" || destination=="orderSheet"){
+					            		document.location.href= ""+destination+"Command.do?"
+					            	}
 					            }else{
-					                alert(data.result);
+					           /*      alert(data); */
 					            } 
 					        }
 					 });
