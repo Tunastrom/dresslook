@@ -241,11 +241,11 @@
 
                         </div>
                         <div class="form-group float-label active">
-                            <input type="text" class="form-control " id="addr1" name="addr1" value="${dto.m_addr1 }"
+                            <input type="text" class="form-control " id="addr1" name="addr1" value="${dto.m_add1 }"
                                 readonly="readonly" /> <label class="form-control-label">도로명 주소</label>
                         </div>
                         <div class="form-group float-label active">
-                            <input type="text" class="form-control " id="addr2" name="addr2" value="${dto.m_addr2 }" />
+                            <input type="text" class="form-control " id="addr2" name="addr2" value="${dto.m_add2 }" />
                             <label class="form-control-label">상세주소</label>
                         </div>
                         <div class="form-group float-label active">
