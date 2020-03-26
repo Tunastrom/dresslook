@@ -16,6 +16,9 @@
         var pwJ = /^[A-Za-z0-9]{4,12}$/;
         // 이름 정규식
         var nameJ = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+        //사업자번호 정규식
+		var cnumJ = /^[0-9]{10}$/;        
+        
         // 이메일 검사 정규식
         var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         // 휴대폰 번호 정규식
@@ -105,39 +108,39 @@
                     alert('이메일을 확인하세요.');
                     return false;
                 }
-                // 휴대폰번호 정규식
-                if (phoneJ.test($('#pnum').val())) {
-                    console.log(phoneJ.test($('#pnum').val()));
+                //사업자번호
+                if (cnumJ.test($('#bizNum').val())) {
+                    console.log(cnumJ.test($('#bizNum').val()));
                     inval_Arr[4] = true;
                 } else {
                     inval_Arr[4] = false;
                     alert('휴대폰 번호를 확인하세요.');
                     return false;
                 }
+                
+                
+                
+                
+                
+                // 휴대폰번호 정규식
+                if (phoneJ.test($('#pnum').val())) {
+                    console.log(phoneJ.test($('#pnum').val()));
+                    inval_Arr[5] = true;
+                } else {
+                    inval_Arr[5] = false;
+                    alert('휴대폰 번호를 확인하세요.');
+                    return false;
+                }
                 //주소확인
                 if (address.val() == '') {
-                    inval_Arr[5] = false;
+                    inval_Arr[6] = false;
                     alert('주소를 확인하세요.');
                     return false;
                 } else
-                    inval_Arr[5] = true;
-                // 생년월일 정규식
-                if (birthJ) {
-                    console.log(birthJ);
                     inval_Arr[6] = true;
-                } else {
-                    inval_Arr[6] = false;
-                    alert('생년월일을 확인하세요.');
-                    return false;
-                }
-                //성별 확인
-                /* if (member.mem_gender[0].checked == false && member.mem_gender[1].checked == false) { 
-                     inval_Arr[7] = false;
-                     alert('성별을 확인하세요.');
-                     return false;
-                 } else {
-                     inval_Arr[7] = true; 
-                 } */
+                
+                
+                
                 if (!$("input:checked[id='box1']").is(":checked")) {
                     inval_Arr[7] = false;
                     alert("전체 동의를 확인해주세요");
@@ -225,50 +228,20 @@
                     $('#email_check').css('color', 'red');
                 }
             });
-            // 생일 유효성 검사
-            var birthJ = false;
-            // 생년월일 birthJ 유효성 검사
-            $('#birth').blur(function () {
-                var dateStr = $(this).val();
-                var year = Number(dateStr.substr(0, 4)); // 입력한 값의 0~4자리까지 (연)
-                var month = Number(dateStr.substr(4, 2)); // 입력한 값의 4번째 자리부터 2자리 숫자 (월)
-                var day = Number(dateStr.substr(6, 2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일)
-                var today = new Date(); // 날짜 변수 선언
-                var yearNow = today.getFullYear(); // 올해 연도 가져옴
-                if (dateStr.length <= 8) {
-                    // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
-                    if (year > yearNow || year < 1900) {
-                        $('#birth_check').text('생년월일을 확인해주세요');
-                        $('#birth_check').css('color', 'red');
-                    }
-                    else if (month < 1 || month > 12) {
-                        $('#birth_check').text('생년월일을 확인해주세요 ');
-                        $('#birth_check').css('color', 'red');
-                    } else if (day < 1 || day > 31) {
-                        $('#birth_check').text('생년월일을 확인해주세요 ');
-                        $('#birth_check').css('color', 'red');
-                    } else if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) {
-                        $('#birth_check').text('생년월일을 확인해주세요 ');
-                        $('#birth_check').css('color', 'red');
-                    } else if (month == 2) {
-                        var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-                        if (day > 29 || (day == 29 && !isleap)) {
-                            $('#birth_check').text('생년월일을 확인해주세요 ');
-                            $('#birth_check').css('color', 'red');
-                        } else {
-                            $('#birth_check').text('');
-                            birthJ = true;
-                        }
-                    } else {
-                        $('#birth_check').text('');
-                        birthJ = true;
-                    }//end of if
+            
+            $('#bizNum').blur(function () {
+                if (cnumJ.test($(this).val())) {
+                    console.log(nameJ.test($(this).val()));
+                    $("#biznum_check").text('');
                 } else {
-                    //1.입력된 생년월일이 8자 초과할때 : auth:false
-                    $('#birth_check').text('생년월일을 확인해주세요 ');
-                    $('#birth_check').css('color', 'red');
+                    $('#biznum_check').text('사업자 번호를 확인해주세요 ');
+                    $('#biznum_check').css('color', 'red');
                 }
-            }); //End of method /*
+            });
+            
+            
+            
+            
             // 휴대전화
             $('#pnum').blur(function () {
                 if (phoneJ.test($(this).val())) {
@@ -361,7 +334,7 @@
                     <div class="row justify-content-center">
                         <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
                             <h1 class="text-center font-weight-normal mb-5">회원가입</h1>
-                            <form action="memberInsertOk.do" method="post" name="loginInfo">
+                            <form action="sellerInsertOk.do" method="post" name="loginInfo">
                                 <div class="form-group float-label active">
 
                                     <input type="text" class="form-control" id="userID" name="userID"> <label
@@ -381,7 +354,7 @@
                                 </div>
                                 <div class="form-group float-label active">
                                     <input type="text" class="form-control " id="name" name="name">
-                                    <label class="form-control-label">이름</label>
+                                    <label class="form-control-label">회사명</label>
                                     <div class="eheck_font" id="name_check"></div>
                                 </div>
                                 <div class="form-group float-label active">
@@ -389,6 +362,13 @@
                                         class="form-control-label">Email</label>
                                     <div class="eheck_font" id="email_check"></div>
                                 </div>
+                                <div class="form-group float-label active">
+								<input type="text" id="bizNum" name="bizNum" maxlength="10"
+									class="form-control "> <label
+									class="form-control-label">사업자 등록번호<span>"10자리"</span></label>
+									<div class="eheck_font" id="biznum_check"></div>
+							</div>
+                                
                                 <div class="form-group float-label active">
                                     <input type="tel" class="form-control " id="pnum" name="pnum" required> <label
                                         class="form-control-label">휴대전화번호</label>
@@ -412,26 +392,10 @@
                                     <input type="text" class="form-control " id="addr2" name="addr2" /> <label
                                         class="form-control-label">상세주소</label>
                                 </div>
-                                <div class="form-group float-label active">
-                                    <input type="text" class="form-control " id="birth" name="birth"> <label
-                                        class="form-control-label">생년월일</label>
-                                    <div class="eheck_font" id="birth_check"></div>
-                                </div>
+                                
 
                                 <div class="form-group float-label active">
-                                    <p>성별</p>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input type="radio" id="gender" name="gender" value="050"
-                                                    aria-label="Radio button for following text input"
-                                                    checked="checked"> 남 
-                                                <input type="radio" id="gender" name="gender"
-                                                    value="051" aria-label="Radio button for following text input"> 여
-                              
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group float-label active">
 
                                         <input type="checkbox" id="box1" name="box1" value="Bike"> 전체동의<br> 

@@ -27,7 +27,7 @@
 							</div>
 						</div>
 						<div class="col-auto">
-							<a href="sellerLogin.jsp" class="btn">Sign in</a>
+							<a href="loginSelect.do" class="btn">Sign in</a>
 						</div>
 					</div>
 				</div>
@@ -96,13 +96,13 @@
 						</div>
 
 
-						<a href="Slogin.do" class="btn btn-lg btn-default btn-block my-4">Sign
+						<a href="loginSelect.do" class="btn btn-lg btn-default btn-block my-4">Sign
 							up</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-12 align-self-end mb-4 text-center">
-				Already have account?<br> <a href="sellerLogin.jsp"
+				Already have account?<br> <a href="loginSelect.do"
 					class="text-dark font-weight-bold">Sign in</a> here.
 			</div>
 		</div>
