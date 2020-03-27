@@ -235,7 +235,7 @@ public class GoodsDao extends DAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			close();
+			
 		}
 
 		return n;
@@ -312,7 +312,7 @@ public class GoodsDao extends DAO {
 			psmt.setInt(1, dto.getG_num());
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
