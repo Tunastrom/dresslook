@@ -29,7 +29,7 @@ public class SLogoutCommand implements Command {
 		
 		
 		
-		return "timeline.do";
+		return "timelineCommand.do";
 		
 		
 		

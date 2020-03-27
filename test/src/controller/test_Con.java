@@ -63,6 +63,8 @@ import command.seller.InsertGoods;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.SLogoutCommand;
+import command.seller.goodsDeleteOne;
+import command.seller.goodsEdit;
 import command.seller.goodsInsert;
 import command.seller.goodsList;
 import command.seller.goodsRead;
@@ -139,6 +141,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/goodsList.do", new goodsList());
 		cont.put("/goodsRead.do", new goodsRead());
 		cont.put("/goodsInsert.do", new goodsInsert());
+		cont.put("/goodsEdit.do", new goodsEdit());
+		cont.put("/goodsDeleteOne.do", new goodsDeleteOne());
 		cont.put("/mgoods.do", new Mgoods());
 
 		cont.put("/insertGoods.do", new InsertGoods()); // 상품 샘플 입력

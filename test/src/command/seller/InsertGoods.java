@@ -88,12 +88,13 @@ public class InsertGoods implements Command {
 		     dto.setG_size(multi.getParameter("size"));
 		     dto.setColor(multi.getParameter("color"));
 		     dto.setG_inven(multi.getParameter("inven"));
-		     dto.setS_id(multi.getParameter("id"));
+		     //dto.setS_id(multi.getParameter("id"));
+		     dto.setS_id((String)request.getSession().getAttribute("sid"));
 		     dto.setMaker(multi.getParameter("maker"));
 		     dto.setG_info(multi.getParameter("info"));   
 		     dto.setG_code(multi.getParameter("gcode"));
 		     dto.setG_sex(multi.getParameter("scode"));
-		     dto.setG_prior(Integer.parseInt(multi.getParameter("prior")));
+		     dto.setG_prior((multi.getParameter("prior")));
 		     dto.setG_status(multi.getParameter("status"));
 		     
 		    GoodsDao dao = new GoodsDao();

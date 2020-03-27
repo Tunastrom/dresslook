@@ -1,65 +1,15 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-//import java.io.ByteArrayInputStream;
-//import java.io.ByteArrayOutputStream;
-//import java.io.File;
-//import java.io.FileInputStream;
-//import java.io.FileNotFoundException;
-//import java.io.IOException;
-//import java.sql.Blob;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Scanner;
-
-import javax.sql.DataSource;
-
 import dto.GoodsDto;
 import dto.GoodsImageDto;
 
-public class GoodsDao {
-
-	private Connection conn;
-	private PreparedStatement psmt;
-	private ResultSet rs;
-	private DataSource ds; // 커넥션 pool 사용을 위한 데이터연결 생성 객체
-
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-
-	private String url = "jdbc:oracle:thin:@39.116.34.40:1524:dl";
-	// private String url="jdbc:oracle:thin:@localhost:1523:dl"; //개인PC 서버
-	private String user = "dl";
-	private String password = "dl";
-
-	public void DAO() {
-		try {
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url, user, password);
-			System.out.println("good");
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void close() {
-		try {
-			if (rs != null)
-				rs.close();
-			if (psmt != null)
-				psmt.close();
-			if (conn != null)
-				conn.close();
-		} catch (SQLException e) {
-
-		}
-	}
+public class GoodsDao extends DAO {
 
 	public List<GoodsDto> GoodsList(String noOrG_nums, String value) {
-		DAO();
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
 		try {
 			String sql = null;
@@ -98,7 +48,7 @@ public class GoodsDao {
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
 				dto.setG_sex(rs.getString("g_sex"));
-				dto.setG_prior(rs.getInt("g_prior"));
+				dto.setG_prior(rs.getString("g_prior"));
 				dto.setG_status(rs.getString("g_status"));
 				list.add(dto);
 			}
@@ -111,13 +61,23 @@ public class GoodsDao {
 	}
 
 	public List<GoodsDto> SellerGoodsList(String sid) {
-		DAO();
+
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
 		try {
 			String sql = null;
-			sql = "select * from goods order by g_num";
+			sql = "select g_num, g_name, g_price, s_price,"+
+					" find_code(g_size) as g_size,"+
+					" color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"+
+					" find_code(g_code) as g_code," + 
+					" find_code(g_sex) as g_sex," +
+					" find_code(g_prior) as g_prior," + 
+					" find_code(g_status) as g_status, g_filename" +
+					" from goods g" +
+					" where s_id = ?" +
+					" order by g_num desc";
 			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery(sql);
+			psmt.setString(1, sid);
+			rs = psmt.executeQuery();
 			while (rs.next()) {
 				GoodsDto dto = new GoodsDto();
 				dto.setG_num(rs.getInt("g_num"));
@@ -133,7 +93,7 @@ public class GoodsDao {
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
 				dto.setG_sex(rs.getString("g_sex"));
-				dto.setG_prior(rs.getInt("g_prior"));
+				dto.setG_prior(rs.getString("g_prior"));
 				dto.setG_status(rs.getString("g_status"));
 				list.add(dto);
 			}
@@ -146,11 +106,20 @@ public class GoodsDao {
 	}
 
 	public List<GoodsDto> SellerGoodsOne(int g_num) {
-		DAO();
+
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
 		try {
 			String sql = null;
-			sql = "select * from goods where g_num = ?";
+			sql = "select g_num, g_name, g_price, s_price,"+
+			" find_code(g_size) as g_size,"+
+			" color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"+
+			" find_code(g_code) as g_code," + 
+			" find_code(g_sex) as g_sex," +
+			" find_code(g_prior) as g_prior," + 
+			" find_code(g_status) as g_status, g_filename" +
+			" from goods g" +
+			" where g_num = ?" +
+			" order by g_num desc";
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, g_num);
 			rs = psmt.executeQuery();
@@ -169,7 +138,7 @@ public class GoodsDao {
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
 				dto.setG_sex(rs.getString("g_sex"));
-				dto.setG_prior(rs.getInt("g_prior"));
+				dto.setG_prior(rs.getString("g_prior"));
 				dto.setG_status(rs.getString("g_status"));
 				list.add(dto);
 			}
@@ -182,7 +151,7 @@ public class GoodsDao {
 	}
 
 	public List<GoodsImageDto> GIlist(String g_nums) {
-		DAO();
+
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>();
 		String sql1 = "select * from goods_image where img_type='pal'";
 		if (g_nums != null) {
@@ -208,7 +177,7 @@ public class GoodsDao {
 	}
 
 	public List<GoodsImageDto> SellerGIlist(String g_nums) {
-		DAO();
+
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>();
 		String sql1 = "select * from goods_image where img_type='pal'";
 		if (g_nums != null) {
@@ -232,9 +201,9 @@ public class GoodsDao {
 
 		return list;
 	}
-	
+
 	public int goodsInsert(GoodsDto dto) {
-		DAO();
+
 		int n = 0;
 		String sql = "insert into GOODS"
 				+ " (G_NUM,G_NAME,G_PRICE,S_PRICE,G_SIZE,COLOR,G_INVEN,S_ID,G_MAKER,G_INFO,G_CODE,G_SEX,G_PRIOR,G_STATUS,G_FILENAME)"
@@ -252,7 +221,7 @@ public class GoodsDao {
 			psmt.setString(9, dto.getG_info());
 			psmt.setString(10, dto.getG_code());
 			psmt.setString(11, dto.getG_sex());
-			psmt.setInt(12, dto.getG_prior());
+			psmt.setString(12, dto.getG_prior());
 			psmt.setString(13, dto.getG_status());
 			psmt.setString(14, dto.getG_fileName());
 			n = psmt.executeUpdate();
@@ -273,7 +242,7 @@ public class GoodsDao {
 	}
 
 	public int giInsert(GoodsImageDto dto) {
-		DAO();
+
 		int n = 0;
 		String sql1 = "select max(g_num) g_num from goods";
 		int g_num = 0;
@@ -308,11 +277,47 @@ public class GoodsDao {
 
 	public int goodsUpdate(GoodsDto dto) {
 		int n = 0;
-		String sql = "update goods set g_name =?, g_price =? s_price =?, g_size=?, color=?, g_inven=?, g_maker=?, g_filename=?, g_info=?, g_code=?, g_sex=?, g_prior=?, g_status=? where g_num =?";
-		
+		String sql = "update goods set g_name =?, g_price =?, s_price =?, g_size=?, color=?, g_inven=?, g_maker=?, g_info=?, g_code=?, g_sex=?, g_prior=?, g_status=? where g_num =?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getG_name());
+			psmt.setInt(2, dto.getG_price());
+			psmt.setInt(3, dto.getS_price());
+			psmt.setString(4, dto.getG_size());
+			psmt.setString(5, dto.getColor());
+			psmt.setString(6, dto.getG_inven());
+			psmt.setString(7, dto.getMaker());
+			psmt.setString(8, dto.getG_info());
+			psmt.setString(9, dto.getG_code());
+			psmt.setString(10, dto.getG_sex());
+			psmt.setString(11, dto.getG_prior());
+			psmt.setString(12, dto.getG_status());
+			psmt.setInt(13, dto.getG_num());
+			n = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return n;
+
+	}
+	public int goodsDeleteOne(GoodsDto dto) {
+		int n = 0;
+		String sql ="delete from goods" +
+					" where g_num = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, dto.getG_num());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		return n;
-
+		
 	}
 }
