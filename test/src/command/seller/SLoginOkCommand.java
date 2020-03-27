@@ -30,7 +30,7 @@ public class SLoginOkCommand implements command.Command {
 			httpsession.setAttribute("sid", sid);
 			//httpsession.setAttribute("au", au);// 브라우저 종료시까지 유지. 세션
 
-			return "timeline.do";
+			return "timelineCommand.do";
 		}
 
 	}

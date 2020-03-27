@@ -18,7 +18,7 @@ public class GoodsDto {
 	private String g_info;
 	private String g_code;
 	private String g_sex;
-	private int g_prior;
+	private String g_prior;
 	private String g_status;
 	private long size;
 	//blob이미지 select후 반환할 때 사용
@@ -115,10 +115,10 @@ public class GoodsDto {
 	public void setG_sex(String g_sex) {
 		this.g_sex = g_sex;
 	}
-	public int getG_prior() {
+	public String getG_prior() {
 		return g_prior;
 	}
-	public void setG_prior(int g_prior) {
+	public void setG_prior(String g_prior) {
 		this.g_prior = g_prior;
 	}
 	public String getG_status() {

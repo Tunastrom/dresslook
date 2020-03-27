@@ -3,9 +3,7 @@ package command.seller;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.SQLException;
+
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -25,11 +23,13 @@ public class InsertGoods implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException { 
-		    String addPath = "C:/USers/User/git/dresslook/test/WebContent/images";
-		    String uploadPath = addPath + File.separator + "/goodsImg";
+		    //String addPath = "C:/USers/User/git/dresslook/test/WebContent/images";
+		    String uploadPath = request.getSession() .getServletContext().getRealPath("/images/goodsImg");
+		    
+		    //addPath + File.separator + "/goodsImg";
 							/*
-							 * request.getSession() .getServletContext() // application 기본객체
-							 * .getRealPath("/images/goodsImg");
+							 *  // application 기본객체
+							 * 
 							 */
 		    				  /* addPath + File.separator + "goodsImgs"; */
 		                      // session 기본 객체 .getServletContext() // application 기본객체
@@ -88,12 +88,13 @@ public class InsertGoods implements Command {
 		     dto.setG_size(multi.getParameter("size"));
 		     dto.setColor(multi.getParameter("color"));
 		     dto.setG_inven(multi.getParameter("inven"));
-		     dto.setS_id(multi.getParameter("id"));
+		     //dto.setS_id(multi.getParameter("id"));
+		     dto.setS_id((String)request.getSession().getAttribute("sid"));
 		     dto.setMaker(multi.getParameter("maker"));
 		     dto.setG_info(multi.getParameter("info"));   
 		     dto.setG_code(multi.getParameter("gcode"));
 		     dto.setG_sex(multi.getParameter("scode"));
-		     dto.setG_prior(Integer.parseInt(multi.getParameter("prior")));
+		     dto.setG_prior((multi.getParameter("prior")));
 		     dto.setG_status(multi.getParameter("status"));
 		     
 		    GoodsDao dao = new GoodsDao();

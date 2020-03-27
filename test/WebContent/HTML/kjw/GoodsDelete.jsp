@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 		<c:choose>
 			<c:when test="${pass == 0 }">
 				<div>
-					<h1>상품 수정을 실패하였습니다.</h1>
+					<h1>상품 삭제를 실패하였습니다.</h1>
 				</div>
 				<div>
 					<button type="button" onclick="location.href='goodsRead.do'">확인</button>
@@ -20,7 +20,7 @@
 			</c:when>
 			<c:otherwise>
 				<div>
-					<h1>상품 수정을 성공하였습니다.</h1>
+					<h1>상품 삭제를 성공하였습니다.</h1>
 				</div>
 				<div>
 					<button type="button" onclick="location.href='goodsList.do'">확인</button>

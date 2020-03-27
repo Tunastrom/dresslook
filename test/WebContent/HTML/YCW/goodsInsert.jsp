@@ -45,22 +45,23 @@
 							<option value="141">N</option>
 					</select></td>
 				</tr>
-				<tr>
+				<!--  <tr>
 					<td>판매자ID</td>
 					<td><input type="text" id="id" name="id" value="sel1"></td>
 				</tr>
+				-->
 				<tr>
 					<td>제조사</td>
 					<td><input type="text" id="maker" name="maker" value="nice"></td>
 				</tr>
 				<tr>
-					<td>상품썸네일이미지</td>
+					<td>상품착용이미지</td>
 					<td>
 						<input type="file" name="imageThumb" id="imageThumb"> 
 					</td>
 				</tr>
 				<tr>
-					<td>상품착용이미지</td>
+					<td>상품썸네일이미지</td>
 					<td>
 						<input type="file" name="imageTake" id="imageTake"> 
 					</td>

@@ -12,6 +12,7 @@ function transData(n) {
 	frm.id.value = n;
 	frm.submit();
 }
+
 </script>
 </head>
 <body>
@@ -33,8 +34,6 @@ function transData(n) {
 					<th scope="col">상품분류코드</th>
 					<th scope="col">브 랜 드</th>
 					<th scope="col">상품이미지</th>
-					<th scope="col">성 별</th>
-
 				</tr>
 				<c:forEach var="dto" items="${list}">
 					<tr onmouseover="this.style.backgroundColor='#FFFF99'"
@@ -52,13 +51,12 @@ function transData(n) {
 						<td><img alt=""
 							src="${pageContext.request.contextPath}/images/goodsImg/${dto.g_fileName}"
 							width="100" height="100"></td>
-						<td>${dto.g_sex }</td>
 					</tr>
 				</c:forEach>
 			</table>
+			<input type="submit" value="상품등록하기" formaction="goodsInsert.do">
 		</form>
-		<input type="button" value="상품등록하기"
-			onclick="location.href='goodsInsert.do'">
+		
 	</div>
 </body>
 </html>
