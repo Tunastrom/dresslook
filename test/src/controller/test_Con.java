@@ -30,7 +30,7 @@ import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
-import command.dresslook.LookContents;
+import command.dresslook.CodyContents;
 import command.dresslook.LookListCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
@@ -38,6 +38,7 @@ import command.dresslook.SearchCommand;
 import command.dresslook.SearchResult;
 import command.dresslook.ShareInsertCommand;
 import command.dresslook.TimelineCommand;
+import command.dresslook.TimelineUploadCommand;
 import command.dresslook.TimelineWriteCommand;
 import command.dresslook.DressRoomCommand;
 import command.dresslook.imageGet;
@@ -81,6 +82,7 @@ public class test_Con extends HttpServlet {
 		// dresslook
 		cont.put("/timelineCommand.do", new TimelineCommand());
 		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
+		cont.put("/timelineUploadCommand.do", new TimelineUploadCommand());
 		cont.put("/like.do", new Like());
 		cont.put("/searchCommand.do", new SearchCommand());
 		cont.put("/searchResult.do", new SearchResult());
@@ -93,8 +95,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
-		cont.put("/TimelineWriteCommand.do", new TimelineWriteCommand());
-		cont.put("/lookContents.do", new LookContents());
+		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
+		cont.put("/codyContents.do", new CodyContents());
 		cont.put("/memberlist.do", new MemberList());// 회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());

@@ -111,13 +111,13 @@
 					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
 					        contentType : false, // application/x-www-form-urlencoded; 방지!! 
 					        success : function(data) {
-					        	alert(data);
+					        	alert(data.result);
 					            if(data != null && data != "[{}]"){
 					            	if (destination =="timelineWrite" || destination=="orderSheet"){
 					            		document.location.href= ""+destination+"Command.do?"
 					            	}
-					            }else{
-					           /*      alert(data); */
+					            } else {
+					                 alert("전송실패 관리자에게 문의하세요"); 
 					            } 
 					        }
 					 });
