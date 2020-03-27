@@ -89,10 +89,11 @@ public class LookDao extends DAO {
 				      " FROM LOOK_DETAIL" + 
 				      " GROUP BY L_CODE" +
 				      " HAVING L_CODE = ?";
+			System.out.println("sql: "+sql);
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, l_code);
-				psmt.executeQuery();
+				rs = psmt.executeQuery();
 				if(rs.next()) {
 					result = rs.getString("g_nums");
 				}
