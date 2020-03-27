@@ -25,7 +25,7 @@ import command.collection.Payment;
 import command.collection.Product;
 import command.collection.Thankyou;
 import command.dresslook.Checkout;
-import command.dresslook.CollectionInsertCommand;
+
 import command.dresslook.DressRoomCommand;
 import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.GoodsImageListCommand;
@@ -70,6 +70,8 @@ import command.seller.SellerMainCommand;
 import command.seller.SellerupdateCkCommand;
 import command.seller.goodsInsert;
 import command.seller.sellerInsert;
+
+
 @WebServlet("*.do")
 public class test_Con extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -118,7 +120,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/sRegisterCheck.do", new SRegisterCheckCommand());
 		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
 		cont.put("/loginSelect.do", new loginSelect());
-
 		// my
 		cont.put("/login.do", new LoginCommand());
 		cont.put("/loginOk.do", new LoginOkCommand());
@@ -134,8 +135,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 		cont.put("/myCoupon.do", new MyCouponCommand());
-		
-		
 		// manager
 
 		// seller
