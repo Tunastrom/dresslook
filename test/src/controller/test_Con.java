@@ -20,12 +20,13 @@ import command.crawling;
 import command.deleteMember;
 import command.collection.CollectionMainCommand;
 import command.collection.LookSelect;
+import command.collection.OrderSheetCommand;
 import command.collection.Payment;
 import command.collection.Product;
 import command.collection.Thankyou;
-import command.collection.OrderSheetCommand;
 import command.dresslook.Checkout;
 import command.dresslook.CollectionInsertCommand;
+import command.dresslook.DressRoomCommand;
 import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
@@ -39,7 +40,6 @@ import command.dresslook.SearchResult;
 import command.dresslook.ShareInsertCommand;
 import command.dresslook.TimelineCommand;
 import command.dresslook.TimelineWriteCommand;
-import command.dresslook.DressRoomCommand;
 import command.dresslook.imageGet;
 import command.manager.UpdateM;
 import command.manager.loginSelect;
@@ -56,18 +56,20 @@ import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
-import command.my.memberInsterOk;
+import command.my.RegisterCheckCommand;
+import command.my.memberInsertOk;
 import command.my.memberSelect;
-import command.my.registerCheck;
 import command.seller.InsertGoods;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
 import command.seller.SLogoutCommand;
+import command.seller.SRegisterCheckCommand;
+import command.seller.SellerInfoCommand;
+import command.seller.SellerInsertOkCommand;
+import command.seller.SellerMainCommand;
+import command.seller.SellerupdateCkCommand;
 import command.seller.goodsInsert;
-import command.seller.goodsList;
-import command.seller.goodsRead;
 import command.seller.sellerInsert;
-
 @WebServlet("*.do")
 public class test_Con extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -80,7 +82,6 @@ public class test_Con extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// dresslook
 		cont.put("/timelineCommand.do", new TimelineCommand());
-		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/like.do", new Like());
 		cont.put("/searchCommand.do", new SearchCommand());
 		cont.put("/searchResult.do", new SearchResult());
@@ -89,17 +90,18 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/goodsImageListCommand.do", new GoodsImageListCommand());
 		cont.put("/ajax/imageGet.do", new imageGet());
 		cont.put("/notifications.do", new Notifications());
-		cont.put("/collectionInsertCommand.do", new CollectionInsertCommand());
+		
+		
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
 		cont.put("/TimelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/lookContents.do", new LookContents());
-		cont.put("/memberlist.do", new MemberList());// 회원목록 - id 클릭시 휴먼계정으로 변경
+		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/memberdelete.do", new deleteMember());
-		cont.put("/memberupdate.do", new Memberupdate());// 회원정보 수정
+		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
 		cont.put("/updatem.do", new UpdateM());
 		cont.put("/collectionMainCommand.do", new CollectionMainCommand());
 		cont.put("/lookSelect.do", new LookSelect());
@@ -111,8 +113,9 @@ public class test_Con extends HttpServlet {
 		cont.put("/loginCommand.do", new LoginCommand());
 		cont.put("/memberSelect.do", new memberSelect());
 		cont.put("/memberInsert.do", new MemberInsert());
-		cont.put("/memberInsertOk.do", new memberInsterOk());
-		cont.put("/ajax/registerCheck.do", new registerCheck());
+		cont.put("/memberInsertOk.do", new memberInsertOk());
+		cont.put("/ajax/registerCheck.do", new RegisterCheckCommand());
+		cont.put("/ajax/sRegisterCheck.do", new SRegisterCheckCommand());
 		cont.put("/IdCheckAction.do", new MemberIdCheckAction());
 		cont.put("/loginSelect.do", new loginSelect());
 
@@ -125,30 +128,36 @@ public class test_Con extends HttpServlet {
 		cont.put("/Slogout.do", new SLogoutCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
-		// cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
 		cont.put("/myProfile.do", new MyProfileCommand());
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 		cont.put("/myCoupon.do", new MyCouponCommand());
-
+		
+		
 		// manager
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
-		cont.put("/goodsList.do", new goodsList());
-		cont.put("/goodsRead.do", new goodsRead());
+		cont.put("/sellerInsertOk.do", new SellerInsertOkCommand());
+		cont.put("/goodsList.do", new GoodsListCommand());
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/mgoods.do", new Mgoods());
 
-		cont.put("/insertGoods.do", new InsertGoods()); // 상품 샘플 입력
+		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
-
-		// crawling
-		cont.put("/track.do", new crawling());// 주문목록에서 배송조회 버튼이랑 연결해야됨
+		
+		cont.put("/sellerMain.do", new SellerMainCommand());
+		cont.put("/sellerInfo.do", new SellerInfoCommand());
+		
+		
+		//crawling
+		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
 		cont.put("/memberupdateCk.do", new MemberupdateCk());
+		cont.put("/sellerupdateCk.do", new SellerupdateCkCommand());
 	}
-
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 실행할 Class객체를 찾아주는 부분

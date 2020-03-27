@@ -87,12 +87,31 @@
 <body class="ui-rounded sidebar-fill header-fill" data-page="homepage"> 
     <div class="sidebar sidebar-left overlay-sidebar">
         <div class="content">
-            <h5 class="text-center mb-0 username-text">Maxartkiller</h5>
-            <p class="text-center small text-mute username-text">New York, United States</p>
+        	<c:choose>
+							<c:when test="${id !=null && sid==null}">
+								<h5 class="text-center mb-0 username-text">${id}</h5>
+								<p class="text-center small text-mute username-text">환영합니다</p>
+							</c:when>
+							<c:when test="${sid !=null && id==null}">
+								<h5 class="text-center mb-0 username-text">${sid}</h5>
+								<p class="text-center small text-mute username-text">환영합니다</p>
+							</c:when>
+							<c:otherwise>
+								<h5 class="text-center mb-0 username-text">안녕하세요</h5>
+							</c:otherwise>
+                
+                </c:choose>
+        
+        
+        
+        
+        
+        
+            
 			
             <div class="list-group list-group-flush nav-list">
                 <c:if test="${id !=null && sid==null}">
-                <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
+                <a href="/test/timelineCommand.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="/test/myOrderList.do" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">My Orders</span></a>
                 <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
                 <c:if test="${au == '211' }">
@@ -104,7 +123,8 @@
                 <a href="/test/timeline.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="/test/goodsList.do" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">상품정보</span></a>
                 <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">주문정보</span></a>
-                <a href="/test/myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
+                <a href="/test/sellerMain.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
+
            		</c:if>
             </div>
                 <c:choose>
@@ -116,6 +136,7 @@
 							</c:when>
 							<c:otherwise>
 								<a href="loginSelect.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">로그인</span></a>
+								<a href="memberSelect.do" class="list-group-item text-danger"><i class="material-icons">exit_to_app</i> <span class="text-link">회원가입</span></a>
 							</c:otherwise>
                 
                 </c:choose>
@@ -185,6 +206,7 @@
         </footer>
     </div>
     <!-- MainContainer End -->
+
 </body>
 
 </html>
