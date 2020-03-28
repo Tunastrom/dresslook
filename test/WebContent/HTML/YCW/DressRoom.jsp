@@ -51,7 +51,7 @@
 	}
 	
 	function formEvent(){
-		var backGR = $("<div class=\"background\" data-html2canvas-ignore=\"true\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
+		var backGR = $("<div class=\"background\" data-html2canvas-ignore=\"true\"style=\"width:345px; background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG345.png&quot;)\"></div>");
 		$("#palate .front").append(backGR);
 		$("#lookControll").on("click", function(event){	
 			var id = event.target.getAttribute("id");
@@ -67,8 +67,10 @@
 				function html2can(){
 					var deferred = $.Deferred();
 					try{
-						html2canvas(document.querySelector("#palate").parentElement,
-								    {backgroundColor: null , scale: 1/* , x: 192.5, y: 210 */})	
+						var palate = document.querySelector("#palate").parentElement;
+						palate.setAttribute("style", "position: fixed;");
+						html2canvas(palate,
+								    {backgroundColor: null , scale: 1,/* , x: 192.5, y: 210 */})	
 						.then(function(canvas){
 							console.log(canvas);
 							var DataUrl = canvas.toDataURL();
@@ -77,6 +79,7 @@
 							console.log("toDataURL: "+ Blob);
 							deferred.resolve(Blob);
 						}); 
+						palate.setAttribute("style", "");
 					} catch (err){
 						deferred.reject("html2canvas Error");
 					}
@@ -111,7 +114,7 @@
 					        processData : false,	// data 파라미터 강제 string 변환 방지!! 
 					        contentType : false, // application/x-www-form-urlencoded; 방지!! 
 					        success : function(data) {
-					        	alert(data);
+					        	alert(data.result);
 					            if(data != null && data != "[{}]"){
 					            	if (destination =="timelineWrite" || destination=="orderSheet"){
 					            		document.location.href= ""+destination+"Command.do?"
@@ -227,13 +230,13 @@
 			    console.log(goodsSelected);
 			    console.log(goodsCode);
 				//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
-				var box = $("<div class=\"box\"></div>");
-				box.append("<div class=\"front\"></div>");
+				var box = $("<div class=\"box\" style=\"padding:0; margin:0;\"></div>"); 
+				box.append("<div class=\"front\" style=\"padding:0; margin:0;\"></div>");
 				box.append("<input type=\"hidden\" class=\"gNum\" value=\""+goodsNum+"\">");
 				box.append("<input type=\"hidden\" class=\"gCode\" value=\""+goodsCode+"\">");
 			    $("#palate").append(box);
 			    $("#palate").children("div:last");
-				$("#palate").children("div:last").children("div").append("<div class=\"background\" style=\"background-image: url(&quot;"+goodsSelected+"&quot;)\"></div>");
+				$("#palate").children("div:last").children("div").append("<div class=\"background\" style=\" width:345px; padding:0; margin:0; background-image: url(&quot;"+goodsSelected+"&quot;)\"></div>");
 				goodsSelected = null;
 				//직전 이미지의 클래스 back으로 변경 
 				var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
@@ -314,7 +317,7 @@
 						return false;
 					}
 					//마네킹 img
-					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG.png&quot;)\"></div>");
+					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG345.png&quot;)\"></div>");
 					//look img
 					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/lookImg/"+result[i].l_fileName+"&quot;)\"></div>");
 			    	/* $("#upBar .small:eq("+i+")").text(""+result[i].m_id);
@@ -352,7 +355,7 @@
 			    		var downCnt = $("#downBar .swiper-slide").length;
 			    		$.each(result2, (i, goodsJson) => {
 			    			console.log("downCnt:"+downCnt);
-			    			var background = $("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+goodsJson.g_fileName+"&quot;)\"></div>");
+			    			var background = $("<div class=\"background \"style=\"width:345px; background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+goodsJson.g_fileName+"&quot;)\"></div>");
 			    			var gCode = $("<input type=\"hidden\" value=\""+goodsJson.g_code+"\">");
 			    			var gNum = $("<input type=\"hidden\" value=\""+goodsJson.g_num+"\">");
 			    			if (downCnt > 1){
@@ -455,7 +458,7 @@
 	position: static; */
 	top: -20px;
 	left: -20px;
-	width: 400px;
+	width: 345px;
 	height:560px;
 	/*  right: ; */
 	/*  right: ; */
@@ -465,7 +468,7 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	width: 400px;
+	width: 345px;
 	height:560px;
 	/*  right: ; */
 	/*  bottom: ; */
@@ -476,80 +479,79 @@
 	margin:0;
 }
 
-
 #cateBar {
 	width: 100px;
 }
 </style>
 </head>
 <body>
-	<div class="row">
+	<div class="row" style="padding:0px; margin:0px;">
 	<div class="col col-lg-1" style="max-width:75px; margin:0; padding:0"></div>
-	<div class="col" style="padding:10px; align: center;">
+	<div class="col" style="padding:0; margin:0; align: center;">
 		<!-- style="margin: 5px 15px 0px 15px; padding: 0px 0px 0px 60px" -->
-		<div class="row" style="height: 25px;">
-			<div class="col" style="height: 24px;">
+		<div class="row" style="height: 25px; margin:0px; padding:0px;">
+			<div class="col" style="height: 24px; padding:0px; margin:0px;">
 				<h5 class="page-title">dressroom</h5>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col" align="center" style="min-width:400px; max-width:800px; padding: 0px 10px 0 10px;">
+		<div class="row" style="padding:0px; margin:0px;">
+			<div class="col" align="center" style="min-width:345px; max-width:800px; padding: 0; margin:0px">
 				<!-- my/추천룩이미지 -->
-				<div class="row" id="upBar" style="min-width:400px; max-width:800px; margin:0px">
-					<div class="col-12 col-sm-12col-md-12 col-lg-1" align="left"
-						style="min-width: 40px; max-width: 800px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
+				<div class="row" id="upBar" style="min-width:345px; max-width:800px; padding: 0; margin:0px">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-1" align="left"
+						style="min-width: 40px; max-width:800px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
 						<p>추천</p>
 					</div>
-					<div class="col" style="min-width: 400px; max-width: 800px; padding: 0; margin:1px 0 0 0;">
+					<div class="col" style="min_width: 345px padding:0; max-width:800px; padding: 0; margin:1px 0 0 0;">
 						<!-- Swiper -->
 						<div class="swiper-container categoriestab1 text-center">
-							<div class="swiper-wrapper" style="min-width:400px; max-width:800px;">
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+							<div class="swiper-wrapper" style="min-width:345px; max-width:800px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
-								<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+								<div class="swiper-slide" style="padding: 0;">
 									<div class="avatar avatar-80 has-background mb-2 rounded">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
@@ -561,21 +563,21 @@
 				</div>
 				<!-- my/추천룩이미지 -->
 				<!-- 팔레트  -->
-				<div class="row" style="min-width:400px; max-width:800px; padding: 0px;">
-					<div class="col" style="padding: 0px;"></div>
-					<div class="col-auto" style="width:400px; height:560px; padding: 0px;">
-						<div class="container" id="palate" style="padding:0px;">
+				<div class="row" style="min-width:345px; max-width:800px; padding: 0px; margin:0">
+					<div class="col" style="padding: 0px; margin:0"></div>
+					<div class="col-auto" style="width:345px; height:560px; padding: 0px; margin:0">
+						<div class="container" id="palate" style="padding:0px; margin: 0px">
 							<div class="box">
 								<div class="front">
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col" style="width: 5px; padding: 0px;"></div>
+					<div class="col" style="padding: 0px; margin:0"></div>
 				</div>
 				<!-- 팔레트  -->
 				<!-- 룩이미지처리 -->
-					<div class="row" id="lookControll" style="min-width:400px; max-width:800px; padding: 0; margin: 0; background-color: #ffe9e9;">
+					<div class="row" id="lookControll" style="min-width: 345px; max-width:800px; padding: 0; margin: 0; background-color: #ffe9e9;">
 								<div class="col-3" id="order" style="color: #f94620">주문</div>
 								<div class="col-3" id="collection" style="color: #f94620">컬렉션</div>
 								<div class="col-3" id="share" style="color: #f94620">룩공유</div>
@@ -583,13 +585,13 @@
 					</div>
 					<!-- 룩이미지처리 -->
 					<!-- 선택한 옷 목록 -->
-					<div class="row" id="downBar" style="min-width:400px; max-width:800px; margin:0">
+					<div class="row" id="downBar" style="min-width:345px; max-width:800px; margin:0; padding:0 10px 0 10px">
 						<div class="col" align="center"
 							style="padding: 0px; margin: 1px 0 0 0;">
 							<!-- Swiper -->
-							<div class="swiper-container categoriestab1 text-center">
-								<div class="swiper-wrapper">
-									<div class="swiper-slide" style="padding: 0 5px 0 5px;">
+							<div class="swiper-container categoriestab1 text-center" style="min-width:335px;">
+								<div class="swiper-wrapper" style="min-width:335px;">
+									<div class="swiper-slide" style="padding: 0">
 										<div class="avatar avatar-80 has-background mb-2 rounded">
 										</div>
 										<!-- p태그 안의 div는 여백주기 위해 일부러 준것 -->
@@ -603,10 +605,10 @@
 				<!-- 선택한 옷 목록 -->
 			</div>
 			<!-- 상품 검색창 -->
-			<div class="col" style=" min-width:400px; margin: 0 10px 0 10px;padding-left: 10px; padding-right: 10px;" >
-						<div class="container" style="padding: 0 10px 0 10px; margin: 0;">
+			<div class="col " style="min-width: 345px; margin: 0; padding:0px;" >
+						<div class="container" style="padding: 0; margin: 0;">
 							<!--대분류 -->
-							<div class="row" style="background-color: #f94620;">
+							<div class="row" style="background-color: #f94620; padding:0px; margin:0px;">
 								<div class="col" style="padding: 0 20px 0 20px; margin:0; color: white;">
 									female
 									<!-- 좌/우 클릭으로 대분류(남/녀/브랜드/이벤트)변경 -->
@@ -614,9 +616,9 @@
 								</div>
 							</div>
 							<!--대분류 -->
-							<div class="row">
+							<div class="row" style="padding:0px; margin:0px;">
 								<!--상품목록 -->
-								<div class="col" style="padding-left: 5px; padding-right: 5px;">
+								<div class="col" style="padding-left: 5px; padding-right: 5px; margin:0px;">
 									<div class="row" id="goodsList" style="margin: 1px;">
 									</div>
 									<!-- 팔레트용 이미지들  -->
@@ -624,7 +626,7 @@
 								<!--상품목록 -->
 								<!--소분류(카테고리) -->
 								<div class="col-auto" id="cateBar" align="center"
-									style="padding-left: 0px; padding-right: 0px; background-color: #ffe6e6">
+									style="padding: 0; margin:0; background-color: #ffe6e6">
 									<!-- a 태그에 href="상품리스트 페이지에 뿌리는 커맨드" style: 테두리 둥근 박스모양 + 클릭시 색 아이덴티티 컬러로 변하는 이벤트 -->
 									<div class="row category">
 										<div class="col" align="left">
