@@ -49,7 +49,7 @@ function transData(n) {
 						<td>${dto.g_code }</td>
 						<td>${dto.maker }</td>
 						<td><img alt=""
-							src="${pageContext.request.contextPath}/images/goodsImg/${dto.g_fileName}"
+							src="${pageContext.request.contextPath}/upload/goodsImg/${dto.g_fileName}"
 							width="100" height="100"></td>
 					</tr>
 				</c:forEach>

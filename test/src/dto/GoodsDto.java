@@ -20,17 +20,21 @@ public class GoodsDto {
 	private String g_sex;
 	private String g_prior;
 	private String g_status;
-	private long size;
+
+	private String gi_fileName;
+	private String gi_imgType;
+	/* private long size; */
 	//blob이미지 select후 반환할 때 사용
 	/* private String stringImage; */
 
+	
 	@Override
 	public String toString() {
 		return "GoodsDto [g_num=" + g_num + ", g_name=" + g_name + ", g_price=" + g_price + ", s_price=" + s_price
 				+ ", g_size=" + g_size + ", color=" + color + ", g_inven=" + g_inven + ", s_id=" + s_id + ", maker="
-				+ maker + ", g_image=" /* + Arrays.toString(g_image) */+ ", g_fileName=" + g_fileName + ", g_info=" + g_info + ", g_code=" + g_code
-				+ ", g_sex=" + g_sex + ", g_prior=" + g_prior + ", g_status=" + g_status + ", size=" + size
-				/*+ ", stringImage=" + stringImage*/ + "]";
+				+ maker + ", g_fileName=" + g_fileName + ", g_info=" + g_info + ", g_code=" + g_code + ", g_sex="
+				+ g_sex + ", g_prior=" + g_prior + ", g_status=" + g_status + ", gi_fileName=" + gi_fileName
+				+ ", gi_imgType=" + gi_imgType + "]";
 	}
 	public Integer getG_num() {
 		return g_num;
@@ -91,11 +95,11 @@ public class GoodsDto {
 	 * 
 	 * public void setG_image(byte[] g_image) { this.g_image = g_image; }
 	 */
-	public String getG_fileName() {
-		return g_fileName;
+	public String getGi_fileName() {
+		return gi_fileName;
 	}
-	public void setG_fileName(String g_fileName) {
-		this.g_fileName = g_fileName;
+	public void setGi_fileName(String gi_fileName) {
+		this.gi_fileName = gi_fileName;
 	}
 	public String getG_info() {
 		return g_info;
@@ -131,10 +135,17 @@ public class GoodsDto {
 	 * public String getStringImage() { return stringImage; } public void
 	 * setStringImage(String stringImage) { this.stringImage = stringImage; }
 	 */
-	public long getSize() {
-		return size;
+	public String getG_fileName() {
+		return g_fileName;
 	}
-	public void setSize(long size) {
-		this.size = size;
+	public void setG_fileName(String g_fileName) {
+		this.g_fileName = g_fileName;
 	}
+	public String getGi_imgType() {
+		return gi_imgType;
+	}
+	public void setGi_imgType(String gi_imgType) {
+		this.gi_imgType = gi_imgType;
+	}
+	
 }

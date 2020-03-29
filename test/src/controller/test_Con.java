@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,6 +72,8 @@ import command.seller.goodsRead;
 import command.seller.sellerInsert;
 
 @WebServlet("*.do")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 30, maxRequestSize = 1024 * 1024
+* 50, location = "c:/Temp")
 public class test_Con extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HashMap<String, Command> cont = new HashMap<>();

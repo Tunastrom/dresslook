@@ -30,6 +30,11 @@
 		var goodsSelected = null;
 		var goodsCode = null;
 		var gNumSelected = null;
+		//페이징
+		var totalData = 1000;    // 총 데이터 수
+	    var dataPerPage = 20;    // 한 페이지에 나타낼 데이터 수
+	    var pageCount = 10;       // 한 화면에 나타낼 페이지 수
+        
 		category();
 		formEvent();
 	 	getGoodsList(); 
@@ -52,12 +57,13 @@
 	
 	function formEvent(){
 		var backGR = $("<div class=\"background\" data-html2canvas-ignore=\"true\"style=\"width:345px; background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG345.png&quot;)\"></div>");
-		$("#palate .front").append(backGR);
+		var ssamHair = $("<div class=\"background\" data-html2canvas-ignore=\"true\"style=\"width:345px; background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/ssamHair.png&quot;)\"></div>");
+		$("#palate .back").append(backGR);
+		$("#palate .front").append(ssamHair);
 		$("#lookControll").on("click", function(event){	
 			var id = event.target.getAttribute("id");
 			if (id == "reset"){
-				$("#palate .box:gt(0)").remove();
-				$("#palate .back").attr("class","front");
+				$("#palate .box:gt(1)").remove();
 				$("#downBar .swiper-slide:gt(0)").remove();
 				$("#downBar .swiper-slide .has-background div").remove();
 				$("#downBar .swiper-slide p").text("");
@@ -171,7 +177,7 @@
 		function getPalImages(){
 			  var deferred = $.Deferred();
 			  var xhr = new XMLHttpRequest();
-			  xhr.open("POST","./ajax/goodsImageListCommand.do?",true);
+			  xhr.open("POST","./ajax/goodsImageListCommand.do",true);
 			  xhr.addEventListener('load',function(){
 			    if(xhr.status === 200){
 			      var obj = JSON.parse(xhr.response);
@@ -187,12 +193,12 @@
 		//ajax로 비동기처리한  getList, getPalImages 리턴값 모두 가져온다음, html/css코드와 결합 & #goodsList에 append
 		$.when(getList(categoryNum), getPalImages(categoryNum)).done(function (result1, result2){
 			for (i = 0; i < result1.length; i++) {
-				var newCard = $("<div class=\"col-6 col-sm-4 col-md-3 col-lg-2\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
+				var newCard = $("<div class=\"col-6 col-sm-4 col-md-3 col-lg-2 btn-outline-light\"style=\"padding-left: 5px; padding-right: 5px;\"></div>");
 				var card = $("<div class=\"card border-0 mb-4\"></div>");
 				var cardBody = $("<div class=\"card-body p-0\"></div>");
 				var hasBack = $("<div class=\"h-150px has-background rounded mb-2\"></div>");
-				var back = $("<a class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+result1[i].g_fileName+"&quot;)\"></a>");
-				var palImg = $("<img src=\"${pageContext.request.contextPath}/images/goodsImg/"+result2[i].gd_fileName+"\">");
+				var back = $("<a class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/upload/goodsImg/"+result1[i].g_fileName+"&quot;)\"></a>");
+				var palImg = $("<img src=\"${pageContext.request.contextPath}/upload/goodsImg/"+result2[i].gd_fileName+"\">");
 				var gnum = $("<small class=\"text-mute\">"
 						+ result1[i].g_num + "</small>");
 				var gname = $("<p class=\"mb-0\">"
@@ -256,8 +262,8 @@
 					var gNum = $("<input type=\"hidden\" value=\""+goodsNum+"\">");
 					palCnt = $("#palate").children().length;
 					//
-				if (palCnt > 2){
-					var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
+				if (palCnt > 1){
+					var swiperSlide = $("<div class=\"swiper-slide btn-outline-light\" style=\"padding: 0 5px 0 5px;\"></div>");
 					var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
 					var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
 					avatar.append(background);
@@ -267,7 +273,7 @@
 					swiperSlide.append(name);
 					//#downBar의 swiper-wrapper 태그에 append
 					$("#downBar .swiper-wrapper:last").append(swiperSlide);
-				} else if (palCnt == 2) {
+				} else if (palCnt == 1) {
 					/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
 					$("#downBar .avatar").append(background);
 					$("#downBar .avatar").append(gNum);
@@ -333,8 +339,8 @@
 			    		console.log("result1: "+result1);
 			    		console.log("result2: "+result2);
 			    		var palCnt = $("#palate").children().length;
-			    		if (palCnt > 1){
-			    			$("#palate .box:gt(0)").remove();
+			    		if (palCnt > 2){
+			    			$("#palate .box:gt(1)").remove();
 			    			$("#palate .back").attr("class","front");
 			    			$("#downBar .swiper-slide:gt(0)").remove();
 			    			$("#downBar .swiper-slide .has-background div").remove();
@@ -348,18 +354,18 @@
 			    			/* box.append("<input type=\"hidden\" value=\""+goodsCode+"\">"); */
 			    			$("#palate").append(box);
 			    			$("#palate").children("div:last");
-			    		    $("#palate").children("div:last").children("div").append("<div class=\"background\" style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+palJson.gd_fileName+"&quot;)\"></div>");
+			    		    $("#palate").children("div:last").children("div").append("<div class=\"background\" style=\"background-image: url(&quot;${pageContext.request.contextPath}/upload/goodsImg/"+palJson.gd_fileName+"&quot;)\"></div>");
 			    		    var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
 			    			prev.children("div").attr("class", "back");
 			    		});
 			    		var downCnt = $("#downBar .swiper-slide").length;
 			    		$.each(result2, (i, goodsJson) => {
 			    			console.log("downCnt:"+downCnt);
-			    			var background = $("<div class=\"background \"style=\"width:345px; background-image: url(&quot;${pageContext.request.contextPath}/images/goodsImg/"+goodsJson.g_fileName+"&quot;)\"></div>");
+			    			var background = $("<div class=\"background \"style=\"width:345px; background-image: url(&quot;${pageContext.request.contextPath}/upload/goodsImg/"+goodsJson.g_fileName+"&quot;)\"></div>");
 			    			var gCode = $("<input type=\"hidden\" value=\""+goodsJson.g_code+"\">");
 			    			var gNum = $("<input type=\"hidden\" value=\""+goodsJson.g_num+"\">");
-			    			if (downCnt > 1){
-			    				var swiperSlide = $("<div class=\"swiper-slide\" style=\"padding: 0 5px 0 5px;\"></div>");
+			    			if (downCnt > 2){
+			    				var swiperSlide = $("<div class=\"swiper-slide btn-outline-light\" style=\"padding: 0 5px 0 5px;\"></div>");
 			    				var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
 			    				var name = $("<p class=\"text-uppercase small\">"+goodsJson.g_name+"</p>");							
 			    				avatar.append(background);
@@ -370,7 +376,7 @@
 			    				$("#downBar .swiper-wrapper:last").append(swiperSlide);
 			    				$("#palate .box:last .gNum").attr("value",""+goodsJson.g_num);
 			    				$("#palate .box:last").append("<input class=\"gCode\" type=\"hidden\" value=\""+goodsJson.g_code+"\"/>");
-			    			} else if (downCnt == 1) {
+			    			} else if (downCnt == 2) {
 			    				$("#downBar .avatar").append(background);
 			    				$("#downBar .avatar").append(gNum);
 			    				$("#downBar .avatar").append(gCode);
@@ -498,61 +504,61 @@
 			<div class="col" align="center" style="min-width:345px; max-width:800px; padding: 0; margin:0px">
 				<!-- my/추천룩이미지 -->
 				<div class="row" id="upBar" style="min-width:345px; max-width:800px; padding: 0; margin:0px">
-					<div class="col-12 col-sm-12 col-md-12 col-lg-1" align="left"
-						style="min-width: 40px; max-width:800px; background-color: #f94620; color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
-						<p>추천</p>
+					<div class="col btn-danger" align="left"
+						style="max-width: 100px; /* background-color: #f94620; */ color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
+						추천
 					</div>
 					<div class="col" style="min_width: 345px padding:0; max-width:800px; padding: 0; margin:1px 0 0 0;">
 						<!-- Swiper -->
 						<div class="swiper-container categoriestab1 text-center">
 							<div class="swiper-wrapper" style="min-width:345px; max-width:800px;">
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
 								<div class="swiper-slide" style="padding: 0;">
-									<div class="avatar avatar-80 has-background mb-2 rounded">
+									<div class="avatar avatar-80 has-background mb-2 rounded btn-outline-light">
 									</div>
 									<p class="text-uppercase small upSlider"><br></p>
 								</div>
@@ -568,6 +574,10 @@
 					<div class="col-auto" style="width:345px; height:560px; padding: 0px; margin:0">
 						<div class="container" id="palate" style="padding:0px; margin: 0px">
 							<div class="box">
+								<div class="back">
+								</div>
+							</div>
+							<div class="box">
 								<div class="front">
 								</div>
 							</div>
@@ -578,10 +588,10 @@
 				<!-- 팔레트  -->
 				<!-- 룩이미지처리 -->
 					<div class="row" id="lookControll" style="min-width: 345px; max-width:800px; padding: 0; margin: 0; background-color: #ffe9e9;">
-								<div class="col-3" id="order" style="color: #f94620">주문</div>
-								<div class="col-3" id="collection" style="color: #f94620">컬렉션</div>
-								<div class="col-3" id="share" style="color: #f94620">룩공유</div>
-								<div class="col-3" id="reset" style="color: #f94620">초기화</div>
+								<div class="col-3 btn-danger" id="order" style="color: #ffffff">주문</div>
+								<div class="col-3 btn-danger" id="collection" style="color: #ffffff">컬렉션</div>
+								<div class="col-3 btn-danger" id="share" style="color: #ffffff">룩공유</div>
+								<div class="col-3 btn-danger" id="reset" style="color: #ffffff">초기화</div>
 					</div>
 					<!-- 룩이미지처리 -->
 					<!-- 선택한 옷 목록 -->
@@ -591,7 +601,7 @@
 							<!-- Swiper -->
 							<div class="swiper-container categoriestab1 text-center" style="min-width:335px;">
 								<div class="swiper-wrapper" style="min-width:335px;">
-									<div class="swiper-slide" style="padding: 0">
+									<div class="swiper-slide btn-outline-light" style="padding: 0">
 										<div class="avatar avatar-80 has-background mb-2 rounded">
 										</div>
 										<!-- p태그 안의 div는 여백주기 위해 일부러 준것 -->
@@ -605,11 +615,11 @@
 				<!-- 선택한 옷 목록 -->
 			</div>
 			<!-- 상품 검색창 -->
-			<div class="col " style="min-width: 345px; margin: 0; padding:0px;" >
+			<div class="col" style="min-width: 345px; margin: 0; padding:0px;">
 						<div class="container" style="padding: 0; margin: 0;">
 							<!--대분류 -->
 							<div class="row" style="background-color: #f94620; padding:0px; margin:0px;">
-								<div class="col" style="padding: 0 20px 0 20px; margin:0; color: white;">
+								<div class="col btn-danger" style="padding: 0 20px 0 20px; margin:0; color: white;">
 									female
 									<!-- 좌/우 클릭으로 대분류(남/녀/브랜드/이벤트)변경 -->
 									<!-- <a>&lt;</a> <a>&gt;</a> -->
@@ -619,7 +629,7 @@
 							<div class="row" style="padding:0px; margin:0px;">
 								<!--상품목록 -->
 								<div class="col" style="padding-left: 5px; padding-right: 5px; margin:0px;">
-									<div class="row" id="goodsList" style="margin: 1px;">
+									<div class="row"  id="goodsList" style="margin: 1px; height:1,419.8‬px; overflow: auto;">
 									</div>
 									<!-- 팔레트용 이미지들  -->
 								</div>

@@ -33,7 +33,7 @@ public class CanvasUpload extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String appPath = request.getServletContext().getRealPath("/images");
+		String appPath = request.getServletContext().getRealPath("/upload");
 
 		/*
 		 * "C:/USers/User/git/dresslook/test/WebContent/images";
