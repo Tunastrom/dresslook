@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,16 +64,11 @@ public class GoodsDao extends DAO {
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
 		try {
 			String sql = null;
-			sql = "select g_num, g_name, g_price, s_price,"+
-					" find_code(g_size) as g_size,"+
-					" color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"+
-					" find_code(g_code) as g_code," + 
-					" find_code(g_sex) as g_sex," +
-					" find_code(g_prior) as g_prior," + 
-					" find_code(g_status) as g_status, g_filename" +
-					" from goods g" +
-					" where s_id = ?" +
-					" order by g_num desc";
+			sql = "select g_num, g_name, g_price, s_price," + " find_code(g_size) as g_size,"
+					+ " color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"
+					+ " find_code(g_code) as g_code," + " find_code(g_sex) as g_sex,"
+					+ " find_code(g_prior) as g_prior," + " find_code(g_status) as g_status, g_filename"
+					+ " from goods g" + " where s_id = ?" + " order by g_num desc";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, sid);
 			rs = psmt.executeQuery();
@@ -110,16 +104,11 @@ public class GoodsDao extends DAO {
 		List<GoodsDto> list = new ArrayList<GoodsDto>();
 		try {
 			String sql = null;
-			sql = "select g_num, g_name, g_price, s_price,"+
-			" find_code(g_size) as g_size,"+
-			" color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"+
-			" find_code(g_code) as g_code," + 
-			" find_code(g_sex) as g_sex," +
-			" find_code(g_prior) as g_prior," + 
-			" find_code(g_status) as g_status, g_filename" +
-			" from goods g" +
-			" where g_num = ?" +
-			" order by g_num desc";
+			sql = "select g_num, g_name, g_price, s_price," + " find_code(g_size) as g_size,"
+					+ " color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"
+					+ " find_code(g_code) as g_code," + " find_code(g_sex) as g_sex,"
+					+ " find_code(g_prior) as g_prior," + " find_code(g_status) as g_status, g_filename"
+					+ " from goods g" + " where g_num = ?" + " order by g_num desc";
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, g_num);
 			rs = psmt.executeQuery();
@@ -154,10 +143,10 @@ public class GoodsDao extends DAO {
 
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>();
 		String sql1 = "select * from goods_image where img_type='pal'";
-		if (g_nums != null) { 
-			sql1 +=  " and g_num in (" + g_nums + ")";
+		if (g_nums != null) {
+			sql1 += " and g_num in (" + g_nums + ")";
 		} else {
-			sql1 +=  " order by to_number(g_num)";
+			sql1 += " order by to_number(g_num)";
 		}
 		try {
 			psmt = conn.prepareStatement(sql1);
@@ -174,7 +163,7 @@ public class GoodsDao extends DAO {
 		} finally {
 			close();
 		}
-		System.out.println("/////GiLIST:"+list);
+		System.out.println("/////GiLIST:" + list);
 		return list;
 	}
 
@@ -237,7 +226,7 @@ public class GoodsDao extends DAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 
 		return n;
@@ -257,7 +246,7 @@ public class GoodsDao extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("//////////g_num: "+g_num);
+		System.out.println("//////////g_num: " + g_num);
 		String sql2 = "insert into GOODS_IMAGE" + "(g_num, img_type, gd_filename)" + " values(?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql2);
@@ -289,7 +278,7 @@ public class GoodsDao extends DAO {
 			psmt.setString(4, dto.getG_size());
 			psmt.setString(5, dto.getColor());
 			psmt.setString(6, dto.getG_inven());
-			psmt.setString(7, dto.getMaker());
+			psmt.setString(7, dto.getG_maker());
 			psmt.setString(8, dto.getG_info());
 			psmt.setString(9, dto.getG_code());
 			psmt.setString(10, dto.getG_sex());
@@ -306,21 +295,20 @@ public class GoodsDao extends DAO {
 		return n;
 
 	}
+
 	public int goodsDeleteOne(GoodsDto dto) {
 		int n = 0;
-		String sql ="delete from goods" +
-					" where g_num = ?";
+		String sql = "delete from goods" + " where g_num = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, dto.getG_num());
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		
+
 		return n;
-		
+
 	}
 }

@@ -64,7 +64,7 @@
 						<td>${dto.s_cname }</td>
 						<td>${dto.s_email }</td>
 						<td>${dto.c_number }</td>
-						<td>${dto.phone }</td>
+						<td>${dto.s_phone }</td>
 						<td>${dto.s_zip }</td>
 						<td>${dto.s_addr1 }</td>
 						<td>${dto.s_addr2 }</td>
