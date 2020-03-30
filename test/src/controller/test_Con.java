@@ -25,13 +25,11 @@ import command.collection.Payment;
 import command.collection.Product;
 import command.collection.Thankyou;
 import command.dresslook.Checkout;
-
 import command.dresslook.DressRoomCommand;
 import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
-
 import command.dresslook.LookListCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
@@ -61,6 +59,7 @@ import command.my.PwSearchCommand;
 import command.my.RegisterCheckCommand;
 import command.my.memberInsertOk;
 import command.my.memberSelect;
+import command.seller.GoodsList;
 import command.seller.InsertGoods;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
@@ -70,7 +69,10 @@ import command.seller.SellerInfoCommand;
 import command.seller.SellerInsertOkCommand;
 import command.seller.SellerMainCommand;
 import command.seller.SellerupdateCkCommand;
+import command.seller.goodsDeleteOne;
+import command.seller.goodsEdit;
 import command.seller.goodsInsert;
+import command.seller.goodsRead;
 import command.seller.sellerInsert;
 
 
@@ -144,9 +146,12 @@ public class test_Con extends HttpServlet {
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/sellerInsertOk.do", new SellerInsertOkCommand());
-		cont.put("/goodsList.do", new GoodsListCommand());
+		cont.put("/goodsList.do", new GoodsList());
 		cont.put("/goodsInsert.do", new goodsInsert());
+		cont.put("/goodsRead.do", new goodsRead());
+		cont.put("/goodsEdit.do", new goodsEdit());
 		cont.put("/mgoods.do", new Mgoods());
+		cont.put("/goodsDeleteOne.do", new goodsDeleteOne());
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
