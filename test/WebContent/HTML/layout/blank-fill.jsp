@@ -25,7 +25,7 @@
 
 <!-- bootstrap stylesheet -->
 <link
-	href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=0"
+	href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=1"
 	rel="stylesheet">
 
 <!-- swiper stylesheet -->

@@ -18,10 +18,10 @@ public class GoodsDao extends DAO {
 				// category별 검색
 				if (value.equals("0")) {
 					// 성별, 좋아요 기반 추천 되도록 쿼리구현
-					sql += " order by g_num";
+					sql += " order by  to_number(g_num)";
 				} else {
 					// 성별, 좋아요, 상품코드 기반 추천 되도록 쿼리구현
-					sql += " and g_code = ? order by g_num";
+					sql += " and g_code = ? order by to_number(g_num)";
 				}
 			} else if (noOrG_nums.equals("G")) {
 				// 특정 상품 번호들 검색
@@ -153,10 +153,10 @@ public class GoodsDao extends DAO {
 	public List<GoodsImageDto> GIlist(String g_nums) {
 
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>();
-		String sql1 = "select * from goods_image where img_type='pal'";
-		if (g_nums != null) {
-			sql1 += "and g_num in (" + g_nums + ")";
-		}
+		String sql1 = "select * from goods_image where img_type='pal' and g_num in (" + g_nums + ")";
+		if (g_nums == null) { 
+			sql1 +=  " order by to_number(g_num)" ;
+		} 
 		try {
 			psmt = conn.prepareStatement(sql1);
 			rs = psmt.executeQuery();
@@ -172,7 +172,7 @@ public class GoodsDao extends DAO {
 		} finally {
 			close();
 		}
-
+		System.out.println("/////GiLIST:"+list);
 		return list;
 	}
 
@@ -241,7 +241,7 @@ public class GoodsDao extends DAO {
 		return n;
 	}
 
-	public int giInsert(GoodsImageDto dto) {
+	public int giInsert(GoodsDto dto) {
 
 		int n = 0;
 		String sql1 = "select max(g_num) g_num from goods";
@@ -255,12 +255,13 @@ public class GoodsDao extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("//////////g_num: "+g_num);
 		String sql2 = "insert into GOODS_IMAGE" + "(g_num, img_type, gd_filename)" + " values(?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql2);
 			psmt.setInt(1, g_num);
-			psmt.setString(2, dto.getImg_type());
-			psmt.setString(3, dto.getGd_fileName());
+			psmt.setString(2, dto.getGi_imgType());
+			psmt.setString(3, dto.getGi_fileName());
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
