@@ -13,7 +13,7 @@ import dao.LookDao;
 import dto.CodyDto;
 import dto.LookDto;
 
-public class CodyContents implements Command {
+public class CodyContentsCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

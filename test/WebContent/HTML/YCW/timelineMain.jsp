@@ -228,7 +228,7 @@ $(document).ready(function(){
 					<div class="container">
 						<div class="row" id="codyTable">
 							<c:forEach var="Cody" items="${CodyList}">
-									<div class="col-6 col-md-4 col-lg-3 lookCard">
+									<div class="col-6 col-md-4 col-lg-3 lookCard" style="height: 560px;">
 										<div class="card border-0 mb-4">
 											<div class="card-body p-0">
 												<div class="h-150px has-background rounded mb-2">
