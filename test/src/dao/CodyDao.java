@@ -5,12 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import dto.CodyDto;
 
-public class CodyDao {
+public class CodyDao extends DAO{
 	private Connection conn;
 	private PreparedStatement psmt;
 	private ResultSet rs;
@@ -33,6 +35,37 @@ public class CodyDao {
 		}
 	}
 	
+	public List<CodyDto> CodyList() {
+		DAO();
+		List<CodyDto> list = new ArrayList<>();
+ 		String sql = "select * from cody C, look L where C.l_code = L.l_code";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CodyDto dto = new CodyDto();
+				dto.setM_id(rs.getString("m_id"));
+				dto.setC_num(rs.getInt("c_num"));
+				dto.setC_read(rs.getInt("c_read"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setTag(rs.getString("tag"));
+				dto.setC_date(rs.getDate("c_date"));
+				dto.setL_code(rs.getString("l_code"));
+				dto.setContents(rs.getString("contents"));
+				dto.setL_fileName(rs.getString("l_fileName"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public int CodyInsert(CodyDto dto) {
 		DAO();
 		int n = 0;
@@ -52,19 +85,21 @@ public class CodyDao {
 		}
 		try {
 			conn.commit();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
 		return n;
 	}
 	
 	public CodyDto CodySelect(String id, String l_code){
 		DAO();
 		CodyDto dto = null;
-		String sql = "select * from cody where m_id=? and l_code=?";
+		String sql = "select * from (select * from cody where m_id = ? and l_code =?) C"
+				   +", look L where C.l_code = L.l_code and C.m_id = L.m_id";
 		try {
 			psmt=conn.prepareStatement(sql);
-			psmt.setString(1,id);
+			psmt.setString(1, id);
 			psmt.setString(2, l_code);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
@@ -77,7 +112,13 @@ public class CodyDao {
 				dto.setL_code(rs.getString("l_code"));
 				dto.setC_date(rs.getDate("c_date"));
 				dto.setC_read(rs.getInt("c_read"));
+				dto.setL_fileName(rs.getString("l_fileName"));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

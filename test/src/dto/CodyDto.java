@@ -11,10 +11,13 @@ public class CodyDto {
 	private String l_code;
 	private String tag;
 	private Date c_date;
+	private String l_fileName;
+	
 	@Override
 	public String toString() {
 		return "CodyDto [c_num=" + c_num + ", m_id=" + m_id + ", subject=" + subject + ", contents=" + contents
-				+ ", c_read=" + c_read + ", l_code=" + l_code + ", tag=" + tag + ", c_date=" + c_date + "]";
+				+ ", c_read=" + c_read + ", l_code=" + l_code + ", tag=" + tag + ", c_date=" + c_date + ", l_fileName="
+				+ l_fileName + "]";
 	}
 	public Integer getC_num() {
 		return c_num;
@@ -64,5 +67,10 @@ public class CodyDto {
 	public void setC_date(Date c_date) {
 		this.c_date = c_date;
 	}
-	
+	public String getL_fileName() {
+		return l_fileName;
+	}
+	public void setL_fileName(String l_fileName) {
+		this.l_fileName = l_fileName;
+	}
 }

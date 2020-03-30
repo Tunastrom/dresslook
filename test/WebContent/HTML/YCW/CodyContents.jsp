@@ -9,7 +9,7 @@
 		 $("#backButton").attr("class","btn btn-link backbtn");
 		 $("#backbtnText").text("arrow_back");
 		 
-		/*  function tagSplit(){
+		  function tagSplit(){
 			 var tags = "${CodyDto.tag}";
 			 var splitedTags = tags.split(",");
 			 console.log(splitedTags)
@@ -20,8 +20,11 @@
 			 });
 			 $("#tags").on("click", "a",function(){
 				/* document.location.href="";*/		 
-		/* 	 });
-		 } */
+			 });
+		 } 
+		  $("#DressRoom").on("click",function(){
+			  document.location.href="dressRoomCommand.do?c_num="+${CodyDto.c_num}+"&l_code="+${CodyDto.l_code};
+		  });
 	 });
 	</script>
 	<style>
@@ -32,16 +35,16 @@
             <!-- page content start -->
             <!-- Swiper -->
             <div class="swiper-container gallery-top">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" style="height:510px;">
                     <div class="swiper-slide has-background">
                          <div class="background">
-                            <img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png" alt="">
+                            <img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG345.png" alt="">
                         </div>
                          <div class="background">
-                            <img src="${pageContext.request.contextPath}/upload/lookImg/${LookDto.l_fileName}" alt="">
+                            <img src="${pageContext.request.contextPath}/upload/lookImg/${CodyDto.l_fileName}" alt="">
                         </div>
                     </div>
-                    <c:forEach var="goodsImg" items="${goodsList}">
+                    <c:forEach var="goodsImg" items="${GoodsList}">
 	                <div class="swiper-slide has-background">
 	                    <div class="background">
 	                           <img src="${pageContext.request.contextPath}/upload/goodsImg/${goodsImg.g_fileName}" alt="">
@@ -49,21 +52,21 @@
 	                </div>
                     </c:forEach>
                 </div>
-            </div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next swiper-button-white"></div>
+                 <div class="swiper-button-next swiper-button-white"></div>
                 <div class="swiper-button-prev swiper-button-white"></div>
+            </div>
+                <!-- Add Arrows -->  
             <div class="swiper-container gallery-thumbs">
                 <div class="swiper-wrapper">
                    <div class="swiper-slide has-background">
                 			<div class="background">
-                            	<img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png" alt="">
+                            	<img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG345.png" alt="">
                         	</div>
 	                        <div class="background">
-	                           <img src="${pageContext.request.contextPath}/upload/lookImg/${LookDto.l_fileName}" alt="">
+	                           <img src="${pageContext.request.contextPath}/upload/lookImg/${CodyDto.l_fileName}" alt="">
 	                        </div>
 	                </div>
-                	<c:forEach var="goods" items="${goodsList}">
+                	<c:forEach var="goods" items="${GoodsList}">
 	                	<div class="swiper-slide has-background">
 	                        <div class="background">
 	                            <img src="${pageContext.request.contextPath}/upload/goodsImg/${goods.g_fileName}"/>
@@ -78,9 +81,9 @@
                     <p class="text-mute mb-1" id="tags"></p>
                     <h5>${CodyDto.subject}</h5>
                    <!--  <h5 class="text-success">45,000</h5> -->
-                    <hr>
+                    <p class="text">${CodyDto.contents}</p>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-4">
 	                        <div class="input-group cart-count cart-count-lg">
 	                             <!--  <div class="input-group-prepend">
 	                                    <button class="btn btn-outline-secondary" type="button">-</button>
@@ -92,12 +95,14 @@
 	                                </div>-->
 	                        </div>
                         </div>
+                        <div class="col-3">
+                        	<button class="btn btn-default" id="DressRoom">DressRoom</button>
+                        </div>
                         <div class="col-auto">
-                            <button class="btn btn-default"><i class="material-icons">favorite</i> 좋아요<span>&nbsp;&nbsp;<input id="like" type="text"  value="1" size="1"></span></button>
+                            <button class="btn btn-default"><i class="material-icons">favorite</i> 좋아요<span>&nbsp;&nbsp;<input id="like" type="text"  value="0" size="1"></span></button>
                         </div>
                     </div>
                     <br>
-                    <p class="text">${CodyDto.contents}</p>
                     <h6 class="page-title">댓글</h6>
                     <div class="card my-3">
                         <div class="card-body border-0">
@@ -119,8 +124,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div> 
             <!-- scroll to top button -->
     		<button type="button" class="btn btn-default shadow scrollup bottom-right position-fixed btn-40"><i class="material-icons">expand_less</i></button>
    			<!-- scroll to top button ends-->

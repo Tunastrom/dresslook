@@ -63,7 +63,7 @@ public class CanvasUpload extends HttpServlet {
 				 * FileUtils.readFileToByteArray(lookFile); dto.setL_image(l_image);
 				 */
 				dto.setL_fileName(fileName);
-				dto.setM_id("test");
+				dto.setM_id(request.getSession().getAttribute("id").toString());
 				dto.setL_open("N");
 				dto.setG_nums(request.getParameter("gNums"));
 				/* dto.setSize(part.getSize()); */
