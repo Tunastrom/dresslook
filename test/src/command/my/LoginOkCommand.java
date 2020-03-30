@@ -16,7 +16,7 @@ public class LoginOkCommand implements command.Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
+		
 		// 로그인 화면에 입력된 아이디와 비밀번호를 가져온다
 
 		MemberDao dao = new MemberDao();

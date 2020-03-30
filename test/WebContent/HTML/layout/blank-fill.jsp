@@ -21,9 +21,12 @@
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/materializeicon/material-icons.css"
         rel="stylesheet">
 
-    <!-- bootstrap stylesheet -->
-    <link href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=0"
-        rel="stylesheet">
+
+<!-- bootstrap stylesheet -->
+<link
+	href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=1"
+	rel="stylesheet">
+
 
     <!-- swiper stylesheet -->
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css?ver=2" rel="stylesheet">

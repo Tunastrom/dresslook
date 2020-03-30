@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-
 /*import org.apache.commons.io.FileUtils;*/
 
 import dao.LookDao;
@@ -34,10 +33,12 @@ public class CanvasUpload extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String appPath = "C:/USers/User/git/dresslook/test/WebContent/images"; /*
-																				 * request.getServletContext().
-																				 * getRealPath("/images");
-																				 */
+		String appPath = request.getServletContext().getRealPath("/upload");
+
+		/*
+		 * "C:/USers/User/git/dresslook/test/WebContent/images";
+		 * request.getServletContext(). getRealPath("/images");
+		 */
 		String savePath = appPath + File.separator + SAVE_DIR;
 		// 서버에 savePath에 해당하는 디렉토리가 있는지 확인해서 없으면 만들어라
 		File fileSaveDir = new File(savePath);
