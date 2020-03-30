@@ -21,6 +21,7 @@ public class GoodsImageListCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
 		GoodsDao dao = new GoodsDao();
+		String sex = (String)request.getSession().getAttribute("sex");
 		String g_nums = request.getParameter("g_nums");
 		System.out.println("GIg_nums: "+g_nums);
 		List<GoodsImageDto> list2 = dao.GIlist(g_nums);

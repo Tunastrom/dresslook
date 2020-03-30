@@ -26,7 +26,7 @@ public class TimelineWriteCommand implements Command {
 		   GoodsDao gDao = new GoodsDao();
 		   String l_code = "0";	
 		   
-		   dto = dao.LookSelect(l_code); 
+		   dto = dao.LookSelect(l_code);
 		   System.out.println("l_code: "+dto.getL_code());
 		   String g_nums = dao.lookDetailSelect(dto.getL_code());
 		   dto.setG_nums(g_nums);

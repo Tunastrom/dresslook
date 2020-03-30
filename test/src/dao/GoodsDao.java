@@ -153,10 +153,12 @@ public class GoodsDao extends DAO {
 	public List<GoodsImageDto> GIlist(String g_nums) {
 
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>();
-		String sql1 = "select * from goods_image where img_type='pal' and g_num in (" + g_nums + ")";
-		if (g_nums == null) { 
-			sql1 +=  " order by to_number(g_num)" ;
-		} 
+		String sql1 = "select * from goods_image where img_type='pal'";
+		if (g_nums != null) { 
+			sql1 +=  " and g_num in (" + g_nums + ")";
+		} else {
+			sql1 +=  " order by to_number(g_num)";
+		}
 		try {
 			psmt = conn.prepareStatement(sql1);
 			rs = psmt.executeQuery();

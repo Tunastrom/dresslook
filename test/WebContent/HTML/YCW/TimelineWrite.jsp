@@ -71,13 +71,13 @@
                             <img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png" alt="">
                         </div>
                          <div class="background">
-                            <img src="${pageContext.request.contextPath}/images/lookImg/${LookDto.l_fileName}" alt="">
+                            <img src="${pageContext.request.contextPath}/upload/lookImg/${LookDto.l_fileName}" alt="">
                         </div>
                    </div>
                     <c:forEach var="goodsImg" items="${goodsList}">
 	                    <div class="swiper-slide has-background">
 	                        <div class="background">
-	                            <img src="${pageContext.request.contextPath}/images/goodsImg/${goodsImg.g_fileName}" alt="">
+	                            <img src="${pageContext.request.contextPath}/upload/goodsImg/${goodsImg.g_fileName}" alt="">
 	                        </div>
 	                    </div>
                     </c:forEach>
@@ -93,13 +93,13 @@
                             	<img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png" alt="">
                         	</div>
 	                        <div class="background">
-	                           <img src="${pageContext.request.contextPath}/images/lookImg/${LookDto.l_fileName}" alt="">
+	                           <img src="${pageContext.request.contextPath}/upload/lookImg/${LookDto.l_fileName}" alt="">
 	                        </div>
 	                </div>
                 	<c:forEach var="goods" items="${goodsList}">
 	                	<div class="swiper-slide has-background">
 	                        <div class="background">
-	                            <img src="${pageContext.request.contextPath}/images/goodsImg/${goods.g_fileName}"/>
+	                            <img src="${pageContext.request.contextPath}/upload/goodsImg/${goods.g_fileName}"/>
 	                        </div>
 	                    </div>
                 	</c:forEach>
