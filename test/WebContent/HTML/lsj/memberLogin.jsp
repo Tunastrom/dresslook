@@ -39,16 +39,7 @@
 		</figure>
 		<div class="login-container">
 			<div class="row no-gutters">
-				<div class="col-12 align-self-start header">
-					<div class="row">
-						<div class="col">
-							<div class="logo-header"></div>
-						</div>
-						<div class="col-auto">
-							<a href="memberInsert.do" class="btn text-white">Signup</a>
-						</div>
-					</div>
-				</div>
+				
 				<div class="col-12 align-self-center">
 					<div class="row justify-content-center">
 
