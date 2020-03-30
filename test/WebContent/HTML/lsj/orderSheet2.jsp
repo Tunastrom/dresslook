@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="dto.OrdDetailDto"%>
-<%@ page import="dao.OrdDetailDao"%>
-<%@page import="java.util.*"%>
-<%
-	ArrayList<OrdDetailDto> list = (ArrayList<OrdDetailDto>) session.getAttribute("m_id");
-%>
+	<%@ page import="dto.LookDto"%>
+	<%@ page import="gdao.GoodsDao"%>
+	<%@ page import="gdto.GoodsDto"%>
 <!doctype html>
 <html lang="en">
 
@@ -47,6 +43,7 @@
 				</div>
 			</div>
 			<div class="row my-3">
+
 				<div class="col-12 col-md-6">
 					<div class="card mb-3">
 						<a class="card-header bg-none">
@@ -60,35 +57,6 @@
 							</div>
 						</a>
 						<div class="card-body">
-							<%
-					if (list == null || list.size() <= 0) {
-				%>
-							<div class="media">
-								<div class="icon icon-60 mr-3 has-background">
-									<figure class="background">
-
-									</figure>
-								</div>
-								<div class="media-body">
-									<small class="text-mute"></small>
-									<p class="mb-1">현재 주문 목록이 비었습니다</p>
-									<p></p>
-								</div>
-								<!-- button은 submit으로 -->
-								<div>
-									<button onclick="location.href='lookSelect.do'">상세보기</button>
-								</div>
-							</div>
-
-							<%
-					} else {
-				%>
-							<%
-							for (int i = 0; i > list.size(); i++) {
-									OrdDetailDto dto = list.get(i);
-						%>
-
-
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
@@ -98,7 +66,7 @@
 								</div>
 								<div class="media-body">
 									<small class="text-mute">#봄옷</small>
-									<p class="mb-1">봄날의여신룩</p>
+									<p class="mb-1">${dto.l_name}</p>
 									<p>70,000</p>
 								</div>
 								<!-- button은 submit으로 -->
@@ -107,6 +75,7 @@
 								</div>
 							</div>
 							<hr>
+							<c:forEach var="gdto" items="${list }">
 							<div class="media">
 								<div class="icon icon-60 mr-3 has-background">
 									<figure class="background">
@@ -115,20 +84,15 @@
 									</figure>
 								</div>
 								<div class="media-body">
-									<small class="text-mute">#남친</small>
-									<p class="mb-1">오빠라고 불리게 될거야</p>
-									<p>90,000</p>
+									<small class="text-mute">${gdto.g_info}</small>
+									<p class="mb-1">${gdto.g_name}</p>
+									<p>${gdto.g_price}</p>
 								</div>
 								<div>
 									<button onclick="location.href='lookSelect.do'">상세보기</button>
 								</div>
 							</div>
-							<%
-								}
-							%>
-							<%
-								}
-							%>
+						</c:forEach>
 						</div>
 
 
@@ -150,6 +114,16 @@
 						</div>
 					</div>
 				</div>
+
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="container">
+					<h5 class="page-title">주문 상품</h5>
+				</div>
+			</div>
+			<div class="row my-3">
 				<div class="col-12 col-md-6">
 					<div class="card mb-3">
 						<div class="card-header bg-none">
@@ -203,7 +177,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 	<!-- page content ends -->
 </body>

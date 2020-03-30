@@ -23,7 +23,7 @@ public class MyOrderListCommand implements Command {
 		request.setAttribute("list", list);
 						
 			
-		return "HTML/lsj/myOrderList.jsp";
+		return "HTML/lsj/orderSheet2.jsp";
 	}
 
 }

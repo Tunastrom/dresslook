@@ -32,7 +32,7 @@ public class LogoutCommand implements Command {
 		
 		
 		
-		return "timeline.do";
+		return "timelineCommand.do";
 	}
 
 }

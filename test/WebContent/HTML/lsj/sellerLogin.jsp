@@ -43,16 +43,7 @@
 
 		<div class="login-container">
 			<div class="row no-gutters">
-				<div class="col-12 align-self-start header">
-					<div class="row">
-						<div class="col">
-							<div class="logo-header"></div>
-						</div>
-						<div class="col-auto">
-							<a href="memberSelect.do" class="btn text-white">Signup</a>
-						</div>
-					</div>
-				</div>
+				
 
 				<div class="col-12 align-self-center">
 					<div class="row justify-content-center">
@@ -60,7 +51,7 @@
 						<div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">
 							<form action="SloginOk.do" method="post" name="sloginInfo"
 								onsubmit="return checkValue()">
-								<h1 class="text-center font-weight-normal mb-5">Login</h1>
+								<h1 class="text-center font-weight-normal mb-5">판매자 로그인</h1>
 
 								<div
 									class="form-group float-label style-light position-relative">
