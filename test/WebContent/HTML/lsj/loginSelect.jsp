@@ -15,19 +15,7 @@
 
         <div class="login-container">
             <div class="row no-gutters">
-                <div class="col-12 align-self-start header">
-                    <div class="row">
-                        <div class="col">
-                            <div class="logo-header">
-                                <img src="../assets/img/logo-small-white.svg" alt="" class="logo-img">
-                                <h5 class="logo-header-text">Mobileshop<br><small>Mobile HTML template</small></h5>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <a href="memberSelect.do" class="btn text-white">Signup</a>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-12 align-self-center">
                     <div class="row justify-content-center">
                         <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-3">

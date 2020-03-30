@@ -68,7 +68,7 @@ public class LookDao extends DAO {
 			if (!l_code.equals("0")) {
 				psmt.setString(1, l_code);
 			}
-			rs = psmt.executeQuery(sql);
+			rs = psmt.executeQuery();
 			if (rs.next()) {
 				dto = new LookDto();
 				dto.setL_code(rs.getString("l_code"));

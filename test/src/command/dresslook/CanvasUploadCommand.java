@@ -20,7 +20,7 @@ public class CanvasUploadCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
-		String appPath = "C:/USers/User/git/dresslook/test/WebContent/images"; /*
+		String appPath = request.getServletContext().getRealPath("/upload");/*
 																				 * request.getServletContext().
 																				 * getRealPath("/images");
 																				 */

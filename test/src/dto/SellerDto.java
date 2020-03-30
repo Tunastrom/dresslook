@@ -1,16 +1,17 @@
 package dto;
 
-import java.util.Date;
+
 
 public class SellerDto {
 
 	private String s_id;
 	private String s_pwd;
 	private String s_cname;
-	private Date s_join;
+	
 	private String s_email;
 	private String c_number;
-	private String phone;
+	private String s_phone;
+
 	private String s_zip;
 	private String s_addr1;
 	private String s_addr2;
@@ -56,12 +57,12 @@ public class SellerDto {
 		this.c_number = c_number;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getS_phone() {
+		return s_phone;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setS_phone(String s_phone) {
+		this.s_phone = s_phone;
 	}
 
 	public String getS_zip() {
@@ -99,18 +100,12 @@ public class SellerDto {
 	@Override
 	public String toString() {
 		return "SellerDto [s_id=" + s_id + ", s_pwd=" + s_pwd + ", s_cname=" + s_cname + ", s_email=" + s_email
-				+ ", c_number=" + c_number + ", phone=" + phone + ", s_zip=" + s_zip + ", s_addr1=" + s_addr1
+				+ ", c_number=" + c_number + ", s_phone=" + s_phone + ", s_zip=" + s_zip + ", s_addr1=" + s_addr1
 				+ ", s_addr2=" + s_addr2 + ", s_grade=" + s_grade + "]";
 	}
 
 
 
-	public Date getS_join() {
-		return s_join;
-	}
-
-	public void setS_join(Date s_join) {
-		this.s_join = s_join;
-	}
+	
 
 }

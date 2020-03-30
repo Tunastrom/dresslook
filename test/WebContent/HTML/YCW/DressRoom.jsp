@@ -95,11 +95,11 @@
 				var url = "CanvasUpload";
 				if(id == "share"){
 					//ajax로 db저장후 페이지전환 O
-					url="CanvasUploadCommand.do";
+					url+="Command.do";
 					destination = "timelineWrite";
 				} else if(id == "order"){
 					//ajax로 db저장후 페이지전환 O
-					url="CanvasUploadCommand.do";
+					url+="Command.do";
 					destination = "orderSheet";
 				}
 				var gNumTags = document.querySelectorAll("#palate .gNum");
@@ -125,8 +125,8 @@
 					            	if (destination =="timelineWrite" || destination=="orderSheet"){
 					            		document.location.href= ""+destination+"Command.do?"
 					            	}
-					            }else{
-					           /*      alert(data); */
+					            } else {
+					                 alert("전송실패 관리자에게 문의하세요"); 
 					            } 
 					        }
 					 });
@@ -262,7 +262,9 @@
 					var gNum = $("<input type=\"hidden\" value=\""+goodsNum+"\">");
 					palCnt = $("#palate").children().length;
 					//
-				if (palCnt > 1){
+					console.log("//////palCnt///////////")
+					console.log(palCnt)
+				if (palCnt > 3){
 					var swiperSlide = $("<div class=\"swiper-slide btn-outline-light\" style=\"padding: 0 5px 0 5px;\"></div>");
 					var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
 					var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
@@ -273,7 +275,7 @@
 					swiperSlide.append(name);
 					//#downBar의 swiper-wrapper 태그에 append
 					$("#downBar .swiper-wrapper:last").append(swiperSlide);
-				} else if (palCnt == 1) {
+				} else if (palCnt == 3) {
 					/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
 					$("#downBar .avatar").append(background);
 					$("#downBar .avatar").append(gNum);
@@ -324,8 +326,9 @@
 					}
 					//마네킹 img
 					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/dressroomBG345.png&quot;)\"></div>");
+					/* $(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/dressroom/ssamHair.png&quot;)\"></div>"); */
 					//look img
-					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/images/lookImg/"+result[i].l_fileName+"&quot;)\"></div>");
+					$(slider).children("div").append("<div class=\"background\"style=\"background-image: url(&quot;${pageContext.request.contextPath}/upload/lookImg/"+result[i].l_fileName+"&quot;)\"></div>");
 			    	/* $("#upBar .small:eq("+i+")").text(""+result[i].m_id);
 					$("#upBar .small:eq("+i+")").children().remove(); */
 					$(slider).append("<p class=\"gNums\" style=\"display: none;\">"+result[i].g_nums+"</p>");
@@ -364,7 +367,7 @@
 			    			var background = $("<div class=\"background \"style=\"width:345px; background-image: url(&quot;${pageContext.request.contextPath}/upload/goodsImg/"+goodsJson.g_fileName+"&quot;)\"></div>");
 			    			var gCode = $("<input type=\"hidden\" value=\""+goodsJson.g_code+"\">");
 			    			var gNum = $("<input type=\"hidden\" value=\""+goodsJson.g_num+"\">");
-			    			if (downCnt > 2){
+			    			if (downCnt > 1){
 			    				var swiperSlide = $("<div class=\"swiper-slide btn-outline-light\" style=\"padding: 0 5px 0 5px;\"></div>");
 			    				var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
 			    				var name = $("<p class=\"text-uppercase small\">"+goodsJson.g_name+"</p>");							
@@ -376,7 +379,7 @@
 			    				$("#downBar .swiper-wrapper:last").append(swiperSlide);
 			    				$("#palate .box:last .gNum").attr("value",""+goodsJson.g_num);
 			    				$("#palate .box:last").append("<input class=\"gCode\" type=\"hidden\" value=\""+goodsJson.g_code+"\"/>");
-			    			} else if (downCnt == 2) {
+			    			} else if (downCnt == 1) {
 			    				$("#downBar .avatar").append(background);
 			    				$("#downBar .avatar").append(gNum);
 			    				$("#downBar .avatar").append(gCode);
@@ -506,7 +509,7 @@
 				<div class="row" id="upBar" style="min-width:345px; max-width:800px; padding: 0; margin:0px">
 					<div class="col btn-danger" align="left"
 						style="max-width: 100px; /* background-color: #f94620; */ color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
-						추천
+						My
 					</div>
 					<div class="col" style="min_width: 345px padding:0; max-width:800px; padding: 0; margin:1px 0 0 0;">
 						<!-- Swiper -->

@@ -60,7 +60,7 @@ public class MemberupdateCk implements Command {
 
 		dao.update(dto);
 
-		return "HTML/lsj/myinfo.jsp";
+		return "HTML/lsj/myProfile.jsp";
 	}
 
 	public Date transformDate(String date)

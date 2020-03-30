@@ -43,7 +43,7 @@ public class GoodsDao extends DAO {
 				dto.setColor(rs.getString("color"));
 				dto.setG_inven(rs.getString("g_inven"));
 				dto.setS_id(rs.getString("s_id"));
-				dto.setMaker(rs.getString("g_maker"));
+				dto.setG_maker(rs.getString("g_maker"));
 				dto.setG_fileName(rs.getString("g_filename"));
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
@@ -88,7 +88,7 @@ public class GoodsDao extends DAO {
 				dto.setColor(rs.getString("color"));
 				dto.setG_inven(rs.getString("g_inven"));
 				dto.setS_id(rs.getString("s_id"));
-				dto.setMaker(rs.getString("g_maker"));
+				dto.setG_maker(rs.getString("g_maker"));
 				dto.setG_fileName(rs.getString("g_filename"));
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
@@ -133,7 +133,7 @@ public class GoodsDao extends DAO {
 				dto.setColor(rs.getString("color"));
 				dto.setG_inven(rs.getString("g_inven"));
 				dto.setS_id(rs.getString("s_id"));
-				dto.setMaker(rs.getString("g_maker"));
+				dto.setG_maker(rs.getString("g_maker"));
 				dto.setG_fileName(rs.getString("g_filename"));
 				dto.setG_info(rs.getString("g_info"));
 				dto.setG_code(rs.getString("g_code"));
@@ -153,10 +153,12 @@ public class GoodsDao extends DAO {
 	public List<GoodsImageDto> GIlist(String g_nums) {
 
 		List<GoodsImageDto> list = new ArrayList<GoodsImageDto>();
-		String sql1 = "select * from goods_image where img_type='pal' and g_num in (" + g_nums + ")";
-		if (g_nums == null) { 
-			sql1 +=  " order by to_number(g_num)" ;
-		} 
+		String sql1 = "select * from goods_image where img_type='pal'";
+		if (g_nums != null) { 
+			sql1 +=  " and g_num in (" + g_nums + ")";
+		} else {
+			sql1 +=  " order by to_number(g_num)";
+		}
 		try {
 			psmt = conn.prepareStatement(sql1);
 			rs = psmt.executeQuery();
@@ -217,7 +219,7 @@ public class GoodsDao extends DAO {
 			psmt.setString(5, dto.getColor());
 			psmt.setString(6, dto.getG_inven());
 			psmt.setString(7, dto.getS_id());
-			psmt.setString(8, dto.getMaker());
+			psmt.setString(8, dto.getG_maker());
 			psmt.setString(9, dto.getG_info());
 			psmt.setString(10, dto.getG_code());
 			psmt.setString(11, dto.getG_sex());

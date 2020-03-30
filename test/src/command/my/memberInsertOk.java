@@ -13,7 +13,7 @@ import command.Command;
 import dao.MemberDao;
 import dto.MemberDto;
 
-public class memberInsterOk implements Command {
+public class memberInsertOk implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

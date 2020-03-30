@@ -60,7 +60,7 @@ public class MemberDao extends DAO {
 	public MemberDto select(String id) {
 		dto = new MemberDto();
 
-		String sql = "select * from member where m_id=?";
+		String sql = "select * from member m where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
@@ -236,6 +236,8 @@ public class MemberDao extends DAO {
 		close();
 		return grant;// 로그인 성공시 권한을 넘겨준다.
 	}
+	
+	
 
 	public boolean duplicateIdCheck(String id) {
 
@@ -293,10 +295,8 @@ public class MemberDao extends DAO {
 	// 회원정보 수정
 	public int updateM(MemberDto dto) {
 		int n = 0;
-		String sql = "update member set m_pwd=?,m_name=?," + 
-		" m_birth=?,m_email=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?,"	+ 
-		" m_grade=?,m_status=?,m_recent=?,m_point=?,m_sex=? " + 
-		"where m_id=?";
+		String sql = "update member set m_pwd=?,m_name=?," + " m_birth=?,m_email=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?,"
+				+ " m_grade=?,m_status=?,m_recent=?,m_point=?,m_sex=? " + "where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_pwd());
