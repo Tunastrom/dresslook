@@ -9,7 +9,7 @@ public class SellerDto {
 	private String s_cname;
 	private Date s_join;
 	private String s_email;
-	private Integer c_number;
+	private String c_number;
 	private String phone;
 	private String s_zip;
 	private String s_addr1;
@@ -48,11 +48,11 @@ public class SellerDto {
 		this.s_email = s_email;
 	}
 
-	public Integer getC_number() {
+	public String getC_number() {
 		return c_number;
 	}
 
-	public void setC_number(Integer c_number) {
+	public void setC_number(String c_number) {
 		this.c_number = c_number;
 	}
 

@@ -19,16 +19,20 @@ public class MemberDao extends DAO {
 //	전체회원 목록 가져오기
 	public ArrayList<MemberDto> select() {
 		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
-		String sql = "select * from member";
+		String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1," +
+				" m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au," +
+				" find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
-			while (rs.next()) {
+			while (rs.next(
+					)) {
 				dto = new MemberDto();
 				dto.setM_id(rs.getString("m_id"));
 				dto.setM_pwd(rs.getString("m_pwd"));
 				dto.setM_name(rs.getString("m_name"));
 				dto.setM_birth(rs.getDate("m_birth"));
+				dto.setM_join(rs.getDate("m_join"));
 				dto.setM_email(rs.getString("m_email"));
 				dto.setM_phone(rs.getString("m_phone"));
 				dto.setM_zip(rs.getString("m_zip"));
@@ -41,7 +45,7 @@ public class MemberDao extends DAO {
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
 				list.add(dto);
-				System.out.println(list);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -218,14 +222,14 @@ public class MemberDao extends DAO {
 //	로그인하는 메소드
 	public String loginCheck(String id, String pw) {
 		String grant = null;
-		String sql = "select m_grade from member where m_id = ? and m_pwd = ? ";
+		String sql = "select m_au from member where m_id = ? and m_pwd = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			psmt.setString(2, pw);
 			rs = psmt.executeQuery();
 			if (rs.next())
-				grant = rs.getString("m_grade");
+				grant = rs.getString("m_au");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

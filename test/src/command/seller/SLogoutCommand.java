@@ -26,15 +26,10 @@ public class SLogoutCommand implements Command {
 		 * RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		 * dispatcher.forward(request, response);
 		 */
-		
-		
+			
 		
 		return "timelineCommand.do";
-		
-		
-		
-		
-		
+				
 		
 	}
 

@@ -70,7 +70,7 @@ $("#back_Btn").click(function(){
 					<tr>
 						<td>상품이미지</td>
 						<td><img alt=""
-							src="${pageContext.request.contextPath}/images/goodsImg/${dto[0].g_fileName}"
+							src="${pageContext.request.contextPath}/upload/goodsImg/${dto[0].g_fileName}"
 							width="100" height="100"></td>
 					</tr>
 					<tr>

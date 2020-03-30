@@ -4,7 +4,7 @@
 package dao;
 
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import dto.SellerDto;
 
 
@@ -13,7 +13,7 @@ import dto.SellerDto;
  * @author User DAO 상속
  */
 public class SellerDao extends DAO {
-
+	private SellerDto dto;
 	static SellerDao sellerDao = new SellerDao();
 
 	public static SellerDao getInstance() {
@@ -58,6 +58,37 @@ public class SellerDao extends DAO {
 		}
 		close();
 		return grant;// 로그인 성공시 권한을 넘겨준다.
+	}
+	
+	public ArrayList<SellerDto> select() {
+		ArrayList<SellerDto> list = new ArrayList<SellerDto>();
+		
+		String sql = "select s_id, s_pwd, s_cname, s_email, c_number, s_phone, s_zip, s_addr1, s_addr2, find_code(s_grade) as s_grade from seller";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next(
+					)) {
+				dto = new SellerDto();
+				dto.setS_id(rs.getString("s_id"));
+				dto.setS_pwd(rs.getString("s_pwd"));
+				dto.setS_cname(rs.getString("s_cname"));
+				dto.setS_email(rs.getString("s_email"));
+				dto.setC_number(rs.getString("c_number"));
+				dto.setPhone(rs.getString("s_phone"));
+				dto.setS_zip(rs.getString("s_zip"));
+				dto.setS_addr1(rs.getString("s_addr1"));
+				dto.setS_addr2(rs.getString("s_addr2"));
+				dto.setS_grade(rs.getString("s_grade"));
+				list.add(dto);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		close();
+		return list;
 	}
 
 }

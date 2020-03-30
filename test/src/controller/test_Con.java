@@ -42,6 +42,8 @@ import command.dresslook.TimelineCommand;
 import command.dresslook.TimelineWriteCommand;
 import command.dresslook.DressRoomCommand;
 import command.dresslook.imageGet;
+import command.manager.MemberTranslate;
+import command.manager.SellerList;
 import command.manager.UpdateM;
 import command.manager.loginSelect;
 import command.my.IdSearchCommand;
@@ -136,6 +138,8 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 		cont.put("/myCoupon.do", new MyCouponCommand());
 		// manager
+		cont.put("/memberTranslate.do", new MemberTranslate());
+		cont.put("/sellerList.do", new SellerList());
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());

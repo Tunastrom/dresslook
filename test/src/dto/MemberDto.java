@@ -8,6 +8,7 @@ public class MemberDto {
 	private String m_pwd;	//패스워드
 	private String m_name;	//이름
 	private Date m_birth;	//생일
+	private Date m_join;
 	private String m_email;	//이메일
 	private String m_phone;	//전화번호
 	private String m_zip;	//우편번호
@@ -22,13 +23,14 @@ public class MemberDto {
 	private Integer m_point;	//적립금
 	private String m_sex;		//성별
 	private String track;	//크롤링 배송추적
+	
 	@Override
 	public String toString() {
 		return "MemberDto [m_id=" + m_id + ", m_pwd=" + m_pwd + ", m_name=" + m_name + ", m_birth=" + m_birth
-				+ ", m_email=" + m_email + ", m_phone=" + m_phone + ", m_zip=" + m_zip + ", m_add1=" + m_add1
-				+ ", m_add2=" + m_add2 + ", m_addr1=" + m_addr1 + ", m_addr2=" + m_addr2 + ", m_grade=" + m_grade
-				+ ", m_au=" + m_au + ", m_status=" + m_status + ", m_recent=" + m_recent + ", m_point=" + m_point
-				+ ", m_sex=" + m_sex + ", track=" + track + "]";
+				+ ", m_join=" + m_join + ", m_email=" + m_email + ", m_phone=" + m_phone + ", m_zip=" + m_zip
+				+ ", m_add1=" + m_add1 + ", m_add2=" + m_add2 + ", m_addr1=" + m_addr1 + ", m_addr2=" + m_addr2
+				+ ", m_grade=" + m_grade + ", m_au=" + m_au + ", m_status=" + m_status + ", m_recent=" + m_recent
+				+ ", m_point=" + m_point + ", m_sex=" + m_sex + ", track=" + track + "]";
 	}
 	public String getM_id() {
 		return m_id;
@@ -137,6 +139,12 @@ public class MemberDto {
 	}
 	public void setTrack(String track) {
 		this.track = track;
+	}
+	public Date getM_join() {
+		return m_join;
+	}
+	public void setM_join(Date m_join) {
+		this.m_join = m_join;
 	}
 
 }

@@ -20,7 +20,6 @@ public class GoodsDto {
 	private String g_sex;
 	private String g_prior;
 	private String g_status;
-
 	private String gi_fileName;
 	private String gi_imgType;
 	/* private long size; */
