@@ -41,6 +41,7 @@ import command.dresslook.ShareInsertCommand;
 import command.dresslook.TimelineCommand;
 import command.dresslook.TimelineWriteCommand;
 import command.dresslook.imageGet;
+import command.manager.MGoodsList;
 import command.manager.MemberDeleteOne;
 import command.manager.MemberRead;
 import command.manager.MemberTranslate;
