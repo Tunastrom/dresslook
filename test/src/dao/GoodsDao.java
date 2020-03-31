@@ -17,7 +17,7 @@ public class GoodsDao extends DAO {
 				// category별 검색
 				if (value.equals("0")) {
 					// 성별, 좋아요 기반 추천 되도록 쿼리구현
-					sql += " order by  to_number(g_num)";
+					sql += " order by to_number(g_num)";
 				} else {
 					// 성별, 좋아요, 상품코드 기반 추천 되도록 쿼리구현
 					sql += " and g_code = ? order by to_number(g_num)";
@@ -29,7 +29,7 @@ public class GoodsDao extends DAO {
 
 			psmt = conn.prepareStatement(sql);
 			if (noOrG_nums.equals("N") && !value.equals("0")) {
-
+				psmt.setString(1, value);	
 			}
 			rs = psmt.executeQuery(sql);
 			while (rs.next()) {
@@ -278,7 +278,7 @@ public class GoodsDao extends DAO {
 			psmt.setString(4, dto.getG_size());
 			psmt.setString(5, dto.getColor());
 			psmt.setString(6, dto.getG_inven());
-			psmt.setString(7, dto.getG_maker());
+			psmt.setString(7, dto.getMaker());
 			psmt.setString(8, dto.getG_info());
 			psmt.setString(9, dto.getG_code());
 			psmt.setString(10, dto.getG_sex());

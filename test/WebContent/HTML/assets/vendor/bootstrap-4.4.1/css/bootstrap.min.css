@@ -2726,7 +2726,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-danger {
 	color: #fff;
-	background-color: #dc3545;
+	background-color: rgba(255, 74, 74, 0.9);
 	border-color: #dc3545
 }
 
@@ -2745,7 +2745,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-danger.disabled, .btn-danger:disabled {
 	color: #fff;
-	background-color: #dc3545;
+	background-color: rgba(255, 74, 74, 0.9);
 	border-color: #dc3545
 }
 

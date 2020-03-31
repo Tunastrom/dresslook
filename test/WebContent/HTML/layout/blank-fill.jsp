@@ -52,7 +52,7 @@
     <style>
         .page-title {
             font-weight: bold;
-            color: #f94620;
+            color: rgba(255, 74, 74, 0.9);
             margin: 0px;
             padding-top: 4px;
         }

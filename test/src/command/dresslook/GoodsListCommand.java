@@ -22,7 +22,6 @@ public class GoodsListCommand implements Command {
 			throws ServletException, IOException, ParseException {
 		String no = request.getParameter("no");
 		String g_nums = request.getParameter("g_nums");
-		System.out.println("no: "+ no + " g_nums: " + g_nums);
 		String noOrG_nums = null;
 		GoodsDao dao = new GoodsDao();
 		List<GoodsDto> list1 = null;
