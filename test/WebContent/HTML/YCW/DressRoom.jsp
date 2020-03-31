@@ -27,22 +27,28 @@
 	
 	function defaultPal(){
 		
-			/* <c:forEach var="goods" items="${GoodsList}">
-					var goodsSelected = "${pageContext.request.contextPath}/upload/goodsImg/"+g_fileName;
-					var goodsNum;
-					var goodsCode;
-					var goodsSelBGUrl;
-			    	    addOnPal();
-			    	    addOnDownBar();
+			var g_numArr = new Array();
+		   <c:forEach var="goods" items="${GIList}">
+				var giSelected = "${pageContext.request.contextPath}/upload/goodsImg/${GI.gd_fileName}";
+			    var goodsNum = "${GI.g_num}";
+			    g_numArr.push(goodsNum);
+			    addOnPal(giSelected, goodsNum);
+		   </c:forEach>
+			
+			var i = 0; 
+		    <c:forEach var="goods" items="${GoodsList}">
+				var goodsSelected = "${pageContext.request.contextPath}/upload/goodsImg/${goods.g_fileName}";
+				var goodsNum = "${goods.g_num}";
+				var goodsCode = "${goods.g_code}";
+				var goodsName= "${goods.g_name}";
+				$("#palate .gNum:eq("+g_numArr[i]+")").attr("value", goodsCode);
+				addOnDownBar(goodsSelected, goodsNum, goodsCode, goodsName);
+				i++;
             </c:forEach>
-            
-			var GIArr = "";
-			var g_numArr = g_nums.split(",");
-			var g_codeArr = g_codes.split(",");
-			var g_fileNameArr = g_fileNames.split(",");     */
+            i=null 
 	}
 	
-	var Request = function(){
+	/* var Request = function(){
 		this.getParameter = function(name){
 			console.log("//////////name");
 			console.log(name);
@@ -58,7 +64,7 @@
 			}
 			return rtnval;
 		}
-	}
+	} */
 	
 	function category(){
 		var categorys = $(".category");
@@ -245,6 +251,7 @@
 		    	var thisNumVal = $(this).children("small").text();
 		    	var thisPalUrl = $(this).find("img").attr("src");
 		    	var thisGoodsUrl = $(this).find(".background").attr("style");
+		    	var thisName = $(this).children(".mb-0").text();
 		    	var boxes = $("#palate .box");
 			    var gCodeVal = null;
 		    	boxes.each(function(i, box){
@@ -252,24 +259,42 @@
 		    	    if (gCodeVal != thisCodeVal){
 		    	    	  gCodeVal=null;
 		    	    }
-		    	});    
+		    	});  
+		    		/* if (thisCodeVal == "165"){
+		    			for (i=163; i<=164; i++){
+		    				var targetGcode = $("#palate .gCode[value="+i+"]");
+			    			targetGcode.attr("value",thisCodeVal);
+			    			targetGcode.prev().attr("value",""+thisNumVal);
+			    			targetGcode.prev().prev().children("div").remove();
+			    			var downTarget = $("#downBar .gCode[value="+thisCodeVal+"]").parent();
+			    			var dtIndex =  $("#downBar .avatar").index(downTarget);
+			    			downTarget.children().remove();
+		    			}	
+		    			targetGcode.prev().prev().append("<div class=\"background\" style=\" background-image: url(&quot;"+thisPalUrl+"&quot;)\"></div>");
+		    			var replace = "ok";
+		    			var goodsSelected= thisGoodsUrl;
+		    			var goodsNum = thisNumVal;
+					    var goodsCode = thisCodeVal;
+					    var newIndex  = thisIndex;
+		    			addOnDownBar(goodsSelected, goodsNum, goodsCode, newIndex, replace, dtIndex);
+	    				return 
+		    		}	 */
 		    		if (gCodeVal == null){
 		    			//선택한 상품의 인덱스와 일치하는 팔레트용 이미지 출력
 		    			var giSelected = thisPalUrl;
 					    var goodsNum = thisNumVal;
 					    var goodsCode = thisCodeVal;
-					    var newIndex  =  thisIndex;
+					    var goodsName = thisName;
 					    var goodsSelected= thisGoodsUrl;
 					    addOnPal(giSelected, goodsNum, goodsCode); 
-					    addOnDownBar(goodsSelected, goodsNum, goodsCode, newIndex);	    
-		    		} else if(gCodeVal != null){
+					    addOnDownBar(goodsSelected, goodsNum, goodsCode, goodsName);	    
+		    		} else if(gCodeVal){
 		    			//선택한 상품의 상품코드와 일치하는 상품 제거후 팔레트용 이미지 출력
 		    			var targetGcode = $("#palate .gCode[value="+gCodeVal+"]");
 		    			targetGcode.attr("value",thisCodeVal);
 		    			targetGcode.prev().attr("value",""+thisNumVal);
 		    			targetGcode.prev().prev().children("div").remove();
 		    			targetGcode.prev().prev().append("<div class=\"background\" style=\" background-image: url(&quot;"+thisPalUrl+"&quot;)\"></div>");
-		    			var goodsSelBGUrl = thisPalUrl;
 		    			var downTarget = $("#downBar .gCode[value="+thisCodeVal+"]").parent();
 		    			var dtIndex =  $("#downBar .avatar").index(downTarget);
 		    			downTarget.children().remove();
@@ -277,10 +302,8 @@
 		    			var goodsSelected= thisGoodsUrl;
 		    			var goodsNum = thisNumVal;
 					    var goodsCode = thisCodeVal;
-					    var newIndex  = thisIndex;
-						console.log("****************");
-						console.log(newIndex); 
-		    			addOnDownBar(goodsSelected, goodsNum, goodsCode, newIndex, replace, dtIndex);
+					    var goodsName = thisName;
+		    			addOnDownBar(goodsSelected, goodsNum, goodsCode, goodsName, replace, dtIndex);
 		    		}	
 		}); 
     } 
@@ -303,11 +326,10 @@
 		frontImg.attr("class","background");
 	}
 	
-	function addOnDownBar(goodsSelected, goodsNum, goodsCode,  newIndex, replace, dtIndex){
+	function addOnDownBar(goodsSelected, goodsNum, goodsCode, goodsName, replace, dtIndex){
 		/*선택한 상품목록에 추가*/ 
 		//선택한 상품의 background class 태그의 style 속성(이미지 url)선택해 저장 & 이름 선택해 저장 
 		var goodsUrl = goodsSelected.substring(23,goodsSelected.length-2); 
-		var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+newIndex+")").text();
 		//swiper-slide 클래스 div 태그 생성 및 결합
 			var background = $("<div class=\"background\"style=\"background-image: url(&quot;"+goodsUrl+"&quot;)\"></div>");
 			var gCode = $("<input type=\"hidden\" class=\"gCode\" value=\""+goodsCode+"\">");
@@ -500,7 +522,7 @@
 
 
 .C_botton {
-	color: #f94620;
+	color: rgba(255, 74, 74, 0.9);
 }
 
 .box {
@@ -552,9 +574,9 @@
 			<div class="col" align="center" style="min-width:345px; max-width:800px; padding: 0; margin:0px">
 				<!-- my/추천룩이미지 -->
 				<div class="row" id="upBar" style="min-width:345px; max-width:800px; padding: 0; margin:0px">
-					<div class="col btn-danger" align="left"
-						style="max-width: 100px; /* background-color: #f94620; */ color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
-						LOOK목록
+					<div class="col btn-danger" align="center"
+						style="max-width: 100px; background-color: rgba(255, 74, 74, 0.9);  color: white; padding-left: 0px; padding-right: 0px; margin:1px 0 0 0">
+						<p>LOOK목록</p>
 					</div>
 					<div class="col" style="min_width: 345px padding:0; max-width:800px; padding: 0; margin:1px 0 0 0;">
 						<!-- Swiper -->
@@ -617,7 +639,7 @@
 				</div>
 				<!-- my/추천룩이미지 -->
 				<!-- 팔레트  -->
-				<div class="row" style="min-width:345px; max-width:800px; padding: 0px; margin:0">
+				<div class="row btn-outline-light" style="min-width:345px; max-width:800px; padding: 0px; margin:0">
 					<div class="col" style="padding: 0px; margin:0"></div>
 					<div class="col-auto" style="width:345px; height:560px; padding: 0px; margin:0">
 						<div class="container" id="palate" style="padding:0px; margin: 0px">
@@ -666,7 +688,7 @@
 			<div class="col" style="min-width: 345px; margin: 0; padding:0px;">
 						<div class="container" style="padding: 0; margin: 0;">
 							<!--대분류 -->
-							<div class="row" style="background-color: #f94620; padding:0px; margin:0px;">
+							<div class="row" style="background-color: rgba(255, 255, 255, 0.85); padding:0px; margin:0px;">
 								<div class="col btn-danger" style="padding: 0 20px 0 20px; margin:0; color: white;">
 									female
 									<!-- 좌/우 클릭으로 대분류(남/녀/브랜드/이벤트)변경 -->
@@ -687,33 +709,28 @@
 									style="padding: 0; margin:0; background-color: #ffe6e6">
 									<!-- a 태그에 href="상품리스트 페이지에 뿌리는 커맨드" style: 테두리 둥근 박스모양 + 클릭시 색 아이덴티티 컬러로 변하는 이벤트 -->
 									<div class="row category">
-										<div class="col" align="left">
-											<a class="C_botton">hot</a>
+										<div class="col btn-light" align="left" style="vertical-align:middle;">
+											<h6 class="C_botton" style="vertical-align:middle;">outer</h6>
 										</div>
 									</div>
 									<div class="row category">
-										<div class="col" align="left">
-											<a class="C_botton">outer</a>
+										<div class="col btn-light" align="left" style="vertical-align:middle;">
+											<h6 class="C_botton " style="vertical-align:middle;">top</h6>
 										</div>
 									</div>
 									<div class="row category">
-										<div class="col" align="left">
-											<a class="C_botton">top</a>
+										<div class="col btn-light" align="left" style="vertical-align:middle;">
+											<h6 class="C_botton " style="vertical-align:middle;">pants</h6>
 										</div>
 									</div>
 									<div class="row category">
-										<div class="col" align="left">
-											<a class="C_botton">bottom</a>
+										<div class="col btn-light" align="left" >
+											<h6 class="C_botton" style="vertical-align:middle;">onepiece</h6>
 										</div>
 									</div>
 									<div class="row category">
-										<div class="col" align="left">
-											<a class="C_botton">shoes</a>
-										</div>
-									</div>
-									<div class="row category">
-										<div class="col" align="left">
-											<a class="C_botton">etc</a>
+										<div class="col btn-light" align="left" style="vertical-align:middle;">
+											<h6 class="C_botton" style="vertical-align:middle;">shoes</h6>
 										</div>
 									</div>
 								</div>

@@ -18,7 +18,7 @@ public class GoodsDao extends DAO {
 				// category별 검색
 				if (value.equals("0")) {
 					// 성별, 좋아요 기반 추천 되도록 쿼리구현
-					sql += " order by  to_number(g_num)";
+					sql += " order by to_number(g_num)";
 				} else {
 					// 성별, 좋아요, 상품코드 기반 추천 되도록 쿼리구현
 					sql += " and g_code = ? order by to_number(g_num)";
@@ -30,7 +30,7 @@ public class GoodsDao extends DAO {
 
 			psmt = conn.prepareStatement(sql);
 			if (noOrG_nums.equals("N") && !value.equals("0")) {
-
+				psmt.setString(1, value);	
 			}
 			rs = psmt.executeQuery(sql);
 			while (rs.next()) {
