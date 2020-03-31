@@ -154,6 +154,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberRead.do", new MemberRead());
 		cont.put("/memberUpdate.do", new MemberUpdate());
 		cont.put("/memberDeleteOne.do", new MemberDeleteOne());
+		cont.put("/mGoodsList.do", new MGoodsList());
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());

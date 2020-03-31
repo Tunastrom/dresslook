@@ -19,14 +19,13 @@ public class MemberDao extends DAO {
 //	전체회원 목록 가져오기
 	public ArrayList<MemberDto> select() {
 		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
-		String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1," +
-				" m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au," +
-				" find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member";
+		String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1,"
+				+ " m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au,"
+				+ " find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
-			while (rs.next(
-					)) {
+			while (rs.next()) {
 				dto = new MemberDto();
 				dto.setM_id(rs.getString("m_id"));
 				dto.setM_pwd(rs.getString("m_pwd"));
@@ -60,9 +59,9 @@ public class MemberDao extends DAO {
 	public MemberDto select(String id) {
 		dto = new MemberDto();
 
-		String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1," +
-				" m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au," +
-				" find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member where m_id=?";
+		String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1,"
+				+ " m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au,"
+				+ " find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
@@ -169,13 +168,13 @@ public class MemberDao extends DAO {
 		return r;
 	}
 
-	public int delM(MemberDto dto)  { // 회원삭제 del+Member
+	public int delM(MemberDto dto) { // 회원삭제 del+Member
 		String sql = "delete from member where m_id=?";
 		int n = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_id());
-			n = psmt.executeUpdate();	
+			n = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -219,8 +218,6 @@ public class MemberDao extends DAO {
 		close();
 		return grant;// 로그인 성공시 권한을 넘겨준다.
 	}
-	
-	
 
 	public boolean duplicateIdCheck(String id) {
 
@@ -278,10 +275,8 @@ public class MemberDao extends DAO {
 	// 회원정보 수정
 	public int updateM(MemberDto dto) {
 		int n = 0;
-		String sql = "update member set m_pwd=?, m_name=?" + 
-					" ,m_email=?,m_birth=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?" +
-					" ,m_status=?,m_point=?,m_sex=?" + 
-					" where m_id=?";
+		String sql = "update member set m_pwd=?, m_name=?" + " ,m_email=?,m_birth=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?"
+				+ " ,m_status=?,m_point=?,m_sex=?" + " where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_pwd());
@@ -301,7 +296,7 @@ public class MemberDao extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+
 		}
 		return n;
 	}
@@ -339,4 +334,79 @@ public class MemberDao extends DAO {
 		}
 		return delete;
 	}
+
+	// 검색 기능 추가한 전체 회원목록 가져오기
+	public ArrayList<MemberDto> list(String col, String word) {
+		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
+
+		try {
+			if (col.equals("none")) {
+				String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1,"
+						+ " m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au,"
+						+ " find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member";
+				psmt = conn.prepareStatement(sql);
+			    
+
+			} else if (col.equals("rname")) {
+				String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1,"
+						+ " m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au,"
+						+ " find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member"
+						+ " where  m_name like ?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, "%" + word + "%");
+
+			} else if (col.equals("title")) {
+				String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1,"
+						+ " m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au,"
+						+ " find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member"
+						+ " where  m_id like ?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, "%" + word + "%");
+			} else {
+				String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1,"
+						+ " m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au,"
+						+ " find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member";
+
+				psmt = conn.prepareStatement(sql);
+			}
+
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				dto = new MemberDto();
+				dto.setM_id(rs.getString("m_id"));
+				dto.setM_pwd(rs.getString("m_pwd"));
+				dto.setM_name(rs.getString("m_name"));
+				dto.setM_birth(rs.getDate("m_birth"));
+				dto.setM_join(rs.getDate("m_join"));
+				dto.setM_email(rs.getString("m_email"));
+				dto.setM_phone(rs.getString("m_phone"));
+				dto.setM_zip(rs.getString("m_zip"));
+				dto.setM_add1(rs.getString("m_add1"));
+				dto.setM_add2(rs.getString("m_add2"));
+				dto.setM_grade(rs.getString("m_grade"));
+				dto.setM_au(rs.getString("m_au"));
+				dto.setM_status(rs.getString("m_status"));
+				dto.setM_recent(rs.getDate("m_recent"));
+				dto.setM_point(rs.getInt("m_point"));
+				dto.setM_sex(rs.getString("m_sex"));
+
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+
+	public String checkNull(String a) {
+		if (a == null) {
+			return a = "";
+		} else {
+			return a;
+		}
+
+	}
+
 }

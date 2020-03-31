@@ -163,4 +163,72 @@ public class SellerDao extends DAO {
 		}
 	}
 
+	public String checkNull(String a) {
+		if (a == null) {
+			return a = "";
+		} else {
+			return a;
+		}
+
+	}
+
+	// 검색 기능 추가한 전체 회원목록 가져오기
+	public ArrayList<SellerDto> list(String col, String word) {
+		ArrayList<SellerDto> list = new ArrayList<SellerDto>();
+		try {
+			if (col.equals("none")) {
+				String sql = "select s_id, s_pwd, s_cname, s_email, "
+						+ "c_number, s_phone, s_zip, s_addr1, s_addr2, find_code(s_grade) as s_grade "
+						+ "from seller";
+				psmt = conn.prepareStatement(sql);
+			    
+
+			} else if (col.equals("rname")) {
+				String sql = "select s_id, s_pwd, s_cname, s_email, "
+						+ "c_number, s_phone, s_zip, s_addr1, s_addr2, find_code(s_grade) as s_grade "
+						+ "from seller where s_cname like ?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, "%" + word + "%");
+
+			} else if (col.equals("title")) {
+				String sql = "select s_id, s_pwd, s_cname, s_email, "
+						+ "c_number, s_phone, s_zip, s_addr1, s_addr2, find_code(s_grade) as s_grade "
+						+ "from seller where s_id like ?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, "%" + word + "%");
+			}else if (col.equals("code")) {
+				String sql = "select s_id, s_pwd, s_cname, s_email, "
+						+ "c_number, s_phone, s_zip, s_addr1, s_addr2, find_code(s_grade) as s_grade "
+						+ "from seller where c_number like ?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, word + "%");
+			} else {
+					String sql = "select s_id, s_pwd, s_cname, s_email, "
+							+ "c_number, s_phone, s_zip, s_addr1, s_addr2, find_code(s_grade) as s_grade "
+							+ "from seller";
+					psmt = conn.prepareStatement(sql);
+			
+				}
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				dto = new SellerDto();
+				dto.setS_id(rs.getString("s_id"));
+				dto.setS_pwd(rs.getString("s_pwd"));
+				dto.setS_cname(rs.getString("s_cname"));
+				dto.setS_email(rs.getString("s_email"));
+				dto.setC_number(rs.getString("c_number"));
+				dto.setS_phone(rs.getString("s_phone"));
+				dto.setS_zip(rs.getString("s_zip"));
+				dto.setS_addr1(rs.getString("s_addr1"));
+				dto.setS_addr2(rs.getString("s_addr2"));
+				dto.setS_grade(rs.getString("s_grade"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

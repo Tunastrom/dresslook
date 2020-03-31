@@ -18,8 +18,13 @@ public class SellerList implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
 		SellerDao dao = new SellerDao();
-		ArrayList<SellerDto> list = new ArrayList<>();
-		list = dao.select();
+		
+		String col = dao.checkNull(request.getParameter("col"));
+		String word =dao.checkNull(request.getParameter("word"));
+		
+		ArrayList<SellerDto> list = dao.list(col, word);
+		
+		//list = dao.select();
 		request.setAttribute("list", list);
 		
 		
