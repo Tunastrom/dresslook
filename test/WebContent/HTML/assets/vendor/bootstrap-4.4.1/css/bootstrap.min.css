@@ -3043,7 +3043,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-light {
-	color: #f8f9fa;
+	color: #212529;
 	border-color: #f8f9fa
 }
 
@@ -3058,7 +3058,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-light.disabled, .btn-outline-light:disabled {
-	color: #f8f9fa;
+	color: #212529;
 	background-color: transparent
 }
 

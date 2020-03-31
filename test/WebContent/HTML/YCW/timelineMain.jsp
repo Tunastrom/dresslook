@@ -19,7 +19,7 @@ $(document).ready(function(){
 	<div class="tab-content" id="maintabContent">
 		<div class="tab-pane fade show active" id="home" role="tabpanel"
 			aria-labelledby="home-tab">
-		     <div class="row">   
+		    <%--  <div class="row">   
 				<div class="swiper-container offerslide2tab1 my-3">
 					<div class="swiper-wrapper">
 					 <div class="swiper-slide">
@@ -85,7 +85,7 @@ $(document).ready(function(){
 					</div>
 					</div>
 					 <div class="swiper-pagination white-pagination text-left mb-3"></div>
-				</div> 
+				</div>  --%>
 				<p></p>
 				<%-- <div class="row">
 					<div class="container px-0">
@@ -198,9 +198,9 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div> --%>
-				<div class="row my-3">
+				<!-- <div class="row my-3">
 					<div class="container bg-default-light py-3">
-						<!-- Swiper -->
+						Swiper
 						<div class="swiper-container categories2tab1 text-center">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
@@ -219,19 +219,19 @@ $(document).ready(function(){
 									<button class="btn btn-sm btn-white">꽃놀이</button>
 								</div>
 							</div>
-							<!-- Add Pagination -->
+							Add Pagination
 							<div class="swiper-pagination white-pagination text-left mb-3"></div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="row my-3">
 					<div class="container">
 						<div class="row" id="codyTable">
 							<c:forEach var="Cody" items="${CodyList}">
-									<div class="col-6 col-md-4 col-lg-3 lookCard" style="height: 560px;">
+									<div class="col-6 col-md-4 col-lg-3 lookCard ">
 										<div class="card border-0 mb-4">
 											<div class="card-body p-0">
-												<div class="h-150px has-background rounded mb-2">
+												<div class="h-150px has-background rounded mb-2" style="height:560px;">
 													<div class="top-right m-2">
 														<button class="btn btn-sm btn-white btn-rounded">
 															<i class="material-icons">favorite_border</i>
