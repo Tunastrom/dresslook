@@ -33,6 +33,7 @@ public class GoodsListCommand implements Command {
 			list1 = dao.GoodsList(noOrG_nums, g_nums);
 		}
 		String list1JS = null;
+		String not;
 		/*
 		 * for (int i = 0; i < list1.size(); i++) { String imageString1 = new
 		 * String(Base64.encodeBase64(list1.get(i).getG_image())); String changeString1
