@@ -109,7 +109,7 @@
                 <a href="/test/timelineCommand.do" class="list-group-item list-group-item-action active"><i class="material-icons">store</i> <span class="text-link">Home</span></a>
                 <a href="/test/goodsList.do" class="list-group-item list-group-item-action"><i class="material-icons">view_carousel</i> <span class="text-link">상품정보</span></a>
                 <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">주문정보</span></a>
-                <a href="/test/myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
+                <a href="/test/sellerMain.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>
            		</c:if>
             </div>
 			
