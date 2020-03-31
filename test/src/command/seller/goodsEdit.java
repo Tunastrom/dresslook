@@ -26,7 +26,7 @@ public class goodsEdit implements Command {
 		dto.setG_size(request.getParameter("size"));
 		dto.setColor(request.getParameter("color"));
 		dto.setG_inven(request.getParameter("inven"));
-		dto.setG_maker(request.getParameter("maker"));
+		dto.setMaker(request.getParameter("maker"));
 		dto.setG_info(request.getParameter("info"));
 		dto.setG_code(request.getParameter("gcode"));
 		dto.setG_sex(request.getParameter("scode"));

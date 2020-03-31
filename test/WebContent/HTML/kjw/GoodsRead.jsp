@@ -75,7 +75,7 @@
 			<tr>
 				<td>제 조 사 :</td>
 				<td><input type="text" id="maker" name="maker"
-					value="${dto[0].g_maker }"></td>
+					value="${dto[0].maker }"></td>
 			</tr>
 			<tr>
 				<td>상품이미지 :</td>
