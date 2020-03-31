@@ -36,6 +36,7 @@ public class LoginOkCommand implements command.Command {
 			httpsession.setAttribute("id", id);
 			httpsession.setAttribute("au", au);// 브라우저 종료시까지 유지. 세션
 			httpsession.setAttribute("sex", sex);
+		
 			System.out.println(au);
 			System.out.println(sex); 
 

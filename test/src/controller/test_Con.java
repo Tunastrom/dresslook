@@ -57,12 +57,13 @@ import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
+import command.my.MyOrderTrackCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
 import command.my.RegisterCheckCommand;
 import command.my.memberInsertOk;
 import command.my.memberSelect;
-import command.seller.GoodsList;
+/*import command.seller.GoodsList;*/
 import command.seller.InsertGoods;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
@@ -136,7 +137,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/Slogout.do", new SLogoutCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
-		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
 		cont.put("/myProfile.do", new MyProfileCommand());
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
@@ -152,7 +153,7 @@ public class test_Con extends HttpServlet {
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/sellerInsertOk.do", new SellerInsertOkCommand());
-		cont.put("/goodsList.do", new GoodsList());
+		/* cont.put("/goodsList.do", new GoodsList()); */
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/goodsRead.do", new goodsRead());
 		cont.put("/goodsEdit.do", new goodsEdit());
