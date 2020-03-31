@@ -27,7 +27,7 @@
 	<br />
 	<!--memberupdate.do-->
 	<form id="frm" name="frm" action="goodsEdit.do" method="post">
-		<input type="hidden" id="id" name="id">
+		<input type="hidden" name="id">
 		<table class="table table-hover">
 			<tr>
 				<td>상품 번호</td>

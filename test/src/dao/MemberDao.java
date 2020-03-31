@@ -60,13 +60,16 @@ public class MemberDao extends DAO {
 	public MemberDto select(String id) {
 		dto = new MemberDto();
 
-		String sql = "select * from member m where m_id=?";
+		String sql = "select m_id, m_pwd, m_name, m_birth, m_join, m_email, m_phone, m_zip, m_add1," +
+				" m_add2, find_code(m_grade) as m_grade, find_code(m_au) as m_au," +
+				" find_code(m_status) as m_status, m_recent, m_point, find_code(m_sex) as m_sex from member where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				dto = new MemberDto();
+				dto.setM_id(rs.getString("m_id"));
 				dto.setM_pwd(rs.getString("m_pwd"));
 				dto.setM_name(rs.getString("m_name"));
 				dto.setM_birth(rs.getDate("m_birth"));
@@ -81,7 +84,6 @@ public class MemberDao extends DAO {
 				dto.setM_recent(rs.getDate("m_recent"));
 				dto.setM_point(rs.getInt("m_point"));
 				dto.setM_sex(rs.getString("m_sex"));
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -167,34 +169,15 @@ public class MemberDao extends DAO {
 		return r;
 	}
 
-	public int delM(MemberDto dto) throws SQLException { // 회원삭제 del+Member
+	public int delM(MemberDto dto)  { // 회원삭제 del+Member
 		String sql = "delete from member where m_id=?";
 		int n = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_id());
-			if (rs.next()) {
-				dto.setM_id(rs.getString("m_id"));
-				dto.setM_pwd(rs.getString("m_pwd"));
-				dto.setM_name(rs.getString("m_name"));
-				dto.setM_birth(rs.getDate("m_birth"));
-				dto.setM_email(rs.getString("m_email"));
-				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_zip(rs.getString("m_zip"));
-				dto.setM_add1(rs.getString("m_add1"));
-				dto.setM_add2(rs.getString("m_add2"));
-				dto.setM_grade(rs.getString("m_grade"));
-				dto.setM_au(rs.getString("m_au"));
-				dto.setM_status(rs.getString("m_status"));
-				dto.setM_recent(rs.getDate("m_recent"));
-				dto.setM_point(rs.getInt("m_point"));
-				dto.setM_sex(rs.getString("m_sex"));
-			}
-			n = psmt.executeUpdate();
+			n = psmt.executeUpdate();	
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return n;
 
@@ -295,30 +278,30 @@ public class MemberDao extends DAO {
 	// 회원정보 수정
 	public int updateM(MemberDto dto) {
 		int n = 0;
-		String sql = "update member set m_pwd=?,m_name=?," + " m_birth=?,m_email=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?,"
-				+ " m_grade=?,m_status=?,m_recent=?,m_point=?,m_sex=? " + "where m_id=?";
+		String sql = "update member set m_pwd=?, m_name=?" + 
+					" ,m_email=?,m_birth=?,m_phone=?,m_zip=?,m_add1=?,m_add2=?" +
+					" ,m_status=?,m_point=?,m_sex=?" + 
+					" where m_id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getM_pwd());
 			psmt.setString(2, dto.getM_name());
-			psmt.setDate(3, (Date) dto.getM_birth());
-			psmt.setString(4, dto.getM_email());
+			psmt.setString(3, dto.getM_email());
+			psmt.setDate(4, (Date) dto.getM_birth());
 			psmt.setString(5, dto.getM_phone());
 			psmt.setString(6, dto.getM_zip());
 			psmt.setString(7, dto.getM_add1());
 			psmt.setString(8, dto.getM_add2());
-			psmt.setString(9, dto.getM_grade());
-			psmt.setString(10, dto.getM_status());
-			psmt.setDate(11, (Date) dto.getM_recent());
-			psmt.setInt(12, dto.getM_point());
-			psmt.setString(13, dto.getM_sex());
-			psmt.setString(14, dto.getM_id());
+			psmt.setString(9, dto.getM_status());
+			psmt.setInt(10, dto.getM_point());
+			psmt.setString(11, dto.getM_sex());
+			psmt.setString(12, dto.getM_id());
 
 			n = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close();
+			
 		}
 		return n;
 	}

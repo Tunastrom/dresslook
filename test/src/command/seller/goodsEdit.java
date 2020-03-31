@@ -19,7 +19,7 @@ public class goodsEdit implements Command {
 			throws ServletException, IOException, ParseException {
 		GoodsDao dao = new GoodsDao();
 		GoodsDto dto = new GoodsDto();
-		System.out.println(request.getParameter("grice")+"=================");
+
 		dto.setG_name(request.getParameter("name"));
 		dto.setG_price(Integer.parseInt(request.getParameter("grice")));
 		dto.setS_price(Integer.parseInt(request.getParameter("srice")));

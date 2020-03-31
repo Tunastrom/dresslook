@@ -39,7 +39,10 @@ import command.dresslook.ShareInsertCommand;
 import command.dresslook.TimelineCommand;
 import command.dresslook.TimelineWriteCommand;
 import command.dresslook.imageGet;
+import command.manager.MemberDeleteOne;
+import command.manager.MemberRead;
 import command.manager.MemberTranslate;
+import command.manager.MemberUpdate;
 import command.manager.SellerList;
 import command.manager.UpdateM;
 import command.manager.loginSelect;
@@ -142,6 +145,9 @@ public class test_Con extends HttpServlet {
 		// manager
 		cont.put("/memberTranslate.do", new MemberTranslate());
 		cont.put("/sellerList.do", new SellerList());
+		cont.put("/memberRead.do", new MemberRead());
+		cont.put("/memberUpdate.do", new MemberUpdate());
+		cont.put("/memberDeleteOne.do", new MemberDeleteOne());
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
