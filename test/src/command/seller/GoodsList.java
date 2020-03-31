@@ -13,7 +13,7 @@ import command.Command;
 import dao.GoodsDao;
 import dto.GoodsDto;
 
-public class goodsList implements Command {
+public class GoodsList implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

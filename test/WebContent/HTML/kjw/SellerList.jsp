@@ -34,23 +34,6 @@
 
 
 	});
-/*	
- window.addEventListener("load", function(){
-
-	$("input").on("click", function() {
-		$.ajax({
-			type : "post",
-			url : "/track.do",
-			dataType : "ajax",
-			error : function() {
-				alert("조회 실패");
-			},
-			success : function(Parse_data) {
-				$("#Parse_Area").html(Parse_data);
-				alert("조회 값" + Parse_data)
-			}
-	});
-})*/
 </script>
 
 </head>
@@ -58,46 +41,36 @@
 
 	<div align="center" id="dv">
 		<br />
-		<h1>회원 관리</h1>
+		<h1>판매 회원 관리</h1>
 		<form name="frm" id="frm" action="" method="post">
 		<!-- 휴면 계정 변경부 삭제기능은 없음 -->
 			<input type="hidden" name="config" value="">
 			<input type="hidden" name="tag" value="0">
 			<table class="table table-hover" id="ttd">
 				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">이 름</th>
-					<th scope="col">생일</th>
-					<th scope="col">가입일</th>
-					<th scope="col">우편번호</th>
-					<th scope="col">주 소1</th>
-					<th scope="col">주 소2</th>	
+					<th scope="col">I   D</th>
+					<th scope="col">상  호</th>
+					<th scope="col">EMAIL</th>
+					<th scope="col">사업자번호</th>
 					<th scope="col">연 락 처</th>
-					<th scope="col">등 급</th>
-					<th scope="col">상 태</th>
-					<th scope="col">적립금</th>
-					<th scope="col">성 별</th>
-					<th scope="col">최근 접속일</th>
-					<th scope="col">휴면 계정 처리</th>
-					<th scope="col">회원 정보 수정</th>
+					<th scope="col">우편번호</th>
+					<th scope="col">주   소1</th>
+					<th scope="col">주   소2</th>
+					<th scope="col">판매자등급</th>
 				</tr>
 				<c:forEach var="dto" items="${list}">
 					<tr>
-						<td>${dto.m_id }</td>
-						<td>${dto.m_name }</td>
-						<td>${dto.m_birth }</td>
-						<td>${dto.m_join }</td>
-						<td>${dto.m_zip }</td>
-						<td>${dto.m_add1 }</td>
-						<td>${dto.m_add2 }</td>
-						<td>${dto.m_phone }</td>
-						<td>${dto.m_grade }</td>
-						<td>${dto.m_status }</td>
-						<td>${dto.m_point }</td>
-						<td>${dto.m_sex }</td>
-						<td>${dto.m_recent }</td>
+						<td>${dto.s_id }</td>
+						<td>${dto.s_cname }</td>
+						<td>${dto.s_email }</td>
+						<td>${dto.c_number }</td>
+						<td>${dto.s_phone }</td>
+						<td>${dto.s_zip }</td>
+						<td>${dto.s_addr1 }</td>
+						<td>${dto.s_addr2 }</td>
+						<td>${dto.s_grade }</td>
 						<td><button>휴먼계정처리</button></td>
-					<!-- <td><a href="delM.do?m_id=${dto.m_id }">삭제</a></td>-->
+				
 						<td><button>수정</button></td>
 					</tr>
 				</c:forEach>

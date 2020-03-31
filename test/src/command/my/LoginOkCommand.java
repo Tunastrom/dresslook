@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import dao.MemberDao;
 import dto.MemberDto;
 
-
 public class LoginOkCommand implements command.Command {
 
 	@Override
@@ -30,7 +29,6 @@ public class LoginOkCommand implements command.Command {
 		
 		System.out.println(dto);
 		
-
 		if (au == null) {
 			return "login.do";
 		} else {
@@ -41,7 +39,6 @@ public class LoginOkCommand implements command.Command {
 		
 			System.out.println(au);
 			System.out.println(sex); 
-			
 
 			return "timelineCommand.do";
 		}

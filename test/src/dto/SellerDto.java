@@ -11,6 +11,7 @@ public class SellerDto {
 	private String s_email;
 	private String c_number;
 	private String s_phone;
+
 	private String s_zip;
 	private String s_addr1;
 	private String s_addr2;
