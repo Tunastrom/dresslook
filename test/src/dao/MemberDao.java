@@ -204,7 +204,7 @@ public class MemberDao extends DAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, userID);
 			rs = psmt.executeQuery();
-			if (rs.next() || userID.equals(""))
+			if (rs.next())
 				return r = 0;
 			else
 				return r = 1;

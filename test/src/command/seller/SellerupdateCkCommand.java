@@ -26,8 +26,13 @@ public class SellerupdateCkCommand implements Command {
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
 		
+		String sid = (String) request.getSession().getAttribute("sid");
 		
+		
+		System.out.println(sid);
 		System.out.println(cpnum);
+		
+		
 		
 		
 
@@ -41,12 +46,12 @@ public class SellerupdateCkCommand implements Command {
 		dto.setS_zip(zip);
 		dto.setS_addr1(addr1);
 		dto.setS_addr2(addr2);
-		
+		dto.setS_id(sid);
 		
 
 		SellerDao dao = new SellerDao();
 
-		dao.sellerInsert(dto);
+		dao.sellerUpdate(dto);
 
 		return "HTML/kjw/SellerMain.jsp";
 

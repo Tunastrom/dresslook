@@ -72,7 +72,7 @@ public class SellerDao extends DAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, sellerID);
 			rs = psmt.executeQuery();
-			if (rs.next() || sellerID.equals(""))
+			if (rs.next())
 				return r = 0;
 			else
 				return r = 1;
@@ -119,7 +119,7 @@ public class SellerDao extends DAO {
 
 		try {
 
-			String sql = "Update seller set s_cname?, s_email=?, c_number=?, s_phone=?, s_zip=? "
+			String sql = "Update seller set s_cname=?, s_email=?, c_number=?, s_phone=?, s_zip=? "
 					+ " , s_addr1=?, s_addr2=? where s_id=?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getS_cname());
