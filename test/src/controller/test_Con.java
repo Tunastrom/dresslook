@@ -31,7 +31,6 @@ import command.dresslook.DressroomitemInfoCommand;
 import command.dresslook.GoodsImageListCommand;
 import command.dresslook.GoodsListCommand;
 import command.dresslook.Like;
-
 import command.dresslook.LookListCommand;
 import command.dresslook.Notifications;
 import command.dresslook.OrderInsertCommand;
@@ -41,6 +40,11 @@ import command.dresslook.ShareInsertCommand;
 import command.dresslook.TimelineCommand;
 import command.dresslook.TimelineWriteCommand;
 import command.dresslook.imageGet;
+import command.manager.MemberDeleteOne;
+import command.manager.MemberRead;
+import command.manager.MemberTranslate;
+import command.manager.MemberUpdate;
+import command.manager.SellerList;
 import command.manager.UpdateM;
 import command.manager.loginSelect;
 import command.my.IdSearchCommand;
@@ -54,6 +58,7 @@ import command.my.MyCouponCommand;
 import command.my.MyInfoCommand;
 import command.my.MyOrderListCommand;
 import command.my.MyOrderSelectCommand;
+import command.my.MyOrderTrackCommand;
 import command.my.MyProfileCommand;
 import command.my.PwSearchCommand;
 import command.my.RegisterCheckCommand;
@@ -68,7 +73,11 @@ import command.seller.SellerInfoCommand;
 import command.seller.SellerInsertOkCommand;
 import command.seller.SellerMainCommand;
 import command.seller.SellerupdateCkCommand;
+import command.seller.goodsDeleteOne;
+import command.seller.goodsEdit;
 import command.seller.goodsInsert;
+import command.seller.goodsList;
+import command.seller.goodsRead;
 import command.seller.sellerInsert;
 
 
@@ -127,20 +136,28 @@ public class test_Con extends HttpServlet {
 		cont.put("/Slogout.do", new SLogoutCommand());
 		cont.put("/myOrderList.do", new MyOrderListCommand());
 		cont.put("/myOrderSelect.do", new MyOrderSelectCommand());
-		//cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
+		cont.put("/myOrderTrack.do", new MyOrderTrackCommand());
 		cont.put("/myProfile.do", new MyProfileCommand());
 		cont.put("/myInfo.do", new MyInfoCommand());
 		cont.put("/memberIdSearch.do", new IdSearchCommand());
 		cont.put("/memberPwSearch.do", new PwSearchCommand());
 		cont.put("/myCoupon.do", new MyCouponCommand());
 		// manager
+		cont.put("/memberTranslate.do", new MemberTranslate());
+		cont.put("/sellerList.do", new SellerList());
+		cont.put("/memberRead.do", new MemberRead());
+		cont.put("/memberUpdate.do", new MemberUpdate());
+		cont.put("/memberDeleteOne.do", new MemberDeleteOne());
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/sellerInsertOk.do", new SellerInsertOkCommand());
-		cont.put("/goodsList.do", new GoodsListCommand());
+		cont.put("/goodsList.do", new goodsList()); 
 		cont.put("/goodsInsert.do", new goodsInsert());
+		cont.put("/goodsRead.do", new goodsRead());
+		cont.put("/goodsEdit.do", new goodsEdit());
 		cont.put("/mgoods.do", new Mgoods());
+		cont.put("/goodsDeleteOne.do", new goodsDeleteOne());
 
 		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());

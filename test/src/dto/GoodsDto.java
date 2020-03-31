@@ -12,7 +12,7 @@ public class GoodsDto {
 	private String color;
 	private String g_inven;
 	private String s_id;
-	private String maker;
+	private String g_maker;
 	/* private byte[] g_image; */
 	private String g_fileName;
 	private String g_info;
@@ -20,7 +20,6 @@ public class GoodsDto {
 	private String g_sex;
 	private String g_prior;
 	private String g_status;
-
 	private String gi_fileName;
 	private String gi_imgType;
 	/* private long size; */
@@ -32,7 +31,7 @@ public class GoodsDto {
 	public String toString() {
 		return "GoodsDto [g_num=" + g_num + ", g_name=" + g_name + ", g_price=" + g_price + ", s_price=" + s_price
 				+ ", g_size=" + g_size + ", color=" + color + ", g_inven=" + g_inven + ", s_id=" + s_id + ", maker="
-				+ maker + ", g_fileName=" + g_fileName + ", g_info=" + g_info + ", g_code=" + g_code + ", g_sex="
+				+ g_maker + ", g_fileName=" + g_fileName + ", g_info=" + g_info + ", g_code=" + g_code + ", g_sex="
 				+ g_sex + ", g_prior=" + g_prior + ", g_status=" + g_status + ", gi_fileName=" + gi_fileName
 				+ ", gi_imgType=" + gi_imgType + "]";
 	}
@@ -84,11 +83,12 @@ public class GoodsDto {
 	public void setS_id(String s_id) {
 		this.s_id = s_id;
 	}
-	public String getMaker() {
-		return maker;
+	
+	public String getG_maker() {
+		return g_maker;
 	}
-	public void setMaker(String maker) {
-		this.maker = maker;
+	public void setG_maker(String g_maker) {
+		this.g_maker = g_maker;
 	}
 	/*
 	 * public byte[] getG_image() { return g_image; }

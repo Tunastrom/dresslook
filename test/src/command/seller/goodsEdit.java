@@ -19,14 +19,14 @@ public class goodsEdit implements Command {
 			throws ServletException, IOException, ParseException {
 		GoodsDao dao = new GoodsDao();
 		GoodsDto dto = new GoodsDto();
-		System.out.println(request.getParameter("grice")+"=================");
+
 		dto.setG_name(request.getParameter("name"));
 		dto.setG_price(Integer.parseInt(request.getParameter("grice")));
 		dto.setS_price(Integer.parseInt(request.getParameter("srice")));
 		dto.setG_size(request.getParameter("size"));
 		dto.setColor(request.getParameter("color"));
 		dto.setG_inven(request.getParameter("inven"));
-		dto.setMaker(request.getParameter("maker"));
+		dto.setG_maker(request.getParameter("maker"));
 		dto.setG_info(request.getParameter("info"));
 		dto.setG_code(request.getParameter("gcode"));
 		dto.setG_sex(request.getParameter("scode"));

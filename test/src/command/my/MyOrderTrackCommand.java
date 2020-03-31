@@ -15,6 +15,7 @@ public class MyOrderTrackCommand implements Command {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		return "HTML/lsj/myOrderTrack.jsp";
+		
 	}
 
 }

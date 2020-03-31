@@ -40,12 +40,11 @@
                     $.ajax({
                         async: true,
                         type: 'POST',
-                        data: userID,//userID라는 이름으로 userID라는 데이터를 @WebServlet("/registerCheck.do")에 보내겠다
+                        data: {userID:userID},//userID라는 이름으로 userID라는 데이터를 @WebServlet("/registerCheck.do")에 보내겠다
                         url: './ajax/registerCheck.do',
                         dateType: 'json',
-                        contentType: "application/json; charset=UTF-8",
                         success: function (data) {
-                            if (data.cnt > 0) {
+                            if (data == 0) {
                                 $('#id_check').text('중복된 아이디 입니다.');
                                 $('#id_check').css('color', 'red');
                                 $("#usercheck").attr("disabled", true);

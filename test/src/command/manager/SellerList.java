@@ -1,6 +1,7 @@
-package command.my;
+package command.manager;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -8,22 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
-import dao.OrdDetailDao;
-import dto.OrdDetailDto;
+import dao.SellerDao;
+import dto.SellerDto;
 
-public class MyOrderListCommand implements Command {
+public class SellerList implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		OrdDetailDao dao=new OrdDetailDao();
-		ArrayList<OrdDetailDto> list = dao.select("m_id");
+			throws ServletException, IOException, ParseException {
+		SellerDao dao = new SellerDao();
+		ArrayList<SellerDto> list = new ArrayList<>();
+		list = dao.select();
 		request.setAttribute("list", list);
-						
-			
-		return "HTML/lsj/myOrderList.jsp";
+		
+		
+		return "HTML/kjw/SellerList.jsp";
 	}
 
 }

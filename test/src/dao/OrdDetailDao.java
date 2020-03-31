@@ -11,7 +11,7 @@ public class OrdDetailDao extends DAO {
 		OrdDetailDto dto = new OrdDetailDto();
 		ArrayList<OrdDetailDto> list = new ArrayList<OrdDetailDto>();
 		String sql = "select g.g_image, g.maker, o.g_name, o.od_price "
-				+ "from ord o join orddatil d using(o_num) join goods g " + "on(d.g_num=g.g_mum) where m_id=?";
+				+ "from ord o join ord_detail d using(o_num) join goods g " + "on(d.g_num=g.g_num) where m_id=?";
 
 		try {
 			psmt = conn.prepareStatement(sql);
