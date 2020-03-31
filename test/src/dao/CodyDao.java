@@ -92,15 +92,14 @@ public class CodyDao extends DAO{
 		return n;
 	}
 	
-	public CodyDto CodySelect(String id, String l_code){
+	public CodyDto CodySelect(String l_code){
 		DAO();
 		CodyDto dto = null;
-		String sql = "select * from (select * from cody where m_id = ? and l_code =?) C"
-				   +", look L where C.l_code = L.l_code and C.m_id = L.m_id";
+		String sql = "select * from (select * from cody where l_code =?) C"
+				   +", look L where C.l_code = L.l_code";
 		try {
 			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			psmt.setString(2, l_code);
+			psmt.setString(1, l_code);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				dto = new CodyDto();

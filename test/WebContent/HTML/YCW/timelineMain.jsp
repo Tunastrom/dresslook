@@ -9,7 +9,7 @@ $(document).ready(function(){
 	/* $("body").attr("data-page","homepage"); }); */ 
 	$("#codyTable").on("click",".lookCard", function(){
 		var l_code = $(this).find("#l_code").attr("value");
-	 	document.location.href="codyContents.do?l_code="+l_code; 
+	 	document.location.href="codyContentsCommand.do?l_code="+l_code; 
 	});
 });
 </script> 

@@ -183,7 +183,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="cart-tab" href="dressRoomCommand.do" aria-controls="cart"
+                    <a class="nav-link" id="cart-tab" href="dressRoomCommand.do?pass=1" aria-controls="cart"
                         aria-selected="true">
                         <i class="material-icons">local_mall</i>
                         <span class="notification-point"></span>

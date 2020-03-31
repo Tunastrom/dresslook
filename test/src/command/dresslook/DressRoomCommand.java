@@ -1,6 +1,8 @@
 package command.dresslook;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.StringJoiner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,14 +10,41 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import command.Command;
-import dao.MemberDao;
-import dto.MemberDto;
+import dao.GoodsDao;
+import dto.CodyDto;
+import dto.GoodsDto;
+import dto.GoodsImageDto;
 
 public class DressRoomCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			String dest = null;
+	        if(request.getParameter("pass").equals("1")) {
+	        	dest = "HTML/YCW/DressRoom.jsp";
+	        } else {
+	        	HttpSession session = request.getSession();
+	    		CodyDto dto = (CodyDto) session.getAttribute("CodyDto");
+	    		GoodsDao Gdao = new GoodsDao();
+	    		List<GoodsDto> list = (List<GoodsDto>) session.getAttribute("GoodsList");	
+	    		if (dto != null && list != null) {
+		 			   dest = "HTML/YCW/DressRoom.jsp";
+		 			StringJoiner g_numJoin = new StringJoiner(",");
+		 			StringJoiner gi_fileNameJoin = new StringJoiner(",");
+		 			for(GoodsDto Gdto : list) {
+		 				g_numJoin.add(Gdto.getG_num().toString());
+		 			}
+		 			String g_nums = g_numJoin.toString();
+		 			List<GoodsImageDto> GiList = Gdao.GIlist(g_nums);
+		 			request.setAttribute("GoodsList", list);
+		 			request.setAttribute("GIList", GiList);
+			 	} else {
+			 		dest = "redirect:HTML/YCW/CodyContents.jsp"; 
+			 		request.setAttribute("errored", "errored");
+			 	}
+	        }
+	        
 		/*
 		 * GoodsDao2 dao = new GoodsDao2(); List<GoodsDto> list1=null; try { list1 =
 		  dao.GoodsList(); } catch (SQLException e) { e.printStackTrace(); } String
@@ -44,7 +73,7 @@ public class DressRoomCommand implements Command {
            String sex=dto.getM_sex(); 
            request.setAttribute("sex", sex);
 		*/
-		return "HTML/YCW/DressRoom.jsp";
+		return dest;
 	}
 
 }

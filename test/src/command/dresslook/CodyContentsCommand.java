@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import command.Command;
 import dao.CodyDao;
@@ -19,17 +20,18 @@ public class CodyContentsCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String m_id = request.getSession().getAttribute("id").toString();
+		/* String m_id = request.getSession().getAttribute("id").toString(); */
 		String l_code = request.getParameter("l_code");
 		CodyDto dto = new CodyDto();
 		CodyDao dao = new CodyDao();
-		dto = dao.CodySelect(m_id,l_code);
+		dto = dao.CodySelect(l_code);
 		LookDao lDao = new LookDao();
 		String g_nums = lDao.lookDetailSelect(dto.getL_code());
 		GoodsDao gDao = new GoodsDao();
 		
-		request.setAttribute("CodyDto", dto);
-		request.setAttribute("GoodsList", gDao.GoodsList("G", g_nums));
+		HttpSession session = request.getSession();
+		session.setAttribute("CodyDto", dto);
+		session.setAttribute("GoodsList", gDao.GoodsList("G", g_nums));
 		/*
 		LookDao dao = new LookDao();
 		LookDto dto = new LookDto();
