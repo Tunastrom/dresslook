@@ -142,7 +142,7 @@
 					        	alert(data.result);
 					            if(data != null && data != "[{}]"){
 					            	if (destination =="timelineWrite" || destination=="orderSheet"){
-					            		document.location.href= ""+destination+"Command.do?"
+					            		document.location.href= ""+destination+"Command.do"
 					            	}
 					            } else {
 					                 alert("전송실패 관리자에게 문의하세요"); 
@@ -245,8 +245,6 @@
 		    	var thisNumVal = $(this).children("small").text();
 		    	var thisPalUrl = $(this).find("img").attr("src");
 		    	var thisGoodsUrl = $(this).find(".background").attr("style");
-		    	console.log("thisGoodsUrl----------------------");
-		    	console.log(thisGoodsUrl);
 		    	var boxes = $("#palate .box");
 			    var gCodeVal = null;
 		    	boxes.each(function(i, box){
@@ -257,14 +255,16 @@
 		    	});    
 		    		if (gCodeVal == null){
 		    			//선택한 상품의 인덱스와 일치하는 팔레트용 이미지 출력
-		    			goodsSelected = thisPalUrl;
-					    goodsNum = thisNumVal;
-					    goodsCode = thisCodeVal;
-					    addOnPal(goodsSelected, goodsNum, goodsCode);
-					    addOnDownBar(thisGoodsUrl);	    
+		    			var giSelected = thisPalUrl;
+					    var goodsNum = thisNumVal;
+					    var goodsCode = thisCodeVal;
+					    var newIndex  =  thisIndex;
+					    var goodsSelected= thisGoodsUrl;
+					    addOnPal(giSelected, goodsNum, goodsCode); 
+					    addOnDownBar(goodsSelected, goodsNum, goodsCode, newIndex);	    
 		    		} else if(gCodeVal != null){
 		    			//선택한 상품의 상품코드와 일치하는 상품 제거후 팔레트용 이미지 출력
-		    			var targetGcode = $("#palate .gCode[value="+gCodeVal+"]")
+		    			var targetGcode = $("#palate .gCode[value="+gCodeVal+"]");
 		    			targetGcode.attr("value",thisCodeVal);
 		    			targetGcode.prev().attr("value",""+thisNumVal);
 		    			targetGcode.prev().prev().children("div").remove();
@@ -272,56 +272,56 @@
 		    			var goodsSelBGUrl = thisPalUrl;
 		    			var downTarget = $("#downBar .gCode[value="+thisCodeVal+"]").parent();
 		    			var dtIndex =  $("#downBar .avatar").index(downTarget);
-		    			console.log("dddddddddddddddddddddddddd")
-		    			console.log(dtIndex);
 		    			downTarget.children().remove();
 		    			var replace = "ok";
-		    			goodsNum = thisNumVal;
-					    goodsCode = thisCodeVal;
-		    			addOnDownBar(thisGoodsUrl, thisIndex, replace, dtIndex);
+		    			var goodsSelected= thisGoodsUrl;
+		    			var goodsNum = thisNumVal;
+					    var goodsCode = thisCodeVal;
+					    var newIndex  = thisIndex;
+						console.log("****************");
+						console.log(newIndex); 
+		    			addOnDownBar(goodsSelected, goodsNum, goodsCode, newIndex, replace, dtIndex);
 		    		}	
 		}); 
     } 
 	
 	
-	function addOnPal(goodsSelected, goodsNum, goodsCode){
+	function addOnPal(giSelected, goodsNum, goodsCode){
 		//저장된 팔레트용 이미지를 팔레트 영역에 삽입 
-		var box = $("<div class=\"box\" style=\"padding:0; margin:0;\"></div>"); 
+		var box = $("<div class=\"box\" style=\"padding:0; margin:0;\"></div>");
 		box.append("<div class=\"front\" style=\"padding:0; margin:0;\"></div>");
 		box.append("<input type=\"hidden\" class=\"gNum\" value=\""+goodsNum+"\">");
 		box.append("<input type=\"hidden\" class=\"gCode\" value=\""+goodsCode+"\">");
 	    $("#palate").append(box);
 	    $("#palate").children("div:last");
-		$("#palate").children("div:last").children("div").append("<div class=\"background\" style=\" width:345px; padding:0; margin:0; background-image: url(&quot;"+goodsSelected+"&quot;)\"></div>");
-		goodsSelected = null;
+		$("#palate").children("div:last").children("div").append("<div class=\"background\" style=\" width:345px; padding:0; margin:0; background-image: url(&quot;"+giSelected+"&quot;)\"></div>");
 		//직전 이미지의 클래스 back으로 변경 
 		var prev = $("#palate").children("div:last").prev(); //1만큼 앞요소(<div class="box">) 선택
 		prev.children("div").attr("class", "back");
 		// front클래스의 자식인 이미지의 style="display:none"속성 제거
-		var frontImg = $(".front").children(); 
+		var frontImg = $(".front").children();
 		frontImg.attr("class","background");
 	}
 	
-	function addOnDownBar(thisGoodsUrl, thisIndex, replace, dtIndex){
-		/*선택한 상품목록에 추가*/
+	function addOnDownBar(goodsSelected, goodsNum, goodsCode,  newIndex, replace, dtIndex){
+		/*선택한 상품목록에 추가*/ 
 		//선택한 상품의 background class 태그의 style 속성(이미지 url)선택해 저장 & 이름 선택해 저장 
-		var goodsUrl = thisGoodsUrl.substring(23,thisGoodsUrl.length-2); 
-		var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+thisIndex+")").text();
-		var goodsCode = 
-		var	goodsNum =
+		var goodsUrl = goodsSelected.substring(23,goodsSelected.length-2); 
+		var gName = $(".container-fluid").find(".card-body").children(".mb-0:eq("+newIndex+")").text();
 		//swiper-slide 클래스 div 태그 생성 및 결합
 			var background = $("<div class=\"background\"style=\"background-image: url(&quot;"+goodsUrl+"&quot;)\"></div>");
 			var gCode = $("<input type=\"hidden\" class=\"gCode\" value=\""+goodsCode+"\">");
 			var gNum = $("<input type=\"hidden\" class=\"gNum\"value=\""+goodsNum+"\">");
 			palCnt = $("#palate").children().length; //palate에 적용된 옷의 개수
 			//
-			console.log("//////palCnt///////////");
-			console.log(palCnt);
+			console.log("/////////////////");
+			console.log(replace);
+			console.log(dtIndex);
 		if(replace =="ok"){
 			$("#downBar .avatar:eq("+dtIndex+")").append(background);
 			$("#downBar .avatar:eq("+dtIndex+")").append(gNum);
 			$("#downBar .avatar:eq("+dtIndex+")").append(gCode);
-			$("#downBar .avatar:eq("+dtIndex+")").text(""+gName);
+			$("#downBar .avatar:eq("+dtIndex+")").next().text(""+gName);
 			return
 		}	
 	    if (palCnt == 3){
@@ -329,7 +329,7 @@
 			$("#downBar .avatar").append(gNum);
 			$("#downBar .avatar").append(gCode);
 			$("#downBar .small").text(""+gName);
-			$("#downBar .small").children().remove();
+			$("#downBar .small").children("br").remove();
 		} else if (palCnt > 3) {
 			/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
 			var swiperSlide = $("<div class=\"swiper-slide btn-outline-light\" style=\"padding: 0 5px 0 5px;\"></div>");

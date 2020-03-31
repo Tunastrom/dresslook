@@ -21,7 +21,11 @@ public class DressRoomCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 			String dest = null;
-	        if(request.getParameter("pass").equals("1")) {
+			String pass = request.getParameter("pass");
+			if (pass == null || pass == "") {
+				pass ="1";
+			}
+	        if(pass.equals("1")) {
 	        	dest = "HTML/YCW/DressRoom.jsp";
 	        } else {
 	        	HttpSession session = request.getSession();

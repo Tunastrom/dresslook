@@ -2612,15 +2612,15 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-light {
-	color: #212529;
+	color: /*  #212529 */;
 	background-color: #f8f9fa;
-	border-color: #f8f9fa
+	border-color: #f8f9fa;
 }
 
 .btn-light:hover {
 	color: #212529;
 	background-color: #e2e6ea;
-	border-color: #dae0e5
+	border-color: #dae0e5;
 }
 
 .btn-light.focus, .btn-light:focus {
@@ -2630,7 +2630,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 .btn-light.disabled, .btn-light:disabled {
 	color: #212529;
 	background-color: #f8f9fa;
-	border-color: #f8f9fa
+	border-color: #f8f9fa;
 }
 
 .btn-light:not (:disabled ):not (.disabled ).active, .btn-light:not (:disabled
@@ -2886,14 +2886,14 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-light {
-	color: #f8f9fa;
-	border-color: #f8f9fa
+	color: #212529;
+	border-color: #f8f9fa;
 }
 
 .btn-outline-light:hover {
 	color: #212529;
 	background-color: #f8f9fa;
-	border-color: #f8f9fa
+	border-color: #f8f9fa;
 }
 
 .btn-outline-light.focus, .btn-outline-light:focus {
@@ -2901,7 +2901,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-light.disabled, .btn-outline-light:disabled {
-	color: #f8f9fa;
+	color: #212529;
 	background-color: transparent
 }
 

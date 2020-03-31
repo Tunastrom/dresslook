@@ -64,9 +64,9 @@
 </head>
 <body>
    <br>
-   <div class="swiper-container gallery-top">
+   <div class="swiper-container gallery-top" style="height:560px;">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide has-background">
+                    <div class="swiper-slide has-background" style="height:560px;">
                         <div class="background">
                             <img src="${pageContext.request.contextPath}/images/dressroom/dressroomBG.png" alt="">
                         </div>
@@ -75,7 +75,7 @@
                         </div>
                    </div>
                     <c:forEach var="goodsImg" items="${goodsList}">
-	                    <div class="swiper-slide has-background">
+	                    <div class="swiper-slide has-background" style="height:560px;">
 	                        <div class="background">
 	                            <img src="${pageContext.request.contextPath}/upload/goodsImg/${goodsImg.g_fileName}" alt="">
 	                        </div>

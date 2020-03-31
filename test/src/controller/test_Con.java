@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -82,6 +83,11 @@ import command.seller.sellerInsert;
 
 
 @WebServlet("*.do")
+
+//LOOK이미지 업로드 과정에서 필요
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 30, maxRequestSize = 1024 * 1024
+* 50, location = "c:/Temp")
+
 public class test_Con extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HashMap<String, Command> cont = new HashMap<>();
@@ -104,7 +110,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
-		cont.put("/TimelineWriteCommand.do", new TimelineWriteCommand());
+		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/codyContentsCommand.do", new CodyContentsCommand());
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());

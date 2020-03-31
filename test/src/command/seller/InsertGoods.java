@@ -43,7 +43,6 @@ public class InsertGoods implements Command {
 		int curIndex = 0;
 		int palAndnot = 0;
 		Collection<Part> parts = request.getParts();
-		System.out.println("parts.size():" + parts.size());
 		for (Part part : parts) {
 			curIndex++;
 			if (part.getContentType() != null) {
@@ -85,7 +84,8 @@ public class InsertGoods implements Command {
 				dto.setG_inven(request.getParameter("inven"));
 				// dto.setS_id(multi.getParameter("id"));
 				dto.setS_id((String) request.getSession().getAttribute("sid"));
-				dto.setG_maker(request.getParameter("maker"));
+				dto.setMaker(request.getParameter("maker"));
+				System.out.println("--------------------maker"+request.getParameter("maker"));
 				dto.setG_info(request.getParameter("info"));
 				dto.setG_code(request.getParameter("gcode"));
 				dto.setG_sex(request.getParameter("scode"));
