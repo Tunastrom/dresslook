@@ -63,7 +63,6 @@ import command.my.PwSearchCommand;
 import command.my.RegisterCheckCommand;
 import command.my.memberInsertOk;
 import command.my.memberSelect;
-/*import command.seller.GoodsList;*/
 import command.seller.InsertGoods;
 import command.seller.SLoginCommand;
 import command.seller.SLoginOkCommand;
@@ -76,6 +75,7 @@ import command.seller.SellerupdateCkCommand;
 import command.seller.goodsDeleteOne;
 import command.seller.goodsEdit;
 import command.seller.goodsInsert;
+import command.seller.goodsList;
 import command.seller.goodsRead;
 import command.seller.sellerInsert;
 
@@ -153,7 +153,7 @@ public class test_Con extends HttpServlet {
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/sellerInsertOk.do", new SellerInsertOkCommand());
-		/* cont.put("/goodsList.do", new GoodsList()); */
+		cont.put("/goodsList.do", new goodsList()); 
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/goodsRead.do", new goodsRead());
 		cont.put("/goodsEdit.do", new goodsEdit());
