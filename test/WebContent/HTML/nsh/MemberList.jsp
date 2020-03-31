@@ -100,7 +100,6 @@ function deleteData(n) {
 						<td>${dto.m_sex }</td>
 						<td>${dto.m_recent }</td>
 						<td><button id="del" name="del" value="${dto.m_id}" formaction="memberDeleteOne.do">회원삭제</button></td>
-					<!-- <td><a href="delM.do?m_id=${dto.m_id }">삭제</a></td>-->
 						<td>
 						<button id="id" name="id" value="${dto.m_id}" onclick="transData(${dto.m_id})">수정하기</button></td>
 					</tr>
