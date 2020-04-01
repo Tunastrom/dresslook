@@ -2,10 +2,10 @@ package command.seller;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,11 +19,14 @@ public class goodsList implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
 		GoodsDao dao = new GoodsDao();
-		String sid = (String)request.getSession().getAttribute("sid");
-		List<GoodsDto> list1 = dao.SellerGoodsList(sid);
-	
-		request.setAttribute("list", list1);
-		
+		String col = dao.checkNull(request.getParameter("col"));
+		String word = dao.checkNull(request.getParameter("word"));
+		String sid = (String) request.getSession().getAttribute("sid");
+		// List<GoodsDto> list1 = dao.SellerGoodsList(sid);
+		ArrayList<GoodsDto> list = dao.list(sid, col, word);
+
+		request.setAttribute("list", list);
+
 		return "HTML/kjw/goodsList.jsp";
 	}
 }

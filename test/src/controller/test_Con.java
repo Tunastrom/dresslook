@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,7 @@ import command.dresslook.ShareInsertCommand;
 import command.dresslook.TimelineCommand;
 import command.dresslook.TimelineWriteCommand;
 import command.dresslook.imageGet;
+import command.manager.MGoodsList;
 import command.manager.MemberDeleteOne;
 import command.manager.MemberRead;
 import command.manager.MemberTranslate;
@@ -82,6 +84,11 @@ import command.seller.sellerInsert;
 
 
 @WebServlet("*.do")
+
+//LOOK이미지 업로드 과정에서 필요
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 30, maxRequestSize = 1024 * 1024
+* 50, location = "c:/Temp")
+
 public class test_Con extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HashMap<String, Command> cont = new HashMap<>();
@@ -93,7 +100,7 @@ public class test_Con extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// dresslook
 		cont.put("/timelineCommand.do", new TimelineCommand());
-		cont.put("/TimelineWriteCommand.do", new TimelineWriteCommand());
+		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/like.do", new Like());
 		cont.put("/searchCommand.do", new SearchCommand());
 		cont.put("/searchResult.do", new SearchResult());
@@ -148,6 +155,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberRead.do", new MemberRead());
 		cont.put("/memberUpdate.do", new MemberUpdate());
 		cont.put("/memberDeleteOne.do", new MemberDeleteOne());
+		cont.put("/mGoodsList.do", new MGoodsList());
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());

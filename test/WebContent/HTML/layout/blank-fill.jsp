@@ -24,16 +24,12 @@
 
 <!-- bootstrap stylesheet -->
 <link
-	href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=1"
+	href="${pageContext.request.contextPath}/HTML/assets/vendor/bootstrap-4.4.1/css/bootstrap.min.css?ver=4"
 	rel="stylesheet">
-
-
     <!-- swiper stylesheet -->
     <link href="${pageContext.request.contextPath}/HTML/assets/vendor/swiper/css/swiper.min.css?ver=2" rel="stylesheet">
-
     <!-- template stylesheet -->
     <link href="${pageContext.request.contextPath}/HTML/assets/css/style-red.css?ver=5" rel="stylesheet" id="style">
-
     <!-- Template js files -->
     <script src="${pageContext.request.contextPath}/HTML/assets/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/HTML/assets/js/popper.min.js"></script>
@@ -56,7 +52,7 @@
     <style>
         .page-title {
             font-weight: bold;
-            color: #f94620;
+            color: rgba(255, 74, 74, 0.9);
             margin: 0px;
             padding-top: 4px;
         }

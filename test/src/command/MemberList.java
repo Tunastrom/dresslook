@@ -22,8 +22,13 @@ public class MemberList implements Command{
 		MemberDao dao = new MemberDao();
 		
 		//dto 선언
-		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
-		list = dao.select();
+		String col = dao.checkNull(request.getParameter("col"));
+		String word =dao.checkNull(request.getParameter("word"));
+		
+		ArrayList<MemberDto> list = dao.list(col, word);
+		
+		
+		//list = dao.select();
 		
 		request.setAttribute("list", list);
 		

@@ -20,7 +20,7 @@ function transData(n) {
 		<br />
 		<h2>상품 관리</h2>
 		<DIV class='aside_menu'>
-			<FORM name='frm2' method='post' action='goodsList.do'>
+			<FORM name='frm2' method='post' action='mGoodsRead.do'>
 				<ASIDE style='float: right;'>
 					<SELECT name='col'>
 						<!-- 검색 컬럼 -->
@@ -35,11 +35,12 @@ function transData(n) {
 			</FORM>
 			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
-		<form name="frm" id="frm" action="goodsRead.do" method="post">
+		<form name="frm" id="frm" action="mGoodsRead.do" method="post">
 			<input type="hidden" id="id" name="id">
 			<table class="table table-hover" id="ttd">
 				<tr>
 					<th scope="col">상품번호</th>
+					<th scope="col">판매자ID</th>
 					<th scope="col">상 품 명</th>
 					<th scope="col">판 매 가</th>
 					<th scope="col">공 급 가</th>
@@ -51,10 +52,9 @@ function transData(n) {
 					<th scope="col">상품이미지</th>
 				</tr>
 				<c:forEach var="dto" items="${list}">
-					<tr onmouseover="this.style.backgroundColor='#FFFF99'"
-						onmouseout="this.style.backgroundColor=''"
-						onclick="transData(${dto.g_num })">
+					<tr>
 						<td>${dto.g_num }</td>
+						<td>${dto.s_id }</td>
 						<td>${dto.g_name }</td>
 						<td>${dto.g_price }</td>
 						<td>${dto.s_price }</td>
@@ -66,12 +66,14 @@ function transData(n) {
 						<td><img alt=""
 							src="${pageContext.request.contextPath}/upload/goodsImg/${dto.g_fileName}"
 							width="100" height="100"></td>
+						<td><button id="del" name="del" value="${dto.s_id}"
+								formaction="mDeleteOne.do">회원삭제</button></td>
+						<td><button id="id" name="id" value="${dto.s_id}"
+								onclick="transData(${dto.m_id})">수정하기</button></td>
 					</tr>
 				</c:forEach>
 			</table>
-			<input type="submit" value="상품등록하기" formaction="goodsInsert.do">
+			
 		</form>
 		
 	</div>
-</body>
-</html>

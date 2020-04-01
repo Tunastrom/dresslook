@@ -3,6 +3,7 @@ package dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import dto.GoodsDto;
 import dto.GoodsImageDto;
 
@@ -17,7 +18,7 @@ public class GoodsDao extends DAO {
 				// category별 검색
 				if (value.equals("0")) {
 					// 성별, 좋아요 기반 추천 되도록 쿼리구현
-					sql += " order by  to_number(g_num)";
+					sql += " order by to_number(g_num)";
 				} else {
 					// 성별, 좋아요, 상품코드 기반 추천 되도록 쿼리구현
 					sql += " and g_code = ? order by to_number(g_num)";
@@ -29,7 +30,7 @@ public class GoodsDao extends DAO {
 
 			psmt = conn.prepareStatement(sql);
 			if (noOrG_nums.equals("N") && !value.equals("0")) {
-
+				psmt.setString(1, value);	
 			}
 			rs = psmt.executeQuery(sql);
 			while (rs.next()) {
@@ -278,7 +279,7 @@ public class GoodsDao extends DAO {
 			psmt.setString(4, dto.getG_size());
 			psmt.setString(5, dto.getColor());
 			psmt.setString(6, dto.getG_inven());
-			psmt.setString(7, dto.getG_maker());
+			psmt.setString(7, dto.getMaker());
 			psmt.setString(8, dto.getG_info());
 			psmt.setString(9, dto.getG_code());
 			psmt.setString(10, dto.getG_sex());
@@ -309,6 +310,95 @@ public class GoodsDao extends DAO {
 		}
 
 		return n;
+
+	}
+
+	public ArrayList<GoodsDto> list(String sid, String col, String word) {
+		ArrayList<GoodsDto> list = new ArrayList<GoodsDto>();
+		try {
+			if (col.equals("none")) {
+				String sql = "select g_num, g_name, g_price, s_price," + " find_code(g_size) as g_size,"
+						+ " color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"
+						+ " find_code(g_code) as g_code," + " find_code(g_sex) as g_sex,"
+						+ " find_code(g_prior) as g_prior," + " find_code(g_status) as g_status, g_filename"
+						+ " from goods g" + " where s_id = ?" + " order by g_num desc";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, sid);
+			} else if (col.equals("rname")) {
+				String sql = "select g_num, g_name, g_price, s_price," + " find_code(g_size) as g_size,"
+						+ " color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"
+						+ " find_code(g_code) as g_code," + " find_code(g_sex) as g_sex,"
+						+ " find_code(g_prior) as g_prior," + " find_code(g_status) as g_status, g_filename"
+						+ " from goods g" + " where s_id = ? and g_name like ?" + " order by g_num desc";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, sid);
+				psmt.setString(2, "%" + word + "%");
+
+			} else if (col.equals("title")) {
+				String sql = "select g_num, g_name, g_price, s_price," + " find_code(g_size) as g_size,"
+						+ " color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"
+						+ " find_code(g_code) as g_code," + " find_code(g_sex) as g_sex,"
+						+ " find_code(g_prior) as g_prior," + " find_code(g_status) as g_status, g_filename"
+						+ " from goods g where s_id = ? and g_maker like ?" + " order by g_num desc";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, sid);
+				psmt.setString(2, "%" + word + "%");
+
+			} else if (col.equals("no")) {
+				String sql = "select g_num, g_name, g_price, s_price," + " find_code(g_size) as g_size,"
+						+ " color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"
+						+ " find_code(g_code) as g_code," + " find_code(g_sex) as g_sex,"
+						+ " find_code(g_prior) as g_prior," + " find_code(g_status) as g_status, g_filename"
+						+ " from goods g" + " where s_id = ? and g_num = ?" + " order by g_num desc";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, sid);
+				psmt.setString(2, word);
+
+			} else {
+				String sql = "select g_num, g_name, g_price, s_price," + " find_code(g_size) as g_size,"
+						+ " color, find_code(g_inven) as g_inven, s_id, g_maker, g_image, g_info,"
+						+ " find_code(g_code) as g_code," + " find_code(g_sex) as g_sex,"
+						+ " find_code(g_prior) as g_prior," + " find_code(g_status) as g_status, g_filename"
+						+ " from goods g" + " where s_id = ?" + " order by g_num desc";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, sid);
+			}
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				GoodsDto dto = new GoodsDto();
+				dto.setG_num(rs.getInt("g_num"));
+				dto.setG_name(rs.getString("g_name"));
+				dto.setG_price(rs.getInt("g_price"));
+				dto.setS_price(rs.getInt("s_price"));
+				dto.setG_size(rs.getString("g_size"));
+				dto.setColor(rs.getString("color"));
+				dto.setG_inven(rs.getString("g_inven"));
+				dto.setS_id(rs.getString("s_id"));
+				dto.setMaker(rs.getString("g_maker"));
+				dto.setG_fileName(rs.getString("g_filename"));
+				dto.setG_info(rs.getString("g_info"));
+				dto.setG_code(rs.getString("g_code"));
+				dto.setG_sex(rs.getString("g_sex"));
+				dto.setG_prior(rs.getString("g_prior"));
+				dto.setG_status(rs.getString("g_status"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		return list;
+
+	}
+
+	public String checkNull(String a) {
+		if (a == null) {
+			return a = "";
+		} else {
+			return a;
+		}
 
 	}
 }
