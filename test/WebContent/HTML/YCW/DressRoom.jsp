@@ -22,10 +22,10 @@
 		formEvent();
 	 	getGoodsList(); 
 	    getlooksList(); 
-	    defaultPal();
+	  /*   defaultPal(); */
 	});
 	
-	function defaultPal(){
+	/* function defaultPal(){
 		
 			var g_numArr = new Array();
 		   <c:forEach var="goods" items="${GIList}">
@@ -46,7 +46,7 @@
 				i++;
             </c:forEach>
             i=null 
-	}
+	} */
 	
 	/* var Request = function(){
 		this.getParameter = function(name){
@@ -119,14 +119,13 @@
 				var url = "CanvasUpload";
 				if(id == "share"){
 					//ajax로 db저장후 페이지전환 O
-					url+="Command.do";
+					url+="Command";
 					destination = "timelineWrite";
 				} else if(id == "order"){
 					//ajax로 db저장후 페이지전환 O
-					url+="Command.do";
+					url+="Command";
 					destination = "orderSheet";
-				}
-				
+				}				
 				var gNumTags = document.querySelectorAll("#palate .gNum");
 				var gNums = new Array();
 				var i = 0;
@@ -341,24 +340,24 @@
 			console.log(dtIndex);
 		if(replace =="ok"){
 			$("#downBar .avatar:eq("+dtIndex+")").append(background);
-			$("#downBar .avatar:eq("+dtIndex+")").append(gNum);
+			$("#downBar .avatar:eq("+dtIndex+")").append(goodsNum);
 			$("#downBar .avatar:eq("+dtIndex+")").append(gCode);
-			$("#downBar .avatar:eq("+dtIndex+")").next().text(""+gName);
+			$("#downBar .avatar:eq("+dtIndex+")").next().text(""+goodsName);
 			return
 		}	
 	    if (palCnt == 3){
 			$("#downBar .avatar").append(background);
-			$("#downBar .avatar").append(gNum);
+			$("#downBar .avatar").append(goodsNum);
 			$("#downBar .avatar").append(gCode);
-			$("#downBar .small").text(""+gName);
+			$("#downBar .small").text(""+goodsName);
 			$("#downBar .small").children("br").remove();
 		} else if (palCnt > 3) {
 			/* $("#downBar .background").attr("style","background-image: url(\""+goodsUrl+"\")"); */
 			var swiperSlide = $("<div class=\"swiper-slide btn-outline-light\" style=\"padding: 0 5px 0 5px;\"></div>");
 			var avatar = $("<div class=\"avatar avatar-80 has-background mb-2 rounded\"></div>");
-			var name = $("<p class=\"text-uppercase small\">"+gName +"</p>");							
+			var name = $("<p class=\"text-uppercase small\">"+goodsName+"</p>");							
 			avatar.append(background);
-			avatar.append(gNum);
+			avatar.append(goodsNum);
 			avatar.append(gCode);
 			swiperSlide.append(avatar);
 			swiperSlide.append(name);

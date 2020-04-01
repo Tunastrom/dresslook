@@ -25,6 +25,7 @@ import command.collection.OrderSheetCommand;
 import command.collection.Payment;
 import command.collection.Product;
 import command.collection.Thankyou;
+import command.dresslook.CanvasUploadCommand;
 import command.dresslook.Checkout;
 import command.dresslook.CodyContentsCommand;
 import command.dresslook.DressRoomCommand;
@@ -114,6 +115,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
 		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/codyContentsCommand.do", new CodyContentsCommand());
+		cont.put("/CanvasUploadCommand.do", new CanvasUploadCommand());
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());

@@ -14,7 +14,6 @@ import dao.LookDao;
 import dto.LookDto;
 
 public class CanvasUploadCommand implements Command {
-	private static final long serialVersionUID = 1L;
 	private static final String SAVE_DIR = "/lookImg";
 
 	@Override
@@ -54,7 +53,7 @@ public class CanvasUploadCommand implements Command {
 				dto.setG_nums(request.getParameter("gNums"));
 				/* dto.setSize(part.getSize()); */
 				result = dao.LookInsert(dto);
-				result += ".";
+				result += ",";
 				result += dao.LookDetailInsert(dto);
 				//"1,2"와 같은 형태로 성공여부 반환
 			}
