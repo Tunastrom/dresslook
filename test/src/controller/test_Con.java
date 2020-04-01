@@ -101,6 +101,7 @@ public class test_Con extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// dresslook
 		cont.put("/timelineCommand.do", new TimelineCommand());
+		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/like.do", new Like());
 		cont.put("/searchCommand.do", new SearchCommand());
 		cont.put("/searchResult.do", new SearchResult());
@@ -112,7 +113,6 @@ public class test_Con extends HttpServlet {
 		cont.put("/orderInsertCommand.do", new OrderInsertCommand());
 		cont.put("/shareInsertCommand.do", new ShareInsertCommand());
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
-		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/codyContentsCommand.do", new CodyContentsCommand());
 		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
