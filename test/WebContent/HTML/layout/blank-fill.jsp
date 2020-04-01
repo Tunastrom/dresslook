@@ -96,7 +96,7 @@
                 <a href="/test/notifications.do" class="list-group-item list-group-item-action"><i class="material-icons">notifications</i> <span class="text-link">Notifications</span></a>
                 <c:if test="${au == '211' }">
                 <a href="/test/memberTranslate.do" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">회원정보관리</span></a>
-                <a href="/test/memberlist.do" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">상품정보관리</span></a>
+                <a href="/test/mGoodsList.do" class="list-group-item list-group-item-action"><i class="material-icons">memory</i> <span class="text-link">상품정보관리</span></a>
                 </c:if>
 
                 <a href="/test/myProfile.do" class="list-group-item list-group-item-action"><i class="material-icons">local_offer</i> <span class="text-link">offers</span></a>

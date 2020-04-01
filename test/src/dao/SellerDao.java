@@ -111,13 +111,14 @@ public class SellerDao extends DAO {
 	public SellerDto sellerSelect(String sid) {
 		dto = new SellerDto();
 
-		String sql = "select * from seller where s_id=?";
+		String sql = "select s_id, s_pwd, s_cname, s_email, c_number, s_phone, s_zip, s_addr1, s_addr2, find_code(s_grade) as s_grade from seller where s_id =?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, sid);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				dto = new SellerDto();
+				dto.setS_id(rs.getString("s_id"));
 				dto.setS_pwd(rs.getString("s_pwd"));
 				dto.setS_cname(rs.getString("s_cname"));
 				dto.setS_email(rs.getString("s_email"));

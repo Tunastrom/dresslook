@@ -74,6 +74,7 @@ import command.seller.SRegisterCheckCommand;
 import command.seller.SellerInfoCommand;
 import command.seller.SellerInsertOkCommand;
 import command.seller.SellerMainCommand;
+import command.seller.SellerRead;
 import command.seller.SellerupdateCkCommand;
 import command.seller.goodsDeleteOne;
 import command.seller.goodsEdit;
@@ -156,6 +157,7 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberUpdate.do", new MemberUpdate());
 		cont.put("/memberDeleteOne.do", new MemberDeleteOne());
 		cont.put("/mGoodsList.do", new MGoodsList());
+		cont.put("/sellerRead.do", new SellerRead());
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());

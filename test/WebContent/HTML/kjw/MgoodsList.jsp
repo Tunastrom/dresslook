@@ -20,7 +20,7 @@ function transData(n) {
 		<br />
 		<h2>상품 관리</h2>
 		<DIV class='aside_menu'>
-			<FORM name='frm2' method='post' action='mGoodsRead.do'>
+			<FORM name='frm2' method='post' action='mGoodsList.do'>
 				<ASIDE style='float: right;'>
 					<SELECT name='col'>
 						<!-- 검색 컬럼 -->
@@ -28,6 +28,7 @@ function transData(n) {
 						<OPTION value='rname'>상품명</OPTION>
 						<OPTION value='title'>브랜드</OPTION>
 						<OPTION value='no'>상품번호</OPTION>
+						<OPTION value='sid'>판매자ID</OPTION>
 					</SELECT> <input type='text' name='word' value=''
 						placeholder="특수문자는 사용할수 없습니다.">
 					<button type='submit'>검색</button>
@@ -50,6 +51,8 @@ function transData(n) {
 					<th scope="col">상품분류코드</th>
 					<th scope="col">브 랜 드</th>
 					<th scope="col">상품이미지</th>
+					<th scope="col">회원 삭제</th>
+					<th scope="col">회원정보수정</th>
 				</tr>
 				<c:forEach var="dto" items="${list}">
 					<tr>
@@ -69,7 +72,7 @@ function transData(n) {
 						<td><button id="del" name="del" value="${dto.s_id}"
 								formaction="mDeleteOne.do">회원삭제</button></td>
 						<td><button id="id" name="id" value="${dto.s_id}"
-								onclick="transData(${dto.m_id})">수정하기</button></td>
+								onclick="transData(${dto.s_id})">수정하기</button></td>
 					</tr>
 				</c:forEach>
 			</table>
