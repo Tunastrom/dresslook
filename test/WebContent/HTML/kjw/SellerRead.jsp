@@ -60,9 +60,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-				<input type="submit" value="수정">
-				<input type="reset" value="초기화"> 
-				<input type="button" value="취소" onclick="location.href='/test/SellerList.do'"></td>
+				<input type="submit" value="수정"> 
+				<input type="button" value="취소" onclick="location.href='/test/sellerList.do'"></td>
 			</tr>
 		</table>
 	</form>

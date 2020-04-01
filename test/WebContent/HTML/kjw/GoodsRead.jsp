@@ -144,7 +144,7 @@
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="수정">
 					<input type="submit" value="삭제" formaction="goodsDeleteOne.do">
-					<input type="reset" value="초기화"></td>
+				</td>
 			</tr>
 		</table>
 	</form>

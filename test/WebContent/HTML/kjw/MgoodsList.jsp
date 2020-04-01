@@ -51,8 +51,8 @@ function transData(n) {
 					<th scope="col">상품분류코드</th>
 					<th scope="col">브 랜 드</th>
 					<th scope="col">상품이미지</th>
-					<th scope="col">회원 삭제</th>
-					<th scope="col">회원정보수정</th>
+					<th scope="col">상품 삭제</th>
+					<th scope="col">상품정보수정</th>
 				</tr>
 				<c:forEach var="dto" items="${list}">
 					<tr>
@@ -70,7 +70,7 @@ function transData(n) {
 							src="${pageContext.request.contextPath}/upload/goodsImg/${dto.g_fileName}"
 							width="100" height="100"></td>
 						<td><button id="del" name="del" value="${dto.s_id}"
-								formaction="mDeleteOne.do">회원삭제</button></td>
+								formaction="mDeleteOne.do">상품삭제</button></td>
 						<td><button id="id" name="id" value="${dto.s_id}"
 								onclick="transData(${dto.s_id})">수정하기</button></td>
 					</tr>

@@ -26,10 +26,7 @@ public class MemberList implements Command{
 		String word =dao.checkNull(request.getParameter("word"));
 		
 		ArrayList<MemberDto> list = dao.list(col, word);
-		
-		
-		//list = dao.select();
-		
+	
 		request.setAttribute("list", list);
 		
 		//돌려줄 페이지 선택
