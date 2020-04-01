@@ -84,20 +84,20 @@ function deleteData(n) {
 			<table class="table table-hover" id="ttd">
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">이 름</th>
+					<th scope="col">이름</th>
 					<th scope="col">생일</th>
 					<th scope="col">가입일</th>
 					<th scope="col">우편번호</th>
-					<th scope="col">주 소1</th>
-					<th scope="col">주 소2</th>
-					<th scope="col">연 락 처</th>
-					<th scope="col">등 급</th>
-					<th scope="col">상 태</th>
+					<th scope="col">주소1</th>
+					<th scope="col">주소2</th>
+					<th scope="col">연락처</th>
+					<th scope="col">등급</th>
+					<th scope="col">상태</th>
 					<th scope="col">적립금</th>
-					<th scope="col">성 별</th>
-					<th scope="col">최근 접속일</th>
-					<th scope="col">회원 정보 삭제</th>
-					<th scope="col">회원 정보 수정</th>
+					<th scope="col">성별</th>
+					<th scope="col">최근접속일</th>
+					<th scope="col">회원정보삭제</th>
+					<th scope="col">회원정보수정</th>
 				</tr>
 				<c:forEach var="dto" items="${list}">
 					<tr>
