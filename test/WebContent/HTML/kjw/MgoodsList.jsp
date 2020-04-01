@@ -71,8 +71,8 @@ function transData(n) {
 							width="100" height="100"></td>
 						<td><button id="del" name="del" value="${dto.s_id}"
 								formaction="mDeleteOne.do">상품삭제</button></td>
-						<td><button id="id" name="id" value="${dto.s_id}"
-								onclick="transData(${dto.s_id})">수정하기</button></td>
+						<td><button id="id" name="id" value="${dto.g_num}"
+								onclick="transData(${dto.g_num})">수정하기</button></td>
 					</tr>
 				</c:forEach>
 			</table>
