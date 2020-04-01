@@ -140,8 +140,8 @@ public class SellerDao extends DAO {
 
 	}
 
-	public void sellerUpdate(SellerDto dto) {
-
+	public int sellerUpdate(SellerDto dto) {
+		int n =0;
 		try {
 
 			String sql = "Update seller set s_cname=?, s_email=?, c_number=?, s_phone=?, s_zip=? "
@@ -155,13 +155,14 @@ public class SellerDao extends DAO {
 			psmt.setString(6, dto.getS_addr1());
 			psmt.setString(7, dto.getS_addr2());
 			psmt.setString(8, dto.getS_id());
-			psmt.executeUpdate();
+			n = psmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close();
+			
 		}
+		return n;
 	}
 
 	public String checkNull(String a) {
@@ -231,5 +232,23 @@ public class SellerDao extends DAO {
 		}
 		return list;
 	}
+	public int delete(SellerDto dto) {
+		
+		int n = 0;
+		String sql = "delete from seller where s_id =?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getS_id());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return n;
+		
+	}
+	
 
 }

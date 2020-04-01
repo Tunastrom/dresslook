@@ -69,19 +69,19 @@
 			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
 		<form name="frm" id="frm" action="sellerRead.do" method="post">
-		<!-- 휴면 계정 변경부 삭제기능은 없음 -->
-			<input type="hidden" name="config" value="">
-			<input type="hidden" name="tag" value="0">
+			<!-- 휴면 계정 변경부 삭제기능은 없음 -->
+			<input type="hidden" name="config" value=""> <input
+				type="hidden" name="tag" value="0">
 			<table class="table table-hover" id="ttd">
 				<tr>
-					<th scope="col">I   D</th>
-					<th scope="col">상  호</th>
+					<th scope="col">I D</th>
+					<th scope="col">상 호</th>
 					<th scope="col">EMAIL</th>
 					<th scope="col">사업자번호</th>
 					<th scope="col">연 락 처</th>
 					<th scope="col">우편번호</th>
-					<th scope="col">주   소1</th>
-					<th scope="col">주   소2</th>
+					<th scope="col">주 소1</th>
+					<th scope="col">주 소2</th>
 					<th scope="col">판매자등급</th>
 					<th scope="col">회원 정보 삭제</th>
 					<th scope="col">회원 정보 수정</th>
@@ -98,7 +98,7 @@
 						<td>${dto.s_addr2 }</td>
 						<td>${dto.s_grade }</td>
 						<td><button id="del" name="del" value="${dto.s_id}"
-								formaction="sellerDeleteOne.do">회원삭제</button></td>
+								formaction="sellerDelete.do">회원삭제</button></td>
 						<td>
 							<button id="id" name="id" value="${dto.s_id}"
 								onclick="transData(${dto.s_id})">수정하기</button>

@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td>사업자번호 :</td>
-				<td><input type="text" name="birth" value="${dto.c_number }">
+				<td><input type="text" name="cnumber" value="${dto.c_number }">
 			</tr>
 			<tr>
 				<td>연 락 처 :</td>

@@ -46,7 +46,9 @@ import command.manager.MemberDeleteOne;
 import command.manager.MemberRead;
 import command.manager.MemberTranslate;
 import command.manager.MemberUpdate;
+import command.manager.SellerDeleteOne;
 import command.manager.SellerList;
+import command.manager.SellerUpdate;
 import command.manager.UpdateM;
 import command.manager.loginSelect;
 import command.my.IdSearchCommand;
@@ -83,12 +85,11 @@ import command.seller.goodsList;
 import command.seller.goodsRead;
 import command.seller.sellerInsert;
 
-
 @WebServlet("*.do")
 
 //LOOK이미지 업로드 과정에서 필요
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 30, maxRequestSize = 1024 * 1024
-* 50, location = "c:/Temp")
+		* 50, location = "c:/Temp")
 
 public class test_Con extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -114,11 +115,11 @@ public class test_Con extends HttpServlet {
 		cont.put("/ajax/lookListCommand.do", new LookListCommand());
 		cont.put("/timelineWriteCommand.do", new TimelineWriteCommand());
 		cont.put("/codyContentsCommand.do", new CodyContentsCommand());
-		cont.put("/memberlist.do", new MemberList());//회원목록 - id 클릭시 휴먼계정으로 변경
+		cont.put("/memberlist.do", new MemberList());// 회원목록 - id 클릭시 휴먼계정으로 변경
 		cont.put("/membermain.do", new MemberMain());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/memberdelete.do", new deleteMember());
-		cont.put("/memberupdate.do",new Memberupdate());//회원정보 수정
+		cont.put("/memberupdate.do", new Memberupdate());// 회원정보 수정
 		cont.put("/updatem.do", new UpdateM());
 		cont.put("/collectionMainCommand.do", new CollectionMainCommand());
 		cont.put("/lookSelect.do", new LookSelect());
@@ -158,30 +159,31 @@ public class test_Con extends HttpServlet {
 		cont.put("/memberDeleteOne.do", new MemberDeleteOne());
 		cont.put("/mGoodsList.do", new MGoodsList());
 		cont.put("/sellerRead.do", new SellerRead());
+		cont.put("/sellerUpdate.do", new SellerUpdate());
+		cont.put("/sellerDelete.do", new SellerDeleteOne());
 
 		// seller
 		cont.put("/sellerInsert.do", new sellerInsert());
 		cont.put("/sellerInsertOk.do", new SellerInsertOkCommand());
-		cont.put("/goodsList.do", new goodsList()); 
+		cont.put("/goodsList.do", new goodsList());
 		cont.put("/goodsInsert.do", new goodsInsert());
 		cont.put("/goodsRead.do", new goodsRead());
 		cont.put("/goodsEdit.do", new goodsEdit());
 		cont.put("/mgoods.do", new Mgoods());
 		cont.put("/goodsDeleteOne.do", new goodsDeleteOne());
 
-		cont.put("/insertGoods.do", new InsertGoods()); //상품 샘플 입력
+		cont.put("/insertGoods.do", new InsertGoods()); // 상품 샘플 입력
 		cont.put("/dressroomitemInfo.do", new DressroomitemInfoCommand());
-		
+
 		cont.put("/sellerMain.do", new SellerMainCommand());
 		cont.put("/sellerInfo.do", new SellerInfoCommand());
-		
-		
-		//crawling
-		cont.put("/track.do", new crawling());//주문목록에서 배송조회 버튼이랑 연결해야됨
+
+		// crawling
+		cont.put("/track.do", new crawling());// 주문목록에서 배송조회 버튼이랑 연결해야됨
 		cont.put("/memberupdateCk.do", new MemberupdateCk());
 		cont.put("/sellerupdateCk.do", new SellerupdateCkCommand());
 	}
-	
+
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 실행할 Class객체를 찾아주는 부분
